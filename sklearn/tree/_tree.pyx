@@ -2401,24 +2401,17 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     f_i -= 1
                     features[f_i], features[f_j] = features[f_j], features[f_i]
 
-                    # Number of possible splits which can be made 
-                    n_possible_splits = end-start-min_samples_leaf*2+1
-
-                    # If there are no possible splits given the constraints,
-                    # do not bother making any calculations
-                    if n_possible_splits <= 0:
-                        continue
-
                     for p in range(end-start):
                         i = samples[p]
 
                         if p == 0:
                             w_cl[0] = w[i]
                             yw_cl[0] = w[i] * y[i*y_stride]
+                            yw_sq[p] = yw_cl[0] * y[i*y_stride]
                         else:
                             w_cl[p] = w[i] + w_cl[p-1]
                             yw_cl[p] = w[i]*y[i*y_stride] + yw_cl[p-1]
-                            yw_sq[p] = yw_cl[p] * yw_cl[p]
+                            yw_sq[p] = w[i]*y[i*y_stride]*y[i*y_stride] + yw_sq[p-1]
 
                     for p in range(end-start-1):
                         current.pos = p+1
@@ -2433,17 +2426,26 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
                             best = current
 
+        # Constants pulling out the sum, to make the next equations simpler to
+        # understand
         cdef double yw_sq_sum = yw_sq[end-start-1]
         cdef double yw_sum = yw_cl[end-start-1]
         cdef double w_sum = w_cl[end-start-1] 
 
+        # Calculate the impurity of the entire array
         self.impurity = yw_sq_sum / w_sum - ( yw_sum / w_sum ) ** 2.0
 
-        best.impurity_left = (yw_sq[best.pos-1] / w_cl[best.pos-1] - 
-            (yw_cl[best.pos-1] / w_cl[best.pos-1] ) ** 2.0)
-        best.impurity_right = ((yw_sq_sum - yw_sq[best.pos-1]) / 
-            (w_sum - w_cl[best.pos-1]) - (yw_sq_sum - yw_cl[best.pos-1]) /
-            (w_sum - w_cl[best.pos-1]) ** 2.0)  
+        #with gil:
+        #    print yw_sq_sum, w_sum, yw_sum
+
+        # Calculate the impurity on the left side of the array
+        best.impurity_left = (yw_sq[best.pos] / w_cl[best.pos] - 
+            (yw_cl[best.pos] / w_cl[best.pos] ) ** 2.0)
+
+        # Calculate the impurity on the right side of the array
+        best.impurity_right = ((yw_sq_sum - yw_sq[best.pos]) / 
+            (w_sum - w_cl[best.pos]) - ((yw_sum - yw_cl[best.pos]) /
+            (w_sum - w_cl[best.pos])) ** 2.0)  
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
@@ -3389,6 +3391,9 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
                                          weighted_n_node_samples)
+                        
+                #with gil:
+                #    print "DEPTH: {} IMPURITY: {} IS LEAF: {} SPLIT {} FEATURE {}".format( depth, impurity, is_leaf, split.threshold, split.feature )
 
                 if node_id == <SIZE_t>(-1):
                     rc = -1
