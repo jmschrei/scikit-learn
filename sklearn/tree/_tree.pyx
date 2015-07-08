@@ -2488,9 +2488,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         Return the impurity of this node.
         """
 
-        with gil:
-            print "Total Impurity: {}".format( self.impurity )
-
         return self.impurity
 
 cdef class BaseSparseSplitter(Splitter):
@@ -3382,8 +3379,6 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                     impurity = splitter.node_impurity()
                     first = 0
 
-                with gil:
-                    print "TREE IMPURITY: {}".format( impurity )
                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
 
                 if not is_leaf:
