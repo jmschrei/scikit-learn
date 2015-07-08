@@ -2163,6 +2163,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
     cdef unsigned char* sample_mask
     cdef SIZE_t X_feature_stride
+    cdef double impurity
 
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t mn_samples_leaf,
@@ -2175,6 +2176,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         self.X_idx_sorted_stride = 0
         self.sample_mask = NULL
         self.X_feature_stride = 0
+        self.impurity = 0.
 
     def __dealloc__(self):
         """
@@ -2204,6 +2206,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         self.X = <DTYPE_t*> X_ndarray.data
         self.X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
         self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
+        self.impurity = 1.e8
 
         cdef void* sample_mask = NULL
         
@@ -2315,9 +2318,8 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef SIZE_t n_visited_features = 0, partition_end, i, j, p, k
 
         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
-        cdef double* yw_cr = <double*> calloc(n_samples, sizeof(double))
         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))
-        cdef double* w_cr = <double*> calloc(n_samples, sizeof(double))
+        cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))
         cdef SIZE_t n_possible_splits
 
         _init_split(&best, end)
@@ -2412,22 +2414,16 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
                         if p == 0:
                             w_cl[0] = w[i]
-                            w_cr[end-start-1] = w[i]
-
-                            yw_cl[0] = w[i] * y[start*y_stride]
-                            yw_cr[end-start-1] = w[i] * y[i*y_stride]
+                            yw_cl[0] = w[i] * y[i*y_stride]
                         else:
                             w_cl[p] = w[i] + w_cl[p-1]
-                            w_cr[end-start-p] = w[i] + w_cl[i+1]
-
                             yw_cl[p] = w[i]*y[i*y_stride] + yw_cl[p-1]
-                            yw_cr[end-start-p-1] = w[i] * y[i*y_stride] + yw_cr[end-start-p]
 
                     for p in range(end-start+1):
                         current.pos = p
-                        current.improvement = ( w_cl[i] * w_cr[i] * 
-                            ( yw_cl[i] / w_cl[i] - yw_cr[i] / w_cr[i] ) ** 2 
-                            / w_cl[0] )
+                        current.improvement = ( w_cl[i] * (w_cl[end-start-1] - w_cl[p])  * 
+                            (yw_cl[i] / w_cl[i] - (yw_cl[end-start-1] - yw_cl[p]) / 
+                            (w_cl[end-start-1] - w_cl[p]) ) ** 2.0 / w_cl[0] )
 
                         if current.improvement > best.improvement:
                             current.threshold = (X_i[p-1] + X_i[p]) / 2.0
@@ -2435,6 +2431,18 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                                 current.threshold = X_i[p-1]
 
                             best = current
+
+        cdef double yw_sq_sum = yw_sq[end-start-1]
+        cdef double yw_sum = yw_cl[end-start-1]
+        cdef double w_sum = w_cl[end-start-1] 
+
+        self.impurity = yw_sq_sum / w_sum - ( yw_sum / w_sum ) ** 2.0
+
+        best.impurity_left = (yw_sq[best.pos-1] / w_cl[best.pos-1] - 
+            (yw_cl[best.pos-1] / w_cl[best.pos-1] ) ** 2.0)
+        best.impurity_right = ((yw_sq_sum - yw_sq[best.pos-1]) / 
+            (w_sum - w_cl[best.pos-1]) - (yw_sq_sum - yw_cl[best.pos-1]) /
+            (w_sum - w_cl[best.pos-1]) ** 2.0)  
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
@@ -2472,10 +2480,18 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         n_constant_features[0] = n_total_constants
 
         free(w_cl)
-        free(w_cr)
         free(yw_cl)
-        free(yw_cr)
+        free(yw_sq)
 
+    cdef double node_impurity(self) nogil:
+        """
+        Return the impurity of this node.
+        """
+
+        with gil:
+            print "Total Impurity: {}".format( self.impurity )
+
+        return self.impurity
 
 cdef class BaseSparseSplitter(Splitter):
     # The sparse splitter works only with csc sparse matrix format
@@ -3366,6 +3382,8 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                     impurity = splitter.node_impurity()
                     first = 0
 
+                with gil:
+                    print "TREE IMPURITY: {}".format( impurity )
                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
 
                 if not is_leaf:
