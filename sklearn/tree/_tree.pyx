@@ -2418,17 +2418,18 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         else:
                             w_cl[p] = w[i] + w_cl[p-1]
                             yw_cl[p] = w[i]*y[i*y_stride] + yw_cl[p-1]
+                            yw_sq[p] = yw_cl[p] * yw_cl[p]
 
-                    for p in range(end-start+1):
-                        current.pos = p
-                        current.improvement = ( w_cl[i] * (w_cl[end-start-1] - w_cl[p])  * 
-                            (yw_cl[i] / w_cl[i] - (yw_cl[end-start-1] - yw_cl[p]) / 
+                    for p in range(end-start-1):
+                        current.pos = p+1
+                        current.improvement = ( w_cl[p] * (w_cl[end-start-1] - w_cl[p])  * 
+                            (yw_cl[p] / w_cl[p] - (yw_cl[end-start-1] - yw_cl[p]) / 
                             (w_cl[end-start-1] - w_cl[p]) ) ** 2.0 / w_cl[0] )
 
                         if current.improvement > best.improvement:
-                            current.threshold = (X_i[p-1] + X_i[p]) / 2.0
+                            current.threshold = (X_i[p] + X_i[p+1]) / 2.0
                             if current.threshold == X_i[p]:
-                                current.threshold = X_i[p-1]
+                                current.threshold = X_i[p]
 
                             best = current
 
