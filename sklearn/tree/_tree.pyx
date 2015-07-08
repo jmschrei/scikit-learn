@@ -2383,12 +2383,13 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # See if we are using this sample or not
                     if sample_mask[j] == 1:
                         samples[p] = j
-                        X_i[p] = X[X_sample_stride * j +
-                                   X_feature_stride * current.feature]
+                        #X_i[p] = X[X_sample_stride * j +
+                        #           X_feature_stride * current.feature]
                         p += 1
 
                 # Ensure this feature is not constant
-                if X_i[end - 1] <= X_i[start] + FEATURE_THRESHOLD:
+                if ( X[X_sample_stride * samples[end - 1] + X_feature_stride * current.feature] <= 
+                     X[X_sample_stride * samples[start] + X_feature_stride * current.feature] + FEATURE_THRESHOLD ):
                     features[f_j] = features[n_total_constants]
                     features[n_total_constants] = current.feature
 
@@ -3405,7 +3406,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
 
                 if not is_leaf:
                     # Push right child on stack
-                    rc = stack.push(split.pos, end, depth + 1, node_id, 0,
+                    rc = stack.push(split.pos, end, depth+1, node_id, 0,
                                     split.impurity_right, n_constant_features)
                     if rc == -1:
                         break
