@@ -2290,7 +2290,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
         # Unpack X related items
         cdef DTYPE_t* X = self.X
-        cdef DTYPE_t* X_i = self.feature_values
         cdef SIZE_t X_sample_stride = self.X_sample_stride
         cdef SIZE_t X_feature_stride = self.X_feature_stride
         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
