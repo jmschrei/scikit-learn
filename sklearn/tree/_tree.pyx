@@ -2290,6 +2290,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
         # Unpack X related items
         cdef DTYPE_t* X = self.X
+        cdef DTYPE_t* X_i = self.feature_values
         cdef SIZE_t X_sample_stride = self.X_sample_stride
         cdef SIZE_t X_feature_stride = self.X_feature_stride
         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
@@ -2383,8 +2384,8 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # See if we are using this sample or not
                     if sample_mask[j] == 1:
                         samples[p] = j
-                        #X_i[p] = X[X_sample_stride * j +
-                        #           X_feature_stride * current.feature]
+                        X_i[p] = X[X_sample_stride * j +
+                                   X_feature_stride * current.feature]
                         p += 1
 
                 # Ensure this feature is not constant
@@ -2402,9 +2403,18 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     f_i -= 1
                     features[f_i], features[f_j] = features[f_j], features[f_i]
 
+                    # Now try to find the best split in this data by going
+                    # through each possible split, recording some summary
+                    # statistics, and using those later on to calculate the
+                    # best split.
                     for p in range(end-start):
                         i = samples[p]
 
+                        # Since we are taking cumulatives, start off by just
+                        # determining the original contribution. We want the
+                        # cumulative sum of the weights, of the weights
+                        # multiplied by the response (y), and of that value
+                        # squared.
                         if p == 0:
                             w_cl[0] = w[i]
                             yw_cl[0] = w[i] * y[i*y_stride]
@@ -2414,20 +2424,20 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                             yw_cl[p] = w[i]*y[i*y_stride] + yw_cl[p-1]
                             yw_sq[p] = w[i]*y[i*y_stride]*y[i*y_stride] + yw_sq[p-1]
 
+                    # Now go through each possible split, calculate the
+                    # improvement of that split using Friedman's correction to
+                    # the MSE criterion, and determine which split is the best.
                     for p in range(end-start-1):
                         current.pos = p+1
-                        current.improvement = ( w_cl[p] * (w_cl[end-start-1] - w_cl[p])  * 
-                            (yw_cl[p] / w_cl[p] - (yw_cl[end-start-1] - yw_cl[p]) / 
+                        current.improvement = ( w_cl[p] * (w_cl[end-start-1] - 
+                            w_cl[p])  * (yw_cl[p] / w_cl[p] - 
+                            (yw_cl[end-start-1] - yw_cl[p]) / 
                             (w_cl[end-start-1] - w_cl[p]) ) ** 2.0 / w_cl[0] )
 
                         if current.improvement > best.improvement:
-                            lower = X[X_sample_stride * samples[p] + 
-                                      X_feature_stride * current.feature]
-                            upper = X[X_sample_stride * samples[p+1] + 
-                                      X_feature_stride * current.feature]
-                            current.threshold = (upper + lower) / 2.0
-                            if current.threshold == lower:
-                                current.threshold = lower
+                            current.threshold = (X_i[p - 1] + X_i[p]) / 2.0
+                            if current.threshold == X_i[p]:
+                                current.threshold = X_i[p - 1]
 
                             best = current
 
