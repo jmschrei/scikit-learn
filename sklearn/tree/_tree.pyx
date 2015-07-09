@@ -2435,9 +2435,9 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                             (w_cl[end-start-1] - w_cl[p]) ) ** 2.0 / w_cl[0] )
 
                         if current.improvement > best.improvement:
-                            current.threshold = (X_i[p - 1] + X_i[p]) / 2.0
+                            current.threshold = (X_i[p+1] + X_i[p]) / 2.0
                             if current.threshold == X_i[p]:
-                                current.threshold = X_i[p - 1]
+                                current.threshold = X_i[p]
 
                             best = current
 
@@ -3400,19 +3400,12 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
 
                 if not is_leaf:
-                    with gil:
-                        print "splitting",
                     splitter.node_split(impurity, &split, &n_constant_features)
                     is_leaf = is_leaf or (split.pos >= end)
 
-                with gil:
-                    print split.threshold
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
                                          weighted_n_node_samples)
-                        
-                #with gil:
-                #    print "DEPTH: {} IMPURITY: {} IS LEAF: {} SPLIT {} FEATURE {}".format( depth, impurity, is_leaf, split.threshold, split.feature )
 
                 if node_id == <SIZE_t>(-1):
                     rc = -1
