@@ -2319,6 +2319,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))
         cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))
+        cdef double upper, lower
         cdef SIZE_t n_possible_splits
 
         _init_split(&best, end)
@@ -2420,9 +2421,13 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                             (w_cl[end-start-1] - w_cl[p]) ) ** 2.0 / w_cl[0] )
 
                         if current.improvement > best.improvement:
-                            current.threshold = (X_i[p] + X_i[p+1]) / 2.0
-                            if current.threshold == X_i[p]:
-                                current.threshold = X_i[p]
+                            lower = X[X_sample_stride * samples[p] + 
+                                      X_feature_stride * current.feature]
+                            upper = X[X_sample_stride * samples[p+1] + 
+                                      X_feature_stride * current.feature]
+                            current.threshold = (upper + lower) / 2.0
+                            if current.threshold == lower:
+                                current.threshold = lower
 
                             best = current
 
@@ -3385,9 +3390,13 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
 
                 if not is_leaf:
+                    with gil:
+                        print "splitting",
                     splitter.node_split(impurity, &split, &n_constant_features)
                     is_leaf = is_leaf or (split.pos >= end)
 
+                with gil:
+                    print split.threshold
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
                                          weighted_n_node_samples)
@@ -3411,7 +3420,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                         break
 
                     # Push left child on stack
-                    rc = stack.push(start, split.pos, depth + 1, node_id, 1,
+                    rc = stack.push(start, split.pos, depth+1, node_id, 1,
                                     split.impurity_left, n_constant_features)
                     if rc == -1:
                         break
