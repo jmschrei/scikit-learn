@@ -2418,7 +2418,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         if p == 0:
                             w_cl[0] = w[i]
                             yw_cl[0] = w[i] * y[i*y_stride]
-                            yw_sq[p] = yw_cl[0] * y[i*y_stride]
+                            yw_sq[0] = w[i] * y[i*y_stride] * y[i*y_stride]
                         else:
                             w_cl[p] = w[i] + w_cl[p-1]
                             yw_cl[p] = w[i]*y[i*y_stride] + yw_cl[p-1]
@@ -2442,8 +2442,8 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         yw_cr = yw_cl[end-start-1] - yw_cl[i]
                         yw_sq_r = yw_sq[end-start-1] - yw_sq[i]
 
-                        current.improvement = (w_cl[i] * w_cr  * 
-                            (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0 / 
+                        current.improvement = ((w_cl[i] * w_cr * 
+                            (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0) / 
                             w_cl[end-start-1])
 
                         if current.improvement > best.improvement:

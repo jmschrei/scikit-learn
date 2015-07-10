@@ -16154,7 +16154,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *                         if p == 0:
  *                             w_cl[0] = w[i]             # <<<<<<<<<<<<<<
  *                             yw_cl[0] = w[i] * y[i*y_stride]
- *                             yw_sq[p] = yw_cl[0] * y[i*y_stride]
+ *                             yw_sq[0] = w[i] * y[i*y_stride] * y[i*y_stride]
  */
               (__pyx_v_w_cl[0]) = (__pyx_v_w[__pyx_v_i]);
 
@@ -16162,7 +16162,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *                         if p == 0:
  *                             w_cl[0] = w[i]
  *                             yw_cl[0] = w[i] * y[i*y_stride]             # <<<<<<<<<<<<<<
- *                             yw_sq[p] = yw_cl[0] * y[i*y_stride]
+ *                             yw_sq[0] = w[i] * y[i*y_stride] * y[i*y_stride]
  *                         else:
  */
               (__pyx_v_yw_cl[0]) = ((__pyx_v_w[__pyx_v_i]) * (__pyx_v_y[(__pyx_v_i * __pyx_v_y_stride)]));
@@ -16170,17 +16170,17 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
               /* "sklearn/tree/_tree.pyx":2421
  *                             w_cl[0] = w[i]
  *                             yw_cl[0] = w[i] * y[i*y_stride]
- *                             yw_sq[p] = yw_cl[0] * y[i*y_stride]             # <<<<<<<<<<<<<<
+ *                             yw_sq[0] = w[i] * y[i*y_stride] * y[i*y_stride]             # <<<<<<<<<<<<<<
  *                         else:
  *                             w_cl[p] = w[i] + w_cl[p-1]
  */
-              (__pyx_v_yw_sq[__pyx_v_p]) = ((__pyx_v_yw_cl[0]) * (__pyx_v_y[(__pyx_v_i * __pyx_v_y_stride)]));
+              (__pyx_v_yw_sq[0]) = (((__pyx_v_w[__pyx_v_i]) * (__pyx_v_y[(__pyx_v_i * __pyx_v_y_stride)])) * (__pyx_v_y[(__pyx_v_i * __pyx_v_y_stride)]));
               goto __pyx_L20;
             }
             /*else*/ {
 
               /* "sklearn/tree/_tree.pyx":2423
- *                             yw_sq[p] = yw_cl[0] * y[i*y_stride]
+ *                             yw_sq[0] = w[i] * y[i*y_stride] * y[i*y_stride]
  *                         else:
  *                             w_cl[p] = w[i] + w_cl[p-1]             # <<<<<<<<<<<<<<
  *                             yw_cl[p] = w[i]*y[i*y_stride] + yw_cl[p-1]
@@ -16325,15 +16325,15 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *                         yw_cr = yw_cl[end-start-1] - yw_cl[i]
  *                         yw_sq_r = yw_sq[end-start-1] - yw_sq[i]             # <<<<<<<<<<<<<<
  * 
- *                         current.improvement = (w_cl[i] * w_cr  *
+ *                         current.improvement = ((w_cl[i] * w_cr *
  */
             __pyx_v_yw_sq_r = ((__pyx_v_yw_sq[((__pyx_v_end - __pyx_v_start) - 1)]) - (__pyx_v_yw_sq[__pyx_v_i]));
 
             /* "sklearn/tree/_tree.pyx":2445
  *                         yw_sq_r = yw_sq[end-start-1] - yw_sq[i]
  * 
- *                         current.improvement = (w_cl[i] * w_cr  *             # <<<<<<<<<<<<<<
- *                             (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0 /
+ *                         current.improvement = ((w_cl[i] * w_cr *             # <<<<<<<<<<<<<<
+ *                             (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0) /
  *                             w_cl[end-start-1])
  */
             __pyx_v_current.improvement = ((((__pyx_v_w_cl[__pyx_v_i]) * __pyx_v_w_cr) * pow((((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - (__pyx_v_yw_cr / __pyx_v_w_cr)), 2.0)) / (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]));
