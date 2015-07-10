@@ -2428,7 +2428,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # improvement of that split using Friedman's correction to
                     # the MSE criterion, and determine which split is the best.
                     for p in range(end-start-1):
-                        current.pos = p+1
+                        current.pos = start+p
                         current.improvement = ( w_cl[p] * (w_cl[end-start-1] - 
                             w_cl[p])  * (yw_cl[p] / w_cl[p] - 
                             (yw_cl[end-start-1] - yw_cl[p]) / 
@@ -2449,9 +2449,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
         # Calculate the impurity of the entire array
         self.impurity = yw_sq_sum / w_sum - ( yw_sum / w_sum ) ** 2.0
-
-        #with gil:
-        #    print yw_sq_sum, w_sum, yw_sum
 
         # Calculate the impurity on the left side of the array
         best.impurity_left = (yw_sq[best.pos] / w_cl[best.pos] - 
@@ -3385,6 +3382,8 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 impurity = stack_record.impurity
                 n_constant_features = stack_record.n_constant_features
 
+                with gil:
+                    print start, end
                 n_node_samples = end - start
                 splitter.node_reset(start, end, &weighted_n_node_samples)
 
