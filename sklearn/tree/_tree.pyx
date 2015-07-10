@@ -1529,7 +1529,7 @@ cdef class BestSplitter(BaseDenseSplitter):
                         # (p + 1 >= end) or (X[samples[p + 1], current.feature] >
                         #                    X[samples[p], current.feature])
                         p += 1
-                        # (p >= end) or (X[samples[p], current.feature] >
+                        # (p >= end) or (X[samples[p], current.fe + 1 ature] >
                         #                X[samples[p - 1], current.feature])
 
                         if p < end:
@@ -2427,18 +2427,16 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # Now go through each possible split, calculate the
                     # improvement of that split using Friedman's correction to
                     # the MSE criterion, and determine which split is the best.
-                    i = 0
-                    for p in range(start, end):
-                        if i < min_samples_leaf or end-i < min_samples_leaf:
-                            i += 1
+                    for i in range(end-start):
+                        p = i + start
+                        if (i+1 < min_samples_leaf) or (end-i+1 < min_samples_leaf):
                             continue
 
                         if (w_cl[i] < min_weight_leaf or w_cl[end-start-1]
                             - w_cl[i] < min_weight_leaf):
-                            i += 1
                             continue
 
-                        current.pos = i
+                        current.pos = p
 
                         w_cr = w_cl[end-start-1] - w_cl[i]
                         yw_cr = yw_cl[end-start-1] - yw_cl[i]
@@ -2447,8 +2445,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         current.improvement = (w_cl[i] * w_cr  * 
                             (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0 / 
                             w_cl[end-start-1])
-
-                        i += 1
 
                         if current.improvement > best.improvement:
                             current.threshold = (X_i[p+1] + X_i[p]) / 2.0
@@ -2463,22 +2459,23 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef double yw_sum = yw_cl[end-start-1]
         cdef double w_sum = w_cl[end-start-1] 
 
-        w_cr = w_sum - w_cl[best.pos]
-        yw_cr = yw_sum - yw_cl[best.pos]
-        yw_sq_r = yw_sq_sum - yw_sq[best.pos]
+        i = best.pos - start
+
+        w_cr = w_sum - w_cl[i]
+        yw_cr = yw_sum - yw_cl[i]
+        yw_sq_r = yw_sq_sum - yw_sq[i]
 
         # Calculate the impurity of the entire array
-        self.impurity = yw_sq_sum / w_sum - ( yw_sum / w_sum ) ** 2.0
+        self.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
 
         # Calculate the impurity on the left side of the array
-        best.impurity_left = (yw_sq[best.pos] / w_cl[best.pos] - 
-            (yw_cl[best.pos] / w_cl[best.pos]) ** 2.0)
+        best.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
 
         # Calculate the impurity on the right side of the array
         best.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
 
-        #with gil:
-        #    print start, end, best.pos, best.impurity_left, yw_sq[best.pos], w_cl[best.pos], yw_cl[best.pos], (yw_cl[best.pos] / w_cl[best.pos]), (yw_cl[best.pos] / w_cl[best.pos]) ** 2, yw_sq[best.pos] / w_cl[best.pos]
+        with gil:
+            print start, end, best.pos, best.threshold, best.improvement, best.impurity_left, best.impurity_right
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
