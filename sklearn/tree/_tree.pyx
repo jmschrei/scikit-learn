@@ -2320,7 +2320,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))
         cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))
-        cdef double upper, lower
+        cdef double upper, lower, yw_cr, w_cr, yw_sq_r
         cdef SIZE_t n_possible_splits
 
         _init_split(&best, end)
@@ -2427,17 +2427,33 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # Now go through each possible split, calculate the
                     # improvement of that split using Friedman's correction to
                     # the MSE criterion, and determine which split is the best.
-                    for p in range(end-start-1):
-                        current.pos = start+p
-                        current.improvement = ( w_cl[p] * (w_cl[end-start-1] - 
-                            w_cl[p])  * (yw_cl[p] / w_cl[p] - 
-                            (yw_cl[end-start-1] - yw_cl[p]) / 
-                            (w_cl[end-start-1] - w_cl[p]) ) ** 2.0 / w_cl[0] )
+                    i = 0
+                    for p in range(start, end):
+                        if i < min_samples_leaf or end-i < min_samples_leaf:
+                            i += 1
+                            continue
+
+                        if (w_cl[i] < min_weight_leaf or w_cl[end-start-1]
+                            - w_cl[i] < min_weight_leaf):
+                            i += 1
+                            continue
+
+                        current.pos = i
+
+                        w_cr = w_cl[end-start-1] - w_cl[i]
+                        yw_cr = yw_cl[end-start-1] - yw_cl[i]
+                        yw_sq_r = yw_sq[end-start-1] - yw_sq[i]
+
+                        current.improvement = (w_cl[i] * w_cr  * 
+                            (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0 / 
+                            w_cl[end-start-1])
+
+                        i += 1
 
                         if current.improvement > best.improvement:
                             current.threshold = (X_i[p+1] + X_i[p]) / 2.0
                             if current.threshold == X_i[p]:
-                                current.threshold = X_i[p]
+                                current.threshold = X_i[p] 
 
                             best = current
 
@@ -2447,17 +2463,22 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef double yw_sum = yw_cl[end-start-1]
         cdef double w_sum = w_cl[end-start-1] 
 
+        w_cr = w_sum - w_cl[best.pos]
+        yw_cr = yw_sum - yw_cl[best.pos]
+        yw_sq_r = yw_sq_sum - yw_sq[best.pos]
+
         # Calculate the impurity of the entire array
         self.impurity = yw_sq_sum / w_sum - ( yw_sum / w_sum ) ** 2.0
 
         # Calculate the impurity on the left side of the array
         best.impurity_left = (yw_sq[best.pos] / w_cl[best.pos] - 
-            (yw_cl[best.pos] / w_cl[best.pos] ) ** 2.0)
+            (yw_cl[best.pos] / w_cl[best.pos]) ** 2.0)
 
         # Calculate the impurity on the right side of the array
-        best.impurity_right = ((yw_sq_sum - yw_sq[best.pos]) / 
-            (w_sum - w_cl[best.pos]) - ((yw_sum - yw_cl[best.pos]) /
-            (w_sum - w_cl[best.pos])) ** 2.0)  
+        best.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+
+        #with gil:
+        #    print start, end, best.pos, best.impurity_left, yw_sq[best.pos], w_cl[best.pos], yw_cl[best.pos], (yw_cl[best.pos] / w_cl[best.pos]), (yw_cl[best.pos] / w_cl[best.pos]) ** 2, yw_sq[best.pos] / w_cl[best.pos]
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
@@ -3382,8 +3403,6 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 impurity = stack_record.impurity
                 n_constant_features = stack_record.n_constant_features
 
-                with gil:
-                    print start, end
                 n_node_samples = end - start
                 splitter.node_reset(start, end, &weighted_n_node_samples)
 
