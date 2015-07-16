@@ -2429,7 +2429,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     for i in range(end-start-1):
                         # Don't even consider possibilities which don't fall under
                         # the constraints imposed by the user.
-                        if (i+1 < min_samples_leaf) or (end-start-i < min_samples_leaf):
+                        if (i+1 < min_samples_leaf) or (end-start-i+1 < min_samples_leaf):
                             continue
                         if (w_cl[i] < min_weight_leaf or w_cl[end-start-1]
                             - w_cl[i] < min_weight_leaf):
@@ -2448,7 +2448,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
                         if current.improvement > best.improvement:
                             current.threshold = (X_i[p] + X_i[p-1]) / 2.0
-                            if current.threshold == X_i[p-1]:
+                            if current.threshold == X_i[p]:
                                 current.threshold = X_i[p-1] 
 
                             best = current
