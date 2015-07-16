@@ -2329,9 +2329,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         for p in range(start, end):
             sample_mask[samples[p]] = 1
 
-        with gil:
-            print [ sample_mask[i] for i in range(self.n_samples) ]
-
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm (using the local variables `f_i` and
         # `f_j` to compute a permutation of the `features` array).
@@ -2442,7 +2439,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                             - w_cl[i] < min_weight_leaf):
                             continue
 
-                        p = i+start
+                        p = i+start+1
 
                         w_cr = w_cl[end-start-1] - w_cl[i]
                         yw_cr = yw_cl[end-start-1] - yw_cl[i]
@@ -2458,9 +2455,9 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         #    print "\t", start, end, i, end-start-1, current.improvement, w_cl[end-start-1], w_cl[i], w_cr
 
                         if current.improvement > best.improvement:
-                            current.threshold = (X_i[p+1] + X_i[p]) / 2.0
-                            if current.threshold == X_i[p]:
-                                current.threshold = X_i[p] 
+                            current.threshold = (X_i[p] + X_i[p-1]) / 2.0
+                            if current.threshold == X_i[p-1]:
+                                current.threshold = X_i[p-1] 
 
                             best = current
 
@@ -2470,7 +2467,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef double yw_sum = yw_cl[end-start-1]
         cdef double w_sum = w_cl[end-start-1] 
 
-        i = best.pos - start
+        i = best.pos - start - 1
 
         w_cr = w_sum - w_cl[i]
         yw_cr = yw_sum - yw_cl[i]

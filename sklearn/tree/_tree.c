@@ -16352,7 +16352,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *                             - w_cl[i] < min_weight_leaf):
  *                             continue             # <<<<<<<<<<<<<<
  * 
- *                         p = i+start
+ *                         p = i+start+1
  */
               goto __pyx_L26_continue;
             }
@@ -16360,14 +16360,14 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
             /* "sklearn/tree/_tree.pyx":2445
  *                             continue
  * 
- *                         p = i+start             # <<<<<<<<<<<<<<
+ *                         p = i+start+1             # <<<<<<<<<<<<<<
  * 
  *                         w_cr = w_cl[end-start-1] - w_cl[i]
  */
-            __pyx_v_p = (__pyx_v_i + __pyx_v_start);
+            __pyx_v_p = ((__pyx_v_i + __pyx_v_start) + 1);
 
             /* "sklearn/tree/_tree.pyx":2447
- *                         p = i+start
+ *                         p = i+start+1
  * 
  *                         w_cr = w_cl[end-start-1] - w_cl[i]             # <<<<<<<<<<<<<<
  *                         yw_cr = yw_cl[end-start-1] - yw_cl[i]
@@ -16415,8 +16415,8 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *                         #    print "\t", start, end, i, end-start-1, current.improvement, w_cl[end-start-1], w_cl[i], w_cr
  * 
  *                         if current.improvement > best.improvement:             # <<<<<<<<<<<<<<
- *                             current.threshold = (X_i[p+1] + X_i[p]) / 2.0
- *                             if current.threshold == X_i[p]:
+ *                             current.threshold = (X_i[p] + X_i[p-1]) / 2.0
+ *                             if current.threshold == X_i[p-1]:
  */
             __pyx_t_11 = ((__pyx_v_current.improvement > __pyx_v_best.improvement) != 0);
             if (__pyx_t_11) {
@@ -16424,36 +16424,36 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
               /* "sklearn/tree/_tree.pyx":2461
  * 
  *                         if current.improvement > best.improvement:
- *                             current.threshold = (X_i[p+1] + X_i[p]) / 2.0             # <<<<<<<<<<<<<<
- *                             if current.threshold == X_i[p]:
- *                                 current.threshold = X_i[p]
+ *                             current.threshold = (X_i[p] + X_i[p-1]) / 2.0             # <<<<<<<<<<<<<<
+ *                             if current.threshold == X_i[p-1]:
+ *                                 current.threshold = X_i[p-1]
  */
-              __pyx_v_current.threshold = (((__pyx_v_X_i[(__pyx_v_p + 1)]) + (__pyx_v_X_i[__pyx_v_p])) / 2.0);
+              __pyx_v_current.threshold = (((__pyx_v_X_i[__pyx_v_p]) + (__pyx_v_X_i[(__pyx_v_p - 1)])) / 2.0);
 
               /* "sklearn/tree/_tree.pyx":2462
  *                         if current.improvement > best.improvement:
- *                             current.threshold = (X_i[p+1] + X_i[p]) / 2.0
- *                             if current.threshold == X_i[p]:             # <<<<<<<<<<<<<<
- *                                 current.threshold = X_i[p]
+ *                             current.threshold = (X_i[p] + X_i[p-1]) / 2.0
+ *                             if current.threshold == X_i[p-1]:             # <<<<<<<<<<<<<<
+ *                                 current.threshold = X_i[p-1]
  * 
  */
-              __pyx_t_11 = ((__pyx_v_current.threshold == (__pyx_v_X_i[__pyx_v_p])) != 0);
+              __pyx_t_11 = ((__pyx_v_current.threshold == (__pyx_v_X_i[(__pyx_v_p - 1)])) != 0);
               if (__pyx_t_11) {
 
                 /* "sklearn/tree/_tree.pyx":2463
- *                             current.threshold = (X_i[p+1] + X_i[p]) / 2.0
- *                             if current.threshold == X_i[p]:
- *                                 current.threshold = X_i[p]             # <<<<<<<<<<<<<<
+ *                             current.threshold = (X_i[p] + X_i[p-1]) / 2.0
+ *                             if current.threshold == X_i[p-1]:
+ *                                 current.threshold = X_i[p-1]             # <<<<<<<<<<<<<<
  * 
  *                             best = current
  */
-                __pyx_v_current.threshold = (__pyx_v_X_i[__pyx_v_p]);
+                __pyx_v_current.threshold = (__pyx_v_X_i[(__pyx_v_p - 1)]);
                 goto __pyx_L35;
               }
               __pyx_L35:;
 
               /* "sklearn/tree/_tree.pyx":2465
- *                                 current.threshold = X_i[p]
+ *                                 current.threshold = X_i[p-1]
  * 
  *                             best = current             # <<<<<<<<<<<<<<
  * 
@@ -16494,21 +16494,21 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *         cdef double yw_sum = yw_cl[end-start-1]
  *         cdef double w_sum = w_cl[end-start-1]             # <<<<<<<<<<<<<<
  * 
- *         i = best.pos - start
+ *         i = best.pos - start - 1
  */
     __pyx_v_w_sum = (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
 
     /* "sklearn/tree/_tree.pyx":2473
  *         cdef double w_sum = w_cl[end-start-1]
  * 
- *         i = best.pos - start             # <<<<<<<<<<<<<<
+ *         i = best.pos - start - 1             # <<<<<<<<<<<<<<
  * 
  *         w_cr = w_sum - w_cl[i]
  */
-    __pyx_v_i = (__pyx_v_best.pos - __pyx_v_start);
+    __pyx_v_i = ((__pyx_v_best.pos - __pyx_v_start) - 1);
 
     /* "sklearn/tree/_tree.pyx":2475
- *         i = best.pos - start
+ *         i = best.pos - start - 1
  * 
  *         w_cr = w_sum - w_cl[i]             # <<<<<<<<<<<<<<
  *         yw_cr = yw_sum - yw_cl[i]
