@@ -2423,10 +2423,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                             yw_cl[i] = w[p]*y[p*y_stride] + yw_cl[i-1]
                             yw_sq[i] = w[p]*y[p*y_stride]*y[p*y_stride] + yw_sq[i-1]
 
-                    #with gil:
-                    #    print [ w_cl[i] for i in xrange(end-start) ]
-                    #    print [ w_cl[i] for i in xrange(n_samples)]
-
                     # Now go through each possible split, calculate the
                     # improvement of that split using Friedman's correction to
                     # the MSE criterion, and determine which split is the best.
@@ -3413,15 +3409,15 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                            (n_node_samples < 2 * min_samples_leaf) or
                            (weighted_n_node_samples < min_weight_leaf))
 
-                if first:
-                    impurity = splitter.node_impurity()
-                    first = 0
-
                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
 
                 if not is_leaf:
                     splitter.node_split(impurity, &split, &n_constant_features)
                     is_leaf = is_leaf or (split.pos >= end)
+
+                if first:
+                    impurity = splitter.node_impurity()
+                    first = 0
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
