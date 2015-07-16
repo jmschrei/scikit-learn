@@ -2446,10 +2446,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                             w_cl[end-start-1])
                         current.pos = p
 
-
-                        #with gil:
-                        #    print "\t", start, end, i, end-start-1, current.improvement, w_cl[end-start-1], w_cl[i], w_cr
-
                         if current.improvement > best.improvement:
                             current.threshold = (X_i[p] + X_i[p-1]) / 2.0
                             if current.threshold == X_i[p-1]:
