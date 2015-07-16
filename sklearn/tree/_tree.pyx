@@ -1772,9 +1772,6 @@ cdef class PresortBestSplitter(BaseDenseSplitter):
 
                                 best = current  # copy
 
-        with gil:
-            print start, end, best.pos, best.threshold, best.improvement, best.impurity_left, best.impurity_right
-
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
             partition_end = end
