@@ -2459,9 +2459,9 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
         # Constants pulling out the sum, to make the next equations simpler to
         # understand
-        cdef double yw_sq_sum = yw_sq[end-start]
-        cdef double yw_sum = yw_cl[end-start]
-        cdef double w_sum = w_cl[end-start] 
+        cdef double yw_sq_sum = yw_sq[end-start-1]
+        cdef double yw_sum = yw_cl[end-start-1]
+        cdef double w_sum = w_cl[end-start-1] 
 
         i = best.pos-start-1
 

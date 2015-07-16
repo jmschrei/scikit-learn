@@ -16366,32 +16366,32 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
   /* "sklearn/tree/_tree.pyx":2462
  *         # Constants pulling out the sum, to make the next equations simpler to
  *         # understand
- *         cdef double yw_sq_sum = yw_sq[end-start]             # <<<<<<<<<<<<<<
- *         cdef double yw_sum = yw_cl[end-start]
- *         cdef double w_sum = w_cl[end-start]
+ *         cdef double yw_sq_sum = yw_sq[end-start-1]             # <<<<<<<<<<<<<<
+ *         cdef double yw_sum = yw_cl[end-start-1]
+ *         cdef double w_sum = w_cl[end-start-1]
  */
-  __pyx_v_yw_sq_sum = (__pyx_v_yw_sq[(__pyx_v_end - __pyx_v_start)]);
+  __pyx_v_yw_sq_sum = (__pyx_v_yw_sq[((__pyx_v_end - __pyx_v_start) - 1)]);
 
   /* "sklearn/tree/_tree.pyx":2463
  *         # understand
- *         cdef double yw_sq_sum = yw_sq[end-start]
- *         cdef double yw_sum = yw_cl[end-start]             # <<<<<<<<<<<<<<
- *         cdef double w_sum = w_cl[end-start]
+ *         cdef double yw_sq_sum = yw_sq[end-start-1]
+ *         cdef double yw_sum = yw_cl[end-start-1]             # <<<<<<<<<<<<<<
+ *         cdef double w_sum = w_cl[end-start-1]
  * 
  */
-  __pyx_v_yw_sum = (__pyx_v_yw_cl[(__pyx_v_end - __pyx_v_start)]);
+  __pyx_v_yw_sum = (__pyx_v_yw_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
 
   /* "sklearn/tree/_tree.pyx":2464
- *         cdef double yw_sq_sum = yw_sq[end-start]
- *         cdef double yw_sum = yw_cl[end-start]
- *         cdef double w_sum = w_cl[end-start]             # <<<<<<<<<<<<<<
+ *         cdef double yw_sq_sum = yw_sq[end-start-1]
+ *         cdef double yw_sum = yw_cl[end-start-1]
+ *         cdef double w_sum = w_cl[end-start-1]             # <<<<<<<<<<<<<<
  * 
  *         i = best.pos-start-1
  */
-  __pyx_v_w_sum = (__pyx_v_w_cl[(__pyx_v_end - __pyx_v_start)]);
+  __pyx_v_w_sum = (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
 
   /* "sklearn/tree/_tree.pyx":2466
- *         cdef double w_sum = w_cl[end-start]
+ *         cdef double w_sum = w_cl[end-start-1]
  * 
  *         i = best.pos-start-1             # <<<<<<<<<<<<<<
  * 
