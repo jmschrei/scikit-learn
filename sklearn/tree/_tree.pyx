@@ -2327,7 +2327,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
         # Set the sample mask
         for p in range(start, end):
-            sample_mask[p] = 1
+            sample_mask[samples[p]] = 1
 
         with gil:
             print [ sample_mask[i] for i in range(self.n_samples) ]
@@ -2470,7 +2470,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef double yw_sum = yw_cl[end-start-1]
         cdef double w_sum = w_cl[end-start-1] 
 
-        i = best.pos - start - 1
+        i = best.pos - start
 
         w_cr = w_sum - w_cl[i]
         yw_cr = yw_sum - yw_cl[i]

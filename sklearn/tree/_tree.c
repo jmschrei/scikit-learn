@@ -15850,7 +15850,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  * 
  *         # Set the sample mask
  *         for p in range(start, end):             # <<<<<<<<<<<<<<
- *             sample_mask[p] = 1
+ *             sample_mask[samples[p]] = 1
  * 
  */
     __pyx_t_1 = __pyx_v_end;
@@ -15860,15 +15860,15 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
       /* "sklearn/tree/_tree.pyx":2330
  *         # Set the sample mask
  *         for p in range(start, end):
- *             sample_mask[p] = 1             # <<<<<<<<<<<<<<
+ *             sample_mask[samples[p]] = 1             # <<<<<<<<<<<<<<
  * 
  *         with gil:
  */
-      (__pyx_v_sample_mask[__pyx_v_p]) = 1;
+      (__pyx_v_sample_mask[(__pyx_v_samples[__pyx_v_p])]) = 1;
     }
 
     /* "sklearn/tree/_tree.pyx":2332
- *             sample_mask[p] = 1
+ *             sample_mask[samples[p]] = 1
  * 
  *         with gil:             # <<<<<<<<<<<<<<
  *             print [ sample_mask[i] for i in range(self.n_samples) ]
@@ -15902,7 +15902,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
         }
 
         /* "sklearn/tree/_tree.pyx":2332
- *             sample_mask[p] = 1
+ *             sample_mask[samples[p]] = 1
  * 
  *         with gil:             # <<<<<<<<<<<<<<
  *             print [ sample_mask[i] for i in range(self.n_samples) ]
@@ -16494,21 +16494,21 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *         cdef double yw_sum = yw_cl[end-start-1]
  *         cdef double w_sum = w_cl[end-start-1]             # <<<<<<<<<<<<<<
  * 
- *         i = best.pos - start - 1
+ *         i = best.pos - start
  */
     __pyx_v_w_sum = (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
 
     /* "sklearn/tree/_tree.pyx":2473
  *         cdef double w_sum = w_cl[end-start-1]
  * 
- *         i = best.pos - start - 1             # <<<<<<<<<<<<<<
+ *         i = best.pos - start             # <<<<<<<<<<<<<<
  * 
  *         w_cr = w_sum - w_cl[i]
  */
-    __pyx_v_i = ((__pyx_v_best.pos - __pyx_v_start) - 1);
+    __pyx_v_i = (__pyx_v_best.pos - __pyx_v_start);
 
     /* "sklearn/tree/_tree.pyx":2475
- *         i = best.pos - start - 1
+ *         i = best.pos - start
  * 
  *         w_cr = w_sum - w_cl[i]             # <<<<<<<<<<<<<<
  *         yw_cr = yw_sum - yw_cl[i]
