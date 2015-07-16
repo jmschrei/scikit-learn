@@ -15483,6 +15483,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_j;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_p;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_k;
   double *__pyx_v_yw_cl;
   double *__pyx_v_w_cl;
   double *__pyx_v_yw_sq;
@@ -15774,7 +15775,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
  *         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))             # <<<<<<<<<<<<<<
  *         cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))
- *         cdef double upper, lower, yw_cr, w_cr, yw_sq_r
+ *         cdef double yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
  */
   __pyx_v_w_cl = ((double *)calloc(__pyx_v_n_samples, (sizeof(double))));
 
@@ -15782,7 +15783,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
  *         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))
  *         cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))             # <<<<<<<<<<<<<<
- *         cdef double upper, lower, yw_cr, w_cr, yw_sq_r
+ *         cdef double yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
  *         cdef SIZE_t n_possible_splits
  */
   __pyx_v_yw_sq = ((double *)calloc(__pyx_v_n_samples, (sizeof(double))));
@@ -16349,9 +16350,99 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  * 
  *                             best = current             # <<<<<<<<<<<<<<
  * 
- *         # Constants pulling out the sum, to make the next equations simpler to
+ *                             # Constants pulling out the sum, to make the next equations simpler to
  */
             __pyx_v_best = __pyx_v_current;
+
+            /* "sklearn/tree/_tree.pyx":2458
+ *                             # Constants pulling out the sum, to make the next equations simpler to
+ *                             # understand
+ *                             yw_sq_sum = yw_sq[end-start-1]             # <<<<<<<<<<<<<<
+ *                             yw_sum = yw_cl[end-start-1]
+ *                             w_sum = w_cl[end-start-1]
+ */
+            __pyx_v_yw_sq_sum = (__pyx_v_yw_sq[((__pyx_v_end - __pyx_v_start) - 1)]);
+
+            /* "sklearn/tree/_tree.pyx":2459
+ *                             # understand
+ *                             yw_sq_sum = yw_sq[end-start-1]
+ *                             yw_sum = yw_cl[end-start-1]             # <<<<<<<<<<<<<<
+ *                             w_sum = w_cl[end-start-1]
+ * 
+ */
+            __pyx_v_yw_sum = (__pyx_v_yw_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
+
+            /* "sklearn/tree/_tree.pyx":2460
+ *                             yw_sq_sum = yw_sq[end-start-1]
+ *                             yw_sum = yw_cl[end-start-1]
+ *                             w_sum = w_cl[end-start-1]             # <<<<<<<<<<<<<<
+ * 
+ *                             k = best.pos-start-1
+ */
+            __pyx_v_w_sum = (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
+
+            /* "sklearn/tree/_tree.pyx":2462
+ *                             w_sum = w_cl[end-start-1]
+ * 
+ *                             k = best.pos-start-1             # <<<<<<<<<<<<<<
+ * 
+ *                             w_cr = w_sum - w_cl[k]
+ */
+            __pyx_v_k = ((__pyx_v_best.pos - __pyx_v_start) - 1);
+
+            /* "sklearn/tree/_tree.pyx":2464
+ *                             k = best.pos-start-1
+ * 
+ *                             w_cr = w_sum - w_cl[k]             # <<<<<<<<<<<<<<
+ *                             yw_cr = yw_sum - yw_cl[k]
+ *                             yw_sq_r = yw_sq_sum - yw_sq[k]
+ */
+            __pyx_v_w_cr = (__pyx_v_w_sum - (__pyx_v_w_cl[__pyx_v_k]));
+
+            /* "sklearn/tree/_tree.pyx":2465
+ * 
+ *                             w_cr = w_sum - w_cl[k]
+ *                             yw_cr = yw_sum - yw_cl[k]             # <<<<<<<<<<<<<<
+ *                             yw_sq_r = yw_sq_sum - yw_sq[k]
+ * 
+ */
+            __pyx_v_yw_cr = (__pyx_v_yw_sum - (__pyx_v_yw_cl[__pyx_v_k]));
+
+            /* "sklearn/tree/_tree.pyx":2466
+ *                             w_cr = w_sum - w_cl[k]
+ *                             yw_cr = yw_sum - yw_cl[k]
+ *                             yw_sq_r = yw_sq_sum - yw_sq[k]             # <<<<<<<<<<<<<<
+ * 
+ *                             # Calculate the impurity of the entire array
+ */
+            __pyx_v_yw_sq_r = (__pyx_v_yw_sq_sum - (__pyx_v_yw_sq[__pyx_v_k]));
+
+            /* "sklearn/tree/_tree.pyx":2469
+ * 
+ *                             # Calculate the impurity of the entire array
+ *                             self.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0             # <<<<<<<<<<<<<<
+ * 
+ *                             # Calculate the impurity on the left side of the array
+ */
+            __pyx_v_self->impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow((__pyx_v_yw_sum / __pyx_v_w_sum), 2.0));
+
+            /* "sklearn/tree/_tree.pyx":2472
+ * 
+ *                             # Calculate the impurity on the left side of the array
+ *                             best.impurity_left = yw_sq[k] / w_cl[k] - (yw_cl[k] / w_cl[k]) ** 2.0             # <<<<<<<<<<<<<<
+ * 
+ *                             # Calculate the impurity on the right side of the array
+ */
+            __pyx_v_best.impurity_left = (((__pyx_v_yw_sq[__pyx_v_k]) / (__pyx_v_w_cl[__pyx_v_k])) - pow(((__pyx_v_yw_cl[__pyx_v_k]) / (__pyx_v_w_cl[__pyx_v_k])), 2.0));
+
+            /* "sklearn/tree/_tree.pyx":2475
+ * 
+ *                             # Calculate the impurity on the right side of the array
+ *                             best.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0             # <<<<<<<<<<<<<<
+ * 
+ *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
+ */
+            __pyx_v_best.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow((__pyx_v_yw_cr / __pyx_v_w_cr), 2.0));
             goto __pyx_L26;
           }
           __pyx_L26:;
@@ -16362,96 +16453,6 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
     }
     __pyx_L10:;
   }
-
-  /* "sklearn/tree/_tree.pyx":2458
- *         # Constants pulling out the sum, to make the next equations simpler to
- *         # understand
- *         cdef double yw_sq_sum = yw_sq[end-start-1]             # <<<<<<<<<<<<<<
- *         cdef double yw_sum = yw_cl[end-start-1]
- *         cdef double w_sum = w_cl[end-start-1]
- */
-  __pyx_v_yw_sq_sum = (__pyx_v_yw_sq[((__pyx_v_end - __pyx_v_start) - 1)]);
-
-  /* "sklearn/tree/_tree.pyx":2459
- *         # understand
- *         cdef double yw_sq_sum = yw_sq[end-start-1]
- *         cdef double yw_sum = yw_cl[end-start-1]             # <<<<<<<<<<<<<<
- *         cdef double w_sum = w_cl[end-start-1]
- * 
- */
-  __pyx_v_yw_sum = (__pyx_v_yw_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
-
-  /* "sklearn/tree/_tree.pyx":2460
- *         cdef double yw_sq_sum = yw_sq[end-start-1]
- *         cdef double yw_sum = yw_cl[end-start-1]
- *         cdef double w_sum = w_cl[end-start-1]             # <<<<<<<<<<<<<<
- * 
- *         i = best.pos-start+1
- */
-  __pyx_v_w_sum = (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]);
-
-  /* "sklearn/tree/_tree.pyx":2462
- *         cdef double w_sum = w_cl[end-start-1]
- * 
- *         i = best.pos-start+1             # <<<<<<<<<<<<<<
- * 
- *         w_cr = w_sum - w_cl[i]
- */
-  __pyx_v_i = ((__pyx_v_best.pos - __pyx_v_start) + 1);
-
-  /* "sklearn/tree/_tree.pyx":2464
- *         i = best.pos-start+1
- * 
- *         w_cr = w_sum - w_cl[i]             # <<<<<<<<<<<<<<
- *         yw_cr = yw_sum - yw_cl[i]
- *         yw_sq_r = yw_sq_sum - yw_sq[i]
- */
-  __pyx_v_w_cr = (__pyx_v_w_sum - (__pyx_v_w_cl[__pyx_v_i]));
-
-  /* "sklearn/tree/_tree.pyx":2465
- * 
- *         w_cr = w_sum - w_cl[i]
- *         yw_cr = yw_sum - yw_cl[i]             # <<<<<<<<<<<<<<
- *         yw_sq_r = yw_sq_sum - yw_sq[i]
- * 
- */
-  __pyx_v_yw_cr = (__pyx_v_yw_sum - (__pyx_v_yw_cl[__pyx_v_i]));
-
-  /* "sklearn/tree/_tree.pyx":2466
- *         w_cr = w_sum - w_cl[i]
- *         yw_cr = yw_sum - yw_cl[i]
- *         yw_sq_r = yw_sq_sum - yw_sq[i]             # <<<<<<<<<<<<<<
- * 
- *         # Calculate the impurity of the entire array
- */
-  __pyx_v_yw_sq_r = (__pyx_v_yw_sq_sum - (__pyx_v_yw_sq[__pyx_v_i]));
-
-  /* "sklearn/tree/_tree.pyx":2469
- * 
- *         # Calculate the impurity of the entire array
- *         self.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0             # <<<<<<<<<<<<<<
- * 
- *         # Calculate the impurity on the left side of the array
- */
-  __pyx_v_self->impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow((__pyx_v_yw_sum / __pyx_v_w_sum), 2.0));
-
-  /* "sklearn/tree/_tree.pyx":2472
- * 
- *         # Calculate the impurity on the left side of the array
- *         best.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0             # <<<<<<<<<<<<<<
- * 
- *         # Calculate the impurity on the right side of the array
- */
-  __pyx_v_best.impurity_left = (((__pyx_v_yw_sq[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - pow(((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])), 2.0));
-
-  /* "sklearn/tree/_tree.pyx":2475
- * 
- *         # Calculate the impurity on the right side of the array
- *         best.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0             # <<<<<<<<<<<<<<
- * 
- *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
- */
-  __pyx_v_best.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow((__pyx_v_yw_cr / __pyx_v_w_cr), 2.0));
 
   /* "sklearn/tree/_tree.pyx":2478
  * 
