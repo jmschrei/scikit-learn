@@ -1662,6 +1662,9 @@ cdef class PresortBestSplitter(BaseDenseSplitter):
         for p in range(start, end):
             sample_mask[samples[p]] = 1
 
+        with gil:
+            print [ sample_mask[i] for i in range(self.n_samples) ] 
+
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm (using the local variables `f_i` and
         # `f_j` to compute a permutation of the `features` array).
