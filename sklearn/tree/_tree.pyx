@@ -2303,7 +2303,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         # Unpack constraints
         cdef SIZE_t max_features = self.max_features
         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
-        cdef double min_weight_leaf = self.min_weight_leaf
+        cdef DOUBLE_t min_weight_leaf = self.min_weight_leaf
         cdef UINT32_t* random_state = &self.rand_r_state
 
         # Keeping track of the current split and the best split
@@ -2317,10 +2317,10 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef SIZE_t n_total_constants = n_known_constants
         cdef SIZE_t n_visited_features = 0, partition_end, i, j, p, k
 
-        cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
-        cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))
-        cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))
-        cdef double yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
+        cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+        cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
         cdef SIZE_t n_possible_splits
 
         _init_split(&best, end)
@@ -3399,8 +3399,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 is_leaf = ((depth >= max_depth) or
                            (n_node_samples < min_samples_split) or
                            (n_node_samples < 2 * min_samples_leaf) or
-                           (weighted_n_node_samples < min_weight_leaf))# or
-                           #(impurity <= MIN_IMPURITY_SPLIT))
+                           (weighted_n_node_samples < min_weight_leaf))
 
                 if not is_leaf:
                     splitter.node_split(impurity, &split, &n_constant_features)
@@ -3411,6 +3410,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                     first = 0
 
                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
+
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,

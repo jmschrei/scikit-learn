@@ -15467,7 +15467,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_max_features;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_samples_leaf;
-  double __pyx_v_min_weight_leaf;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_weight_leaf;
   __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_random_state;
   struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_v_best;
   struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_v_current;
@@ -15483,15 +15483,15 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_j;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_p;
-  double *__pyx_v_yw_cl;
-  double *__pyx_v_w_cl;
-  double *__pyx_v_yw_sq;
-  double __pyx_v_yw_cr;
-  double __pyx_v_w_cr;
-  double __pyx_v_yw_sq_r;
-  double __pyx_v_yw_sq_sum;
-  double __pyx_v_yw_sum;
-  double __pyx_v_w_sum;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cl;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_cl;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_cr;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cr;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_r;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sum;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_1;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_t_2;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_3;
@@ -15680,7 +15680,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *         # Unpack constraints
  *         cdef SIZE_t max_features = self.max_features             # <<<<<<<<<<<<<<
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
- *         cdef double min_weight_leaf = self.min_weight_leaf
+ *         cdef DOUBLE_t min_weight_leaf = self.min_weight_leaf
  */
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.max_features;
   __pyx_v_max_features = __pyx_t_1;
@@ -15689,7 +15689,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *         # Unpack constraints
  *         cdef SIZE_t max_features = self.max_features
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf             # <<<<<<<<<<<<<<
- *         cdef double min_weight_leaf = self.min_weight_leaf
+ *         cdef DOUBLE_t min_weight_leaf = self.min_weight_leaf
  *         cdef UINT32_t* random_state = &self.rand_r_state
  */
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.min_samples_leaf;
@@ -15698,7 +15698,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
   /* "sklearn/tree/_tree.pyx":2306
  *         cdef SIZE_t max_features = self.max_features
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
- *         cdef double min_weight_leaf = self.min_weight_leaf             # <<<<<<<<<<<<<<
+ *         cdef DOUBLE_t min_weight_leaf = self.min_weight_leaf             # <<<<<<<<<<<<<<
  *         cdef UINT32_t* random_state = &self.rand_r_state
  * 
  */
@@ -15707,7 +15707,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
 
   /* "sklearn/tree/_tree.pyx":2307
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
- *         cdef double min_weight_leaf = self.min_weight_leaf
+ *         cdef DOUBLE_t min_weight_leaf = self.min_weight_leaf
  *         cdef UINT32_t* random_state = &self.rand_r_state             # <<<<<<<<<<<<<<
  * 
  *         # Keeping track of the current split and the best split
@@ -15756,36 +15756,36 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *         cdef SIZE_t n_total_constants = n_known_constants
  *         cdef SIZE_t n_visited_features = 0, partition_end, i, j, p, k             # <<<<<<<<<<<<<<
  * 
- *         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
+ *         cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
  */
   __pyx_v_n_visited_features = 0;
 
   /* "sklearn/tree/_tree.pyx":2320
  *         cdef SIZE_t n_visited_features = 0, partition_end, i, j, p, k
  * 
- *         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))             # <<<<<<<<<<<<<<
- *         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))
- *         cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))
+ *         cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
+ *         cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+ *         cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
  */
-  __pyx_v_yw_cl = ((double *)calloc(__pyx_v_n_samples, (sizeof(double))));
+  __pyx_v_yw_cl = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_n_samples, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
   /* "sklearn/tree/_tree.pyx":2321
  * 
- *         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
- *         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))             # <<<<<<<<<<<<<<
- *         cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))
- *         cdef double yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
+ *         cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+ *         cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
+ *         cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+ *         cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
  */
-  __pyx_v_w_cl = ((double *)calloc(__pyx_v_n_samples, (sizeof(double))));
+  __pyx_v_w_cl = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_n_samples, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
   /* "sklearn/tree/_tree.pyx":2322
- *         cdef double* yw_cl = <double*> calloc(n_samples, sizeof(double))
- *         cdef double* w_cl = <double*> calloc(n_samples, sizeof(double))
- *         cdef double* yw_sq = <double*> calloc(n_samples, sizeof(double))             # <<<<<<<<<<<<<<
- *         cdef double yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
+ *         cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+ *         cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
+ *         cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
+ *         cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
  *         cdef SIZE_t n_possible_splits
  */
-  __pyx_v_yw_sq = ((double *)calloc(__pyx_v_n_samples, (sizeof(double))));
+  __pyx_v_yw_sq = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_n_samples, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
   /* "sklearn/tree/_tree.pyx":2326
  *         cdef SIZE_t n_possible_splits
@@ -16300,7 +16300,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  *                             (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0) /
  *                             w_cl[end-start-1])
  */
-          __pyx_v_current.improvement = ((((__pyx_v_w_cl[__pyx_v_i]) * __pyx_v_w_cr) * pow((((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - (__pyx_v_yw_cr / __pyx_v_w_cr)), 2.0)) / (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]));
+          __pyx_v_current.improvement = ((((__pyx_v_w_cl[__pyx_v_i]) * __pyx_v_w_cr) * pow(((double)(((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - (__pyx_v_yw_cr / __pyx_v_w_cr))), 2.0)) / (__pyx_v_w_cl[((__pyx_v_end - __pyx_v_start) - 1)]));
 
           /* "sklearn/tree/_tree.pyx":2449
  *                             (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0) /
@@ -16395,7 +16395,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  * 
  *                             # Calculate the impurity on the left side of the array
  */
-            __pyx_v_self->impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow((__pyx_v_yw_sum / __pyx_v_w_sum), 2.0));
+            __pyx_v_self->impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow(((double)(__pyx_v_yw_sum / __pyx_v_w_sum)), 2.0));
 
             /* "sklearn/tree/_tree.pyx":2468
  * 
@@ -16404,7 +16404,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  * 
  *                             # Calculate the impurity on the right side of the array
  */
-            __pyx_v_best.impurity_left = (((__pyx_v_yw_sq[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - pow(((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])), 2.0));
+            __pyx_v_best.impurity_left = (((__pyx_v_yw_sq[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - pow(((double)((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i]))), 2.0));
 
             /* "sklearn/tree/_tree.pyx":2471
  * 
@@ -16413,7 +16413,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_13SpeedSplitter_node_split(struct __py
  * 
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  */
-            __pyx_v_best.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow((__pyx_v_yw_cr / __pyx_v_w_cr), 2.0));
+            __pyx_v_best.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow(((double)(__pyx_v_yw_cr / __pyx_v_w_cr)), 2.0));
             goto __pyx_L26;
           }
           __pyx_L26:;
@@ -22143,7 +22143,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
  *                 is_leaf = ((depth >= max_depth) or
  *                            (n_node_samples < min_samples_split) or             # <<<<<<<<<<<<<<
  *                            (n_node_samples < 2 * min_samples_leaf) or
- *                            (weighted_n_node_samples < min_weight_leaf))# or
+ *                            (weighted_n_node_samples < min_weight_leaf))
  */
           __pyx_t_8 = ((__pyx_v_n_node_samples < __pyx_v_min_samples_split) != 0);
           if (!__pyx_t_8) {
@@ -22156,8 +22156,8 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
  *                 is_leaf = ((depth >= max_depth) or
  *                            (n_node_samples < min_samples_split) or
  *                            (n_node_samples < 2 * min_samples_leaf) or             # <<<<<<<<<<<<<<
- *                            (weighted_n_node_samples < min_weight_leaf))# or
- *                            #(impurity <= MIN_IMPURITY_SPLIT))
+ *                            (weighted_n_node_samples < min_weight_leaf))
+ * 
  */
           __pyx_t_8 = ((__pyx_v_n_node_samples < (2 * __pyx_v_min_samples_leaf)) != 0);
           if (!__pyx_t_8) {
@@ -22169,17 +22169,17 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
           /* "sklearn/tree/_tree.pyx":3402
  *                            (n_node_samples < min_samples_split) or
  *                            (n_node_samples < 2 * min_samples_leaf) or
- *                            (weighted_n_node_samples < min_weight_leaf))# or             # <<<<<<<<<<<<<<
- *                            #(impurity <= MIN_IMPURITY_SPLIT))
+ *                            (weighted_n_node_samples < min_weight_leaf))             # <<<<<<<<<<<<<<
  * 
+ *                 if not is_leaf:
  */
           __pyx_t_8 = ((__pyx_v_weighted_n_node_samples < __pyx_v_min_weight_leaf) != 0);
           __pyx_t_9 = __pyx_t_8;
           __pyx_L13_bool_binop_done:;
           __pyx_v_is_leaf = __pyx_t_9;
 
-          /* "sklearn/tree/_tree.pyx":3405
- *                            #(impurity <= MIN_IMPURITY_SPLIT))
+          /* "sklearn/tree/_tree.pyx":3404
+ *                            (weighted_n_node_samples < min_weight_leaf))
  * 
  *                 if not is_leaf:             # <<<<<<<<<<<<<<
  *                     splitter.node_split(impurity, &split, &n_constant_features)
@@ -22188,7 +22188,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
           __pyx_t_9 = ((!(__pyx_v_is_leaf != 0)) != 0);
           if (__pyx_t_9) {
 
-            /* "sklearn/tree/_tree.pyx":3406
+            /* "sklearn/tree/_tree.pyx":3405
  * 
  *                 if not is_leaf:
  *                     splitter.node_split(impurity, &split, &n_constant_features)             # <<<<<<<<<<<<<<
@@ -22197,7 +22197,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
  */
             ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->node_split(__pyx_v_splitter, __pyx_v_impurity, (&__pyx_v_split), (&__pyx_v_n_constant_features));
 
-            /* "sklearn/tree/_tree.pyx":3407
+            /* "sklearn/tree/_tree.pyx":3406
  *                 if not is_leaf:
  *                     splitter.node_split(impurity, &split, &n_constant_features)
  *                     is_leaf = is_leaf or (split.pos >= end)             # <<<<<<<<<<<<<<
@@ -22218,7 +22218,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
           }
           __pyx_L17:;
 
-          /* "sklearn/tree/_tree.pyx":3409
+          /* "sklearn/tree/_tree.pyx":3408
  *                     is_leaf = is_leaf or (split.pos >= end)
  * 
  *                 if first:             # <<<<<<<<<<<<<<
@@ -22228,7 +22228,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
           __pyx_t_9 = (__pyx_v_first != 0);
           if (__pyx_t_9) {
 
-            /* "sklearn/tree/_tree.pyx":3410
+            /* "sklearn/tree/_tree.pyx":3409
  * 
  *                 if first:
  *                     impurity = splitter.node_impurity()             # <<<<<<<<<<<<<<
@@ -22237,7 +22237,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
  */
             __pyx_v_impurity = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->node_impurity(__pyx_v_splitter);
 
-            /* "sklearn/tree/_tree.pyx":3411
+            /* "sklearn/tree/_tree.pyx":3410
  *                 if first:
  *                     impurity = splitter.node_impurity()
  *                     first = 0             # <<<<<<<<<<<<<<
@@ -22249,12 +22249,12 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
           }
           __pyx_L20:;
 
-          /* "sklearn/tree/_tree.pyx":3413
+          /* "sklearn/tree/_tree.pyx":3412
  *                     first = 0
  * 
  *                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)             # <<<<<<<<<<<<<<
  * 
- *                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
+ * 
  */
           __pyx_t_8 = (__pyx_v_is_leaf != 0);
           if (!__pyx_t_8) {
@@ -22268,7 +22268,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
           __pyx_v_is_leaf = __pyx_t_9;
 
           /* "sklearn/tree/_tree.pyx":3415
- *                 is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
+ * 
  * 
  *                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,             # <<<<<<<<<<<<<<
  *                                          split.threshold, impurity, n_node_samples,
