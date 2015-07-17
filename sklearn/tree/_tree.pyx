@@ -2428,6 +2428,9 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # improvement of that split using Friedman's correction to
                     # the MSE criterion, and determine which split is the best.
                     for i in range(end-start-1):
+                        if (i < end-start-1 and X_i[i+start+1] <= 
+                            X_i[i+start] + FEATURE_THRESHOLD):
+                            continue
                         # Don't even consider possibilities which don't fall under
                         # the constraints imposed by the user.
                         if (i+1 < min_samples_leaf or 
@@ -2443,8 +2446,8 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         yw_cr = yw_cl[end-start-1] - yw_cl[i]
                         yw_sq_r = yw_sq[end-start-1] - yw_sq[i]
 
-                        current.improvement = ((w_cl[i] * w_cr * 
-                            (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0))
+                        current.improvement = (w_cl[i] * w_cr * 
+                            (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0)
                         current.pos = p
 
                         if current.improvement > best.improvement:
