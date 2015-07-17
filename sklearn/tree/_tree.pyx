@@ -2213,8 +2213,6 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         # Get the random state
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
 
-        print self.rand_r_state
-
         cdef SIZE_t i, j = 0
         self.weighted_n_samples = 0.0
 
@@ -3401,9 +3399,8 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 is_leaf = ((depth >= max_depth) or
                            (n_node_samples < min_samples_split) or
                            (n_node_samples < 2 * min_samples_leaf) or
-                           (weighted_n_node_samples < min_weight_leaf))
-
-                is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
+                           (weighted_n_node_samples < min_weight_leaf))# or
+                           #(impurity <= MIN_IMPURITY_SPLIT))
 
                 if not is_leaf:
                     splitter.node_split(impurity, &split, &n_constant_features)
@@ -3412,6 +3409,8 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 if first:
                     impurity = splitter.node_impurity()
                     first = 0
+
+                is_leaf = is_leaf or (impurity <= MIN_IMPURITY_SPLIT)
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
