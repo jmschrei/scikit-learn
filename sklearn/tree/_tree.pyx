@@ -2158,8 +2158,8 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
     cdef DTYPE_t* X_old
     cdef np.ndarray X_idx_sorted
-    cdef INT32_t* X_idx_sorted_ptr
     cdef SIZE_t X_idx_sorted_stride
+    cdef INT32_t* X_idx_sorted_ptr
 
     cdef unsigned char* sample_mask
     cdef SIZE_t X_feature_stride
@@ -2172,8 +2172,8 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
 
         # Initialize the points to point at appropriate objects
         self.X_old = NULL
-        self.X_idx_sorted_ptr = NULL
         self.X_idx_sorted_stride = 0
+        self.X_idx_sorted_ptr = NULL
         self.sample_mask = NULL
         self.X_feature_stride = 0
         self.impurity = 0.
@@ -2200,13 +2200,13 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         """
 
         # Unpack X and expose its memory buffer
-        self.n_samples = <SIZE_t>X.shape[0]
-        self.n_features = <SIZE_t>X.shape[1]
+        self.n_samples = X.shape[0]
+        self.n_features = X.shape[1]
         cdef np.ndarray X_ndarray = X
         self.X = <DTYPE_t*> X_ndarray.data
         self.X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
         self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
-        self.impurity = 1.e8
+        self.impurity = 1.e2
 
         cdef void* sample_mask = NULL
         
@@ -2444,8 +2444,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         yw_sq_r = yw_sq[end-start-1] - yw_sq[i]
 
                         current.improvement = ((w_cl[i] * w_cr * 
-                            (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0) / 
-                            w_cl[end-start-1])
+                            (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0))
                         current.pos = p
 
                         if current.improvement > best.improvement:
