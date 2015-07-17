@@ -2321,6 +2321,8 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
         cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
         cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(n_samples, sizeof(DOUBLE_t))
         cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
+        cdef DOUBLE_t lower, upper 
+        cdef SIZE_t f_offset
         cdef SIZE_t n_possible_splits
 
         _init_split(&best, end)
@@ -2373,6 +2375,7 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                 # f_j in the interval [n_total_constants, f_i]
 
                 current.feature = features[f_j]
+                f_offset = X_feature_stride*current.feature
 
                 # Extract the relevant samples from that feature, ordered 
                 # according to the presorting, into a single array
@@ -2384,12 +2387,12 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # See if we are using this sample or not
                     if sample_mask[j] == 1:
                         samples[p] = j
-                        X_i[p] = X[X_sample_stride * j +
-                                   X_feature_stride * current.feature]
+                        #X_i[p] = X[X_sample_stride * j +
+                        #           X_feature_stride * current.feature]
                         p += 1
 
                 # Ensure this feature is not constant
-                if X_i[end-1] <= X_i[start] + FEATURE_THRESHOLD:
+                if (X[X_sample_stride * samples[end-1] + f_offset] <= X[X_sample_stride * samples[start] + f_offset] + FEATURE_THRESHOLD):
                     features[f_j] = features[n_total_constants]
                     features[n_total_constants] = current.feature
 
@@ -2428,8 +2431,10 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                     # improvement of that split using Friedman's correction to
                     # the MSE criterion, and determine which split is the best.
                     for i in range(end-start-1):
-                        if (i < end-start-1 and X_i[i+start+1] <= 
-                            X_i[i+start] + FEATURE_THRESHOLD):
+                        lower = X[X_sample_stride * samples[i+start] + f_offset]
+                        upper = X[X_sample_stride * samples[i+start+1] + f_offset]
+
+                        if (i < end-start-1 and upper <= lower + FEATURE_THRESHOLD):
                             continue
                         # Don't even consider possibilities which don't fall under
                         # the constraints imposed by the user.
@@ -2451,9 +2456,11 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         current.pos = p
 
                         if current.improvement > best.improvement:
-                            current.threshold = (X_i[p] + X_i[p-1]) / 2.0
-                            if current.threshold == X_i[p]:
-                                current.threshold = X_i[p-1]
+                            lower = X[X_sample_stride * samples[p-1] + f_offset]
+                            upper = X[X_sample_stride * samples[p] + f_offset]
+                            current.threshold = (lower + upper) / 2.0
+                            if current.threshold == upper:
+                                current.threshold = lower
 
                             best = current
 
