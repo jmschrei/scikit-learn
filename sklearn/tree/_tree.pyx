@@ -2444,6 +2444,9 @@ cdef class SpeedSplitter( BaseDenseSplitter ):
                         current.improvement = ((w_cl[i] * w_cr * 
                             (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0) / 
                             w_cl[end-start-1])
+
+                        with gil:
+                            print current.improvement
                         current.pos = p
 
                         if current.improvement > best.improvement:
