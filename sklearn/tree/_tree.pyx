@@ -1762,6 +1762,9 @@ cdef class PresortBestSplitter(BaseDenseSplitter):
 
                             current.improvement = self.criterion.impurity_improvement(impurity)
 
+                            with gil:
+                                print current.improvement
+
                             if current.improvement > best.improvement:
                                 self.criterion.children_impurity(&current.impurity_left,
                                                                  &current.impurity_right)
