@@ -960,6 +960,7 @@ cdef class Splitter:
         """Initialize the splitter."""
         # Reset random state
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
+
         # Initialize samples and features structures
         cdef SIZE_t n_samples = X.shape[0]
         cdef SIZE_t* samples = safe_realloc(&self.samples, n_samples)
@@ -1761,9 +1762,6 @@ cdef class PresortBestSplitter(BaseDenseSplitter):
                                 continue
 
                             current.improvement = self.criterion.impurity_improvement(impurity)
-
-                            with gil:
-                                print current.improvement
 
                             if current.improvement > best.improvement:
                                 self.criterion.children_impurity(&current.impurity_left,
