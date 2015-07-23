@@ -31,7 +31,7 @@ from ..utils.validation import NotFittedError
 
 from ._tree import Criterion
 from ._tree import Splitter
-from ._tree import DepthFirstTreeBuilder, BestFirstTreeBuilder
+from ._tree import MinimalDepthFirstTreeBuilder, BestFirstTreeBuilder
 from ._tree import Tree
 from . import _tree
 
@@ -292,7 +292,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         # Use BestFirst if max_leaf_nodes given; use DepthFirst otherwise
         if max_leaf_nodes < 0:
-            builder = DepthFirstTreeBuilder(splitter, min_samples_split,
+            builder = MinimalDepthFirstTreeBuilder(splitter, min_samples_split,
                                             self.min_samples_leaf,
                                             min_weight_leaf,
                                             max_depth)

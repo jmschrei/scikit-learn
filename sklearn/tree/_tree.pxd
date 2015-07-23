@@ -58,6 +58,8 @@ cdef class Criterion:
                                 double* impurity_right) nogil
     cdef void node_value(self, double* dest) nogil
     cdef double impurity_improvement(self, double impurity) nogil
+    cdef SplitRecord best_split(self, DTYPE_t* X, DTYPE_t* y, 
+        SIZE_t y_stride, DTYPE_t* sample_weight, SIZE_t n ) nogil
 
 
 # =============================================================================
@@ -70,10 +72,15 @@ cdef struct SplitRecord:
     SIZE_t pos             # Split samples array at the given position,
                            # i.e. count of samples below threshold for feature.
                            # pos is >= end if the node is a leaf.
+    SIZE_t n_constant_features
     double threshold       # Threshold to split at.
     double improvement     # Impurity improvement given parent node.
     double impurity_left   # Impurity of the left split.
     double impurity_right  # Impurity of the right split.
+    double impurity        # Impurity of the current node
+    double weight          # Weight of the current node
+    double weight_left     # Weight of the left child
+    double weight_right    # Weight of the right child
 
 
 cdef class Splitter:
@@ -133,6 +140,9 @@ cdef class Splitter:
                          double impurity,   # Impurity of the node
                          SplitRecord* split,
                          SIZE_t* n_constant_features) nogil
+
+    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
+        SIZE_t n_constant_features) nogil
 
     cdef void node_value(self, double* dest) nogil
 

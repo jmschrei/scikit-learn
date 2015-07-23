@@ -46,7 +46,7 @@ from ..feature_selection.from_model import _LearntSelectorMixin
 from ..tree.tree import DecisionTreeRegressor
 from ..tree._tree import DTYPE, TREE_LEAF
 from ..tree._tree import PresortBestSplitter, FriedmanMSESplitter
-from ..tree._tree import FriedmanMSE
+from ..tree._tree import FriedmanMSE, MinimalFriedmanMSE
 
 from ._gradient_boosting import predict_stages
 from ._gradient_boosting import predict_stage
@@ -1010,7 +1010,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
             min_weight_leaf = 0.
 
         # init criterion and splitter
-        criterion = FriedmanMSE(1)
+        criterion = MinimalFriedmanMSE(1)
         splitter = FriedmanMSESplitter(criterion,
                                  self.max_features_,
                                  self.min_samples_leaf,
