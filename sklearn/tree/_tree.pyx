@@ -1200,44 +1200,33 @@ cdef class MinimalFriedmanMSE(Criterion):
             if i < n-1 and X[i+1] <= X[i] + FEATURE_THRESHOLD:
                 continue    
             
-            # Now calculate cumulative statistics coming from the right
-            # hand side by subtraction.
             w_cr = w_cl[n-1] - w_cl[i]
             yw_cr = yw_cl[n-1] - yw_cl[i]
             yw_sq_r = yw_sq[n-1] - yw_sq[i]
 
-            # Calculate the improvement of the current position
             current.improvement = (w_cl[i] * w_cr * 
                 (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0)
             current.pos = i
 
-            # If it's better than the best we've found so far, then use it.
             if current.improvement > best.improvement:
                 current.improvement /= w_cl[n-1]
-                current.threshold = (X[i] + X[i-1]) / 2.0
+                current.threshold = <double>( (X[i] + X[i-1]) / 2.0 )
                 if current.threshold == X[i]:
-                    current.threshold = X[i-1]
+                    current.threshold = <double>X[i-1]
 
                 best = current
 
-                best.weight = w_cl[n-1]
-                best.weight_left = w_cl[best.pos]
-                best.weight_right = w_cl[n-1] - w_cl[best.pos]
+                best.weight = <double>w_cl[n-1]
+                best.weight_left = <double>w_cl[best.pos]
+                best.weight_right = <double>w_cl[n-1] - w_cl[best.pos]
 
-                # Constants pulling out the sum, to make the next equations simpler to
-                # understand
                 yw_sq_sum = yw_sq[n-1]
                 yw_sum = yw_cl[n-1]
                 w_sum = w_cl[n-1] 
 
-                # Calculate the impurity of the entire array
-                best.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
-
-                # Calculate the impurity on the left side of the array
-                best.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
-
-                # Calculate the impurity on the right side of the array
-                best.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+                best.impurity = <double>( yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0 )
+                best.impurity_left = <double>( yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0 )
+                best.impurity_right =  <double>(yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0 )
 
         free(w_cl)
         free(yw_cl)
