@@ -27,6 +27,8 @@ np.import_array()
 
 from scipy.sparse import issparse, csc_matrix, csr_matrix
 
+from libc.stdio cimport printf
+
 from sklearn.tree._utils cimport Stack, StackRecord
 from sklearn.tree._utils cimport PriorityHeap, PriorityHeapRecord
 
@@ -101,8 +103,8 @@ cdef class Criterion:
     calculate how good a split is using different metrics.
     """
 
-    cdef SplitRecord best_split(self, DTYPE_t* X, DTYPE_t* y, 
-        SIZE_t y_stride, DTYPE_t* sample_weight, SIZE_t n ) nogil:
+    cdef SplitRecord best_split(self, DTYPE_t* X, DOUBLE_t* y, 
+        SIZE_t y_stride, DOUBLE_t* sample_weight, SIZE_t n ) nogil:
         """
         This is a placeholder for a method which will calculate the best split
         given a certain math. It takes in a buffer for X and a buffer for y
@@ -1155,8 +1157,8 @@ cdef class MinimalFriedmanMSE(Criterion):
     Mean squared error impurity criterion with improvement score by Friedman.
     """
 
-    cdef SplitRecord best_split(self, DTYPE_t* X, DTYPE_t* y, 
-        SIZE_t y_stride, DTYPE_t* sample_weight, SIZE_t n ) nogil:
+    cdef SplitRecord best_split(self, DTYPE_t* X, DOUBLE_t* y, 
+        SIZE_t y_stride, DOUBLE_t* sample_weight, SIZE_t n ) nogil:
         """
         This is a placeholder for a method which will calculate the best split
         given a certain math. It takes in a buffer for X and a buffer for y
@@ -1164,11 +1166,11 @@ cdef class MinimalFriedmanMSE(Criterion):
         relevant data.
         """
 
-        cdef DTYPE_t* yw_cl = <DTYPE_t*> calloc(n, sizeof(DTYPE_t))
-        cdef DTYPE_t* w_cl  = <DTYPE_t*> calloc(n, sizeof(DTYPE_t))
-        cdef DTYPE_t* yw_sq = <DTYPE_t*> calloc(n, sizeof(DTYPE_t))
-        cdef DTYPE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
-        cdef DTYPE_t* w = sample_weight
+        cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
+        cdef DOUBLE_t* w = sample_weight
 
         cdef int i 
 
@@ -1210,24 +1212,24 @@ cdef class MinimalFriedmanMSE(Criterion):
 
             if current.improvement > best.improvement:
                 current.improvement /= w_cl[n-1]
-                current.threshold = <double>( (X[i] + X[i-1]) / 2.0 )
+                current.threshold = (X[i] + X[i-1]) / 2.0
                 if current.threshold == X[i]:
-                    current.threshold = <double>X[i-1]
+                    current.threshold = X[i-1]
 
                 best = current
 
-                best.weight = <double>w_cl[n-1]
-                best.weight_left = <double>w_cl[best.pos]
-                best.weight_right = <double>w_cl[n-1] - w_cl[best.pos]
+                best.weight = w_cl[n-1]
+                best.weight_left = w_cl[best.pos]
+                best.weight_right = w_cl[n-1] - w_cl[best.pos]
 
                 yw_sq_sum = yw_sq[n-1]
                 yw_sum = yw_cl[n-1]
                 w_sum = w_cl[n-1] 
 
-                best.impurity = <double>( yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0 )
-                best.impurity_left = <double>( yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0 )
-                best.impurity_right =  <double>(yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0 )
-
+                best.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+                best.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
+                best.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+                
         free(w_cl)
         free(yw_cl)
         free(yw_sq)
@@ -1460,10 +1462,6 @@ cdef class Splitter:
 
         pass
 
-    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
-        SIZE_t n_constant_features) nogil:
-        pass
-
     cdef void node_value(self, double* dest) nogil:
         """
         Copy the value of node samples[start:end] into dest.
@@ -1489,9 +1487,6 @@ cdef class BaseDenseSplitter(Splitter):
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
                   object random_state):
-        """
-        Th
-        """
 
         self.X = NULL
         self.X_sample_stride = 0
@@ -2262,28 +2257,55 @@ cdef class PresortBestSplitter(BaseDenseSplitter):
         split[0] = best
         n_constant_features[0] = n_total_constants
 
-cdef class FriedmanMSESplitter(PresortBestSplitter):
+cdef class FriedmanMSESplitter:
     """
     This object is a splitter which performs more caching in order to try to
     find splits faster.
     """
-
-    cdef double impurity
-    cdef DTYPE_t* y_i
-    cdef DTYPE_t* w_i
-
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
-                  SIZE_t mn_samples_leaf,
-                  double min_weight_leaf,
+                  SIZE_t min_samples_leaf, double min_weight_leaf, 
                   object random_state):
 
-        self.impurity = 0.
+        self.criterion = criterion
+
+        self.samples = NULL
+        self.n_samples = 0
+        self.sample_weight = NULL
+        self.sample_mask = NULL
+
+        self.features = NULL
+        self.n_features = 0
+        self.feature_values = NULL
+
+        self.y = NULL
+        self.y_stride = 0
+
+        self.max_features = max_features
+        self.min_samples_leaf = min_samples_leaf
+        self.min_weight_leaf = min_weight_leaf
+        self.random_state = random_state
+
+        self.X_old = NULL
+        self.X_idx_sorted_ptr = NULL
+        self.X_idx_sorted_stride = 0
+
+        self.X = NULL
+        self.X_feature_stride = 0
+
         self.y_i = NULL
         self.w_i = NULL
+        self.X_i = NULL
 
     def __dealloc__(self):
+        """Destructor."""
+
+        free(self.samples)
+        free(self.features)
+        free(self.constant_features)
+        free(self.sample_mask)
         free(self.y_i)
         free(self.w_i)
+        free(self.X_i)
 
     def __reduce(self):
         return (FriedmanMSESplitter, (self.criterion,
@@ -2299,16 +2321,85 @@ cdef class FriedmanMSESplitter(PresortBestSplitter):
         Initialize the values in this object.
         """
 
-        PresortBestSplitter.init(self, X, y, sample_weight)
-        self.impurity = 0.
+        self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
+        cdef SIZE_t n_samples = X.shape[0]
+
+        printf( "%p ", self.samples )
+        cdef SIZE_t* samples = safe_realloc(&self.samples, n_samples)
+        printf( "%p\n", self.samples )
+
+        cdef SIZE_t i, j
+        cdef double weighted_n_samples = 0.0
+        j = 0
+
+        # In order to only use positively weighted samples, we must go through
+        # each sample and check its associated weight, if given. If no weights
+        # are given, we assume the weight on each point is equal to 1.
+        for i in range(n_samples):
+            # If no sample weights are passed in, or the associated sample
+            # weight is greater than 0, add that sample to the growing array,
+            # and increment the count
+            if sample_weight == NULL or sample_weight[i] != 0.0:
+                samples[j] = i
+                j += 1
+
+            # Add the sample weight, or 1.0 if no sample weights are given.
+            # If the sample weight is 0.0, then it does not matter if added
+            # to the weight sum 
+            if sample_weight != NULL:
+                weighted_n_samples += sample_weight[i]
+            else:
+                weighted_n_samples += 1.0
+
+        self.n_samples = j
+        self.weighted_n_samples = weighted_n_samples
+
+        cdef SIZE_t n_features = X.shape[1]
+        cdef SIZE_t* features = safe_realloc(&self.features, n_features)
+
+        for i in range(n_features):
+            features[i] = i
+
+        self.n_features = n_features
+
+        safe_realloc(&self.constant_features, n_features)
+
+        self.y = <DOUBLE_t*> y.data
+        self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
+        
+        self.sample_weight = sample_weight
+
+        cdef void* sample_mask = NULL
+        cdef np.ndarray X_ndarray = X
+
+        self.X = <DTYPE_t*> X_ndarray.data
+        self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
+
+        # Pre-sort X
+        if self.X_old != self.X:
+            self.X_old = self.X
+            self.X_idx_sorted = np.asfortranarray(np.argsort(X_ndarray, axis=0),
+                                                 dtype=np.int32)
+            self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
+            self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
+                                       <SIZE_t> self.X_idx_sorted.itemsize)
+
+            self.n_total_samples = X.shape[0]
+            sample_mask = safe_realloc(&self.sample_mask, self.n_total_samples)
+            memset(sample_mask, 0, self.n_total_samples)
+
         safe_realloc(&self.y_i, self.n_samples)
         safe_realloc(&self.w_i, self.n_samples)
+        safe_realloc(&self.X_i, self.n_samples)
 
     cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
         SIZE_t n_constant_features) nogil:
         """
         Find the best split for this node.
         """
+
+        with gil:
+            print "a"
 
         # Unpack feature related items
         cdef SIZE_t* features = self.features
@@ -2319,22 +2410,21 @@ cdef class FriedmanMSESplitter(PresortBestSplitter):
         cdef SIZE_t* samples = self.samples
         cdef SIZE_t n_samples = self.n_samples
         cdef DOUBLE_t* w = self.sample_weight
-        cdef DTYPE_t* w_i = self.w_i
+        cdef DOUBLE_t* w_i = self.w_i
         cdef unsigned char* sample_mask = self.sample_mask
 
         # Unpack X related items
         cdef DTYPE_t* X = self.X
-        cdef DTYPE_t* X_i = self.feature_values
+        cdef DTYPE_t* X_i = self.X_i
 
-        cdef SIZE_t X_sample_stride = self.X_sample_stride
-        cdef SIZE_t X_feature_stride = self.X_fx_stride
+        cdef SIZE_t X_feature_stride = self.X_feature_stride
 
-        cdef INT32_t* X_idx_sorted = self.X_argsorted_ptr
-        cdef SIZE_t X_idx_sorted_stride = self.X_argsorted_stride
+        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
+        cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
 
         # Unpack y
         cdef DOUBLE_t* y = self.y
-        cdef DTYPE_t* y_i = self.y_i
+        cdef DOUBLE_t* y_i = self.y_i
         cdef SIZE_t y_stride = self.y_stride
 
         # Unpack constraints
@@ -2353,6 +2443,9 @@ cdef class FriedmanMSESplitter(PresortBestSplitter):
 
         cdef SplitRecord current, best
         _init_split_record( &best )
+
+        with gil:
+            print "b"
 
         # Set the sample mask
         for p in range(start, end):
@@ -2413,7 +2506,7 @@ cdef class FriedmanMSESplitter(PresortBestSplitter):
                     # See if we are using this sample or not
                     if sample_mask[j] == 1:
                         samples[p] = j
-                        X_i[k] = X[X_sample_stride*j + X_feature_stride*f_k]
+                        X_i[k] = X[j + X_feature_stride*f_k]
                         y_i[k] = y[y_stride*j]
                         w_i[k] = w[j]
                         p += 1
@@ -2453,8 +2546,8 @@ cdef class FriedmanMSESplitter(PresortBestSplitter):
             p = start
 
             while p < partition_end:
-                if X[X_sample_stride * samples[p] +
-                     X_feature_stride * best.feature] <= best.threshold:
+                if X[samples[p] + X_feature_stride 
+                    * best.feature] <= best.threshold:
                     p += 1
 
                 else:
@@ -2477,16 +2570,9 @@ cdef class FriedmanMSESplitter(PresortBestSplitter):
         memcpy(constant_features + n_known_constants,
                features + n_known_constants,
                sizeof(SIZE_t) * n_found_constants)
-
+        with gil:
+            print "d"
         return best
-
-
-    cdef double node_impurity(self) nogil:
-        """
-        Return the impurity of this node.
-        """
-
-        return self.impurity
 
 cdef class BaseSparseSplitter(Splitter):
     # The sparse splitter works only with csc sparse matrix format
@@ -3427,10 +3513,12 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
 cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
     """Build a decision tree in depth-first fashion."""
 
-    def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
+    cdef FriedmanMSESplitter FMSESplitter
+
+    def __cinit__(self, FriedmanMSESplitter splitter, SIZE_t min_samples_split,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
                   SIZE_t max_depth):
-        self.splitter = splitter
+        self.FMSESplitter = splitter
         self.min_samples_split = min_samples_split
         self.min_samples_leaf = min_samples_leaf
         self.min_weight_leaf = min_weight_leaf
@@ -3439,9 +3527,9 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=None):
         """Build a decision tree from the training set (X, y)."""
-        # check input
-        print "a"
         X, y, sample_weight = self._check_input(X, y, sample_weight)
+
+        print "aa"
 
         cdef DOUBLE_t* sample_weight_ptr = NULL
         if sample_weight is not None:
@@ -3454,19 +3542,19 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
             init_capacity = (2 ** (tree.max_depth + 1)) - 1
         else:
             init_capacity = 2047
-        print "aa"
+
         tree._resize(init_capacity)
 
         # Parameters
-        cdef Splitter splitter = self.splitter
+        cdef FriedmanMSESplitter splitter = self.FMSESplitter
         cdef SIZE_t max_depth = self.max_depth
         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
         cdef double min_weight_leaf = self.min_weight_leaf
         cdef SIZE_t min_samples_split = self.min_samples_split
-        print "ab"
-        # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight_ptr)
 
+        # Recursive partition (without actual recursion)
+        print "ab"
+        splitter.init(X, y, sample_weight_ptr)
         print "ac"
         cdef SIZE_t start, end, depth, parent, node_id
         cdef bint is_left, is_leaf
@@ -3479,7 +3567,6 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t n_constant_features, max_depth_seen = -1
         cdef int rc = 0
 
-        print "ad"
         cdef Stack stack = Stack(INITIAL_STACK_SIZE)
         cdef StackRecord stack_record
 
@@ -3489,7 +3576,6 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
             # got return code -1 - out-of-memory
             raise MemoryError()
 
-        print "b"
         with nogil:
             while not stack.is_empty():
                 stack.pop(&stack_record)
@@ -3521,7 +3607,7 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
                                          weighted_n_node_samples)
-
+                
                 if node_id == <SIZE_t>(-1):
                     rc = -1
                     break
@@ -3532,14 +3618,14 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
 
                 if not is_leaf:
                     # Push right child on stack
-                    rc = stack.push(split.pos, end, depth+1, node_id, 0,
+                    rc = stack.push(split.pos, end, depth + 1, node_id, 0,
                                     split.impurity_right, split.weight_right,
                                     split.n_constant_features)
                     if rc == -1:
                         break
 
                     # Push left child on stack
-                    rc = stack.push(start, split.pos, depth+1, node_id, 1,
+                    rc = stack.push(start, split.pos, depth + 1, node_id, 1,
                                     split.impurity_left, split.weight_left,
                                     split.n_constant_features)
                     if rc == -1:
@@ -3554,9 +3640,10 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
             if rc >= 0:
                 tree.max_depth = max_depth_seen
 
+        print "ad"
+
         if rc == -1:
             raise MemoryError()
-        print "c"
 
 # Best first builder ----------------------------------------------------------
 
@@ -4245,6 +4332,7 @@ cdef class Tree:
 ctypedef fused realloc_ptr:
     # Add pointer types here as needed.
     (DTYPE_t*)
+    (DOUBLE_t*)
     (SIZE_t*)
     (unsigned char*)
 

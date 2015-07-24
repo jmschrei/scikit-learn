@@ -664,10 +664,19 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  * cimport numpy as np
  * 
  * ctypedef np.npy_intp SIZE_t              # Type for indices and counters             # <<<<<<<<<<<<<<
- * 
+ * ctypedef np.npy_float64 DOUBLE_t
  * 
  */
 typedef npy_intp __pyx_t_7sklearn_4tree_6_utils_SIZE_t;
+
+/* "sklearn/tree/_utils.pxd":13
+ * 
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_float64 DOUBLE_t             # <<<<<<<<<<<<<<
+ * 
+ * # =============================================================================
+ */
+typedef npy_float64 __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t;
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
     typedef ::std::complex< float > __pyx_t_float_complex;
@@ -744,8 +753,8 @@ struct __pyx_t_7sklearn_4tree_6_utils_StackRecord {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t depth;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t parent;
   int is_left;
-  double impurity;
-  double weight;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t impurity;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t weight;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t n_constant_features;
 };
 
@@ -812,7 +821,7 @@ struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap {
 
 struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack {
   int (*is_empty)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *);
-  int (*push)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, double, double, __pyx_t_7sklearn_4tree_6_utils_SIZE_t);
+  int (*push)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t);
   int (*pop)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *);
 };
 static struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *__pyx_vtabptr_7sklearn_4tree_6_utils_Stack;
@@ -1107,7 +1116,7 @@ static PyTypeObject *__Pyx_ImportType(const char *module_name, const char *class
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 static int __pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self); /* proto*/
-static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_parent, int __pyx_v_is_left, double __pyx_v_impurity, double __pyx_v_weight, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_n_constant_features); /* proto*/
+static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_parent, int __pyx_v_is_left, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t __pyx_v_impurity, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t __pyx_v_weight, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_n_constant_features); /* proto*/
 static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *__pyx_v_res); /* proto*/
 static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self); /* proto*/
 static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_node_id, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_pos, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, int __pyx_v_is_leaf, double __pyx_v_improvement, double __pyx_v_impurity, double __pyx_v_impurity_left, double __pyx_v_impurity_right); /* proto*/
@@ -1432,11 +1441,11 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty(struct __pyx_obj_7skle
  *         return self.top <= 0
  * 
  *     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,             # <<<<<<<<<<<<<<
- *                   bint is_left, double impurity, double weight,
+ *                   bint is_left, DOUBLE_t impurity, DOUBLE_t weight,
  *                   SIZE_t n_constant_features) nogil:
  */
 
-static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_parent, int __pyx_v_is_left, double __pyx_v_impurity, double __pyx_v_weight, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_n_constant_features) {
+static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_parent, int __pyx_v_is_left, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t __pyx_v_impurity, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t __pyx_v_weight, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_n_constant_features) {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_top;
   struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *__pyx_v_stack;
   int __pyx_r;
@@ -1629,7 +1638,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  *         return self.top <= 0
  * 
  *     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,             # <<<<<<<<<<<<<<
- *                   bint is_left, double impurity, double weight,
+ *                   bint is_left, DOUBLE_t impurity, DOUBLE_t weight,
  *                   SIZE_t n_constant_features) nogil:
  */
 
@@ -4982,7 +4991,7 @@ PyMODINIT_FUNC PyInit__utils(void)
   /*--- Type init code ---*/
   __pyx_vtabptr_7sklearn_4tree_6_utils_Stack = &__pyx_vtable_7sklearn_4tree_6_utils_Stack;
   __pyx_vtable_7sklearn_4tree_6_utils_Stack.is_empty = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *))__pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty;
-  __pyx_vtable_7sklearn_4tree_6_utils_Stack.push = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, double, double, __pyx_t_7sklearn_4tree_6_utils_SIZE_t))__pyx_f_7sklearn_4tree_6_utils_5Stack_push;
+  __pyx_vtable_7sklearn_4tree_6_utils_Stack.push = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t))__pyx_f_7sklearn_4tree_6_utils_5Stack_push;
   __pyx_vtable_7sklearn_4tree_6_utils_Stack.pop = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *))__pyx_f_7sklearn_4tree_6_utils_5Stack_pop;
   if (PyType_Ready(&__pyx_type_7sklearn_4tree_6_utils_Stack) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_6_utils_Stack.tp_print = 0;

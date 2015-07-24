@@ -10,7 +10,7 @@ import numpy as np
 cimport numpy as np
 
 ctypedef np.npy_intp SIZE_t              # Type for indices and counters
-
+ctypedef np.npy_float64 DOUBLE_t 
 
 # =============================================================================
 # Stack data structure
@@ -23,8 +23,8 @@ cdef struct StackRecord:
     SIZE_t depth
     SIZE_t parent
     bint is_left
-    double impurity
-    double weight
+    DOUBLE_t impurity
+    DOUBLE_t weight
     SIZE_t n_constant_features
 
 cdef class Stack:
@@ -34,7 +34,7 @@ cdef class Stack:
 
     cdef bint is_empty(self) nogil
     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,
-                  bint is_left, double impurity, double weight,
+                  bint is_left, DOUBLE_t impurity, DOUBLE_t weight,
                   SIZE_t n_constant_features) nogil
     cdef int pop(self, StackRecord* res) nogil
 

@@ -30,7 +30,7 @@ from ..utils.validation import NotFittedError
 
 
 from ._tree import Criterion
-from ._tree import Splitter
+from ._tree import Splitter, FriedmanMSESplitter
 from ._tree import MinimalDepthFirstTreeBuilder, BestFirstTreeBuilder
 from ._tree import Tree
 from . import _tree
@@ -280,19 +280,19 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
 
-        splitter = self.splitter
-        if not isinstance(self.splitter, Splitter):
-            splitter = SPLITTERS[self.splitter](criterion,
-                                                self.max_features_,
-                                                self.min_samples_leaf,
-                                                min_weight_leaf,
-                                                random_state)
+        splitter = FriedmanMSESplitter(criterion, self.max_features_, self.min_samples_leaf, min_weight_leaf, random_state)
+        #if not isinstance(self.splitter, Splitter):
+        #    splitter = SPLITTERS[self.splitter](criterion,
+        #                                        self.max_features_,
+        #                                        self.min_samples_leaf,
+        #                                        min_weight_leaf,
+        #                                        random_state)
 
         self.tree_ = Tree(self.n_features_, self.n_classes_, self.n_outputs_)
 
         # Use BestFirst if max_leaf_nodes given; use DepthFirst otherwise
         if max_leaf_nodes < 0:
-            builder = MinimalDepthFirstTreeBuilder(splitter, min_samples_split,
+            builder = MinimalDepthFirstTreeBuilder(self.splitter, min_samples_split,
                                             self.min_samples_leaf,
                                             min_weight_leaf,
                                             max_depth)

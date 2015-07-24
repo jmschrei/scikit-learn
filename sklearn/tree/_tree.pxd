@@ -58,8 +58,8 @@ cdef class Criterion:
                                 double* impurity_right) nogil
     cdef void node_value(self, double* dest) nogil
     cdef double impurity_improvement(self, double impurity) nogil
-    cdef SplitRecord best_split(self, DTYPE_t* X, DTYPE_t* y, 
-        SIZE_t y_stride, DTYPE_t* sample_weight, SIZE_t n ) nogil
+    cdef SplitRecord best_split(self, DTYPE_t* X, DOUBLE_t* y, 
+        SIZE_t y_stride, DOUBLE_t* sample_weight, SIZE_t n ) nogil
 
 
 # =============================================================================
@@ -141,12 +141,75 @@ cdef class Splitter:
                          SplitRecord* split,
                          SIZE_t* n_constant_features) nogil
 
-    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
-        SIZE_t n_constant_features) nogil
-
     cdef void node_value(self, double* dest) nogil
 
     cdef double node_impurity(self) nogil
+
+cdef class FriedmanMSESplitter:
+    # The splitter searches in the input space for a feature and a threshold
+    # to split the samples samples[start:end].
+    #
+    # The impurity computations are delegated to a criterion object.
+
+    # Internal structures
+    cdef public Criterion criterion      # Impurity criterion
+    cdef public SIZE_t max_features      # Number of features to test
+    cdef public SIZE_t min_samples_leaf  # Min samples in a leaf
+    cdef public double min_weight_leaf   # Minimum weight in a leaf
+
+    cdef object random_state             # Random state
+    cdef UINT32_t rand_r_state           # sklearn_rand_r random number state
+
+    cdef SIZE_t* samples                 # Sample indices in X, y
+    cdef SIZE_t n_samples                # X.shape[0]
+    cdef double weighted_n_samples       # Weighted number of samples
+    cdef SIZE_t* features                # Feature indices in X
+    cdef SIZE_t* constant_features       # Constant features indices
+    cdef SIZE_t n_features               # X.shape[1]
+    cdef DTYPE_t* feature_values         # temp. array holding feature values
+
+    cdef DOUBLE_t* y
+    cdef SIZE_t y_stride
+    cdef DOUBLE_t* sample_weight
+
+    cdef DOUBLE_t* y_i
+    cdef DOUBLE_t* w_i
+    cdef DTYPE_t* X_i
+
+    cdef DTYPE_t* X_old
+    cdef np.ndarray X_idx_sorted
+    cdef INT32_t* X_idx_sorted_ptr
+    cdef SIZE_t X_idx_sorted_stride
+
+    cdef SIZE_t n_total_samples
+    cdef unsigned char* sample_mask
+
+    cdef DTYPE_t* X
+    cdef SIZE_t X_sample_stride
+    cdef SIZE_t X_feature_stride
+
+    # The samples vector `samples` is maintained by the Splitter object such
+    # that the samples contained in a node are contiguous. With this setting,
+    # `node_split` reorganizes the node samples `samples[start:end]` in two
+    # subsets `samples[start:pos]` and `samples[pos:end]`.
+
+    # The 1-d  `features` array of size n_features contains the features
+    # indices and allows fast sampling without replacement of features.
+
+    # The 1-d `constant_features` array of size n_features holds in
+    # `constant_features[:n_constant_features]` the feature ids with
+    # constant values for all the samples that reached a specific node.
+    # The value `n_constant_features` is given by the the parent node to its
+    # child nodes.  The content of the range `[n_constant_features:]` is left
+    # undefined, but preallocated for performance reasons
+    # This allows optimization with depth-based tree building.
+
+    # Methods
+    cdef void init(self, object X, np.ndarray y,
+                   DOUBLE_t* sample_weight) except *
+
+    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
+        SIZE_t n_constant_features) nogil
 
 
 # =============================================================================

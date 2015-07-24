@@ -44,7 +44,7 @@ cdef class Stack:
         return self.top <= 0
 
     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,
-                  bint is_left, double impurity, double weight,
+                  bint is_left, DOUBLE_t impurity, DOUBLE_t weight,
                   SIZE_t n_constant_features) nogil:
         """Push a new element onto the stack.
 
