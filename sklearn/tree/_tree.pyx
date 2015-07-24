@@ -1212,9 +1212,9 @@ cdef class MinimalFriedmanMSE(Criterion):
 
             if current.improvement > best.improvement:
                 current.improvement /= w_cl[n-1]
-                current.threshold = (X[i] + X[i+1]) / 2.0
-                if current.threshold == X[i+1]:
-                    current.threshold = X[i]
+                current.threshold = (X[i] + X[i-1]) / 2.0
+                if current.threshold == X[i]:
+                    current.threshold = X[i-1]
 
                 current.weight = w_cl[n-1]
                 current.weight_left = w_cl[best.pos]
@@ -1242,7 +1242,7 @@ cdef class MinimalFriedmanMSE(Criterion):
 # =============================================================================
 
 cdef inline void _init_split_record( SplitRecord* split ) nogil:
-    split.improvement = -INFINITY
+    split.improvement = -1.
     split.pos = 0
     split.n_constant_features = 0
     split.threshold = -INFINITY
@@ -2399,7 +2399,7 @@ cdef class FriedmanMSESplitter:
 
         # Unpack sample related items
         cdef SIZE_t* samples = self.samples
-        cdef SIZE_t n_samples = self.n_samples
+        cdef SIZE_t n_total_samples = self.n_total_samples
         cdef DOUBLE_t* w = self.sample_weight
         cdef DOUBLE_t* w_i = self.w_i
         cdef SIZE_t* sample_mask = self.sample_mask
@@ -2475,8 +2475,8 @@ cdef class FriedmanMSESplitter:
                 tmp = features[f_j]
                 features[f_j] = features[n_drawn_constants]
                 features[n_drawn_constants] = tmp
-
                 n_drawn_constants += 1
+
             else:
                 # f_j in the interval [n_known_constants, f_i - n_found_constants]
                 f_j += n_found_constants
@@ -2487,7 +2487,7 @@ cdef class FriedmanMSESplitter:
                 # according to the presorting, into a single array
                 p = start
                 k = 0
-                for i in range(n_samples):
+                for i in range(n_total_samples):
                     # Get the next index from memory
                     j = X_idx_sorted[i + X_idx_sorted_stride * f_k]
 
@@ -2499,7 +2499,7 @@ cdef class FriedmanMSESplitter:
                         w_i[k] = w[j]
                         p += 1
                         k += 1
-                
+
                 if X_i[k-1] <= X_i[0] + FEATURE_THRESHOLD:
                     features[f_j] = features[n_total_constants]
                     features[n_total_constants] = f_k
@@ -2517,6 +2517,7 @@ cdef class FriedmanMSESplitter:
                     # statistics, and using those later on to calculate the
                     # best split.
                     current = self.criterion.best_split(X_i, y_i, y_stride, w_i, k)
+                    
                     if current.improvement > best.improvement:
                         current.n_constant_features = n_constant_features
                         current.feature = f_k
@@ -3580,12 +3581,11 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
                            (weighted_n_node_samples < min_weight_leaf) or
                            (impurity <= MIN_IMPURITY_SPLIT))
 
-                #with gil:
-                #    print start, end, depth, impurity, is_leaf, weighted_n_node_samples, impurity
-
                 if not is_leaf:
                     split = splitter.best_split(start, end, n_constant_features)
                     is_leaf = is_leaf or (split.pos >= end)
+                    impurity = split.impurity
+                    weighted_n_node_samples = split.weight
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
