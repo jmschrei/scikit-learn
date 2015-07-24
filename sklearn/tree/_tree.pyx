@@ -27,8 +27,6 @@ np.import_array()
 
 from scipy.sparse import issparse, csc_matrix, csr_matrix
 
-from libc.stdio cimport printf
-
 from sklearn.tree._utils cimport Stack, StackRecord
 from sklearn.tree._utils cimport PriorityHeap, PriorityHeapRecord
 
@@ -1199,7 +1197,7 @@ cdef class MinimalFriedmanMSE(Criterion):
         for i in range(n-1):
             # Don't consider possibilities where adjacent values of X are
             # identical, as the split should be in the same place.
-            if i < n-1 and X[i+1] <= X[i] + FEATURE_THRESHOLD:
+            if i < n-1 and X[i] <= X[i-1] + FEATURE_THRESHOLD:
                 continue    
             
             w_cr = w_cl[n-1] - w_cl[i]
@@ -1211,7 +1209,6 @@ cdef class MinimalFriedmanMSE(Criterion):
             current.pos = i
 
             if current.improvement > best.improvement:
-                current.improvement /= w_cl[n-1]
                 current.threshold = (X[i] + X[i-1]) / 2.0
                 if current.threshold == X[i]:
                     current.threshold = X[i-1]
@@ -1234,6 +1231,7 @@ cdef class MinimalFriedmanMSE(Criterion):
         free(yw_cl)
         free(yw_sq)
 
+        best.improvement /= w_cl[n-1]
         return best
 
 
@@ -2517,7 +2515,7 @@ cdef class FriedmanMSESplitter:
                     # statistics, and using those later on to calculate the
                     # best split.
                     current = self.criterion.best_split(X_i, y_i, y_stride, w_i, k)
-                    
+
                     if current.improvement > best.improvement:
                         current.n_constant_features = n_constant_features
                         current.feature = f_k
