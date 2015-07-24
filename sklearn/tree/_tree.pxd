@@ -182,10 +182,9 @@ cdef class FriedmanMSESplitter:
     cdef SIZE_t X_idx_sorted_stride
 
     cdef SIZE_t n_total_samples
-    cdef unsigned char* sample_mask
+    cdef SIZE_t* sample_mask
 
     cdef DTYPE_t* X
-    cdef SIZE_t X_sample_stride
     cdef SIZE_t X_feature_stride
 
     # The samples vector `samples` is maintained by the Splitter object such
