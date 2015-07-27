@@ -51,7 +51,6 @@ cdef class Criterion:
     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* sample_weight,
                    double weighted_n_samples, SIZE_t* samples, SIZE_t start,
                    SIZE_t end) nogil
-    cdef void cinit( self, SIZE_t size )
     cdef void reset(self) nogil
     cdef void update(self, SIZE_t new_pos) nogil
     cdef double node_impurity(self) nogil
@@ -59,8 +58,11 @@ cdef class Criterion:
                                 double* impurity_right) nogil
     cdef void node_value(self, double* dest) nogil
     cdef double impurity_improvement(self, double impurity) nogil
-    cdef SplitRecord best_split(self, DTYPE_t* X, DOUBLE_t* y, 
-        SIZE_t y_stride, DOUBLE_t* sample_weight, SIZE_t n ) nogil
+    cdef void cinit( self, DTYPE_t* X, SIZE_t X_sample_stride, 
+        SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+        SIZE_t size )
+    cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
+        SIZE_t end, SIZE_t feature ) nogil
 
 
 # =============================================================================
@@ -186,8 +188,8 @@ cdef class FriedmanMSESplitter:
     cdef SIZE_t* sample_mask
 
     cdef DTYPE_t* X
-    cdef SIZE_t X_feature_stride
     cdef SIZE_t X_sample_stride
+    cdef SIZE_t X_feature_stride
 
     # The samples vector `samples` is maintained by the Splitter object such
     # that the samples contained in a node are contiguous. With this setting,
