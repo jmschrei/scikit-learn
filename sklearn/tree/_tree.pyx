@@ -101,6 +101,9 @@ cdef class Criterion:
     calculate how good a split is using different metrics.
     """
 
+    cdef void cinit( self, SIZE_t size ):
+        pass
+
     cdef SplitRecord best_split(self, DTYPE_t* X, DOUBLE_t* y, 
         SIZE_t y_stride, DOUBLE_t* sample_weight, SIZE_t n ) nogil:
         """
@@ -1155,6 +1158,31 @@ cdef class MinimalFriedmanMSE(Criterion):
     Mean squared error impurity criterion with improvement score by Friedman.
     """
 
+    cdef DOUBLE_t* w_cl
+    cdef DOUBLE_t* yw_cl
+    cdef DOUBLE_t* yw_sq
+
+    def __cinit__( self ):
+        """Initiator."""
+
+        self.w_cl = NULL
+        self.yw_cl = NULL
+        self.yw_sq = NULL
+
+    def __dealloc__( self ):
+        """Destructor."""
+
+        free(self.w_cl)
+        free(self.yw_cl)
+        free(self.yw_sq)
+
+    cdef void cinit( self, DOUBLE_t* y, DOUBLE_t* w, SIZE_t size ):
+        """Initiator."""
+
+        self.w_cl  = <DOUBLE_t*> calloc(size, sizeof(DOUBLE_t)) 
+        self.yw_cl = <DOUBLE_t*> calloc(size, sizeof(DOUBLE_t))
+        self.yw_sq = <DOUBLE_t*> calloc(size, sizeof(DOUBLE_t))
+
     cdef SplitRecord best_split(self, DTYPE_t* X, DOUBLE_t* y, 
         SIZE_t y_stride, DOUBLE_t* sample_weight, SIZE_t n ) nogil:
         """
@@ -1164,9 +1192,9 @@ cdef class MinimalFriedmanMSE(Criterion):
         relevant data.
         """
 
-        cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
-        cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
-        cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* w_cl  = self.w_cl
+        cdef DOUBLE_t* yw_cl = self.yw_cl
+        cdef DOUBLE_t* yw_sq = self.yw_sq
         cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
         cdef DOUBLE_t* w = sample_weight
 
@@ -1197,7 +1225,7 @@ cdef class MinimalFriedmanMSE(Criterion):
         for i in range(n-1):
             # Don't consider possibilities where adjacent values of X are
             # identical, as the split should be in the same place.
-            if i < n-1 and X[i+1] <= X[i] + FEATURE_THRESHOLD:
+            if i+1 < n-1 and X[i+1] <= X[i] + FEATURE_THRESHOLD:
                 continue    
             
             w_cr = w_cl[n-1] - w_cl[i]
@@ -1210,8 +1238,8 @@ cdef class MinimalFriedmanMSE(Criterion):
 
             if current.improvement > best.improvement:
                 current.threshold = <double>( (X[i+1] + X[i]) / 2.0 )
-                if current.threshold == X[i+1]:
-                    current.threshold = X[i]
+                if current.threshold == X[i]:
+                    current.threshold = X[i-1]
 
                 current.weight = w_cl[n-1]
                 current.weight_left = w_cl[best.pos]
@@ -1228,11 +1256,6 @@ cdef class MinimalFriedmanMSE(Criterion):
                 best = current
 
         best.improvement /= w_cl[n-1]
-
-        free(w_cl)
-        free(yw_cl)
-        free(yw_sq)
-
         return best
 
 
@@ -2387,6 +2410,8 @@ cdef class FriedmanMSESplitter:
         safe_realloc(&self.w_i, self.n_samples)
         safe_realloc(&self.X_i, self.n_samples)
 
+        self.criterion.cinit( self.n_total_samples )
+
     cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
         SIZE_t n_constant_features) nogil:
         """
@@ -3530,7 +3555,6 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
 
         tree._resize(init_capacity)
 
-        # Parameters
         cdef FriedmanMSESplitter splitter = self.FMSESplitter
         cdef SIZE_t max_depth = self.max_depth
         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
@@ -3578,7 +3602,7 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
                 is_leaf = ((depth >= max_depth) or
                            (n_node_samples < min_samples_split) or
                            (n_node_samples < 2 * min_samples_leaf) or
-                           (weighted_n_node_samples < min_weight_leaf) or
+                           (weighted_n_node_samples < 2 * min_weight_leaf) or
                            (impurity <= MIN_IMPURITY_SPLIT))
 
                 if not is_leaf:

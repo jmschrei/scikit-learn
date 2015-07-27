@@ -51,6 +51,7 @@ cdef class Criterion:
     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* sample_weight,
                    double weighted_n_samples, SIZE_t* samples, SIZE_t start,
                    SIZE_t end) nogil
+    cdef void cinit( self, SIZE_t size )
     cdef void reset(self) nogil
     cdef void update(self, SIZE_t new_pos) nogil
     cdef double node_impurity(self) nogil
