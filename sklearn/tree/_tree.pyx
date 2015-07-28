@@ -103,11 +103,11 @@ cdef class Criterion:
 
     cdef void cinit( self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size ):
+        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight ):
         pass
 
     cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
-        SIZE_t end, SIZE_t feature ) nogil:
+        SIZE_t end, SIZE_t feature) nogil:
         """
         This is a placeholder for a method which will calculate the best split
         given a certain math. It takes in a buffer for X and a buffer for y
@@ -1156,9 +1156,7 @@ cdef class FriedmanMSE(MSE):
                 (weighted_n_left + weighted_n_right))
 
 cdef class MinimalFriedmanMSE(Criterion):
-    """
-    Mean squared error impurity criterion with improvement score by Friedman.
-    """
+    """Mean squared error impurity criterion with Friedman's improvement"""
 
     cdef DTYPE_t* X
     #cdef DOUBLE_t* y
@@ -1168,12 +1166,15 @@ cdef class MinimalFriedmanMSE(Criterion):
     cdef SIZE_t X_feature_stride
     #cdef SIZE_t y_stride
 
+    cdef SIZE_t min_leaf_samples
+    cdef DOUBLE_t min_leaf_weight
+
     cdef DOUBLE_t* w_cl
     cdef DOUBLE_t* yw_cl
     cdef DOUBLE_t* yw_sq
 
-    def __cinit__( self ):
-        """Initiator."""
+    def __cinit__( self, SIZE_t n_outputs ):
+        self.n_outputs = n_outputs
 
         self.X = NULL
         self.y = NULL
@@ -1182,6 +1183,9 @@ cdef class MinimalFriedmanMSE(Criterion):
         self.X_sample_stride = 1
         self.X_feature_stride = 1
         self.y_stride = 1
+
+        self.min_leaf_samples = 0
+        self.min_leaf_weight = 0
 
         self.w_cl = NULL
         self.yw_cl = NULL
@@ -1196,12 +1200,15 @@ cdef class MinimalFriedmanMSE(Criterion):
 
     cdef void cinit( self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size ):
-        """Initiator."""
+        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight ):
+        """Take in the dataset."""
 
         self.X = X
         self.y = y
         self.w = w
+
+        self.min_leaf_samples = min_leaf_samples
+        self.min_leaf_weight = min_leaf_weight
 
         self.X_sample_stride = X_sample_stride
         self.X_feature_stride = X_feature_stride
@@ -1212,12 +1219,15 @@ cdef class MinimalFriedmanMSE(Criterion):
         self.yw_sq = <DOUBLE_t*> calloc(size, sizeof(DOUBLE_t))
 
     cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
-        SIZE_t end, SIZE_t feature ) nogil:
-        """
-        This is a placeholder for a method which will calculate the best split
-        given a certain math. It takes in a buffer for X and a buffer for y
-        which have previously been sorted and returns a SplitRecord of all
-        relevant data.
+        SIZE_t end, SIZE_t feature) nogil:
+        """Find the best split in index[start:end].
+
+        Use the FriedmanMSE criterion to find the best split in the samples
+        being considered. Uses the formula (35) in Friedmans original Gradient
+        Boosting paper:
+
+        diff = mean_left - mean_right
+        improvement = n_left * n_right * diff^2 / (n_left + n_right)
         """
 
         cdef DTYPE_t* X = self.X
@@ -1241,10 +1251,8 @@ cdef class MinimalFriedmanMSE(Criterion):
 
         cdef SIZE_t feature_offset = feature*X_feature_stride
 
-        # Now try to find the best split in this data by going
-        # through each possible split, recording some summary
-        # statistics, and using those later on to calculate the
-        # best split.
+        # Get sufficient statistics for the impurity improvement and children
+        # impurity calculations and cache them for all possible splits
         for i in range(n):
             p = index[start+i]
             if i == 0:
@@ -1256,27 +1264,30 @@ cdef class MinimalFriedmanMSE(Criterion):
                 yw_cl[i] = w[p] * y[p*y_stride] + yw_cl[i-1]
                 yw_sq[i] = w[p] * y[p*y_stride] * y[p*y_stride] + yw_sq[i-1]
 
-        for i in range(1, n-1):
-            # Don't consider possibilities where adjacent values of X are
-            # identical, as the split should be in the same place.
-            upper = index[start+i+1]*X_sample_stride + feature_offset
-            middle =  index[start+i]*X_sample_stride + feature_offset
-            lower = index[start+i-1]*X_sample_stride + feature_offset
+        # Now find the best split using sufficient statistics
+        for i in range(self.min_leaf_samples, n-self.min_leaf_samples):
+            p = start+i
 
-            if i+1 < n-1 and X[upper] <= X[middle] + FEATURE_THRESHOLD:
-                continue    
+            upper = index[p+1]*X_sample_stride + feature_offset
+            lower =   index[p]*X_sample_stride + feature_offset
+
+            if p+1 < end-1 and X[upper] <= X[lower] + FEATURE_THRESHOLD:
+                continue
             
             w_cr = w_cl[n-1] - w_cl[i]
             yw_cr = yw_cl[n-1] - yw_cl[i]
             yw_sq_r = yw_sq[n-1] - yw_sq[i]
+
+            if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
+                continue
 
             current.improvement = (w_cl[i] * w_cr * 
                 (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0)
             current.pos = i
 
             if current.improvement > best.improvement:
-                current.threshold = (X[middle] + X[lower]) / 2.0
-                if current.threshold == X[middle]:
+                current.threshold = (X[upper] + X[lower]) / 2.0
+                if current.threshold == X[upper]:
                     current.threshold = X[lower]
 
                 current.weight = w_cl[n-1]
@@ -2455,7 +2466,8 @@ cdef class FriedmanMSESplitter:
 
         self.criterion.cinit(self.X, self.X_sample_stride, 
             self.X_feature_stride, self.y, self.y_stride,
-            self.sample_weight, self.n_total_samples)
+            self.sample_weight, self.n_total_samples,
+            self.min_samples_leaf, self.min_weight_leaf)
 
     cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
         SIZE_t n_constant_features) nogil:
@@ -2471,31 +2483,19 @@ cdef class FriedmanMSESplitter:
         # Unpack sample related items
         cdef SIZE_t* samples = self.samples
         cdef SIZE_t n_total_samples = self.n_total_samples
-        cdef DOUBLE_t* w = self.sample_weight
-        cdef DOUBLE_t* w_i = self.w_i
         cdef SIZE_t* sample_mask = self.sample_mask
 
         # Unpack X related items
         cdef DTYPE_t* X = self.X
-        cdef DTYPE_t* X_i = self.X_i
-
         cdef SIZE_t X_sample_stride = self.X_sample_stride
         cdef SIZE_t X_feature_stride = self.X_feature_stride
-
         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
         cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
 
         cdef SIZE_t upper, lower 
 
-        # Unpack y
-        cdef DOUBLE_t* y = self.y
-        cdef DOUBLE_t* y_i = self.y_i
-        cdef SIZE_t y_stride = self.y_stride
-
         # Unpack constraints
         cdef SIZE_t max_features = self.max_features
-        cdef SIZE_t min_samples_leaf = self.min_samples_leaf
-        cdef DOUBLE_t min_weight_leaf = self.min_weight_leaf
         cdef UINT32_t* random_state = &self.rand_r_state
 
         # Numbers involved in keeping features ordered such that constant
@@ -2504,7 +2504,7 @@ cdef class FriedmanMSESplitter:
         cdef SIZE_t n_found_constants = 0, n_drawn_constants = 0
         cdef SIZE_t n_known_constants = n_constant_features
         cdef SIZE_t n_total_constants = n_known_constants
-        cdef SIZE_t n_visited_features = 0, partition_end, i, j, p, k
+        cdef SIZE_t n_visited_features = 0, partition_end, i, j, p
 
         cdef SplitRecord current, best
         _init_split_record( &best )
@@ -2561,14 +2561,12 @@ cdef class FriedmanMSESplitter:
                 # according to the presorting, into a single array
                 p = start
                 for i in range(n_total_samples):
-                    # Get the next index from memory
                     j = X_idx_sorted[i + X_idx_sorted_stride * f_k]
-
-                    # See if we are using this sample or not
                     if sample_mask[j] == 1:
                         samples[p] = j
                         p += 1
 
+                # Determine if this featuee is constant or not
                 upper = samples[end-1]*X_sample_stride + f_k*X_feature_stride
                 lower = samples[start]*X_sample_stride + f_k*X_feature_stride
                 if X[upper] <= X[lower] + FEATURE_THRESHOLD:
@@ -2578,15 +2576,11 @@ cdef class FriedmanMSESplitter:
                     n_found_constants += 1
                     n_total_constants += 1
 
-                # Otherwise, find a good split on the feature. ALL CODE ABOVE
-                # INVOLVED IN FINDING THE NEXT FEATURE TO SPLIT ON.
+                # If not, find the best split on it
                 else: 
                     f_i -= 1
                     features[f_i], features[f_j] = features[f_j], features[f_i]
-                    # Now try to find the best split in this data by going
-                    # through each possible split, recording some summary
-                    # statistics, and using those later on to calculate the
-                    # best split.
+
                     current = self.criterion.best_split(samples, start, end, f_k)
 
                     if current.improvement > best.improvement:

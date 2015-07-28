@@ -60,7 +60,7 @@ cdef class Criterion:
     cdef double impurity_improvement(self, double impurity) nogil
     cdef void cinit( self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size )
+        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight )
     cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
         SIZE_t end, SIZE_t feature ) nogil
 
