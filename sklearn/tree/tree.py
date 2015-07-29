@@ -82,7 +82,8 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
                  max_features,
                  max_leaf_nodes,
                  random_state,
-                 class_weight=None):
+                 class_weight=None,
+                 n_jobs=1):
         self.criterion = criterion
         self.splitter = splitter
         self.max_depth = max_depth
@@ -93,6 +94,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         self.random_state = random_state
         self.max_leaf_nodes = max_leaf_nodes
         self.class_weight = class_weight
+        self.n_jobs=n_jobs
 
         self.n_features_ = None
         self.n_outputs_ = None
@@ -280,7 +282,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
 
-        splitter = FriedmanMSESplitter(criterion, self.max_features_, self.min_samples_leaf, min_weight_leaf, random_state)
+        splitter = FriedmanMSESplitter(criterion, self.max_features_, self.min_samples_leaf, min_weight_leaf, random_state, self.n_jobs)
         #if not isinstance(self.splitter, Splitter):
         #    splitter = SPLITTERS[self.splitter](criterion,
         #                                        self.max_features_,
@@ -787,7 +789,8 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
                  min_weight_fraction_leaf=0.,
                  max_features=None,
                  random_state=None,
-                 max_leaf_nodes=None):
+                 max_leaf_nodes=None,
+                 n_jobs=1):
         super(DecisionTreeRegressor, self).__init__(
             criterion=criterion,
             splitter=splitter,
@@ -797,7 +800,8 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
             min_weight_fraction_leaf=min_weight_fraction_leaf,
             max_features=max_features,
             max_leaf_nodes=max_leaf_nodes,
-            random_state=random_state)
+            random_state=random_state,
+            n_jobs=n_jobs)
 
 
 class ExtraTreeClassifier(DecisionTreeClassifier):

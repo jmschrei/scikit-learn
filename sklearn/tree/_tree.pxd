@@ -159,6 +159,7 @@ cdef class FriedmanMSESplitter:
     cdef public SIZE_t max_features      # Number of features to test
     cdef public SIZE_t min_samples_leaf  # Min samples in a leaf
     cdef public double min_weight_leaf   # Minimum weight in a leaf
+    cdef SIZE_t n_jobs
 
     cdef object random_state             # Random state
     cdef UINT32_t rand_r_state           # sklearn_rand_r random number state
@@ -211,8 +212,9 @@ cdef class FriedmanMSESplitter:
     cdef void init(self, object X, np.ndarray y,
                    DOUBLE_t* sample_weight) except *
 
-    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
-        SIZE_t n_constant_features) nogil
+    cdef SplitRecord _best_split(self, SIZE_t start, SIZE_t end, 
+        SIZE_t feature) nogil
+    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil
 
 
 # =============================================================================

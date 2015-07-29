@@ -711,7 +711,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
                  min_samples_leaf, min_weight_fraction_leaf,
                  max_depth, init, subsample, max_features,
                  random_state, alpha=0.9, verbose=0, max_leaf_nodes=None,
-                 warm_start=False):
+                 warm_start=False, n_jobs=1):
 
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
@@ -728,6 +728,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
         self.verbose = verbose
         self.max_leaf_nodes = max_leaf_nodes
         self.warm_start = warm_start
+        self.n_jobs = n_jobs
 
         self.estimators_ = np.empty((0, 0), dtype=np.object)
 
@@ -756,7 +757,8 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
                 min_weight_fraction_leaf=self.min_weight_fraction_leaf,
                 max_features=self.max_features,
                 max_leaf_nodes=self.max_leaf_nodes,
-                random_state=random_state)
+                random_state=random_state,
+                n_jobs=self.n_jobs)
 
             if self.subsample < 1.0:
                 # no inplace multiplication!
@@ -1015,7 +1017,8 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
                                  self.max_features_,
                                  self.min_samples_leaf,
                                  min_weight_leaf,
-                                 random_state)
+                                 random_state,
+                                 self.n_jobs)
 
         if self.verbose:
             verbose_reporter = VerboseReporter(self.verbose)
@@ -1334,7 +1337,7 @@ class GradientBoostingClassifier(BaseGradientBoosting, ClassifierMixin):
                  min_samples_leaf=1, min_weight_fraction_leaf=0.,
                  max_depth=3, init=None, random_state=None,
                  max_features=None, verbose=0,
-                 max_leaf_nodes=None, warm_start=False):
+                 max_leaf_nodes=None, warm_start=False, n_jobs=1):
 
         super(GradientBoostingClassifier, self).__init__(
             loss=loss, learning_rate=learning_rate, n_estimators=n_estimators,
@@ -1344,7 +1347,8 @@ class GradientBoostingClassifier(BaseGradientBoosting, ClassifierMixin):
             max_depth=max_depth, init=init, subsample=subsample,
             max_features=max_features,
             random_state=random_state, verbose=verbose,
-            max_leaf_nodes=max_leaf_nodes, warm_start=warm_start)
+            max_leaf_nodes=max_leaf_nodes, warm_start=warm_start, 
+            n_jobs=n_jobs)
 
     def _validate_y(self, y):
         self.classes_, y = np.unique(y, return_inverse=True)
@@ -1658,7 +1662,7 @@ class GradientBoostingRegressor(BaseGradientBoosting, RegressorMixin):
                  min_samples_leaf=1, min_weight_fraction_leaf=0.,
                  max_depth=3, init=None, random_state=None,
                  max_features=None, alpha=0.9, verbose=0, max_leaf_nodes=None,
-                 warm_start=False):
+                 warm_start=False, n_jobs=1):
 
         super(GradientBoostingRegressor, self).__init__(
             loss=loss, learning_rate=learning_rate, n_estimators=n_estimators,
@@ -1668,7 +1672,8 @@ class GradientBoostingRegressor(BaseGradientBoosting, RegressorMixin):
             max_depth=max_depth, init=init, subsample=subsample,
             max_features=max_features,
             random_state=random_state, alpha=alpha, verbose=verbose,
-            max_leaf_nodes=max_leaf_nodes, warm_start=warm_start)
+            max_leaf_nodes=max_leaf_nodes, warm_start=warm_start,
+            n_jobs=n_jobs)
 
     def predict(self, X):
         """Predict regression target for X.

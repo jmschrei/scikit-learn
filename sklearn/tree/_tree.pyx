@@ -21,6 +21,9 @@ from libc.string cimport memcpy, memset
 from libc.math cimport log as ln
 from cpython cimport Py_INCREF, PyObject
 
+from cython.parallel import prange
+from joblib import Parallel, delayed
+
 import numpy as np
 cimport numpy as np
 np.import_array()
@@ -1239,9 +1242,13 @@ cdef class MinimalFriedmanMSE(Criterion):
         cdef SIZE_t y_stride = self.y_stride
         cdef SIZE_t upper, middle, lower
 
-        cdef DOUBLE_t* w_cl  = self.w_cl
-        cdef DOUBLE_t* yw_cl = self.yw_cl
-        cdef DOUBLE_t* yw_sq = self.yw_sq
+        cdef DOUBLE_t* w_cl  = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t)) 
+        cdef DOUBLE_t* yw_cl = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* yw_sq = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t))
+
+        #cdef DOUBLE_t* w_cl  = self.w_cl
+        #cdef DOUBLE_t* yw_cl = self.yw_cl
+        #cdef DOUBLE_t* yw_sq = self.yw_sq
         cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
 
         cdef int i, p, n = end-start
@@ -1310,6 +1317,10 @@ cdef class MinimalFriedmanMSE(Criterion):
             best.pos = end
         else:
             best.pos += start
+
+        free(w_cl)
+        free(yw_cl)
+        free(yw_sq)
         return best
 
 
@@ -2340,9 +2351,10 @@ cdef class FriedmanMSESplitter:
     """
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t min_samples_leaf, double min_weight_leaf, 
-                  object random_state):
+                  object random_state, SIZE_t n_jobs):
 
         self.criterion = criterion
+        self.n_jobs = n_jobs
 
         self.samples = NULL
         self.n_samples = 0
@@ -2469,20 +2481,55 @@ cdef class FriedmanMSESplitter:
             self.sample_weight, self.n_total_samples,
             self.min_samples_leaf, self.min_weight_leaf)
 
-    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end,
-        SIZE_t n_constant_features) nogil:
+    cdef SplitRecord _best_split(self, SIZE_t start, SIZE_t end, 
+        SIZE_t feature) nogil:
+        """Find the best split for a specific feature.
+
+        This is a helper for the best_split method to allow parallel
+        computation of the best split, by scanning multiple features
+        at the same time.
         """
-        Find the best split for this node.
-        """
+
+        cdef DTYPE_t* X = self.X
+        cdef SIZE_t X_sample_stride = self.X_sample_stride
+        cdef SIZE_t X_feature_stride = self.X_feature_stride
+        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
+        cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
+        cdef SIZE_t* sample_mask = self.sample_mask
+
+        cdef SIZE_t* samples = <SIZE_t*> calloc(self.n_samples, sizeof(SIZE_t))
+        cdef SIZE_t i, j, p = start
+        cdef SIZE_t feature_offset = X_idx_sorted_stride * feature
+        
+        cdef SplitRecord split
+        cdef SIZE_t curr, next
+
+        _init_split_record(&split)
+
+        for i in range(self.n_total_samples): 
+            j = X_idx_sorted[i + feature_offset]
+            if sample_mask[j] == 1:
+                samples[p] = j
+                p += 1
+
+        # Determine if this feature is constant or not
+        curr = samples[end-1]*X_sample_stride + feature*X_feature_stride
+        next = samples[start]*X_sample_stride + feature*X_feature_stride
+        if X[curr] > X[next] + FEATURE_THRESHOLD:
+            split = self.criterion.best_split(samples, start, end, feature)
+
+        free(samples)
+        return split
+
+    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil:
+        """Find the best split for this node."""
 
         # Unpack feature related items
         cdef SIZE_t* features = self.features
-        cdef SIZE_t* constant_features = self.constant_features
         cdef SIZE_t n_features = self.n_features
 
         # Unpack sample related items
         cdef SIZE_t* samples = self.samples
-        cdef SIZE_t n_total_samples = self.n_total_samples
         cdef SIZE_t* sample_mask = self.sample_mask
 
         # Unpack X related items
@@ -2495,14 +2542,14 @@ cdef class FriedmanMSESplitter:
         cdef SIZE_t max_features = self.max_features
         cdef UINT32_t* random_state = &self.rand_r_state
 
-        cdef SIZE_t f_j, f_i = n_features, f_k
         cdef SIZE_t n_visited_features = 0
         cdef SIZE_t tmp, partition_end
         cdef SIZE_t iterations=0, i, j, p
-        cdef SIZE_t upper, lower
 
-        cdef SplitRecord current, best
+        cdef SplitRecord best
         _init_split_record( &best )
+
+        cdef SplitRecord* splits = <SplitRecord*> calloc(max_features, sizeof(SplitRecord))
 
         # Set a mask to indicate which samples we are considering.
         for p in range(start, end):
@@ -2510,34 +2557,18 @@ cdef class FriedmanMSESplitter:
 
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm (using the local variables `f_i` and
-        # `f_j` to compute a permutation of the `features` array).
-        while n_visited_features < max_features and iterations < n_features:
-            iterations += 1
-            f_j = rand_int(0, f_i, random_state)
-            f_k = features[f_j]
+        # `f_j` to compute a permutation of the `features` array). This
+        # randomly selects `max_features` features for us to parallelize. 
+        for i in range(max_features):
+            j = rand_int(i, n_features, random_state)
+            features[i], features[j] = features[j], features[i]
 
-            # Extract the relevant samples from that feature, ordered 
-            # according to the presorting, into a single array
-            p = start
-            for i in range(n_total_samples):
-                j = X_idx_sorted[i + X_idx_sorted_stride * f_k]
-                if sample_mask[j] == 1:
-                    samples[p] = j
-                    p += 1
+        for i in prange(max_features, num_threads=self.n_jobs):
+            splits[i] = self._best_split(start, end, features[i])
 
-            # Determine if this feature is constant or not
-            upper = samples[end-1]*X_sample_stride + f_k*X_feature_stride
-            lower = samples[start]*X_sample_stride + f_k*X_feature_stride
-            if X[upper] > X[lower] + FEATURE_THRESHOLD:
-                f_i -= 1
-                features[f_i], features[f_j] = features[f_j], features[f_i]
-
-                n_visited_features += 1
-                current = self.criterion.best_split(samples, start, end, f_k)
-
-                if current.improvement > best.improvement:
-                    current.n_constant_features = n_constant_features
-                    best = current
+        for i in range(max_features):
+            if splits[i].improvement > best.improvement:
+                best = splits[i]
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
@@ -2560,6 +2591,7 @@ cdef class FriedmanMSESplitter:
         for p in range(start, end):
             sample_mask[samples[p]] = 0
 
+        free(splits)
         return best
 
 cdef class BaseSparseSplitter(Splitter):
@@ -3582,7 +3614,7 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
                            (impurity <= MIN_IMPURITY_SPLIT))
 
                 if not is_leaf:
-                    split = splitter.best_split(start, end, n_constant_features)
+                    split = splitter.best_split(start, end)
                     is_leaf = is_leaf or (split.pos >= end)
                     impurity = split.impurity
                     weighted_n_node_samples = split.weight
