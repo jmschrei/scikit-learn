@@ -2492,100 +2492,52 @@ cdef class FriedmanMSESplitter:
         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
         cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
 
-        cdef SIZE_t upper, lower 
-
-        # Unpack constraints
         cdef SIZE_t max_features = self.max_features
         cdef UINT32_t* random_state = &self.rand_r_state
 
-        # Numbers involved in keeping features ordered such that constant
-        # features are not considered
-        cdef SIZE_t f_j, f_i = n_features, f_k, tmp
-        cdef SIZE_t n_found_constants = 0, n_drawn_constants = 0
-        cdef SIZE_t n_known_constants = n_constant_features
-        cdef SIZE_t n_total_constants = n_known_constants
-        cdef SIZE_t n_visited_features = 0, partition_end, i, j, p
+        cdef SIZE_t f_j, f_i = n_features, f_k
+        cdef SIZE_t n_visited_features = 0
+        cdef SIZE_t tmp, partition_end
+        cdef SIZE_t iterations=0, i, j, p
+        cdef SIZE_t upper, lower
 
         cdef SplitRecord current, best
         _init_split_record( &best )
 
-        # Set the sample mask
+        # Set a mask to indicate which samples we are considering.
         for p in range(start, end):
             sample_mask[samples[p]] = 1
 
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm (using the local variables `f_i` and
         # `f_j` to compute a permutation of the `features` array).
-        #
-        # Skip the CPU intensive evaluation of the impurity criterion for
-        # features that were already detected as constant (hence not suitable
-        # for good splitting) by ancestor nodes and save the information on
-        # newly discovered constant features to spare computation on descendant
-        # nodes.
-        while (f_i > n_total_constants and  # Stop early if remaining features
-                                            # are constant
-                (n_visited_features < max_features or
-                 # At least one drawn features must be non constant
-                 n_visited_features <= n_found_constants + n_drawn_constants)):
-            n_visited_features += 1
+        while n_visited_features < max_features and iterations < n_features:
+            iterations += 1
+            f_j = rand_int(0, f_i, random_state)
+            f_k = features[f_j]
 
-            # Loop invariant: elements of features in
-            # - [:n_drawn_constant] holds drawn and known constant features;
-            # - [n_drawn_constant:n_known_constant] holds known constant
-            #   features that haven't been drawn yet;
-            # - [n_known_constant:n_total_constant] holds newly found constant
-            #   features;
-            # - [n_total_constant:f_i] holds features that haven't been drawn
-            #   yet and aren't constant apriori.
-            # - [f_i:n_features] holds features that have been drawn
-            #   and aren't constant.
+            # Extract the relevant samples from that feature, ordered 
+            # according to the presorting, into a single array
+            p = start
+            for i in range(n_total_samples):
+                j = X_idx_sorted[i + X_idx_sorted_stride * f_k]
+                if sample_mask[j] == 1:
+                    samples[p] = j
+                    p += 1
 
-            # Draw a feature at random
-            f_j = rand_int(n_drawn_constants, f_i - n_found_constants,
-                           random_state)
+            # Determine if this feature is constant or not
+            upper = samples[end-1]*X_sample_stride + f_k*X_feature_stride
+            lower = samples[start]*X_sample_stride + f_k*X_feature_stride
+            if X[upper] > X[lower] + FEATURE_THRESHOLD:
+                f_i -= 1
+                features[f_i], features[f_j] = features[f_j], features[f_i]
 
-            if f_j < n_known_constants:
-                # f_j is in [n_drawn_constants, n_known_constants]
-                tmp = features[f_j]
-                features[f_j] = features[n_drawn_constants]
-                features[n_drawn_constants] = tmp
-                n_drawn_constants += 1
+                n_visited_features += 1
+                current = self.criterion.best_split(samples, start, end, f_k)
 
-            else:
-                # f_j in the interval [n_known_constants, f_i - n_found_constants]
-                f_j += n_found_constants
-                # f_j in the interval [n_total_constants, f_i]
-                f_k = features[f_j]
-
-                # Extract the relevant samples from that feature, ordered 
-                # according to the presorting, into a single array
-                p = start
-                for i in range(n_total_samples):
-                    j = X_idx_sorted[i + X_idx_sorted_stride * f_k]
-                    if sample_mask[j] == 1:
-                        samples[p] = j
-                        p += 1
-
-                # Determine if this featuee is constant or not
-                upper = samples[end-1]*X_sample_stride + f_k*X_feature_stride
-                lower = samples[start]*X_sample_stride + f_k*X_feature_stride
-                if X[upper] <= X[lower] + FEATURE_THRESHOLD:
-                    features[f_j] = features[n_total_constants]
-                    features[n_total_constants] = f_k
-
-                    n_found_constants += 1
-                    n_total_constants += 1
-
-                # If not, find the best split on it
-                else: 
-                    f_i -= 1
-                    features[f_i], features[f_j] = features[f_j], features[f_i]
-
-                    current = self.criterion.best_split(samples, start, end, f_k)
-
-                    if current.improvement > best.improvement:
-                        current.n_constant_features = n_constant_features
-                        best = current
+                if current.improvement > best.improvement:
+                    current.n_constant_features = n_constant_features
+                    best = current
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
@@ -2607,16 +2559,6 @@ cdef class FriedmanMSESplitter:
         # Reset sample mask
         for p in range(start, end):
             sample_mask[samples[p]] = 0
-
-        # Respect invariant for constant features: the original order of
-        # element in features[:n_known_constants] must be preserved for sibling
-        # and child nodes
-        memcpy(features, constant_features, sizeof(SIZE_t) * n_known_constants)
-
-        # Copy newly found constant features
-        memcpy(constant_features + n_known_constants,
-               features + n_known_constants,
-               sizeof(SIZE_t) * n_found_constants)
 
         return best
 
