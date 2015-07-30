@@ -304,7 +304,7 @@ cdef class Entropy(ClassificationCriterion):
         for i in range(n):
             p = samples[start+i]
             if i == 0:
-                #label_count_cl[y[p*y_stride]] = 1 
+                label_count_cl[<SIZE_t>y[p*y_stride]] = 1 
                 w_cl[0]  = w[p]
                 yw_cl[0] = w[p] * y[p*y_stride]
                 yw_sq[0] = w[p] * y[p*y_stride] * y[p*y_stride]
@@ -623,9 +623,10 @@ cdef class MSE(RegressionCriterion):
         else:
             best.pos += start
 
-        free(w_cl)
-        free(yw_cl)
-        free(yw_sq)
+        if self.n_jobs != 1:
+            free(w_cl)
+            free(yw_cl)
+            free(yw_sq)
         return best
 
 cdef class FriedmanMSE(RegressionCriterion):
@@ -734,9 +735,10 @@ cdef class FriedmanMSE(RegressionCriterion):
         else:
             best.pos += start
 
-        free(w_cl)
-        free(yw_cl)
-        free(yw_sq)
+        if self.n_jobs != 1:
+            free(w_cl)
+            free(yw_cl)
+            free(yw_sq)
         return best
 
 
