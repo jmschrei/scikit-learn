@@ -27,38 +27,26 @@ cdef class Criterion:
     # impurity of a split on that node. It also computes the output statistics
     # such as the mean in regression and class probabilities in classification.
 
-    # Internal structures
-    cdef DOUBLE_t* y                     # Values of y
-    cdef SIZE_t y_stride                 # Stride in y (since n_outputs >= 1)
-    cdef DOUBLE_t* sample_weight         # Sample weights
+    cdef DTYPE_t* X                
+    cdef DOUBLE_t* y               
+    cdef DOUBLE_t* w               
 
-    cdef SIZE_t* samples                 # Sample indices in X, y
-    cdef SIZE_t start                    # samples[start:pos] are the samples in the left node
-    cdef SIZE_t pos                      # samples[pos:end] are the samples in the right node
-    cdef SIZE_t end
+    cdef SIZE_t X_sample_stride    
+    cdef SIZE_t X_feature_stride
+    cdef SIZE_t y_stride
 
-    cdef SIZE_t n_outputs                # Number of outputs
-    cdef SIZE_t n_node_samples           # Number of samples in the node (end-start)
-    cdef double weighted_n_samples       # Weighted number of samples (in total)
-    cdef double weighted_n_node_samples  # Weighted number of samples in the node
-    cdef double weighted_n_left          # Weighted number of samples in the left node
-    cdef double weighted_n_right         # Weighted number of samples in the right node
+    cdef SIZE_t min_leaf_samples
+    cdef DOUBLE_t min_leaf_weight
+
+    cdef DOUBLE_t* w_cl
+    cdef DOUBLE_t* yw_cl
+    cdef DOUBLE_t* yw_sq
 
     # The criterion object is maintained such that left and right collected
     # statistics correspond to samples[start:pos] and samples[pos:end].
 
     # Methods
-    cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* sample_weight,
-                   double weighted_n_samples, SIZE_t* samples, SIZE_t start,
-                   SIZE_t end) nogil
-    cdef void reset(self) nogil
-    cdef void update(self, SIZE_t new_pos) nogil
-    cdef double node_impurity(self) nogil
-    cdef void children_impurity(self, double* impurity_left,
-                                double* impurity_right) nogil
-    cdef void node_value(self, double* dest) nogil
-    cdef double impurity_improvement(self, double impurity) nogil
-    cdef void cinit( self, DTYPE_t* X, SIZE_t X_sample_stride, 
+    cdef void init( self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
         SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight )
     cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
