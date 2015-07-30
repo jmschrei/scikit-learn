@@ -2542,33 +2542,49 @@ cdef class FriedmanMSESplitter:
         cdef SIZE_t max_features = self.max_features
         cdef UINT32_t* random_state = &self.rand_r_state
 
-        cdef SIZE_t n_visited_features = 0
+        cdef SIZE_t n_visited_features = 0, features_left
         cdef SIZE_t tmp, partition_end
-        cdef SIZE_t iterations=0, i, j, p
+        cdef SIZE_t iterations=0, i, j, p, f
 
         cdef SplitRecord best
         _init_split_record( &best )
 
-        cdef SplitRecord* splits = <SplitRecord*> calloc(max_features, sizeof(SplitRecord))
+        cdef SplitRecord* splits = <SplitRecord*> calloc(max_features, 
+            sizeof(SplitRecord))
 
         # Set a mask to indicate which samples we are considering.
         for p in range(start, end):
             sample_mask[samples[p]] = 1
 
         # Sample up to max_features without replacement using a
-        # Fisher-Yates-based algorithm (using the local variables `f_i` and
-        # `f_j` to compute a permutation of the `features` array). This
-        # randomly selects `max_features` features for us to parallelize. 
-        for i in range(max_features):
-            j = rand_int(i, n_features, random_state)
-            features[i], features[j] = features[j], features[i]
+        # Fisher-Yates-based algorithm. To allow for parallelism,
+        # we sample batches at a time, and count the number of
+        # non-constant features, until we converge at max_features
+        # number of non-constant features
+        while n_visited_features < max_features and iterations < n_features:
+            # Sort the feature array as needed to indicate features
+            # we've seen before.
+            for i in range(max_features):
+                f = i + n_visited_features
+                j = rand_int(f, n_features, random_state)
+                features[f], features[j] = features[j], features[f]
 
-        for i in prange(max_features, num_threads=self.n_jobs):
-            splits[i] = self._best_split(start, end, features[i])
+            # In parallel, find the best split for each feature
+            # in this batch
+            features_left = max_features - n_visited_features
+            for i in prange(features_left, num_threads=self.n_jobs):
+                f = i + n_visited_features
+                splits[i] = self._best_split(start, end, features[f])
 
-        for i in range(max_features):
-            if splits[i].improvement > best.improvement:
-                best = splits[i]
+            # Of the returned splits, see if any are better than
+            # the current returned best split.
+            for i in range(features_left):
+                if splits[i].improvement > 0:
+                    n_visited_features += 1
+                    if splits[i].improvement > best.improvement:
+                        best = splits[i]
+
+            iterations += features_left
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
@@ -3591,6 +3607,9 @@ cdef class MinimalDepthFirstTreeBuilder(TreeBuilder):
         if rc == -1:
             # got return code -1 - out-of-memory
             raise MemoryError()
+
+        cdef DOUBLE_t* test = NULL
+        cdef SIZE_t i
 
         with nogil:
             while not stack.is_empty():
