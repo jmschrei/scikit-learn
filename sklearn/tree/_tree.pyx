@@ -24,6 +24,7 @@ from cpython cimport Py_INCREF, PyObject
 from cython.parallel import prange
 from joblib import Parallel, delayed
 
+import time
 import numpy as np
 cimport numpy as np
 np.import_array()
@@ -854,6 +855,7 @@ cdef class DenseSplitter(Splitter):
     This object is a splitter which performs more caching in order to try to
     find splits faster.
     """
+    
     def __reduce(self):
         return (DenseSplitter, (self.criterion,
                                 self.max_features,
@@ -2024,7 +2026,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef SplitRecord split
 
         cdef double threshold, impurity = INFINITY 
-        cdef SIZE_t n_constant_features, max_depth_seen = -1
+        cdef SIZE_t max_depth_seen = -1
         cdef int rc = 0
 
         cdef Stack stack = Stack(INITIAL_STACK_SIZE)
@@ -2038,6 +2040,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
 
         cdef DOUBLE_t* test = NULL
         cdef SIZE_t i
+        tic = time.time()
 
         with nogil:
             while not stack.is_empty():
@@ -2048,7 +2051,6 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 depth = stack_record.depth
                 parent = stack_record.parent
                 is_left = stack_record.is_left
-                n_constant_features = stack_record.n_constant_features
                 weighted_n_node_samples = stack_record.weight
                 impurity = stack_record.impurity
 
