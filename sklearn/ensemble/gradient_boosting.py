@@ -46,7 +46,7 @@ from ..feature_selection.from_model import _LearntSelectorMixin
 from ..tree.tree import DecisionTreeRegressor
 from ..tree._tree import DTYPE, TREE_LEAF
 from ..tree._tree import DenseSplitter
-from ..tree._tree import FriedmanMSE
+from ..tree._tree import FriedmanMSE, MSE
 
 from ._gradient_boosting import predict_stages
 from ._gradient_boosting import predict_stage

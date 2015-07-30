@@ -5437,7 +5437,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
  *             if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
  *                 continue             # <<<<<<<<<<<<<<
  * 
- *             current.improvement = (w_cl[i] * w_cr *
+ *             current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
  */
       goto __pyx_L7_continue;
     }
@@ -5445,22 +5445,49 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
     /* "sklearn/tree/_tree.pyx":597
  *                 continue
  * 
- *             current.improvement = (w_cl[i] * w_cr *             # <<<<<<<<<<<<<<
- *                 (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0)
- *             current.pos = i
+ *             current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0             # <<<<<<<<<<<<<<
+ *             current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
+ *             current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
  */
-    __pyx_v_current.improvement = (((__pyx_v_w_cl[__pyx_v_i]) * __pyx_v_w_cr) * pow(((double)(((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - (__pyx_v_yw_cr / __pyx_v_w_cr))), 2.0));
+    __pyx_v_current.impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow(((double)(__pyx_v_yw_sum / __pyx_v_w_sum)), 2.0));
+
+    /* "sklearn/tree/_tree.pyx":598
+ * 
+ *             current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+ *             current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0             # <<<<<<<<<<<<<<
+ *             current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+ * 
+ */
+    __pyx_v_current.impurity_left = (((__pyx_v_yw_sq[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - pow(((double)((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i]))), 2.0));
 
     /* "sklearn/tree/_tree.pyx":599
- *             current.improvement = (w_cl[i] * w_cr *
- *                 (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0)
+ *             current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+ *             current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
+ *             current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0             # <<<<<<<<<<<<<<
+ * 
+ *             current.improvement = ( current.impurity
+ */
+    __pyx_v_current.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow(((double)(__pyx_v_yw_cr / __pyx_v_w_cr)), 2.0));
+
+    /* "sklearn/tree/_tree.pyx":601
+ *             current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+ * 
+ *             current.improvement = ( current.impurity             # <<<<<<<<<<<<<<
+ *                 - (w_cl[i] / w_cl[n-1]) * current.impurity_left
+ *                 - (w_cr / w_cl[n-1]) * current.impurity_right )
+ */
+    __pyx_v_current.improvement = ((__pyx_v_current.impurity - (((__pyx_v_w_cl[__pyx_v_i]) / (__pyx_v_w_cl[(__pyx_v_n - 1)])) * __pyx_v_current.impurity_left)) - ((__pyx_v_w_cr / (__pyx_v_w_cl[(__pyx_v_n - 1)])) * __pyx_v_current.impurity_right));
+
+    /* "sklearn/tree/_tree.pyx":604
+ *                 - (w_cl[i] / w_cl[n-1]) * current.impurity_left
+ *                 - (w_cr / w_cl[n-1]) * current.impurity_right )
  *             current.pos = i             # <<<<<<<<<<<<<<
  * 
  *             if current.improvement > best.improvement:
  */
     __pyx_v_current.pos = __pyx_v_i;
 
-    /* "sklearn/tree/_tree.pyx":601
+    /* "sklearn/tree/_tree.pyx":606
  *             current.pos = i
  * 
  *             if current.improvement > best.improvement:             # <<<<<<<<<<<<<<
@@ -5470,7 +5497,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
     __pyx_t_4 = ((__pyx_v_current.improvement > __pyx_v_best.improvement) != 0);
     if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":602
+      /* "sklearn/tree/_tree.pyx":607
  * 
  *             if current.improvement > best.improvement:
  *                 current.threshold = (X[upper] + X[lower]) / 2.0             # <<<<<<<<<<<<<<
@@ -5479,7 +5506,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
  */
       __pyx_v_current.threshold = (((__pyx_v_X[__pyx_v_upper]) + (__pyx_v_X[__pyx_v_lower])) / 2.0);
 
-      /* "sklearn/tree/_tree.pyx":603
+      /* "sklearn/tree/_tree.pyx":608
  *             if current.improvement > best.improvement:
  *                 current.threshold = (X[upper] + X[lower]) / 2.0
  *                 if current.threshold == X[upper]:             # <<<<<<<<<<<<<<
@@ -5489,7 +5516,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
       __pyx_t_4 = ((__pyx_v_current.threshold == (__pyx_v_X[__pyx_v_upper])) != 0);
       if (__pyx_t_4) {
 
-        /* "sklearn/tree/_tree.pyx":604
+        /* "sklearn/tree/_tree.pyx":609
  *                 current.threshold = (X[upper] + X[lower]) / 2.0
  *                 if current.threshold == X[upper]:
  *                     current.threshold = X[lower]             # <<<<<<<<<<<<<<
@@ -5501,7 +5528,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
       }
       __pyx_L16:;
 
-      /* "sklearn/tree/_tree.pyx":606
+      /* "sklearn/tree/_tree.pyx":611
  *                     current.threshold = X[lower]
  * 
  *                 current.weight = w_cl[n-1]             # <<<<<<<<<<<<<<
@@ -5510,7 +5537,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
  */
       __pyx_v_current.weight = (__pyx_v_w_cl[(__pyx_v_n - 1)]);
 
-      /* "sklearn/tree/_tree.pyx":607
+      /* "sklearn/tree/_tree.pyx":612
  * 
  *                 current.weight = w_cl[n-1]
  *                 current.weight_left = w_cl[best.pos]             # <<<<<<<<<<<<<<
@@ -5519,7 +5546,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
  */
       __pyx_v_current.weight_left = (__pyx_v_w_cl[__pyx_v_best.pos]);
 
-      /* "sklearn/tree/_tree.pyx":608
+      /* "sklearn/tree/_tree.pyx":613
  *                 current.weight = w_cl[n-1]
  *                 current.weight_left = w_cl[best.pos]
  *                 current.weight_right = w_cl[n-1] - w_cl[best.pos]             # <<<<<<<<<<<<<<
@@ -5528,7 +5555,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
  */
       __pyx_v_current.weight_right = ((__pyx_v_w_cl[(__pyx_v_n - 1)]) - (__pyx_v_w_cl[__pyx_v_best.pos]));
 
-      /* "sklearn/tree/_tree.pyx":610
+      /* "sklearn/tree/_tree.pyx":615
  *                 current.weight_right = w_cl[n-1] - w_cl[best.pos]
  * 
  *                 yw_sq_sum = yw_sq[n-1]             # <<<<<<<<<<<<<<
@@ -5537,7 +5564,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
  */
       __pyx_v_yw_sq_sum = (__pyx_v_yw_sq[(__pyx_v_n - 1)]);
 
-      /* "sklearn/tree/_tree.pyx":611
+      /* "sklearn/tree/_tree.pyx":616
  * 
  *                 yw_sq_sum = yw_sq[n-1]
  *                 yw_sum = yw_cl[n-1]             # <<<<<<<<<<<<<<
@@ -5546,48 +5573,21 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
  */
       __pyx_v_yw_sum = (__pyx_v_yw_cl[(__pyx_v_n - 1)]);
 
-      /* "sklearn/tree/_tree.pyx":612
+      /* "sklearn/tree/_tree.pyx":617
  *                 yw_sq_sum = yw_sq[n-1]
  *                 yw_sum = yw_cl[n-1]
  *                 w_sum = w_cl[n-1]             # <<<<<<<<<<<<<<
  * 
- *                 current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+ *                 best = current
  */
       __pyx_v_w_sum = (__pyx_v_w_cl[(__pyx_v_n - 1)]);
 
-      /* "sklearn/tree/_tree.pyx":614
+      /* "sklearn/tree/_tree.pyx":619
  *                 w_sum = w_cl[n-1]
- * 
- *                 current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0             # <<<<<<<<<<<<<<
- *                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
- *                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
- */
-      __pyx_v_current.impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow(((double)(__pyx_v_yw_sum / __pyx_v_w_sum)), 2.0));
-
-      /* "sklearn/tree/_tree.pyx":615
- * 
- *                 current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
- *                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0             # <<<<<<<<<<<<<<
- *                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
- * 
- */
-      __pyx_v_current.impurity_left = (((__pyx_v_yw_sq[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i])) - pow(((double)((__pyx_v_yw_cl[__pyx_v_i]) / (__pyx_v_w_cl[__pyx_v_i]))), 2.0));
-
-      /* "sklearn/tree/_tree.pyx":616
- *                 current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
- *                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
- *                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0             # <<<<<<<<<<<<<<
- * 
- *                 best = current
- */
-      __pyx_v_current.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow(((double)(__pyx_v_yw_cr / __pyx_v_w_cr)), 2.0));
-
-      /* "sklearn/tree/_tree.pyx":618
- *                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
  * 
  *                 best = current             # <<<<<<<<<<<<<<
  * 
- *         best.improvement /= w_cl[n-1]
+ *         best.feature = feature
  */
       __pyx_v_best = __pyx_v_current;
       goto __pyx_L15;
@@ -5596,18 +5596,9 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
     __pyx_L7_continue:;
   }
 
-  /* "sklearn/tree/_tree.pyx":620
+  /* "sklearn/tree/_tree.pyx":621
  *                 best = current
  * 
- *         best.improvement /= w_cl[n-1]             # <<<<<<<<<<<<<<
- *         best.feature = feature
- *         if best.pos == 0:
- */
-  __pyx_v_best.improvement = (__pyx_v_best.improvement / (__pyx_v_w_cl[(__pyx_v_n - 1)]));
-
-  /* "sklearn/tree/_tree.pyx":621
- * 
- *         best.improvement /= w_cl[n-1]
  *         best.feature = feature             # <<<<<<<<<<<<<<
  *         if best.pos == 0:
  *             best.pos = end
@@ -5615,7 +5606,7 @@ static struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord __pyx_f_7sklearn_4tree_5
   __pyx_v_best.feature = __pyx_v_feature;
 
   /* "sklearn/tree/_tree.pyx":622
- *         best.improvement /= w_cl[n-1]
+ * 
  *         best.feature = feature
  *         if best.pos == 0:             # <<<<<<<<<<<<<<
  *             best.pos = end

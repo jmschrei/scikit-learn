@@ -594,8 +594,13 @@ cdef class MSE(RegressionCriterion):
             if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
                 continue
 
-            current.improvement = (w_cl[i] * w_cr * 
-                (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0)
+            current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+            current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
+            current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+
+            current.improvement = ( current.impurity 
+                - (w_cl[i] / w_cl[n-1]) * current.impurity_left
+                - (w_cr / w_cl[n-1]) * current.impurity_right )
             current.pos = i
 
             if current.improvement > best.improvement:
@@ -611,13 +616,8 @@ cdef class MSE(RegressionCriterion):
                 yw_sum = yw_cl[n-1]
                 w_sum = w_cl[n-1] 
 
-                current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
-                current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
-                current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
-
                 best = current
 
-        best.improvement /= w_cl[n-1]
         best.feature = feature
         if best.pos == 0:
             best.pos = end
@@ -855,7 +855,7 @@ cdef class DenseSplitter(Splitter):
     This object is a splitter which performs more caching in order to try to
     find splits faster.
     """
-    
+
     def __reduce(self):
         return (DenseSplitter, (self.criterion,
                                 self.max_features,
