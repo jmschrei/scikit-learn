@@ -30,7 +30,7 @@ from ..utils.validation import NotFittedError
 
 
 from ._tree import Criterion
-from ._tree import Splitter
+from ._tree import Splitter, DenseSplitter
 from ._tree import DepthFirstTreeBuilder, BestFirstTreeBuilder
 from ._tree import Tree
 from . import _tree
@@ -129,6 +129,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         self : object
             Returns self.
         """
+        
         random_state = check_random_state(self.random_state)
         if check_input:
             X = check_array(X, dtype=DTYPE, accept_sparse="csc")
@@ -280,6 +281,12 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         splitter = self.splitter
         if not isinstance(self, Splitter):
+            splitter = DenseSplitter(criterion,
+                                     self.max_features_,
+                                     self.min_samples_leaf,
+                                     min_weight_leaf,
+                                     random_state,
+                                     self.n_jobs)
             pass
             #splitter = SPLITTERS[self.splitter](criterion,
             #                                    self.max_features_,

@@ -1066,8 +1066,6 @@ cdef class DenseSplitter(Splitter):
         return best
 
 
-
-
 # Sort n-element arrays pointed to by Xf and samples, simultaneously,
 # by the values in Xf. Algorithm: Introsort (Musser, SP&E, 1997).
 cdef inline void sort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
