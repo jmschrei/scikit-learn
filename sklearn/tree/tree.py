@@ -30,8 +30,8 @@ from ..utils.validation import NotFittedError
 
 
 from ._tree import Criterion
-from ._tree import Splitter, FriedmanMSESplitter
-from ._tree import MinimalDepthFirstTreeBuilder, BestFirstTreeBuilder
+from ._tree import DenseSplitter
+from ._tree import DepthFirstTreeBuilder, BestFirstTreeBuilder
 from ._tree import Tree
 from . import _tree
 
@@ -51,12 +51,6 @@ DOUBLE = _tree.DOUBLE
 CRITERIA_CLF = {"gini": _tree.Gini, "entropy": _tree.Entropy}
 CRITERIA_REG = {"mse": _tree.MSE, "friedman_mse": _tree.FriedmanMSE}
 
-DENSE_SPLITTERS = {"best": _tree.BestSplitter,
-                   "presort-best": _tree.PresortBestSplitter,
-                   "random": _tree.RandomSplitter}
-
-SPARSE_SPLITTERS = {"best": _tree.BestSparseSplitter,
-                    "random": _tree.RandomSparseSplitter}
 
 # =============================================================================
 # Base decision tree
@@ -273,28 +267,37 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         # Build tree
         criterion = self.criterion
+
         if not isinstance(criterion, Criterion):
             if is_classification:
                 criterion = CRITERIA_CLF[self.criterion](self.n_outputs_,
-                                                         self.n_classes_)
+                                                         self.n_classes_,
+                                                         self.n_jobs)
             else:
-                criterion = CRITERIA_REG[self.criterion](self.n_outputs_)
+                criterion = CRITERIA_REG[self.criterion](self.n_outputs_,
+                                                         self.n_jobs)
 
-        SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
+        #SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
 
-        splitter = FriedmanMSESplitter(criterion, self.max_features_, self.min_samples_leaf, min_weight_leaf, random_state, self.n_jobs)
-        #if not isinstance(self.splitter, Splitter):
-        #    splitter = SPLITTERS[self.splitter](criterion,
-        #                                        self.max_features_,
-        #                                        self.min_samples_leaf,
-        #                                        min_weight_leaf,
-        #                                        random_state)
+        splitter = DenseSplitter(criterion,
+                                 self.max_features_,
+                                 self.min_samples_leaf,
+                                 min_weight_leaf,
+                                 random_state,
+                                 self.n_jobs)
+
+        #splitter = SPLITTERS[self.splitter](criterion,
+        #                                    self.max_features_,
+        #                                    self.min_samples_leaf,
+        #                                    min_weight_leaf,
+        #                                    random_state,
+        #                                    self.n_jobs)
 
         self.tree_ = Tree(self.n_features_, self.n_classes_, self.n_outputs_)
 
         # Use BestFirst if max_leaf_nodes given; use DepthFirst otherwise
         if max_leaf_nodes < 0:
-            builder = MinimalDepthFirstTreeBuilder(self.splitter, min_samples_split,
+            builder = DepthFirstTreeBuilder(splitter, min_samples_split,
                                             self.min_samples_leaf,
                                             min_weight_leaf,
                                             max_depth)
