@@ -12329,13 +12329,13 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
  *                     # Push right child on stack
  *                     rc = stack.push(split.pos, end, depth + 1, node_id, 0,             # <<<<<<<<<<<<<<
  *                                     split.impurity_right, split.weight_right,
- *                                     split.node_value_left)
+ *                                     split.node_value_right)
  */
-            __pyx_v_rc = ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->push(__pyx_v_stack, __pyx_v_split.pos, __pyx_v_end, (__pyx_v_depth + 1), __pyx_v_node_id, 0, __pyx_v_split.impurity_right, __pyx_v_split.weight_right, __pyx_v_split.node_value_left);
+            __pyx_v_rc = ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->push(__pyx_v_stack, __pyx_v_split.pos, __pyx_v_end, (__pyx_v_depth + 1), __pyx_v_node_id, 0, __pyx_v_split.impurity_right, __pyx_v_split.weight_right, __pyx_v_split.node_value_right);
 
             /* "sklearn/tree/_tree.pyx":2097
  *                                     split.impurity_right, split.weight_right,
- *                                     split.node_value_left)
+ *                                     split.node_value_right)
  *                     if rc == -1:             # <<<<<<<<<<<<<<
  *                         break
  * 
@@ -12344,7 +12344,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
             if (__pyx_t_9) {
 
               /* "sklearn/tree/_tree.pyx":2098
- *                                     split.node_value_left)
+ *                                     split.node_value_right)
  *                     if rc == -1:
  *                         break             # <<<<<<<<<<<<<<
  * 
@@ -12358,13 +12358,13 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
  *                     # Push left child on stack
  *                     rc = stack.push(start, split.pos, depth + 1, node_id, 1,             # <<<<<<<<<<<<<<
  *                                     split.impurity_left, split.weight_left,
- *                                     split.node_value_right)
+ *                                     split.node_value_left)
  */
-            __pyx_v_rc = ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->push(__pyx_v_stack, __pyx_v_start, __pyx_v_split.pos, (__pyx_v_depth + 1), __pyx_v_node_id, 1, __pyx_v_split.impurity_left, __pyx_v_split.weight_left, __pyx_v_split.node_value_right);
+            __pyx_v_rc = ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->push(__pyx_v_stack, __pyx_v_start, __pyx_v_split.pos, (__pyx_v_depth + 1), __pyx_v_node_id, 1, __pyx_v_split.impurity_left, __pyx_v_split.weight_left, __pyx_v_split.node_value_left);
 
             /* "sklearn/tree/_tree.pyx":2104
  *                                     split.impurity_left, split.weight_left,
- *                                     split.node_value_right)
+ *                                     split.node_value_left)
  *                     if rc == -1:             # <<<<<<<<<<<<<<
  *                         break
  * 
@@ -12373,7 +12373,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_21DepthFirstTreeBuilder_build(str
             if (__pyx_t_9) {
 
               /* "sklearn/tree/_tree.pyx":2105
- *                                     split.node_value_right)
+ *                                     split.node_value_left)
  *                     if rc == -1:
  *                         break             # <<<<<<<<<<<<<<
  * 

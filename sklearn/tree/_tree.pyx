@@ -2093,14 +2093,14 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                     # Push right child on stack
                     rc = stack.push(split.pos, end, depth + 1, node_id, 0,
                                     split.impurity_right, split.weight_right,
-                                    split.node_value_left)
+                                    split.node_value_right)
                     if rc == -1:
                         break
 
                     # Push left child on stack
                     rc = stack.push(start, split.pos, depth + 1, node_id, 1,
                                     split.impurity_left, split.weight_left,
-                                    split.node_value_right)
+                                    split.node_value_left)
                     if rc == -1:
                         break
 
