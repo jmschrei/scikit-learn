@@ -280,14 +280,14 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         #SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
 
         splitter = self.splitter
-        if not isinstance(self, Splitter):
+        if not isinstance(self.splitter, Splitter):
             splitter = DenseSplitter(criterion,
                                      self.max_features_,
                                      self.min_samples_leaf,
                                      min_weight_leaf,
                                      random_state,
                                      self.n_jobs)
-            pass
+
             #splitter = SPLITTERS[self.splitter](criterion,
             #                                    self.max_features_,
             #                                    self.min_samples_leaf,
