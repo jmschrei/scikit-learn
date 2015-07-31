@@ -594,13 +594,7 @@ cdef class MSE(RegressionCriterion):
             if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
                 continue
 
-            current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
-            current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
-            current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
-
-            current.improvement = ( current.impurity 
-                - (w_cl[i] / w_cl[n-1]) * current.impurity_left
-                - (w_cr / w_cl[n-1]) * current.impurity_right )
+            current.improvement = (yw_cl[i] ** 2) / w_cl[i] + (yw_cr**2) / w_cr
             current.pos = i
 
             if current.improvement > best.improvement:
@@ -615,6 +609,11 @@ cdef class MSE(RegressionCriterion):
                 yw_sq_sum = yw_sq[n-1]
                 yw_sum = yw_cl[n-1]
                 w_sum = w_cl[n-1] 
+
+                current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+                current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
+                current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+                current.node_value = yw_sum / w_sum
 
                 best = current
 
@@ -726,6 +725,7 @@ cdef class FriedmanMSE(RegressionCriterion):
                 current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+                current.node_value = yw_sum / w_sum
 
                 best = current
 
@@ -759,6 +759,7 @@ cdef inline void _init_split_record( SplitRecord* split ) nogil:
     split.weight = INFINITY
     split.weight_left = INFINITY
     split.weight_right = INFINITY
+    split.node_value = 0
 
 cdef class Splitter:
     """
@@ -2068,15 +2069,11 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
-                                         weighted_n_node_samples)
+                                         weighted_n_node_samples, split.node_value)
                 
                 if node_id == <SIZE_t>(-1):
                     rc = -1
                     break
-
-                # Store value for all nodes, to facilitate tree/model
-                # inspection and interpretation
-                #splitter.node_value(tree.value + node_id * tree.value_stride)
 
                 if not is_leaf:
                     # Push right child on stack
@@ -2536,7 +2533,8 @@ cdef class Tree:
 
     cdef SIZE_t _add_node(self, SIZE_t parent, bint is_left, bint is_leaf,
                           SIZE_t feature, double threshold, double impurity,
-                          SIZE_t n_node_samples, double weighted_n_node_samples) nogil:
+                          SIZE_t n_node_samples, double weighted_n_node_samples,
+                          double value) nogil:
         """Add a node to the tree.
 
         The new node registers itself as the child of its parent.
@@ -2572,6 +2570,7 @@ cdef class Tree:
             node.threshold = threshold
 
         self.node_count += 1
+        self.value[node_id * self.value_stride] = value
 
         return node_id
 

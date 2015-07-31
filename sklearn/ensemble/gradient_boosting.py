@@ -1012,7 +1012,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
             min_weight_leaf = 0.
 
         # init criterion and splitter
-        criterion = FriedmanMSE(1, self.n_jobs)
+        criterion = MSE(1, self.n_jobs)
         splitter = DenseSplitter(criterion,
                                  self.max_features_,
                                  self.min_samples_leaf,
