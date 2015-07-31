@@ -577,6 +577,13 @@ cdef class MSE(RegressionCriterion):
                 yw_cl[i] = w[p] * y[p*y_stride] + yw_cl[i-1]
                 yw_sq[i] = w[p] * y[p*y_stride] * y[p*y_stride] + yw_sq[i-1]
 
+        yw_sq_sum = yw_sq[n-1]
+        yw_sum = yw_cl[n-1]
+        w_sum = w_cl[n-1] 
+
+        current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+        current.node_value = yw_sum / w_sum
+
         # Now find the best split using sufficient statistics
         for i in range(self.min_leaf_samples, n-self.min_leaf_samples):
             p = start+i
@@ -605,15 +612,12 @@ cdef class MSE(RegressionCriterion):
                 current.weight = w_cl[n-1]
                 current.weight_left = w_cl[best.pos]
                 current.weight_right = w_cl[n-1] - w_cl[best.pos]
-
-                yw_sq_sum = yw_sq[n-1]
-                yw_sum = yw_cl[n-1]
-                w_sum = w_cl[n-1] 
-
-                current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+                
                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
-                current.node_value = yw_sum / w_sum
+                
+                current.node_value_left = yw_cl[i] / w_cl[i]
+                current.node_value_right = yw_cr / w_cr 
 
                 best = current
 
@@ -688,6 +692,13 @@ cdef class FriedmanMSE(RegressionCriterion):
                 yw_cl[i] = w[p] * y[p*y_stride] + yw_cl[i-1]
                 yw_sq[i] = w[p] * y[p*y_stride] * y[p*y_stride] + yw_sq[i-1]
 
+        yw_sq_sum = yw_sq[n-1]
+        yw_sum = yw_cl[n-1]
+        w_sum = w_cl[n-1] 
+
+        current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
+        current.node_value = yw_sum / w_sum
+
         # Now find the best split using sufficient statistics
         for i in range(self.min_leaf_samples, n-self.min_leaf_samples):
             p = start+i
@@ -718,14 +729,11 @@ cdef class FriedmanMSE(RegressionCriterion):
                 current.weight_left = w_cl[best.pos]
                 current.weight_right = w_cl[n-1] - w_cl[best.pos]
 
-                yw_sq_sum = yw_sq[n-1]
-                yw_sum = yw_cl[n-1]
-                w_sum = w_cl[n-1] 
-
-                current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
-                current.node_value = yw_sum / w_sum
+
+                current.node_value_left = yw_cl[i] / w_cl[i]
+                current.node_value_right = yw_cr / w_cr 
 
                 best = current
 
@@ -760,6 +768,8 @@ cdef inline void _init_split_record( SplitRecord* split ) nogil:
     split.weight_left = INFINITY
     split.weight_right = INFINITY
     split.node_value = 0
+    split.node_value_left = 0
+    split.node_value_right = 0
 
 cdef class Splitter:
     """
@@ -953,7 +963,12 @@ cdef class DenseSplitter(Splitter):
         cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
         cdef SIZE_t* sample_mask = self.sample_mask
 
-        cdef SIZE_t* samples = <SIZE_t*> calloc(self.n_samples, sizeof(SIZE_t))
+        cdef SIZE_t* samples
+        if self.n_jobs == 1:
+            samples = self.samples
+        else:
+            samples =  <SIZE_t*> calloc(self.n_samples, sizeof(SIZE_t))
+
         cdef SIZE_t i, j, p = start
         cdef SIZE_t feature_offset = X_idx_sorted_stride * feature
         
@@ -974,7 +989,8 @@ cdef class DenseSplitter(Splitter):
         if X[curr] > X[next] + FEATURE_THRESHOLD:
             split = self.criterion.best_split(samples, start, end, feature)
 
-        free(samples)
+        if self.n_jobs != 1:
+            free(samples)
         return split
 
     cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil:
@@ -2021,7 +2037,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef bint is_left, is_leaf
         cdef SIZE_t n_node_samples = splitter.n_samples
         cdef double weighted_n_samples = splitter.weighted_n_samples
-        cdef double weighted_n_node_samples
+        cdef double weighted_n_node_samples, node_value
         cdef SplitRecord split
 
         cdef double threshold, impurity = INFINITY 
@@ -2037,10 +2053,6 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
             # got return code -1 - out-of-memory
             raise MemoryError()
 
-        cdef DOUBLE_t* test = NULL
-        cdef SIZE_t i
-        tic = time.time()
-
         with nogil:
             while not stack.is_empty():
                 stack.pop(&stack_record)
@@ -2052,6 +2064,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                 is_left = stack_record.is_left
                 weighted_n_node_samples = stack_record.weight
                 impurity = stack_record.impurity
+                node_value = stack_record.node_value
 
                 n_node_samples = end - start
 
@@ -2066,11 +2079,12 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                     is_leaf = is_leaf or (split.pos >= end)
                     impurity = split.impurity
                     weighted_n_node_samples = split.weight
+                    node_value = split.node_value
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
-                                         weighted_n_node_samples, split.node_value)
-                
+                                         weighted_n_node_samples, node_value)
+
                 if node_id == <SIZE_t>(-1):
                     rc = -1
                     break
@@ -2079,14 +2093,14 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                     # Push right child on stack
                     rc = stack.push(split.pos, end, depth + 1, node_id, 0,
                                     split.impurity_right, split.weight_right,
-                                    split.n_constant_features)
+                                    split.node_value_left)
                     if rc == -1:
                         break
 
                     # Push left child on stack
                     rc = stack.push(start, split.pos, depth + 1, node_id, 1,
                                     split.impurity_left, split.weight_left,
-                                    split.n_constant_features)
+                                    split.node_value_right)
                     if rc == -1:
                         break
 
@@ -2569,9 +2583,8 @@ cdef class Tree:
             node.feature = feature
             node.threshold = threshold
 
+        self.value[node_id*self.value_stride] = value
         self.node_count += 1
-        self.value[node_id * self.value_stride] = value
-
         return node_id
 
     cpdef np.ndarray predict(self, object X):

@@ -514,6 +514,9 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
         If None, the random number generator is the RandomState instance used
         by `np.random`.
 
+    n_jobs : int, the number of jobs used to build this tree in parallel when
+        searching for the best feature to split on.
+
     Attributes
     ----------
     classes_ : array of shape = [n_classes] or a list of such arrays
@@ -539,6 +542,9 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
 
     n_outputs_ : int
         The number of outputs when ``fit`` is performed.
+
+    n_jobs : int
+        The number of jobs used in parallel to build the tree
 
     tree_ : Tree object
         The underlying Tree object.
@@ -584,7 +590,8 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
                  max_features=None,
                  random_state=None,
                  max_leaf_nodes=None,
-                 class_weight=None):
+                 class_weight=None,
+                 n_jobs=1):
         super(DecisionTreeClassifier, self).__init__(
             criterion=criterion,
             splitter=splitter,
@@ -595,7 +602,8 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
             max_features=max_features,
             max_leaf_nodes=max_leaf_nodes,
             class_weight=class_weight,
-            random_state=random_state)
+            random_state=random_state,
+            n_jobs=n_jobs)
 
     def predict_proba(self, X, check_input=True):
         """Predict class probabilities of the input samples X.
@@ -733,6 +741,9 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
         If None, the random number generator is the RandomState instance used
         by `np.random`.
 
+    n_jobs : int, the number of jobs used to build this tree in parallel when
+        searching for the best feature to split on.
+
     Attributes
     ----------
     feature_importances_ : array of shape = [n_features]
@@ -750,6 +761,9 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
 
     n_outputs_ : int
         The number of outputs when ``fit`` is performed.
+
+    n_jobs : int
+        The number of jobs used in parallel to build the tree
 
     tree_ : Tree object
         The underlying Tree object.

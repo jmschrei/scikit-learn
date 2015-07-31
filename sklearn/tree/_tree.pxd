@@ -76,6 +76,8 @@ cdef struct SplitRecord:
     double weight_left     # Weight of the left child
     double weight_right    # Weight of the right child
     double node_value
+    double node_value_left
+    double node_value_right
 
 cdef class Splitter:
     # The splitter searches in the input space for a feature and a threshold
