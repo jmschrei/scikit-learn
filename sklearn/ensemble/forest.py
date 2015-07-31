@@ -62,6 +62,8 @@ from ..utils import check_random_state, check_array, compute_sample_weight
 from ..utils.validation import DataConversionWarning, NotFittedError
 from .base import BaseEnsemble, _partition_estimators
 from ..utils.fixes import bincount
+from ..tree._tree import DenseSplitter
+from ..tree._tree import FriedmanMSE, MSE
 
 __all__ = ["RandomForestClassifier",
            "RandomForestRegressor",
@@ -88,11 +90,20 @@ def _generate_unsampled_indices(random_state, n_samples):
 
     return unsampled_indices
 
-def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
-                          verbose=0, class_weight=None):
+def _parallel_build_trees(forest, X, y, sample_weight, tree_idx, random_state,
+                          criterion, splitter, verbose=0, class_weight=None):
     """Private function used to fit a single tree in parallel."""
     if verbose > 1:
-        print("building tree %d of %d" % (tree_idx + 1, n_trees))
+        print("building tree %d of %d" % (tree_idx + 1, forest.n_estimators))
+
+    tree = forest.base_estimator(criterion=criterion,
+                                 splitter=splitter,
+                                 max_depth=forest.max_depth,
+                                 min_samples_split=forest.min_samples_split,
+                                 min_samples_leaf=forest.min_samples_leaf,
+                                 min_weight_fraction_leaf=forest.min_weight_fraction_leaf,
+                                 random_state=random_state,
+                                 max_leaf_nodes=forest.max_leaf_nodes)
 
     if forest.bootstrap:
         n_samples = X.shape[0]
@@ -101,7 +112,7 @@ def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
         else:
             curr_sample_weight = sample_weight.copy()
 
-        indices = _generate_sample_indices(tree.random_state, n_samples)
+        indices = _generate_sample_indices(random_state, n_samples)
         sample_counts = bincount(indices, minlength=n_samples)
         curr_sample_weight *= sample_counts
 
@@ -217,6 +228,20 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
         # Remap output
         n_samples, self.n_features_ = X.shape
 
+        if isinstance(self.max_features, six.string_types):
+            if self.max_features == "auto":
+                max_features = self.n_features_
+            elif self.max_features == "sqrt":
+                max_features = max(1, int(np.sqrt(self.n_features)))
+            elif self.max_features == "log2":
+                max_features = max(1, int(np.log2(self.n_features)))
+            else:
+                raise ValueError("Invalid value for max_features: %r. "
+                                 "Allowed string values are 'auto', 'sqrt' "
+                                 "or 'log2'." % self.max_features)
+        elif self.max_features is None:
+            max_features = self.n_features_
+
         y = np.atleast_1d(y)
         if y.ndim == 2 and y.shape[1] == 1:
             warn("A column-vector y was passed when a 1d array was"
@@ -257,6 +282,14 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         n_more_estimators = self.n_estimators - len(self.estimators_)
 
+        criterion = MSE(1, self.n_jobs)
+        splitter = DenseSplitter(criterion,
+                                 max_features,
+                                 self.min_samples_leaf,
+                                 self.min_weight_fraction_leaf,
+                                 random_state,
+                                 self.n_jobs)
+
         if n_more_estimators < 0:
             raise ValueError('n_estimators=%d must be larger or equal to '
                              'len(estimators_)=%d when warm_start==True'
@@ -271,11 +304,36 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
                 # would have got if we hadn't used a warm_start.
                 random_state.randint(MAX_INT, size=len(self.estimators_))
 
-            trees = []
-            for i in range(n_more_estimators):
-                tree = self._make_estimator(append=False)
-                tree.set_params(random_state=random_state.randint(MAX_INT))
-                trees.append(tree)
+            tree = self.base_estimator(criterion=criterion,
+                                       splitter=splitter,
+                                       max_depth=self.max_depth,
+                                       min_samples_split=self.min_samples_split,
+                                       min_samples_leaf=self.min_samples_leaf,
+                                       min_weight_fraction_leaf=self.min_weight_fraction_leaf,
+                                       random_state=random_state,
+                                       max_leaf_nodes=self.max_leaf_nodes)
+
+            if self.bootstrap:
+                n_samples = X.shape[0]
+                if sample_weight is None:
+                    curr_sample_weight = np.ones((n_samples,), dtype=np.float64)
+                else:
+                    curr_sample_weight = sample_weight.copy()
+
+                indices = _generate_sample_indices(tree.random_state, n_samples)
+                sample_counts = bincount(indices, minlength=n_samples)
+                curr_sample_weight *= sample_counts
+
+                if self.class_weight == 'subsample':
+                    with warnings.catch_warnings():
+                        warnings.simplefilter('ignore', DeprecationWarning)
+                        curr_sample_weight *= compute_sample_weight('auto', y, indices)
+                elif self.class_weight == 'balanced_subsample':
+                    curr_sample_weight *= compute_sample_weight('balanced', y, indices)
+
+                tree.fit(X, y, sample_weight=curr_sample_weight, check_input=False)
+            else:
+                tree.fit(X, y, sample_weight=sample_weight, check_input=False)
 
             # Parallel loop: we use the threading backend as the Cython code
             # for fitting the trees is internally releasing the Python GIL
@@ -284,12 +342,12 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             trees = Parallel(n_jobs=self.n_jobs, verbose=self.verbose,
                              backend="threading")(
                 delayed(_parallel_build_trees)(
-                    t, self, X, y, sample_weight, i, len(trees),
+                    self, X, y, sample_weight, i, random_state, criterion, splitter,
                     verbose=self.verbose, class_weight=self.class_weight)
-                for i, t in enumerate(trees))
+                for i in range(self.n_estimators-1))
 
             # Collect newly grown trees
-            self.estimators_.extend(trees)
+            self.estimators_.extend( [tree]+trees)
 
         if self.oob_score:
             self._set_oob_score(X, y)
@@ -360,7 +418,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
                  class_weight=None):
 
         super(ForestClassifier, self).__init__(
-            base_estimator,
+            base_estimator=base_estimator,
             n_estimators=n_estimators,
             estimator_params=estimator_params,
             bootstrap=bootstrap,
@@ -870,7 +928,7 @@ class RandomForestClassifier(ForestClassifier):
                  warm_start=False,
                  class_weight=None):
         super(RandomForestClassifier, self).__init__(
-            base_estimator=DecisionTreeClassifier(),
+            base_estimator=DecisionTreeClassifier,
             n_estimators=n_estimators,
             estimator_params=("criterion", "max_depth", "min_samples_split",
                               "min_samples_leaf", "min_weight_fraction_leaf",
@@ -1031,7 +1089,7 @@ class RandomForestRegressor(ForestRegressor):
                  verbose=0,
                  warm_start=False):
         super(RandomForestRegressor, self).__init__(
-            base_estimator=DecisionTreeRegressor(),
+            base_estimator=DecisionTreeRegressor,
             n_estimators=n_estimators,
             estimator_params=("criterion", "max_depth", "min_samples_split",
                               "min_samples_leaf", "min_weight_fraction_leaf",
@@ -1223,7 +1281,7 @@ class ExtraTreesClassifier(ForestClassifier):
                  warm_start=False,
                  class_weight=None):
         super(ExtraTreesClassifier, self).__init__(
-            base_estimator=ExtraTreeClassifier(),
+            base_estimator=ExtraTreeClassifier,
             n_estimators=n_estimators,
             estimator_params=("criterion", "max_depth", "min_samples_split",
                               "min_samples_leaf", "min_weight_fraction_leaf",
@@ -1384,7 +1442,7 @@ class ExtraTreesRegressor(ForestRegressor):
                  verbose=0,
                  warm_start=False):
         super(ExtraTreesRegressor, self).__init__(
-            base_estimator=ExtraTreeRegressor(),
+            base_estimator=ExtraTreeRegressor,
             n_estimators=n_estimators,
             estimator_params=("criterion", "max_depth", "min_samples_split",
                               "min_samples_leaf", "min_weight_fraction_leaf",
@@ -1500,7 +1558,7 @@ class RandomTreesEmbedding(BaseForest):
                  verbose=0,
                  warm_start=False):
         super(RandomTreesEmbedding, self).__init__(
-            base_estimator=ExtraTreeRegressor(),
+            base_estimator=ExtraTreeRegressor,
             n_estimators=n_estimators,
             estimator_params=("criterion", "max_depth", "min_samples_split",
                               "min_samples_leaf", "min_weight_fraction_leaf",
