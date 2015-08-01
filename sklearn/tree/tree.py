@@ -255,6 +255,9 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
             else:
                 sample_weight = expanded_class_weight
 
+        if sample_weight is None:
+            sample_weight = np.ones( X.shape[0], dtype=np.float32 )
+
         # Set min_weight_leaf from min_weight_fraction_leaf
         if self.min_weight_fraction_leaf != 0. and sample_weight is not None:
             min_weight_leaf = (self.min_weight_fraction_leaf *
@@ -278,9 +281,8 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
                                                          self.n_jobs)
 
         #SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
-
         splitter = self.splitter
-        if not isinstance(self.splitter, Splitter):
+        if not isinstance(self.splitter, DenseSplitter):
             splitter = DenseSplitter(criterion,
                                      self.max_features_,
                                      self.min_samples_leaf,
@@ -298,17 +300,18 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         self.tree_ = Tree(self.n_features_, self.n_classes_, self.n_outputs_)
 
         # Use BestFirst if max_leaf_nodes given; use DepthFirst otherwise
-        if max_leaf_nodes < 0:
-            builder = DepthFirstTreeBuilder(splitter, min_samples_split,
+        #if max_leaf_nodes < 0:
+        builder = DepthFirstTreeBuilder(splitter, min_samples_split,
                                             self.min_samples_leaf,
                                             min_weight_leaf,
                                             max_depth)
-        else:
-            builder = BestFirstTreeBuilder(splitter, min_samples_split,
-                                           self.min_samples_leaf,
-                                           min_weight_leaf,
-                                           max_depth,
-                                           max_leaf_nodes)
+        #else:
+        #    builder = BestFirstTreeBuilder(splitter, min_samples_split,
+        #                                   self.min_samples_leaf,
+        #                                   min_weight_leaf,
+        #                                   max_depth,
+        #                                   max_leaf_nodes)
+
 
         builder.build(self.tree_, X, y, sample_weight)
 

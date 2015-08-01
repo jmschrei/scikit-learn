@@ -237,7 +237,7 @@ cdef class ClassificationCriterion(Criterion):
 
     def __reduce__(self):
         return (ClassificationCriterion,
-                (self.n_outputs, self.n_classes),
+                (self.n_outputs, self.n_classes, self.n_jobs),
                 self.__getstate__())
 
     def __getstate__(self):
@@ -517,7 +517,7 @@ cdef class RegressionCriterion(Criterion):
         self.yw_sq = NULL
 
     def __reduce__(self):
-        return (RegressionCriterion, (self.n_outputs,), self.__getstate__())
+        return (RegressionCriterion, (self.n_outputs, self.n_jobs), self.__getstate__())
 
     def __getstate__(self):
         return {}
@@ -610,8 +610,8 @@ cdef class MSE(RegressionCriterion):
                     current.threshold = X[lower]
 
                 current.weight = w_cl[n-1]
-                current.weight_left = w_cl[best.pos]
-                current.weight_right = w_cl[n-1] - w_cl[best.pos]
+                current.weight_left = w_cl[current.pos]
+                current.weight_right = w_cl[n-1] - w_cl[current.pos]
                 
                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
@@ -622,7 +622,8 @@ cdef class MSE(RegressionCriterion):
                 best = current
 
         best.feature = feature
-        if best.pos == 0:
+
+        if best.pos == -1:
             best.pos = end
         else:
             best.pos += start
@@ -726,8 +727,8 @@ cdef class FriedmanMSE(RegressionCriterion):
                     current.threshold = X[lower]
 
                 current.weight = w_cl[n-1]
-                current.weight_left = w_cl[best.pos]
-                current.weight_right = w_cl[n-1] - w_cl[best.pos]
+                current.weight_left = w_cl[current.pos]
+                current.weight_right = w_cl[n-1] - w_cl[current.pos]
 
                 current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
                 current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
@@ -737,9 +738,9 @@ cdef class FriedmanMSE(RegressionCriterion):
 
                 best = current
 
-        best.improvement /= w_cl[n-1]
         best.feature = feature
-        if best.pos == 0:
+
+        if best.pos == -1:
             best.pos = end
         else:
             best.pos += start
@@ -757,7 +758,7 @@ cdef class FriedmanMSE(RegressionCriterion):
 
 cdef inline void _init_split_record( SplitRecord* split ) nogil:
     split.improvement = -1.
-    split.pos = 0
+    split.pos = -1
     split.n_constant_features = 0
     split.threshold = -INFINITY
     split.feature = 0
@@ -975,8 +976,6 @@ cdef class DenseSplitter(Splitter):
         cdef SplitRecord split
         cdef SIZE_t curr, next
 
-        _init_split_record(&split)
-
         for i in range(self.n_total_samples): 
             j = X_idx_sorted[i + feature_offset]
             if sample_mask[j] == 1:
@@ -991,6 +990,7 @@ cdef class DenseSplitter(Splitter):
 
         if self.n_jobs != 1:
             free(samples)
+
         return split
 
     cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil:
@@ -1053,10 +1053,13 @@ cdef class DenseSplitter(Splitter):
             for i in range(features_left):
                 if splits[i].improvement > 0:
                     n_visited_features += 1
-                    if splits[i].improvement > best.improvement:
+                    if splits[i].improvement > best.improvement and best.pos < end:
                         best = splits[i]
 
             iterations += features_left
+
+        if best.pos == -1:
+            best.pos = end
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
