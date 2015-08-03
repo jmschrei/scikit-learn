@@ -268,13 +268,24 @@ cdef class Entropy(ClassificationCriterion):
         cdef DOUBLE_t* y = self.y
         cdef DOUBLE_t* w = self.w
 
-        cdef SIZE_t X_sample_stride = self.X_sample_stride
-        cdef SIZE_t X_feature_stride = self.X_feature_stride
         cdef SIZE_t y_stride = self.y_stride
         cdef SIZE_t upper, lower
 
         cdef DOUBLE_t* w_cl
         cdef DOUBLE_t* yw_cl
+
+        cdef DOUBLE_t w_cr, w_sum, yw_sum, yw_cr
+        cdef DOUBLE_t label_fraction, label_fraction_left, label_fraction_right
+        cdef DOUBLE_t max_fraction_left = 0, max_fraction_right = 0, max_fraction = 0
+
+        cdef SIZE_t feature_offset = feature*self.X_feature_stride
+        cdef SIZE_t label
+
+        cdef int i, j, p, n = end-start, m = self.n
+
+        cdef SplitRecord best, current
+        _init_split_record(&best)
+
 
         if self.n_jobs == 1:
             w_cl  = self.w_cl
@@ -282,18 +293,9 @@ cdef class Entropy(ClassificationCriterion):
         else:
             w_cl  = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t)) 
             yw_cl = <DOUBLE_t*> calloc((end-start)*self.n, sizeof(DOUBLE_t))
-
-        cdef DOUBLE_t yw_cr, w_cr, yw_sum, w_sum, 
-        cdef DOUBLE_t label_fraction, label_fraction_left, label_fraction_right
-        cdef DOUBLE_t max_fraction_left = 0, max_fraction_right = 0
-
-        cdef int i, j, p, n = end-start, m = self.n
-
-        cdef SplitRecord best, current
-        _init_split_record( &best )
-
-        cdef SIZE_t feature_offset = feature*X_feature_stride
-        cdef SIZE_t label
+        
+        memset(w_cl, 0, end-start)
+        memset(yw_cl, 0, (end-start)*self.n)
 
         # Get sufficient statistics for the impurity improvement and children
         # impurity calculations and cache them for all possible splits
@@ -307,70 +309,88 @@ cdef class Entropy(ClassificationCriterion):
             else:
                 for j in range(m):
                     yw_cl[j + i*m] = yw_cl[j + (i-1)*m]
-                w_cl[i] += w[p]
+
+                w_cl[i] = w[p] + w_cl[i-1]
                 yw_cl[label + i*m] += w[p]
 
         w_sum = w_cl[n-1]
-        for i in range(m):
-            current.node_value += yw_cl[i * n*m] / w_sum
+        current.impurity = 0
+        # Calculate the impurity and node value for the current node
+        for j in range(m):
+            label_fraction = yw_cl[j + (n-1)*m] / w_sum
+            if label_fraction > 0:
+                current.impurity -= (label_fraction 
+                    * log(label_fraction) / self.n_outputs)
 
-        # Now find the best split using sufficient statistics
+            if label_fraction > max_fraction:
+                max_fraction = label_fraction
+                current.node_value = j
+
+        # Find the best split by scanning the entire range and calculating
+        # improvement for each split point.
         for i in range(self.min_leaf_samples, n-self.min_leaf_samples):
             p = start+i
 
-            upper = samples[p+1]*X_sample_stride + feature_offset
-            lower = samples[p]*X_sample_stride + feature_offset
+            upper = samples[p+1]*self.X_sample_stride + feature_offset
+            lower = samples[p]*self.X_sample_stride + feature_offset
 
             if p+1 < end-1 and X[upper] <= X[lower] + FEATURE_THRESHOLD:
                 continue
 
-            #if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
-            #    continue
+            w_cr = w_sum - w_cl[i]
+            if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
+                continue
 
-            current.improvement = 0
+            current.impurity_left = 0
+            current.impurity_right = 0
+
+            # Calculate the left and right children impurities, and what value
+            # they should predict, by summing the entropies.
             for j in range(m):
-                label_fraction = yw_cl[j + i*m] / w_cl[i]  
-                current.improvement -= label_fraction * log(label_fraction)
+                yw_sum = yw_cl[j + (n-1)*m]
+                yw_cr = yw_sum - yw_cl[j + i*m]
 
-            current.pos = i
+                label_fraction_left = yw_cl[j + i*m] / w_cl[i]
+                label_fraction_right = yw_cr / (w_sum - w_cl[i])
+
+                with gil:
+                    print feature, i, j, label_fraction_left, label_fraction_right
+
+                if label_fraction_left > 0:
+                    current.impurity_left -= (label_fraction_left *
+                        log(label_fraction_left))
+
+                if label_fraction_right > 0:
+                    current.impurity_right -= (label_fraction_right *
+                        log(label_fraction_right))
+
+                if label_fraction_left > max_fraction_left:
+                    max_fraction_left = label_fraction_left
+                    current.node_value_left = j
+
+                if label_fraction_right > max_fraction_right:  
+                    max_fraction_right = label_fraction_right
+                    current.node_value_right = j
+
+
+            current.improvement = (current.impurity - current.impurity_left -
+                current.impurity_right)
+            current.pos = i+1
 
             if current.improvement > best.improvement:
                 current.threshold = (X[upper] + X[lower]) / 2.0
                 if current.threshold == X[upper]:
                     current.threshold = X[lower]
                 
-                for j in range(m):
-                    label_fraction = yw_cl[j + (n-1)*m] / w_sum
-                    current.impurity -= label_fraction * log(label_fraction)
-
-                    label_fraction_left = yw_cl[j + i*m] / w_cl[i]
-                    if label_fraction_left > 0:
-                        current.impurity_left -= label_fraction_left * log(label_fraction_left)
-
-                    label_fraction_right = (yw_cl[j + (n-1)*m] - yw_cl[j + i*m]) / (w_sum - w_cl[i])
-                    if label_fraction_right > 0: 
-                        current.impurity_right -= label_fraction_right * log(label_fraction_right) 
-
-                    if label_fraction_left > max_fraction_left:
-                        max_fraction_left = label_fraction_left
-                        current.node_value_left = j
-
-                    if label_fraction_right > max_fraction_right:  
-                        max_fraction_right = label_fraction_right
-                        current.node_value_right = j
-
-                    current.weight += 1
-                    current.weight_left += 1
-                    current.weight_right = 1 
-
-                    with gil:
-                        print j, m, current.improvement, best.improvement, current.improvement > best.improvement, current.impurity, current.impurity_left, current.impurity_right
+                current.weight = w_sum
+                current.weight_left = w_cl[i]
+                current.weight_right = w_cr
 
                 best = current
 
-        with gil:
-            print "best"
-            print best.impurity, best.impurity_left, best.impurity_right, best.feature, best.threshold, best.pos
+        best.impurity /= self.n_outputs
+        best.impurity_left /= self.n_outputs
+        best.impurity_right /= self.n_outputs
 
         best.feature = feature
         if best.pos == 0:
@@ -1075,10 +1095,6 @@ cdef class DenseSplitter(Splitter):
 
             iterations += features_left
 
-        with gil:
-            print best.impurity, best.impurity_left, best.impurity_right
-            print best.pos, best.threshold, best.feature
-
         if best.pos == -1:
             best.pos = end
 
@@ -1106,147 +1122,7 @@ cdef class DenseSplitter(Splitter):
         free(splits)
         return best
 
-
-# Sort n-element arrays pointed to by Xf and samples, simultaneously,
-# by the values in Xf. Algorithm: Introsort (Musser, SP&E, 1997).
-cdef inline void sort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
-    cdef int maxd = 2 * <int>log(n)
-    introsort(Xf, samples, n, maxd)
-
-
-cdef inline void swap(DTYPE_t* Xf, SIZE_t* samples, SIZE_t i, SIZE_t j) nogil:
-    # Helper for sort
-    Xf[i], Xf[j] = Xf[j], Xf[i]
-    samples[i], samples[j] = samples[j], samples[i]
-
-
-cdef inline DTYPE_t median3(DTYPE_t* Xf, SIZE_t n) nogil:
-    # Median of three pivot selection, after Bentley and McIlroy (1993).
-    # Engineering a sort function. SP&E. Requires 8/3 comparisons on average.
-    cdef DTYPE_t a = Xf[0], b = Xf[n / 2], c = Xf[n - 1]
-    if a < b:
-        if b < c:
-            return b
-        elif a < c:
-            return c
-        else:
-            return a
-    elif b < c:
-        if a < c:
-            return a
-        else:
-            return c
-    else:
-        return b
-
-
-# Introsort with median of 3 pivot selection and 3-way partition function
-# (robust to repeated elements, e.g. lots of zero features).
-cdef void introsort(DTYPE_t* Xf, SIZE_t *samples, SIZE_t n, int maxd) nogil:
-    cdef DTYPE_t pivot
-    cdef SIZE_t i, l, r
-
-    while n > 1:
-        if maxd <= 0:   # max depth limit exceeded ("gone quadratic")
-            heapsort(Xf, samples, n)
-            return
-        maxd -= 1
-
-        pivot = median3(Xf, n)
-
-        # Three-way partition.
-        i = l = 0
-        r = n
-        while i < r:
-            if Xf[i] < pivot:
-                swap(Xf, samples, i, l)
-                i += 1
-                l += 1
-            elif Xf[i] > pivot:
-                r -= 1
-                swap(Xf, samples, i, r)
-            else:
-                i += 1
-
-        introsort(Xf, samples, l, maxd)
-        Xf += r
-        samples += r
-        n -= r
-
-
-cdef inline void sift_down(DTYPE_t* Xf, SIZE_t* samples,
-                           SIZE_t start, SIZE_t end) nogil:
-    # Restore heap order in Xf[start:end] by moving the max element to start.
-    cdef SIZE_t child, maxind, root
-
-    root = start
-    while True:
-        child = root * 2 + 1
-
-        # find max of root, left child, right child
-        maxind = root
-        if child < end and Xf[maxind] < Xf[child]:
-            maxind = child
-        if child + 1 < end and Xf[maxind] < Xf[child + 1]:
-            maxind = child + 1
-
-        if maxind == root:
-            break
-        else:
-            swap(Xf, samples, root, maxind)
-            root = maxind
-
-
-cdef void heapsort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
-    cdef SIZE_t start, end
-
-    # heapify
-    start = (n - 2) / 2
-    end = n
-    while True:
-        sift_down(Xf, samples, start, end)
-        if start == 0:
-            break
-        start -= 1
-
-    # sort by shrinking the heap, putting the max element immediately after it
-    end = n - 1
-    while end > 0:
-        swap(Xf, samples, 0, end)
-        sift_down(Xf, samples, 0, end)
-        end = end - 1
-
-
-cdef int compare_SIZE_t(const void* a, const void* b) nogil:
-    """Comparison function for sort"""
-    return <int>((<SIZE_t*>a)[0] - (<SIZE_t*>b)[0])
-
-
-cdef inline void binary_search(INT32_t* sorted_array,
-                               INT32_t start, INT32_t end,
-                               SIZE_t value, SIZE_t* index,
-                               INT32_t* new_start) nogil:
-    """Return the index of value in the sorted array
-
-    If not found, return -1. new_start is the last pivot + 1
-    """
-    cdef INT32_t pivot
-    index[0] = -1
-    while start < end:
-        pivot = start + (end - start) / 2
-
-        if sorted_array[pivot] == value:
-            index[0] = pivot
-            start = pivot + 1
-            break
-
-        if sorted_array[pivot] < value:
-            start = pivot + 1
-        else:
-            end = pivot
-    new_start[0] = start
-
-
+'''
 cdef inline void extract_nnz_index_to_samples(INT32_t* X_indices,
                                               DTYPE_t* X_data,
                                               INT32_t indptr_start,
@@ -1366,8 +1242,6 @@ cdef inline void sparse_swap(SIZE_t* index_to_samples, SIZE_t* samples,
     index_to_samples[samples[pos_1]] = pos_1
     index_to_samples[samples[pos_2]] = pos_2
 
-
-'''
 cdef class BaseSparseSplitter(Splitter):
     # The sparse splitter works only with csc sparse matrix format
     cdef DTYPE_t* X_data
