@@ -353,9 +353,6 @@ cdef class Entropy(ClassificationCriterion):
                 label_fraction_left = yw_cl[j + i*m] / w_cl[i]
                 label_fraction_right = yw_cr / (w_sum - w_cl[i])
 
-                with gil:
-                    print feature, i, j, label_fraction_left, label_fraction_right
-
                 if label_fraction_left > 0:
                     current.impurity_left -= (label_fraction_left *
                         log(label_fraction_left))
@@ -373,8 +370,8 @@ cdef class Entropy(ClassificationCriterion):
                     current.node_value_right = j
 
 
-            current.improvement = (current.impurity - current.impurity_left -
-                current.impurity_right)
+            current.improvement = current.impurity - (w_cl[i] * current.impurity_left + 
+                w_cr * current.impurity_right)
             current.pos = i+1
 
             if current.improvement > best.improvement:
@@ -1030,8 +1027,6 @@ cdef class DenseSplitter(Splitter):
 
     cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil:
         """Find the best split for this node."""
-        with gil:
-            print "senter"
 
         # Unpack feature related items
         cdef SIZE_t* features = self.features
