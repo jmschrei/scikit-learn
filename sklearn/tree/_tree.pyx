@@ -183,12 +183,11 @@ cdef class ClassificationCriterion(Criterion):
     This is a criterion with methods specifically used for classification.
     """
     
-    cdef SIZE_t* label_count_cl
-    cdef np.ndarray n_classes
+    cdef SIZE_t [:] n_classes
+    cdef SIZE_t n
 
-    def __cinit__(self, SIZE_t n_outputs, 
-                        np.ndarray[SIZE_t, ndim=1] n_classes,
-                        SIZE_t n_jobs):
+    def __cinit__(self, SIZE_t n_outputs, np.ndarray[SIZE_t, ndim=1] n_classes, 
+        SIZE_t n_jobs):
         """
         Initialize attributes for this classifier, automatically calling the
         parent __cinit__ method as well.
@@ -200,6 +199,8 @@ cdef class ClassificationCriterion(Criterion):
         n_classes: numpy.ndarray, dtype=int64
             The number of unique classes in each response
         """
+
+        cdef SIZE_t i
 
         self.n_outputs = n_outputs
         self.n_classes = n_classes
@@ -218,11 +219,10 @@ cdef class ClassificationCriterion(Criterion):
 
         self.w_cl = NULL
         self.yw_cl = NULL
-        self.yw_sq = NULL
 
-    def __dealloc__(self):
-        if self.n_jobs == 1:
-            free(self.label_count_cl)
+        self.n = 0
+        for i in range(n_outputs):
+            self.n += n_classes[i] 
 
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
@@ -233,7 +233,7 @@ cdef class ClassificationCriterion(Criterion):
             y_stride, w, size, min_leaf_samples, min_leaf_weight)
 
         if self.n_jobs == 1:
-            self.label_count_cl = <SIZE_t*> calloc(size*y_stride, sizeof(SIZE_t))
+            self.yw_cl = safe_realloc(&self.yw_cl, size*self.n*sizeof(DOUBLE_t))
 
     def __reduce__(self):
         return (ClassificationCriterion,
@@ -275,44 +275,44 @@ cdef class Entropy(ClassificationCriterion):
 
         cdef DOUBLE_t* w_cl
         cdef DOUBLE_t* yw_cl
-        cdef DOUBLE_t* yw_sq
-        cdef SIZE_t* label_count_cl
 
         if self.n_jobs == 1:
             w_cl  = self.w_cl
             yw_cl = self.yw_cl
-            yw_sq = self.yw_sq
-            label_count_cl = self.label_count_cl
         else:
             w_cl  = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t)) 
-            yw_cl = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t))
-            yw_sq = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t))
-            label_count_cl = <SIZE_t*> calloc((end-start)*y_stride, 
-                sizeof(SIZE_t))
+            yw_cl = <DOUBLE_t*> calloc((end-start)*self.n, sizeof(DOUBLE_t))
 
+        cdef DOUBLE_t yw_cr, w_cr, yw_sum, w_sum, 
+        cdef DOUBLE_t label_fraction, label_fraction_left, label_fraction_right
+        cdef DOUBLE_t max_fraction_left = 0, max_fraction_right = 0
 
-        cdef DOUBLE_t yw_cr, w_cr, yw_sq_r, yw_sq_sum, yw_sum, w_sum
-
-        cdef int i, j, p, n = end-start
+        cdef int i, j, p, n = end-start, m = self.n
 
         cdef SplitRecord best, current
         _init_split_record( &best )
 
         cdef SIZE_t feature_offset = feature*X_feature_stride
+        cdef SIZE_t label
 
         # Get sufficient statistics for the impurity improvement and children
         # impurity calculations and cache them for all possible splits
         for i in range(n):
             p = samples[start+i]
+            label = <SIZE_t>y[p]
+
             if i == 0:
-                label_count_cl[<SIZE_t>y[p*y_stride]] = 1 
-                w_cl[0]  = w[p]
-                yw_cl[0] = w[p] * y[p*y_stride]
-                yw_sq[0] = w[p] * y[p*y_stride] * y[p*y_stride]
+                w_cl[0] = w[p]
+                yw_cl[label] = w[p]
             else:
-                w_cl[i]  = w[p] + w_cl[i-1]
-                yw_cl[i] = w[p] * y[p*y_stride] + yw_cl[i-1]
-                yw_sq[i] = w[p] * y[p*y_stride] * y[p*y_stride] + yw_sq[i-1]
+                for j in range(m):
+                    yw_cl[j + i*m] = yw_cl[j + (i-1)*m]
+                w_cl[i] += w[p]
+                yw_cl[label + i*m] += w[p]
+
+        w_sum = w_cl[n-1]
+        for i in range(m):
+            current.node_value += yw_cl[i * n*m] / w_sum
 
         # Now find the best split using sufficient statistics
         for i in range(self.min_leaf_samples, n-self.min_leaf_samples):
@@ -323,38 +323,55 @@ cdef class Entropy(ClassificationCriterion):
 
             if p+1 < end-1 and X[upper] <= X[lower] + FEATURE_THRESHOLD:
                 continue
-            
-            w_cr = w_cl[n-1] - w_cl[i]
-            yw_cr = yw_cl[n-1] - yw_cl[i]
-            yw_sq_r = yw_sq[n-1] - yw_sq[i]
 
-            if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
-                continue
+            #if w_cl[i] < self.min_leaf_weight or w_cr < self.min_leaf_weight:
+            #    continue
 
-            current.improvement = (w_cl[i] * w_cr * 
-                (yw_cl[i] / w_cl[i] - yw_cr / w_cr) ** 2.0)
+            current.improvement = 0
+            for j in range(m):
+                label_fraction = yw_cl[j + i*m] / w_cl[i]  
+                current.improvement -= label_fraction * log(label_fraction)
+
             current.pos = i
 
             if current.improvement > best.improvement:
                 current.threshold = (X[upper] + X[lower]) / 2.0
                 if current.threshold == X[upper]:
                     current.threshold = X[lower]
+                
+                for j in range(m):
+                    label_fraction = yw_cl[j + (n-1)*m] / w_sum
+                    current.impurity -= label_fraction * log(label_fraction)
 
-                current.weight = w_cl[n-1]
-                current.weight_left = w_cl[best.pos]
-                current.weight_right = w_cl[n-1] - w_cl[best.pos]
+                    label_fraction_left = yw_cl[j + i*m] / w_cl[i]
+                    if label_fraction_left > 0:
+                        current.impurity_left -= label_fraction_left * log(label_fraction_left)
 
-                yw_sq_sum = yw_sq[n-1]
-                yw_sum = yw_cl[n-1]
-                w_sum = w_cl[n-1] 
+                    label_fraction_right = (yw_cl[j + (n-1)*m] - yw_cl[j + i*m]) / (w_sum - w_cl[i])
+                    if label_fraction_right > 0: 
+                        current.impurity_right -= label_fraction_right * log(label_fraction_right) 
 
-                current.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
-                current.impurity_left = yw_sq[i] / w_cl[i] - (yw_cl[i] / w_cl[i]) ** 2.0
-                current.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+                    if label_fraction_left > max_fraction_left:
+                        max_fraction_left = label_fraction_left
+                        current.node_value_left = j
+
+                    if label_fraction_right > max_fraction_right:  
+                        max_fraction_right = label_fraction_right
+                        current.node_value_right = j
+
+                    current.weight += 1
+                    current.weight_left += 1
+                    current.weight_right = 1 
+
+                    with gil:
+                        print j, m, current.improvement, best.improvement, current.improvement > best.improvement, current.impurity, current.impurity_left, current.impurity_right
 
                 best = current
 
-        best.improvement /= w_cl[n-1]
+        with gil:
+            print "best"
+            print best.impurity, best.impurity_left, best.impurity_right, best.feature, best.threshold, best.pos
+
         best.feature = feature
         if best.pos == 0:
             best.pos = end
@@ -364,8 +381,6 @@ cdef class Entropy(ClassificationCriterion):
         if self.n_jobs != 1:
             free(w_cl)
             free(yw_cl)
-            free(yw_sq)
-            free(label_count_cl)
 
         return best
 
@@ -757,17 +772,17 @@ cdef class FriedmanMSE(RegressionCriterion):
 # =============================================================================
 
 cdef inline void _init_split_record( SplitRecord* split ) nogil:
-    split.improvement = -1.
+    split.improvement = -INFINITY
     split.pos = -1
     split.n_constant_features = 0
     split.threshold = -INFINITY
     split.feature = 0
-    split.impurity = INFINITY
-    split.impurity_right = INFINITY
-    split.impurity_left = INFINITY
-    split.weight = INFINITY
-    split.weight_left = INFINITY
-    split.weight_right = INFINITY
+    split.impurity = 0
+    split.impurity_right = 0
+    split.impurity_left = 0
+    split.weight = 0
+    split.weight_left = 0
+    split.weight_right = 0
     split.node_value = 0
     split.node_value_left = 0
     split.node_value_right = 0
@@ -995,6 +1010,8 @@ cdef class DenseSplitter(Splitter):
 
     cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil:
         """Find the best split for this node."""
+        with gil:
+            print "senter"
 
         # Unpack feature related items
         cdef SIZE_t* features = self.features
@@ -1051,12 +1068,16 @@ cdef class DenseSplitter(Splitter):
             # Of the returned splits, see if any are better than
             # the current returned best split.
             for i in range(features_left):
-                if splits[i].improvement > 0:
+                if splits[i].improvement > -INFINITY:
                     n_visited_features += 1
                     if splits[i].improvement > best.improvement and best.pos < end:
                         best = splits[i]
 
             iterations += features_left
+
+        with gil:
+            print best.impurity, best.impurity_left, best.impurity_right
+            print best.pos, best.threshold, best.feature
 
         if best.pos == -1:
             best.pos = end
@@ -2432,8 +2453,8 @@ cdef class Tree:
         def __get__(self):
             return self._get_value_ndarray()[:self.node_count]
 
-    def __cinit__(self, int n_features, np.ndarray[SIZE_t, ndim=1] n_classes,
-                  int n_outputs):
+    def __cinit__(self, int n_features, np.ndarray[SIZE_t, ndim=1] n_classes, 
+        int n_outputs):
         """Constructor."""
         # Input/Output layout
         self.n_features = n_features
@@ -2586,7 +2607,10 @@ cdef class Tree:
             node.feature = feature
             node.threshold = threshold
 
-        self.value[node_id*self.value_stride] = value
+        if self.n_classes[0] > 1:
+            self.value[node_id*self.value_stride + <SIZE_t>value] = 1
+        else: 
+            self.value[node_id*self.value_stride] = value
         self.node_count += 1
         return node_id
 
