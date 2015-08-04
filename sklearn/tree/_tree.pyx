@@ -293,9 +293,6 @@ cdef class Entropy(ClassificationCriterion):
         else:
             w_cl  = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t)) 
             yw_cl = <DOUBLE_t*> calloc((end-start)*self.n, sizeof(DOUBLE_t))
-        
-        memset(w_cl, 0, end-start)
-        memset(yw_cl, 0, (end-start)*self.n)
 
         # Get sufficient statistics for the impurity improvement and children
         # impurity calculations and cache them for all possible splits
@@ -304,6 +301,9 @@ cdef class Entropy(ClassificationCriterion):
             label = <SIZE_t>y[p]
 
             if i == 0:
+                for j in range(m):
+                    yw_cl[j] = 0
+
                 w_cl[0] = w[p]
                 yw_cl[label] = w[p]
             else:
@@ -459,6 +459,9 @@ cdef class Gini(ClassificationCriterion):
             label = <SIZE_t>y[p]
 
             if i == 0:
+                for j in range(m):
+                    yw_cl[j] = 0
+
                 w_cl[0] = w[p]
                 yw_cl[label] = w[p]
             else:
@@ -515,7 +518,8 @@ cdef class Gini(ClassificationCriterion):
                     max_count_right = label_count_right
                     current.node_value_right = j
 
-            current.improvement = current.impurity_left / w_cl[i] + current.impurity_right / w_cr
+            current.improvement = (current.impurity_left / w_cl[i] + 
+                current.impurity_right / w_cr)
             current.pos = i+1
 
             if current.improvement > best.improvement:
@@ -528,9 +532,9 @@ cdef class Gini(ClassificationCriterion):
                 current.weight_right = w_cr
 
                 current.impurity_left = 1. - (current.impurity_left / 
-                    w_cl[i]**2)
+                    current.weight_left**2)
                 current.impurity_right = 1. - (current.impurity_right / 
-                    w_cr**2)
+                    current.weight_right**2)
 
                 best = current
 
@@ -1021,9 +1025,6 @@ cdef class DenseSplitter(Splitter):
         at the same time.
         """
 
-        cdef DTYPE_t* X = self.X
-        cdef SIZE_t X_sample_stride = self.X_sample_stride
-        cdef SIZE_t X_feature_stride = self.X_feature_stride
         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
         cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
         cdef SIZE_t* sample_mask = self.sample_mask
@@ -1038,7 +1039,6 @@ cdef class DenseSplitter(Splitter):
         cdef SIZE_t feature_offset = X_idx_sorted_stride * feature
         
         cdef SplitRecord split
-        cdef SIZE_t curr, next
 
         for i in range(self.n_total_samples): 
             j = X_idx_sorted[i + feature_offset]
@@ -1046,11 +1046,7 @@ cdef class DenseSplitter(Splitter):
                 samples[p] = j
                 p += 1
 
-        # Determine if this feature is constant or not
-        curr = samples[end-1]*X_sample_stride + feature*X_feature_stride
-        next = samples[start]*X_sample_stride + feature*X_feature_stride
-        if X[curr] > X[next] + FEATURE_THRESHOLD:
-            split = self.criterion.best_split(samples, start, end, feature)
+        split = self.criterion.best_split(samples, start, end, feature)
 
         if self.n_jobs != 1:
             free(samples)
