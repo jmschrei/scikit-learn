@@ -527,8 +527,10 @@ cdef class Gini(ClassificationCriterion):
                 current.weight_left = w_cl[i]
                 current.weight_right = w_cr
 
-                current.impurity_left /= w_cl[i] ** 2
-                current.impurity_right /= w_cr ** 2
+                current.impurity_left = 1. - (current.impurity_left / 
+                    w_cl[i]**2)
+                current.impurity_right = 1. - (current.impurity_right / 
+                    w_cr**2)
 
                 best = current
 
