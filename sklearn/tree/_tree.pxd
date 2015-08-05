@@ -96,11 +96,9 @@ cdef class Splitter:
     cdef UINT32_t rand_r_state           # sklearn_rand_r random number state
 
     cdef SIZE_t* samples                 # Sample indices in X, y
-    cdef SIZE_t n_samples                # X.shape[0]
-    cdef double weighted_n_samples       # Weighted number of samples
+    cdef SIZE_t n_samples
     cdef SIZE_t* features                # Feature indices in X
     cdef SIZE_t n_features               # X.shape[1]
-    cdef DTYPE_t* feature_values         # temp. array holding feature values
 
     cdef DOUBLE_t* y
     cdef SIZE_t y_stride
@@ -111,7 +109,6 @@ cdef class Splitter:
     cdef INT32_t* X_idx_sorted_ptr
     cdef SIZE_t X_idx_sorted_stride
 
-    cdef SIZE_t n_total_samples
     cdef SIZE_t* sample_mask
 
     cdef DTYPE_t* X
@@ -141,7 +138,10 @@ cdef class Splitter:
     cdef SplitRecord _best_split(self, SIZE_t start, SIZE_t end, 
         SIZE_t feature) nogil
 
-    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil
+    cdef SplitRecord _random_split(self, SIZE_t start, SIZE_t end,
+        SIZE_t feature) nogil
+
+    cdef SplitRecord split(self, SIZE_t start, SIZE_t end) nogil
 
 
 # =============================================================================

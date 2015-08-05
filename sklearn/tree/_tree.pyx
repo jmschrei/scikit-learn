@@ -824,7 +824,7 @@ cdef class FriedmanMSE(RegressionCriterion):
 # Splitter
 # =============================================================================
 
-cdef inline void _init_split_record( SplitRecord* split ) nogil:
+cdef inline void _init_split_record(SplitRecord* split) nogil:
     split.improvement = -INFINITY
     split.pos = -1
     split.n_constant_features = 0
@@ -861,7 +861,6 @@ cdef class Splitter:
 
         self.features = NULL
         self.n_features = 0
-        self.feature_values = NULL
 
         self.y = NULL
         self.y_stride = 0
@@ -925,7 +924,13 @@ cdef class Splitter:
 
         pass
 
-    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil:
+    cdef SplitRecord _random_split(self, SIZE_t start, SIZE_t end,
+        SIZE_t feature) nogil:
+        """Split randomly on a feature."""
+
+        pass
+
+    cdef SplitRecord split(self, SIZE_t start, SIZE_t end) nogil:
         """Find the best split for this node."""
 
         pass
@@ -951,47 +956,33 @@ cdef class DenseSplitter(Splitter):
         """
 
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
-        cdef SIZE_t n_samples = X.shape[0]
-        cdef SIZE_t* samples = safe_realloc(&self.samples, n_samples)
+        self.n_samples = X.shape[0]
+        
+        safe_realloc(&self.samples, self.n_samples)
 
-        cdef SIZE_t i, j
-        cdef double weighted_n_samples = 0.0
-        j = 0
-
+        cdef SIZE_t i, j = 0
         # In order to only use positively weighted samples, we must go through
         # each sample and check its associated weight, if given. If no weights
         # are given, we assume the weight on each point is equal to 1.
-        for i in range(n_samples):
-            # If no sample weights are passed in, or the associated sample
-            # weight is greater than 0, add that sample to the growing array,
-            # and increment the count
-            if sample_weight == NULL or sample_weight[i] != 0.0:
-                samples[j] = i
+        for i in range( self.n_samples ):
+            if sample_weight[i] != 0.0:
+                self.samples[j] = i
                 j += 1
 
-            # Add the sample weight, or 1.0 if no sample weights are given.
-            # If the sample weight is 0.0, then it does not matter if added
-            # to the weight sum 
-            if sample_weight != NULL:
-                weighted_n_samples += sample_weight[i]
-            else:
-                weighted_n_samples += 1.0
-
         self.n_samples = j
-        self.weighted_n_samples = weighted_n_samples
+        safe_realloc(&self.sample_mask, self.n_samples)
+        memset(self.sample_mask, 0, self.n_samples)
 
-        cdef SIZE_t n_features = X.shape[1]
-        cdef SIZE_t* features = safe_realloc(&self.features, n_features)
-        for i in range(n_features):
-            features[i] = i
-
-        self.n_features = n_features
+        self.n_features = X.shape[1]
+        safe_realloc(&self.features, self.n_features)
+        
+        for i in range(self.n_features):
+            self.features[i] = i
 
         self.y = <DOUBLE_t*> y.data
         self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
         
         self.sample_weight = sample_weight
-        cdef void* sample_mask = NULL
 
         cdef np.ndarray X_ndarray = X
         self.X = <DTYPE_t*> X_ndarray.data
@@ -1007,13 +998,9 @@ cdef class DenseSplitter(Splitter):
             self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
                                        <SIZE_t> self.X_idx_sorted.itemsize)
 
-        self.n_total_samples = X.shape[0]
-        sample_mask = safe_realloc(&self.sample_mask, self.n_total_samples)
-        memset(sample_mask, 0, self.n_total_samples)
-
         self.criterion.init(self.X, self.X_sample_stride, 
             self.X_feature_stride, self.y, self.y_stride,
-            self.sample_weight, self.n_total_samples,
+            self.sample_weight, self.n_samples,
             self.min_samples_leaf, self.min_weight_leaf)
 
     cdef SplitRecord _best_split(self, SIZE_t start, SIZE_t end, 
@@ -1025,6 +1012,9 @@ cdef class DenseSplitter(Splitter):
         at the same time.
         """
 
+        cdef DTYPE_t* X = self.X
+        cdef SIZE_t X_sample_stride = self.X_sample_stride
+        cdef SIZE_t X_feature_stride = self.X_feature_stride
         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
         cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
         cdef SIZE_t* sample_mask = self.sample_mask
@@ -1039,21 +1029,69 @@ cdef class DenseSplitter(Splitter):
         cdef SIZE_t feature_offset = X_idx_sorted_stride * feature
         
         cdef SplitRecord split
+        cdef SIZE_t curr, next
 
-        for i in range(self.n_total_samples): 
+        for i in range(self.n_samples): 
             j = X_idx_sorted[i + feature_offset]
             if sample_mask[j] == 1:
                 samples[p] = j
                 p += 1
 
-        split = self.criterion.best_split(samples, start, end, feature)
+        curr = samples[end-1]*X_sample_stride + feature*X_feature_stride
+        next = samples[start]*X_sample_stride + feature*X_feature_stride
+        if X[curr] > X[next] + FEATURE_THRESHOLD:
+            split = self.criterion.best_split(samples, start, end, feature)
+        else:
+            _init_split_record(&split)
 
         if self.n_jobs != 1:
             free(samples)
 
         return split
 
-    cdef SplitRecord best_split(self, SIZE_t start, SIZE_t end) nogil:
+    cdef SplitRecord _random_split(self, SIZE_t start, SIZE_t end,
+        SIZE_t feature) nogil:
+        """Randomly select a threshold for a specific feature.
+
+        This method will randomly select a point and use that as the threshold
+        for the split to be done at. Faster than finding the minimum and
+        maximum.
+        """
+
+        cdef DTYPE_t* X = self.X
+        cdef SIZE_t X_sample_stride = self.X_sample_stride
+        cdef SIZE_t X_feature_stride = self.X_feature_stride
+        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
+        cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
+        cdef SIZE_t* sample_mask = self.sample_mask
+        cdef UINT32_t* random_state = &self.rand_r_state
+
+        cdef DOUBLE_t minimum, maximum, value
+
+        cdef SIZE_t i, j
+        cdef SIZE_t feature_offset = X_idx_sorted_stride*feature
+        
+        cdef SplitRecord split
+        _init_split_record(&split)
+
+        split.feature = feature
+
+        for i in range(self.n_samples): 
+            j = X_idx_sorted[i + feature_offset]
+            if sample_mask[j] == 1:
+                value = X[X_sample_stride * j + X_feature_stride * feature]
+
+                if value > maximum:
+                    maximum = value
+                elif value < minimum:
+                    minimum = value
+
+        split.threshold = rand_uniform(minimum, maximum, random_state)
+        split.pos = start
+
+        return split
+
+    cdef SplitRecord split(self, SIZE_t start, SIZE_t end) nogil:
         """Find the best split for this node."""
 
         # Unpack feature related items
@@ -1957,7 +1995,6 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t start, end, depth, parent, node_id
         cdef bint is_left, is_leaf
         cdef SIZE_t n_node_samples = splitter.n_samples
-        cdef double weighted_n_samples = splitter.weighted_n_samples
         cdef double weighted_n_node_samples, node_value
         cdef SplitRecord split
 
@@ -1996,7 +2033,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
                            (impurity <= MIN_IMPURITY_SPLIT))
 
                 if not is_leaf:
-                    split = splitter.best_split(start, end)
+                    split = splitter.split(start, end)
                     is_leaf = is_leaf or (split.pos >= end)
                     impurity = split.impurity
                     weighted_n_node_samples = split.weight
