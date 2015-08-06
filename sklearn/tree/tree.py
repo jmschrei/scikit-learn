@@ -129,7 +129,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         self : object
             Returns self.
         """
-        
+
         random_state = check_random_state(self.random_state)
         if check_input:
             X = check_array(X, dtype=DTYPE, accept_sparse="csc")
@@ -214,6 +214,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
                 max_features = 0
 
         self.max_features_ = max_features
+
 
         if len(y) != n_samples:
             raise ValueError("Number of labels=%d does not match "
@@ -312,13 +313,12 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         #                                   max_depth,
         #                                   max_leaf_nodes)
 
-
         builder.build(self.tree_, X, y, sample_weight)
 
         if self.n_outputs_ == 1:
             self.n_classes_ = self.n_classes_[0]
             self.classes_ = self.classes_[0]
-            
+        
         return self
 
     def _validate_X_predict(self, X, check_input):
@@ -366,6 +366,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         y : array of shape = [n_samples] or [n_samples, n_outputs]
             The predicted classes, or the predict values.
         """
+
         X = self._validate_X_predict(X, check_input)
         proba = self.tree_.predict(X)
         n_samples = X.shape[0]

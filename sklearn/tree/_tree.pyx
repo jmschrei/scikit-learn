@@ -116,7 +116,8 @@ cdef class Criterion:
 
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight ):
+        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+         ):
         """Initialize by passing pointers to the underlying data.
 
         Parameters
@@ -175,6 +176,11 @@ cdef class Criterion:
         feature: SIZE_t
             The feature to be considered for a split
         """
+
+        pass
+
+    cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start, 
+        SIZE_t end, SIZE_t feature, UINT32_t* rand_r) nogil:
 
         pass
 
@@ -406,6 +412,137 @@ cdef class Entropy(ClassificationCriterion):
 
         return best
 
+    cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start, 
+        SIZE_t end, SIZE_t feature, UINT32_t* rand_r) nogil:
+        """
+        Random split.
+        """
+        
+        cdef DTYPE_t* X = self.X
+        cdef DOUBLE_t* y = self.y
+        cdef DOUBLE_t* w = self.w
+
+        cdef SIZE_t y_stride = self.y_stride
+        cdef DTYPE_t upper, lower
+
+        cdef DOUBLE_t* w_cl
+        cdef DOUBLE_t* yw_cl
+
+        cdef DOUBLE_t w_cr, w_sum, yw_sum, yw_cr, value
+        cdef DOUBLE_t label_fraction, label_fraction_left, label_fraction_right
+        cdef DOUBLE_t max_fraction_left = 0, max_fraction_right = 0, max_fraction = 0
+
+        cdef SIZE_t feature_offset = feature*self.X_feature_stride
+        cdef SIZE_t label
+
+        cdef int i, j, p, n = end-start, m = self.n
+
+        cdef SplitRecord best
+        _init_split_record(&best)
+
+
+        if self.n_jobs == 1:
+            w_cl  = self.w_cl
+            yw_cl = self.yw_cl
+        else:
+            w_cl  = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t)) 
+            yw_cl = <DOUBLE_t*> calloc((end-start)*self.n, sizeof(DOUBLE_t))
+
+        # Get sufficient statistics for the impurity improvement and children
+        # impurity calculations and cache them for all possible splits
+        for i in range(n):
+            p = samples[start+i]
+            label = <SIZE_t>y[p]
+
+            if i == 0:
+                for j in range(m):
+                    yw_cl[j] = 0
+
+                w_cl[0] = w[p]
+                yw_cl[label] = w[p]
+            else:
+                for j in range(m):
+                    yw_cl[j + i*m] = yw_cl[j + (i-1)*m]
+
+                w_cl[i] = w[p] + w_cl[i-1]
+                yw_cl[label + i*m] += w[p]
+
+        w_sum = w_cl[n-1]
+        best.impurity = 0
+        # Calculate the impurity and node value for the current node
+        for j in range(m):
+            label_fraction = yw_cl[j + (n-1)*m] / w_sum
+            if label_fraction > 0:
+                best.impurity -= (label_fraction 
+                    * log(label_fraction) / self.n_outputs)
+
+            if label_fraction > max_fraction:
+                max_fraction = label_fraction
+                best.node_value = j
+
+        # Find the best split by scanning the entire range and calculating
+        # improvement for each split point.
+        upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]
+        lower = X[samples[start]*self.X_sample_stride + feature_offset]
+
+        best.threshold = rand_uniform(lower, upper, rand_r)
+        best.impurity_left = 0
+        best.impurity_right = 0
+
+        for i in range(n):
+            value = X[samples[start+i]*self.X_sample_stride + feature_offset]
+            best.pos = i+1
+            if value <= best.threshold:
+                continue
+            else:
+                break
+
+        w_cr = w_sum - w_cl[i]
+        for j in range(m):
+            yw_sum = yw_cl[j + (n-1)*m]
+            yw_cr = yw_sum - yw_cl[j + i*m]
+
+            label_fraction_left = yw_cl[j + i*m] / w_cl[i]
+            label_fraction_right = yw_cr / w_cr
+
+            if label_fraction_left > 0:
+                best.impurity_left -= (label_fraction_left *
+                    log(label_fraction_left))
+
+            if label_fraction_right > 0:
+                best.impurity_right -= (label_fraction_right *
+                    log(label_fraction_right))
+
+            if label_fraction_left > max_fraction_left:
+                max_fraction_left = label_fraction_left
+                best.node_value_left = j
+
+            if label_fraction_right > max_fraction_right:  
+                max_fraction_right = label_fraction_right
+                best.node_value_right = j
+
+        best.improvement =  -(w_cl[i] * best.impurity_left + 
+            w_cr * best.impurity_right)
+
+        best.weight = w_sum
+        best.weight_left = w_cl[best.pos]
+        best.weight_right = w_sum - w_cl[best.pos]
+
+        best.impurity /= self.n_outputs
+        best.impurity_left /= self.n_outputs
+        best.impurity_right /= self.n_outputs
+
+        best.feature = feature
+        if best.pos == 0:
+            best.pos = end
+        else:
+            best.pos += start
+
+        if self.n_jobs != 1:
+            free(w_cl)
+            free(yw_cl)
+
+        return best
 
 cdef class Gini(ClassificationCriterion):
     """
@@ -523,6 +660,8 @@ cdef class Gini(ClassificationCriterion):
                 if current.threshold == X[upper]:
                     current.threshold = X[lower]
 
+                max_count_left = 0
+                max_count_right = 0
                 for j in range(m):
                     if yw_cl[j] > max_count_left:
                         max_count_left = yw_cl[j]
@@ -542,6 +681,138 @@ cdef class Gini(ClassificationCriterion):
                     current.weight_right**2)
 
                 best = current
+
+        best.impurity /= self.n_outputs
+        best.impurity_left /= self.n_outputs
+        best.impurity_right /= self.n_outputs
+
+        best.feature = feature
+        if best.pos == 0:
+            best.pos = end
+        else:
+            best.pos += start
+
+        if self.n_jobs != 1:
+            free(yw_cl)
+            free(yw_cr)
+            free(w_i)
+
+        return best
+
+    cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start, 
+        SIZE_t end, SIZE_t feature, UINT32_t* rand_r) nogil:
+        """
+        Random split.
+        """
+        
+        cdef DTYPE_t* X = self.X
+        cdef DOUBLE_t* y = self.y
+        cdef DOUBLE_t* w = self.w
+        cdef DOUBLE_t* w_i
+
+        cdef SIZE_t y_stride = self.y_stride
+        cdef DTYPE_t upper, lower, value
+
+        cdef DOUBLE_t w_cl, w_cr, w_sum
+        cdef DOUBLE_t* yw_cl
+        cdef DOUBLE_t* yw_cr
+
+        cdef DOUBLE_t label_count, label_count_left, label_count_right
+        cdef DOUBLE_t max_count_left = 0, max_count_right = 0, max_count = 0
+
+        cdef SIZE_t feature_offset = feature*self.X_feature_stride
+        cdef SIZE_t label
+
+        cdef SIZE_t i, j, p, n = end-start, m = self.n, k
+
+        cdef SplitRecord best
+        _init_split_record(&best)
+
+        if self.n_jobs == 1:
+            w_i = self.w_cl
+            yw_cl = self.yw_cl
+            yw_cr = self.yw_cr
+        else:
+            w_i = <DOUBLE_t*> calloc(end-start, sizeof(DOUBLE_t)) 
+            yw_cl = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
+            yw_cr = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
+
+        memset(yw_cl, 0, m*sizeof(DOUBLE_t))
+        memset(yw_cr, 0, m*sizeof(DOUBLE_t))
+
+        w_sum = 0
+        # Get sufficient statistics for the impurity improvement and children
+        # impurity calculations and cache them for all possible splits
+        for i in range(n): 
+            p = samples[start+i]
+            label = <SIZE_t>y[p]
+            
+            w_i[i] = w[p]
+            w_sum += w_i[i]
+            yw_cr[label] += w_i[i]
+
+        best.impurity = 0
+        for j in range(m):
+            best.impurity += yw_cr[j] ** 2
+            if yw_cr[j] > max_count:
+                max_count = yw_cr[j]
+                best.node_value = j
+
+        best.impurity = 1.0 - best.impurity / (w_sum ** 2.0)
+
+        w_cr = w_sum
+        w_cl = 0
+        # Find the best split by scanning the entire range and calculating
+        # improvement for each split point.
+        upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]
+        lower = X[samples[start]*self.X_sample_stride + feature_offset]
+
+        best.threshold = rand_uniform(lower, upper, rand_r)
+        best.impurity_left = 0
+        best.impurity_right = 0
+
+        for i in range(n):
+            k = start+i
+            p = samples[start+i]
+            label = <SIZE_t>y[p]
+
+            yw_cr[label] -= w_i[i]
+            yw_cl[label] += w_i[i]  
+
+            w_cr -= w_i[i]
+            w_cl += w_i[i]
+            value = X[p*self.X_sample_stride + feature_offset]
+            best.pos = i+1
+            if value <= best.threshold:
+                continue
+            else:
+                break
+
+        for j in range(m):
+            best.impurity_left += yw_cl[j] ** 2.0
+            best.impurity_right += yw_cr[j] ** 2.0
+
+        best.improvement = (best.impurity_left / w_cl + 
+            best.impurity_right / w_cr)
+        best.pos = i+1
+
+        max_count_left = 0
+        max_count_right = 0
+        for j in range(m):
+            if yw_cl[j] > max_count_left:
+                max_count_left = yw_cl[j]
+                best.node_value_left = j
+
+            if yw_cr[j] > max_count_right:  
+                max_count_right = yw_cr[j]
+                best.node_value_right = j
+
+        best.weight = w_sum
+        best.weight_left = w_cl
+        best.weight_right = w_cr
+
+        best.impurity_left = 1. - best.impurity_left / best.weight_left**2
+        best.impurity_right = 1. - best.impurity_right / best.weight_right**2
 
         best.impurity /= self.n_outputs
         best.impurity_left /= self.n_outputs
@@ -1072,28 +1343,33 @@ cdef class DenseSplitter(Splitter):
         cdef SIZE_t* sample_mask = self.sample_mask
         cdef UINT32_t* random_state = &self.rand_r_state
 
-        cdef DOUBLE_t minimum, maximum, value
+        cdef SIZE_t* samples
+        if self.n_jobs == 1:
+            samples = self.samples
+        else:
+            samples =  <SIZE_t*> calloc(self.n_samples, sizeof(SIZE_t))
 
-        cdef SIZE_t i, j
-        cdef SIZE_t feature_offset = X_idx_sorted_stride*feature
+        cdef SIZE_t i, j, p = start
+        cdef SIZE_t feature_offset = X_idx_sorted_stride * feature
         
         cdef SplitRecord split
-        _init_split_record(&split)
-
-        split.feature = feature
+        cdef SIZE_t curr, next
 
         for i in range(self.n_samples): 
             j = X_idx_sorted[i + feature_offset]
             if sample_mask[j] == 1:
-                value = X[X_sample_stride * j + X_feature_stride * feature]
+                samples[p] = j
+                p += 1
 
-                if value > maximum:
-                    maximum = value
-                elif value < minimum:
-                    minimum = value
+        curr = samples[end-1]*X_sample_stride + feature*X_feature_stride
+        next = samples[start]*X_sample_stride + feature*X_feature_stride
+        if X[curr] > X[next] + FEATURE_THRESHOLD:
+            split = self.criterion.random_split(samples, start, end, feature, random_state)
+        else:
+            _init_split_record(&split)
 
-        split.threshold = rand_uniform(minimum, maximum, random_state)
-        split.pos = start
+        if self.n_jobs != 1:
+            free(samples)
 
         return split
 
@@ -1150,7 +1426,7 @@ cdef class DenseSplitter(Splitter):
             features_left = max_features - n_visited_features
             for i in prange(features_left, num_threads=self.n_jobs):
                 f = i + n_visited_features
-                splits[i] = self._best_split(start, end, features[f])
+                splits[i] = self._random_split(start, end, features[f])
 
             # Of the returned splits, see if any are better than
             # the current returned best split.
@@ -2556,6 +2832,7 @@ cdef class Tree:
 
     cpdef np.ndarray predict(self, object X):
         """Predict target for X."""
+
         out = self._get_value_ndarray().take(self.apply(X), axis=0,
                                              mode='clip')
         if self.n_outputs == 1:
