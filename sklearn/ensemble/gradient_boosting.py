@@ -46,7 +46,7 @@ from ..feature_selection.from_model import _LearntSelectorMixin
 from ..tree.tree import DecisionTreeRegressor
 from ..tree._tree import DTYPE, TREE_LEAF
 from ..tree._tree import DenseSplitter
-from ..tree._tree import FriedmanMSE, MSE
+from ..tree._tree import FriedmanMSE
 
 from ._gradient_boosting import predict_stages
 from ._gradient_boosting import predict_stage
@@ -1018,7 +1018,8 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
                                  self.min_samples_leaf,
                                  min_weight_leaf,
                                  random_state,
-                                 self.n_jobs)
+                                 self.n_jobs,
+                                 1)
 
         if self.verbose:
             verbose_reporter = VerboseReporter(self.verbose)
