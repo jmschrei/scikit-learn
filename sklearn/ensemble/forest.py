@@ -116,7 +116,6 @@ def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
     else:
         tree.fit(X, y, sample_weight=sample_weight, check_input=False)
 
-    sys.stdout.flush()
     return tree
 
 

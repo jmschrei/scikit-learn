@@ -109,10 +109,12 @@ cdef class Criterion:
     def __dealloc__( self ):
         """Destructor."""
 
+        print "ba"
         if self.n_jobs == 1:
             free(self.w_cl)
             free(self.yw_cl)
             free(self.yw_sq)
+        print "bb"
 
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
@@ -245,7 +247,9 @@ cdef class ClassificationCriterion(Criterion):
             safe_realloc(&self.yw_cr, self.n*sizeof(DOUBLE_t))
 
     def __dealloc__(self):
+        print "aa"
         free(self.yw_cr)
+        print "ab"
 
     def __reduce__(self):
         return (ClassificationCriterion,
@@ -1339,9 +1343,13 @@ cdef class Splitter:
     def __dealloc__(self):
         """Destructor."""
 
+        print "da"
         free(self.samples)
+        print "db"
         free(self.features)
+        print "dc"
         free(self.sample_mask)
+        print "db"
 
     def __getstate__(self):
         return {}
@@ -1428,6 +1436,7 @@ cdef class DenseSplitter(Splitter):
                 j += 1
 
         self.n_samples = j
+
         safe_realloc(&self.sample_mask, self.n_samples)
         memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
 
@@ -1557,33 +1566,22 @@ cdef class DenseSplitter(Splitter):
     cdef SplitRecord split(self, SIZE_t start, SIZE_t end) nogil:
         """Find the best split for this node."""
 
-        # Unpack feature related items
         cdef SIZE_t* features = self.features
-        cdef SIZE_t n_features = self.n_features
 
-        # Unpack sample related items
         cdef SIZE_t* samples = self.samples
         cdef SIZE_t* sample_mask = self.sample_mask
 
-        # Unpack X related items
         cdef DTYPE_t* X = self.X
         cdef SIZE_t X_sample_stride = self.X_sample_stride
         cdef SIZE_t X_feature_stride = self.X_feature_stride
-        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
-        cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
-
-        cdef SIZE_t max_features = self.max_features
         cdef UINT32_t* random_state = &self.rand_r_state
 
-        cdef SIZE_t n_visited_features = 0, features_left
+        cdef SIZE_t n_visited_features = 0
         cdef SIZE_t tmp, partition_end
-        cdef SIZE_t iterations=0, i, j, p, f
+        cdef SIZE_t i=0, j, p
 
-        cdef SplitRecord best
-        _init_split_record( &best )
-
-        cdef SplitRecord* splits = <SplitRecord*> calloc(max_features, 
-            sizeof(SplitRecord))
+        cdef SplitRecord best, current
+        _init_split_record(&best)
 
         # Set a mask to indicate which samples we are considering.
         for p in range(start, end):
@@ -1594,39 +1592,26 @@ cdef class DenseSplitter(Splitter):
         # we sample batches at a time, and count the number of
         # non-constant features, until we converge at max_features
         # number of non-constant features
-        while n_visited_features < max_features and iterations < n_features:
-            # Sort the feature array as needed to indicate features
-            # we've seen before.
-            for i in range(max_features):
-                f = i + n_visited_features
-                j = rand_int(f, n_features, random_state)
-                features[f], features[j] = features[j], features[f]
+        while n_visited_features < self.max_features and i < self.n_features:
+            j = rand_int(i, self.n_features, random_state)
+            features[i], features[j] = features[j], features[i]
 
-            # In parallel, find the best split for each feature
-            # in this batch
-            features_left = max_features - n_visited_features
-            for i in range(features_left): #, num_threads=self.n_jobs):
-                f = i + n_visited_features
-                if self.best == 1:
-                    splits[i] = self._best_split(start, end, features[f])
-                else:
-                    splits[i] = self._random_split(start, end, features[f])
+            if self.best == 1:
+                current = self._best_split(start, end, features[i])
+            else:
+                current = self._random_split( start, end, features[i])
 
-            # Of the returned splits, see if any are better than
-            # the current returned best split.
-            for i in range(features_left):
-                if splits[i].improvement > -INFINITY:
-                    n_visited_features += 1
-                    if splits[i].improvement > best.improvement and best.pos < end:
-                        best = splits[i]
+            if current.improvement > best.improvement and best.pos < end:
+                best = current
+                n_visited_features += 1
 
-            iterations += features_left
+            i += 1
 
         if best.pos == -1:
             best.pos = end
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
-        if best.pos < end-1:
+        if best.pos < end:
             partition_end = end
             p = start
 
@@ -1646,7 +1631,6 @@ cdef class DenseSplitter(Splitter):
         for p in range(start, end):
             sample_mask[samples[p]] = 0
 
-        free(splits)
         return best
 
 '''
@@ -2879,9 +2863,11 @@ cdef class Tree:
     def __dealloc__(self):
         """Destructor."""
         # Free all inner structures
+        print "ca"
         free(self.n_classes)
         free(self.value)
         free(self.nodes)
+        print "cb"
 
     def __reduce__(self):
         """Reduce re-implementation, for pickling."""

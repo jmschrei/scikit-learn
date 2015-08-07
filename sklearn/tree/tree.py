@@ -292,13 +292,6 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
                                      self.n_jobs,
                                      self.splitter == 'best')
 
-            #splitter = SPLITTERS[self.splitter](criterion,
-            #                                    self.max_features_,
-            #                                    self.min_samples_leaf,
-            #                                    min_weight_leaf,
-            #                                    random_state,
-            #                                    self.n_jobs)
-
         self.tree_ = Tree(self.n_features_, self.n_classes_, self.n_outputs_)
 
         # Use BestFirst if max_leaf_nodes given; use DepthFirst otherwise
