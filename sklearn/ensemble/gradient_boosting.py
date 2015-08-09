@@ -733,7 +733,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
         self.estimators_ = np.empty((0, 0), dtype=np.object)
 
     def _fit_stage(self, i, X, X_idx_sorted, y, y_pred, sample_weight, sample_mask,
-                   criterion, splitter, random_state):
+                   random_state):
         """Fit another stage of ``n_classes_`` trees to the boosting model. """
 
         assert sample_mask.dtype == np.bool
@@ -749,8 +749,8 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
 
             # induce regression tree on residuals
             tree = DecisionTreeRegressor(
-                criterion=criterion,
-                splitter=splitter,
+                criterion='friedman_mse',
+                splitter='depth',
                 max_depth=self.max_depth,
                 min_samples_split=self.min_samples_split,
                 min_samples_leaf=self.min_samples_leaf,
@@ -1014,16 +1014,6 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
         else:
             min_weight_leaf = 0.
 
-        # init criterion and splitter
-        criterion = FriedmanMSE(1, self.n_jobs)
-        splitter = DenseSplitter(criterion,
-                                 self.max_features_,
-                                 self.min_samples_leaf,
-                                 min_weight_leaf,
-                                 random_state,
-                                 self.n_jobs,
-                                 1)
-
         if self.verbose:
             verbose_reporter = VerboseReporter(self.verbose)
             verbose_reporter.init(self, begin_at_stage)
@@ -1043,8 +1033,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
 
             # fit next stage of trees
             y_pred = self._fit_stage(i, X, X_idx_sorted, y, y_pred, sample_weight,
-                                     sample_mask, criterion, splitter,
-                                     random_state)
+                                     sample_mask, random_state)
 
             # track deviance (= loss)
             if do_oob:
