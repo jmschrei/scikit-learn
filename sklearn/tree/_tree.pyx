@@ -109,12 +109,10 @@ cdef class Criterion:
     def __dealloc__( self ):
         """Destructor."""
 
-        print "ba"
         if self.n_jobs == 1:
             free(self.w_cl)
             free(self.yw_cl)
             free(self.yw_sq)
-        print "bb"
 
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
@@ -247,9 +245,7 @@ cdef class ClassificationCriterion(Criterion):
             safe_realloc(&self.yw_cr, self.n*sizeof(DOUBLE_t))
 
     def __dealloc__(self):
-        print "aa"
         free(self.yw_cr)
-        print "ab"
 
     def __reduce__(self):
         return (ClassificationCriterion,
@@ -1343,13 +1339,9 @@ cdef class Splitter:
     def __dealloc__(self):
         """Destructor."""
 
-        print "da"
         free(self.samples)
-        print "db"
         free(self.features)
-        print "dc"
         free(self.sample_mask)
-        print "db"
 
     def __getstate__(self):
         return {}
@@ -1384,15 +1376,8 @@ cdef class Splitter:
 
         pass
 
-    cdef SplitRecord _best_split(self, SIZE_t start, SIZE_t end, 
-        SIZE_t feature) nogil:
-        """Find the best split for this feature."""
-
-        pass
-
-    cdef SplitRecord _random_split(self, SIZE_t start, SIZE_t end,
-        SIZE_t feature) nogil:
-        """Split randomly on a feature."""
+    cdef SplitRecord _split(self, SIZE_t start, SIZE_t end,
+        SIZE_t feature, SIZE_t best) nogil:
 
         pass
 
@@ -1425,6 +1410,8 @@ cdef class DenseSplitter(Splitter):
         self.n_samples = X.shape[0]
         
         safe_realloc(&self.samples, self.n_samples)
+        safe_realloc(&self.sample_mask, self.n_samples)
+        memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
 
         cdef SIZE_t i, j = 0
         # In order to only use positively weighted samples, we must go through
@@ -1436,9 +1423,6 @@ cdef class DenseSplitter(Splitter):
                 j += 1
 
         self.n_samples = j
-
-        safe_realloc(&self.sample_mask, self.n_samples)
-        memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
 
         self.n_features = X.shape[1]
         safe_realloc(&self.features, self.n_features)
@@ -1470,8 +1454,8 @@ cdef class DenseSplitter(Splitter):
             self.sample_weight, self.n_samples,
             self.min_samples_leaf, self.min_weight_leaf)
 
-    cdef SplitRecord _best_split(self, SIZE_t start, SIZE_t end, 
-        SIZE_t feature) nogil:
+    cdef SplitRecord _split(self, SIZE_t start, SIZE_t end, 
+        SIZE_t feature, SIZE_t best) nogil:
         """Find the best split for a specific feature.
 
         This is a helper for the best_split method to allow parallel
@@ -1485,55 +1469,9 @@ cdef class DenseSplitter(Splitter):
         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
         cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
         cdef SIZE_t* sample_mask = self.sample_mask
-
         cdef SIZE_t* samples
-        if self.n_jobs == 1:
-            samples = self.samples
-        else:
-            samples =  <SIZE_t*> calloc(self.n_samples, sizeof(SIZE_t))
-
-        cdef SIZE_t i, j, p = start
-        cdef SIZE_t feature_offset = X_idx_sorted_stride * feature
-        
-        cdef SplitRecord split
-        cdef SIZE_t curr, next
-
-        for i in range(self.n_samples): 
-            j = X_idx_sorted[i + feature_offset]
-            if sample_mask[j] == 1:
-                samples[p] = j
-                p += 1
-
-        curr = samples[end-1]*X_sample_stride + feature*X_feature_stride
-        next = samples[start]*X_sample_stride + feature*X_feature_stride
-        if X[curr] > X[next] + FEATURE_THRESHOLD:
-            split = self.criterion.best_split(samples, start, end, feature)
-        else:
-            _init_split_record(&split)
-
-        if self.n_jobs != 1:
-            free(samples)
-
-        return split
-
-    cdef SplitRecord _random_split(self, SIZE_t start, SIZE_t end,
-        SIZE_t feature) nogil:
-        """Randomly select a threshold for a specific feature.
-
-        This method will randomly select a point and use that as the threshold
-        for the split to be done at. Faster than finding the minimum and
-        maximum.
-        """
-
-        cdef DTYPE_t* X = self.X
-        cdef SIZE_t X_sample_stride = self.X_sample_stride
-        cdef SIZE_t X_feature_stride = self.X_feature_stride
-        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
-        cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
-        cdef SIZE_t* sample_mask = self.sample_mask
         cdef UINT32_t* random_state = &self.rand_r_state
 
-        cdef SIZE_t* samples
         if self.n_jobs == 1:
             samples = self.samples
         else:
@@ -1554,7 +1492,11 @@ cdef class DenseSplitter(Splitter):
         curr = samples[end-1]*X_sample_stride + feature*X_feature_stride
         next = samples[start]*X_sample_stride + feature*X_feature_stride
         if X[curr] > X[next] + FEATURE_THRESHOLD:
-            split = self.criterion.random_split(samples, start, end, feature, random_state)
+            if best == 1:
+                split = self.criterion.best_split(samples, start, end, feature)
+            else:
+                split = self.criterion.random_split(samples, start, end, 
+                    feature, random_state)
         else:
             _init_split_record(&split)
 
@@ -1567,7 +1509,6 @@ cdef class DenseSplitter(Splitter):
         """Find the best split for this node."""
 
         cdef SIZE_t* features = self.features
-
         cdef SIZE_t* samples = self.samples
         cdef SIZE_t* sample_mask = self.sample_mask
 
@@ -1596,10 +1537,7 @@ cdef class DenseSplitter(Splitter):
             j = rand_int(i, self.n_features, random_state)
             features[i], features[j] = features[j], features[i]
 
-            if self.best == 1:
-                current = self._best_split(start, end, features[i])
-            else:
-                current = self._random_split( start, end, features[i])
+            current = self._split(start, end, features[i], self.best)
 
             if current.improvement > best.improvement and best.pos < end:
                 best = current
@@ -2863,11 +2801,9 @@ cdef class Tree:
     def __dealloc__(self):
         """Destructor."""
         # Free all inner structures
-        print "ca"
         free(self.n_classes)
         free(self.value)
         free(self.nodes)
-        print "cb"
 
     def __reduce__(self):
         """Reduce re-implementation, for pickling."""

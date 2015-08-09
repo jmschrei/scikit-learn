@@ -100,6 +100,7 @@ cdef class Splitter:
 
     cdef SIZE_t* samples                 # Sample indices in X, y
     cdef SIZE_t n_samples
+    cdef SIZE_t* sample_mask
     cdef SIZE_t* features                # Feature indices in X
     cdef SIZE_t n_features               # X.shape[1]
 
@@ -111,8 +112,6 @@ cdef class Splitter:
     cdef np.ndarray X_idx_sorted
     cdef INT32_t* X_idx_sorted_ptr
     cdef SIZE_t X_idx_sorted_stride
-
-    cdef SIZE_t* sample_mask
 
     cdef DTYPE_t* X
     cdef SIZE_t X_sample_stride
@@ -140,11 +139,8 @@ cdef class Splitter:
     cdef void init(self, object X, np.ndarray y,
                    DOUBLE_t* sample_weight) except *
 
-    cdef SplitRecord _best_split(self, SIZE_t start, SIZE_t end, 
-        SIZE_t feature) nogil
-
-    cdef SplitRecord _random_split(self, SIZE_t start, SIZE_t end,
-        SIZE_t feature) nogil
+    cdef SplitRecord _split(self, SIZE_t start, SIZE_t end,
+        SIZE_t feature, SIZE_t best) nogil
 
     cdef SplitRecord split(self, SIZE_t start, SIZE_t end) nogil
 
