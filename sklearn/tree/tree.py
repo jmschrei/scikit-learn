@@ -31,7 +31,7 @@ from ..utils.validation import NotFittedError
 
 from ._tree import Criterion
 from ._tree import Splitter, DenseSplitter
-from ._tree import DepthFirstTreeBuilder, BestFirstTreeBuilder
+from ._tree import DepthFirstTreeBuilder
 from ._tree import Tree
 from . import _tree
 
@@ -98,7 +98,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         self.tree_ = None
         self.max_features_ = None
 
-    def fit(self, X, y, sample_weight=None, check_input=True):
+    def fit(self, X, y, sample_weight=None, check_input=True, X_idx_sorted=None):
         """Build a decision tree from the training set (X, y).
 
         Parameters
@@ -123,6 +123,12 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         check_input : boolean, (default=True)
             Allow to bypass several input checking.
             Don't use this parameter unless you know what you do.
+
+        X_idx_sorted : array-like, shape = [n_samples, n_features]
+            The indexes of the sorted training input samples. If many tree
+            are grown on the same dataset, this allows the ordering to be
+            cached between trees. If None, the data will be sorted here.
+            Don't use this parameter unless you know what to do.
 
         Returns
         -------
@@ -270,6 +276,10 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         min_samples_split = max(self.min_samples_split,
                                 2 * self.min_samples_leaf)
 
+        if X_idx_sorted is None:
+            X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0),
+                                             dtype=np.int32)
+
         # Build tree
         criterion = self.criterion
         if not isinstance(criterion, Criterion):
@@ -307,7 +317,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         #                                   max_depth,
         #                                   max_leaf_nodes)
 
-        builder.build(self.tree_, X, y, sample_weight)
+        builder.build(self.tree_, X, y, sample_weight, X_idx_sorted)
 
         if self.n_outputs_ == 1:
             self.n_classes_ = self.n_classes_[0]

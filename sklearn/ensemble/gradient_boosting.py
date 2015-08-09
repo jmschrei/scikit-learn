@@ -732,7 +732,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         self.estimators_ = np.empty((0, 0), dtype=np.object)
 
-    def _fit_stage(self, i, X, y, y_pred, sample_weight, sample_mask,
+    def _fit_stage(self, i, X, X_idx_sorted, y, y_pred, sample_weight, sample_mask,
                    criterion, splitter, random_state):
         """Fit another stage of ``n_classes_`` trees to the boosting model. """
 
@@ -765,7 +765,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
                 sample_weight = sample_weight * sample_mask.astype(np.float64)
 
             tree.fit(X, residual, sample_weight=sample_weight,
-                     check_input=False)
+                     check_input=False, X_idx_sorted=X_idx_sorted)
 
             # update tree leaves
             loss.update_terminal_regions(tree.tree_, X, y, residual, y_pred,
@@ -977,9 +977,12 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
             y_pred = self._decision_function(X)
             self._resize_state()
 
+        X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0),
+                                             dtype=np.int32)
+
         # fit the boosting stages
-        n_stages = self._fit_stages(X, y, y_pred, sample_weight, random_state,
-                                    begin_at_stage, monitor)
+        n_stages = self._fit_stages(X, X_idx_sorted, y, y_pred, sample_weight, 
+                                    random_state, begin_at_stage, monitor)
         # change shape of arrays after fit (early-stopping or additional ests)
         if n_stages != self.estimators_.shape[0]:
             self.estimators_ = self.estimators_[:n_stages]
@@ -989,7 +992,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         return self
 
-    def _fit_stages(self, X, y, y_pred, sample_weight, random_state,
+    def _fit_stages(self, X, X_idx_sorted, y, y_pred, sample_weight, random_state,
                     begin_at_stage=0, monitor=None):
         """Iteratively fits the stages.
 
@@ -1039,7 +1042,7 @@ class BaseGradientBoosting(six.with_metaclass(ABCMeta, BaseEnsemble,
                                       sample_weight[~sample_mask])
 
             # fit next stage of trees
-            y_pred = self._fit_stage(i, X, y, y_pred, sample_weight,
+            y_pred = self._fit_stage(i, X, X_idx_sorted, y, y_pred, sample_weight,
                                      sample_mask, criterion, splitter,
                                      random_state)
 

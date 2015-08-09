@@ -90,7 +90,7 @@ def _generate_unsampled_indices(random_state, n_samples):
     return unsampled_indices
 
 def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
-                          verbose=0, class_weight=None):
+                          X_idx_sorted, verbose=0, class_weight=None):
     """Private function used to fit a single tree in parallel."""
     if verbose > 1:
         print("building tree %d of %d" % (tree_idx + 1, n_trees))
@@ -112,9 +112,11 @@ def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
                 curr_sample_weight *= compute_sample_weight('auto', y, indices)
         elif class_weight == 'balanced_subsample':
             curr_sample_weight *= compute_sample_weight('balanced', y, indices)
-        tree.fit(X, y, sample_weight=curr_sample_weight, check_input=False)
+        tree.fit(X, y, sample_weight=curr_sample_weight, check_input=False, 
+            X_idx_sorted=X_idx_sorted)
     else:
-        tree.fit(X, y, sample_weight=sample_weight, check_input=False)
+        tree.fit(X, y, sample_weight=sample_weight, check_input=False,
+            X_idx_sorted=X_idx_sorted)
 
     return tree
 
@@ -257,6 +259,9 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         n_more_estimators = self.n_estimators - len(self.estimators_)
 
+        X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0),
+                                             dtype=np.int32)
+
         if n_more_estimators < 0:
             raise ValueError('n_estimators=%d must be larger or equal to '
                              'len(estimators_)=%d when warm_start==True'
@@ -284,7 +289,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             trees = Parallel(n_jobs=self.n_jobs, verbose=self.verbose,
                              backend="threading")(
                 delayed(_parallel_build_trees)(
-                    t, self, X, y, sample_weight, i, len(trees),
+                    t, self, X, y, sample_weight, i, len(trees), X_idx_sorted,
                     verbose=self.verbose, class_weight=self.class_weight)
                 for i, t in enumerate(trees))
 

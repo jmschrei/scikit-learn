@@ -1326,7 +1326,6 @@ cdef class Splitter:
         self.min_weight_leaf = min_weight_leaf
         self.random_state = random_state
 
-        self.X_old = NULL
         self.X_idx_sorted_ptr = NULL
         self.X_idx_sorted_stride = 0
 
@@ -1351,6 +1350,7 @@ cdef class Splitter:
 
     cdef void init(self,
                    object X,
+                   np.ndarray[INT32_t, ndim=2] X_idx_sorted,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight) except *:
         """Initialize the splitter.
@@ -1400,6 +1400,7 @@ cdef class DenseSplitter(Splitter):
                                 self.random_state), self.__getstate__() )
 
     cdef void init(self, object X,
+                   np.ndarray[INT32_t, ndim=2] X_idx_sorted,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight) except *:
         """
@@ -1440,13 +1441,9 @@ cdef class DenseSplitter(Splitter):
         self.X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
         self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
 
-        # Pre-sort X
-        if self.X_old != self.X:
-            self.X_old = self.X
-            self.X_idx_sorted = np.asfortranarray(np.argsort(X_ndarray, axis=0),
-                                                 dtype=np.int32)
-            self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
-            self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
+        self.X_idx_sorted = X_idx_sorted
+        self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
+        self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
                                        <SIZE_t> self.X_idx_sorted.itemsize)
 
         self.criterion.init(self.X, self.X_sample_stride, 
@@ -2306,7 +2303,8 @@ cdef class TreeBuilder:
     """Interface for different tree building strategies. """
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
-                np.ndarray sample_weight=None):
+                np.ndarray sample_weight,
+                np.ndarray X_idx_sorted):
         """Build a decision tree from the training set (X, y)."""
         pass
 
@@ -2353,7 +2351,8 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         self.max_depth = max_depth
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
-                np.ndarray sample_weight=None):
+                np.ndarray sample_weight,
+                np.ndarray X_idx_sorted):
         """Build a decision tree from the training set (X, y)."""
         X, y, sample_weight = self._check_input(X, y, sample_weight)
 
@@ -2378,7 +2377,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t min_samples_split = self.min_samples_split
 
         # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight_ptr)
+        splitter.init(X, X_idx_sorted, y, sample_weight_ptr)
 
         cdef SIZE_t start, end, depth, parent, node_id
         cdef bint is_left, is_leaf
@@ -2471,7 +2470,7 @@ cdef inline int _add_to_frontier(PriorityHeapRecord* rec,
     return frontier.push(rec.node_id, rec.start, rec.end, rec.pos, rec.depth,
                          rec.is_leaf, rec.improvement, rec.impurity,
                          rec.impurity_left, rec.impurity_right)
-
+'''
 cdef class BestFirstTreeBuilder(TreeBuilder):
     """Build a decision tree in best-first fashion.
 
@@ -2674,7 +2673,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
             res.impurity_right = impurity
 
         return 0
-
+'''
 
 # =============================================================================
 # Tree
