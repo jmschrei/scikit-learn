@@ -345,7 +345,7 @@ cdef class Entropy(ClassificationCriterion):
             w_cr -= w_i[i]
             w_cl += w_i[i]
 
-            if i < self.min_leaf_samples or (n-i) < self.min_leaf_samples:
+            if n-i-1s < self.min_leaf_samples:
                 continue
 
             upper = samples[k+1]*self.X_sample_stride + feature_offset
@@ -476,7 +476,7 @@ cdef class Entropy(ClassificationCriterion):
             k = start+i
             p = samples[start+i]
             value = X[p*self.X_sample_stride + feature_offset]
-            
+
             if value > split.threshold:
                 i -= 1
                 break
@@ -609,7 +609,7 @@ cdef class Gini(ClassificationCriterion):
             w_cr -= w_i[i]
             w_cl += w_i[i]
 
-            if i < self.min_leaf_samples or (n-i) < self.min_leaf_samples:
+            if n-i-1 < self.min_leaf_samples:
                 continue
 
             upper = samples[k+1]*self.X_sample_stride + feature_offset
@@ -740,6 +740,7 @@ cdef class Gini(ClassificationCriterion):
             p = samples[start+i]
             value = X[p*self.X_sample_stride + feature_offset]
             
+
             if value > split.threshold:
                 i -= 1
                 break
@@ -888,7 +889,7 @@ cdef class MSE(RegressionCriterion):
         split.node_value[0] = yw_sum / w_sum
 
         # Now find the best split using sufficient statistics
-        for i in range(self.min_leaf_samples, n-self.min_leaf_samples):
+        for i in range(n-self.min_leaf_samples):
             p = start+i
 
             upper = samples[p+1]*X_sample_stride + feature_offset
@@ -1104,7 +1105,7 @@ cdef class FriedmanMSE(RegressionCriterion):
         split.node_value[0] = yw_sum / w_sum
 
         # Now find the best split using sufficient statistics
-        for i in range(self.min_leaf_samples, n-self.min_leaf_samples):
+        for i in range(n-self.min_leaf_samples):
             p = start+i
 
             upper = samples[p+1]*X_sample_stride + feature_offset
