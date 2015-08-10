@@ -65,22 +65,21 @@ cdef class Criterion:
 
 cdef struct SplitRecord:
     # Data to track sample split
-    SIZE_t feature         # Which feature to split on.
-    SIZE_t pos             # Split samples array at the given position,
-                           # i.e. count of samples below threshold for feature.
-                           # pos is >= end if the node is a leaf.
-    SIZE_t n_constant_features
-    double threshold       # Threshold to split at.
-    double improvement     # Impurity improvement given parent node.
-    double impurity_left   # Impurity of the left split.
-    double impurity_right  # Impurity of the right split.
-    double impurity        # Impurity of the current node
-    double weight          # Weight of the current node
-    double weight_left     # Weight of the left child
-    double weight_right    # Weight of the right child
-    double node_value
-    double node_value_left
-    double node_value_right
+    SIZE_t feature            # Which feature to split on.
+    SIZE_t pos                # Split samples array at the given position,
+                              # i.e. count of samples below threshold for feature.
+                              # pos is >= end if the node is a leaf.
+    DOUBLE_t threshold          # Threshold to split at.
+    DOUBLE_t improvement        # Impurity improvement given parent node.
+    DOUBLE_t impurity_left      # Impurity of the left split.
+    DOUBLE_t impurity_right     # Impurity of the right split.
+    DOUBLE_t impurity           # Impurity of the current node
+    DOUBLE_t weight             # Weight of the current node
+    DOUBLE_t weight_left        # Weight of the left child
+    DOUBLE_t weight_right       # Weight of the right child
+    DOUBLE_t* node_value         # Value predicted by this node
+    DOUBLE_t* node_value_left    # Value predicted by the left child
+    DOUBLE_t* node_value_right   # Value predicted by the right child
 
 cdef class Splitter:
     # The splitter searches in the input space for a feature and a threshold
@@ -186,7 +185,7 @@ cdef class Tree:
     cdef SIZE_t _add_node(self, SIZE_t parent, bint is_left, bint is_leaf,
                           SIZE_t feature, double threshold, double impurity,
                           SIZE_t n_node_samples,
-                          double weighted_n_samples, double value) nogil
+                          double weighted_n_samples, DOUBLE_t* value) nogil
     cdef void _resize(self, SIZE_t capacity) except *
     cdef int _resize_c(self, SIZE_t capacity=*) nogil
 

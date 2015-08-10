@@ -45,7 +45,7 @@ cdef class Stack:
 
     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,
                   bint is_left, DOUBLE_t impurity, DOUBLE_t weight,
-                  DOUBLE_t node_value) nogil:
+                  DOUBLE_t* node_value) nogil:
         """Push a new element onto the stack.
 
         Returns 0 if successful; -1 on out of memory error.
