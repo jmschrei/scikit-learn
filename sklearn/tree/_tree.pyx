@@ -345,7 +345,7 @@ cdef class Entropy(ClassificationCriterion):
             w_cr -= w_i[i]
             w_cl += w_i[i]
 
-            if n-i-1s < self.min_leaf_samples:
+            if n-i-1 < self.min_leaf_samples:
                 continue
 
             upper = samples[k+1]*self.X_sample_stride + feature_offset
