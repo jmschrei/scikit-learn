@@ -54,10 +54,12 @@ cdef class Criterion:
         SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight)
 
     cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
-        SIZE_t end, SIZE_t feature ) nogil
+        SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
+        DOUBLE_t* node_value) nogil
 
     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start, 
-        SIZE_t end, SIZE_t feature, UINT32_t* rand_r) nogil
+        SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
+        DOUBLE_t* node_value, UINT32_t* rand_r) nogil
 
 # =============================================================================
 # Splitter
@@ -77,6 +79,9 @@ cdef struct SplitRecord:
     DOUBLE_t weight             # Weight of the current node
     DOUBLE_t weight_left        # Weight of the left child
     DOUBLE_t weight_right       # Weight of the right child
+    DOUBLE_t yw_sq_sum
+    DOUBLE_t yw_sq_sum_left
+    DOUBLE_t yw_sq_sum_right
     DOUBLE_t* node_value         # Value predicted by this node
     DOUBLE_t* node_value_left    # Value predicted by the left child
     DOUBLE_t* node_value_right   # Value predicted by the right child
