@@ -915,31 +915,33 @@ struct __pyx_t_7sklearn_4tree_5_tree_Node;
 struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree__resize_c;
 struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree_compute_feature_importances;
 
-/* "sklearn/tree/_tree.pxd":66
+/* "sklearn/tree/_tree.pxd":65
  * # =============================================================================
  * 
  * cdef struct SplitRecord:             # <<<<<<<<<<<<<<
  *     # Data to track sample split
- *     SIZE_t feature         # Which feature to split on.
+ *     SIZE_t feature            # Which feature to split on.
  */
 struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord {
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t feature;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t pos;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t n_constant_features;
-  double threshold;
-  double improvement;
-  double impurity_left;
-  double impurity_right;
-  double impurity;
-  double weight;
-  double weight_left;
-  double weight_right;
-  double node_value;
-  double node_value_left;
-  double node_value_right;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t threshold;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t improvement;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t impurity_left;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t impurity_right;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t impurity;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t weight;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t weight_left;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t weight_right;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t yw_sq_sum;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t yw_sq_sum_left;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t yw_sq_sum_right;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *node_value;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *node_value_left;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *node_value_right;
 };
 
-/* "sklearn/tree/_tree.pxd":153
+/* "sklearn/tree/_tree.pxd":157
  * # =============================================================================
  * 
  * cdef struct Node:             # <<<<<<<<<<<<<<
@@ -956,8 +958,8 @@ struct __pyx_t_7sklearn_4tree_5_tree_Node {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t weighted_n_node_samples;
 };
 
-/* "sklearn/tree/_tree.pxd":191
- *                           double weighted_n_samples, double value) nogil
+/* "sklearn/tree/_tree.pxd":195
+ *                           double weighted_n_samples, DOUBLE_t* value) nogil
  *     cdef void _resize(self, SIZE_t capacity) except *
  *     cdef int _resize_c(self, SIZE_t capacity=*) nogil             # <<<<<<<<<<<<<<
  * 
@@ -968,7 +970,7 @@ struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree__resize_c {
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t capacity;
 };
 
-/* "sklearn/tree/_tree.pxd":201
+/* "sklearn/tree/_tree.pxd":205
  *     cdef np.ndarray _apply_sparse_csr(self, object X)
  * 
  *     cpdef compute_feature_importances(self, normalize=*)             # <<<<<<<<<<<<<<
@@ -1000,14 +1002,11 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Criterion {
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t y_stride;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t min_leaf_samples;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t min_leaf_weight;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *w_cl;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *yw_cl;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *yw_sq;
 };
 
 
-/* "sklearn/tree/_tree.pxd":85
- *     double node_value_right
+/* "sklearn/tree/_tree.pxd":86
+ *     DOUBLE_t* node_value_right   # Value predicted by the right child
  * 
  * cdef class Splitter:             # <<<<<<<<<<<<<<
  *     # The splitter searches in the input space for a feature and a threshold
@@ -1041,7 +1040,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Splitter {
 };
 
 
-/* "sklearn/tree/_tree.pxd":165
+/* "sklearn/tree/_tree.pxd":169
  * 
  * 
  * cdef class Tree:             # <<<<<<<<<<<<<<
@@ -1064,7 +1063,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Tree {
 };
 
 
-/* "sklearn/tree/_tree.pxd":208
+/* "sklearn/tree/_tree.pxd":212
  * # =============================================================================
  * 
  * cdef class TreeBuilder:             # <<<<<<<<<<<<<<
@@ -1168,15 +1167,15 @@ struct __pyx_memoryviewslice_obj {
  */
 
 struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion {
-  void (*init)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t);
-  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*best_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t);
-  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*random_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *);
+  void (*init)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
+  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*best_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
+  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*random_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *);
 };
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *__pyx_vtabptr_7sklearn_4tree_5_tree_Criterion;
 
 
-/* "sklearn/tree/_tree.pxd":85
- *     double node_value_right
+/* "sklearn/tree/_tree.pxd":86
+ *     DOUBLE_t* node_value_right   # Value predicted by the right child
  * 
  * cdef class Splitter:             # <<<<<<<<<<<<<<
  *     # The splitter searches in the input space for a feature and a threshold
@@ -1184,14 +1183,14 @@ static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *__pyx_vtabptr_7s
  */
 
 struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter {
-  void (*init)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, PyObject *, PyArrayObject *, PyArrayObject *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
-  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t);
-  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*split)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t);
+  void (*init)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, PyObject *, PyArrayObject *, PyArrayObject *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
+  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t);
+  struct __pyx_t_7sklearn_4tree_5_tree_SplitRecord (*split)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
 };
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *__pyx_vtabptr_7sklearn_4tree_5_tree_Splitter;
 
 
-/* "sklearn/tree/_tree.pxd":165
+/* "sklearn/tree/_tree.pxd":169
  * 
  * 
  * cdef class Tree:             # <<<<<<<<<<<<<<
@@ -1200,7 +1199,7 @@ static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *__pyx_vtabptr_7sk
  */
 
 struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree {
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t (*_add_node)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, int, int, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, double, double, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, double, double);
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t (*_add_node)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, int, int, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, double, double, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, double, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
   void (*_resize)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t);
   int (*_resize_c)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree__resize_c *__pyx_optional_args);
   PyArrayObject *(*_get_value_ndarray)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *);
@@ -1214,7 +1213,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree {
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *__pyx_vtabptr_7sklearn_4tree_5_tree_Tree;
 
 
-/* "sklearn/tree/_tree.pxd":208
+/* "sklearn/tree/_tree.pxd":212
  * # =============================================================================
  * 
  * cdef class TreeBuilder:             # <<<<<<<<<<<<<<
@@ -17888,12 +17887,12 @@ PyMODINIT_FUNC PyInit__gradient_boosting(void)
   __pyx_ptype_5numpy_ufunc = __Pyx_ImportType("numpy", "ufunc", sizeof(PyUFuncObject), 0); if (unlikely(!__pyx_ptype_5numpy_ufunc)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 864; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_Criterion = __Pyx_ImportType("sklearn.tree._tree", "Criterion", sizeof(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_5_tree_Criterion)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_vtabptr_7sklearn_4tree_5_tree_Criterion = (struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_5_tree_Criterion->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_5_tree_Criterion)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_7sklearn_4tree_5_tree_Splitter = __Pyx_ImportType("sklearn.tree._tree", "Splitter", sizeof(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_5_tree_Splitter)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_vtabptr_7sklearn_4tree_5_tree_Splitter = (struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_5_tree_Splitter->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_5_tree_Splitter)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_7sklearn_4tree_5_tree_Tree = __Pyx_ImportType("sklearn.tree._tree", "Tree", sizeof(struct __pyx_obj_7sklearn_4tree_5_tree_Tree), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_5_tree_Tree)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_vtabptr_7sklearn_4tree_5_tree_Tree = (struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_5_tree_Tree->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_5_tree_Tree)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_7sklearn_4tree_5_tree_TreeBuilder = __Pyx_ImportType("sklearn.tree._tree", "TreeBuilder", sizeof(struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_5_tree_TreeBuilder)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_vtabptr_7sklearn_4tree_5_tree_TreeBuilder = (struct __pyx_vtabstruct_7sklearn_4tree_5_tree_TreeBuilder*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_5_tree_TreeBuilder->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_5_tree_TreeBuilder)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_5_tree_Splitter = __Pyx_ImportType("sklearn.tree._tree", "Splitter", sizeof(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_5_tree_Splitter)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_5_tree_Splitter = (struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_5_tree_Splitter->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_5_tree_Splitter)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_5_tree_Tree = __Pyx_ImportType("sklearn.tree._tree", "Tree", sizeof(struct __pyx_obj_7sklearn_4tree_5_tree_Tree), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_5_tree_Tree)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_5_tree_Tree = (struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_5_tree_Tree->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_5_tree_Tree)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_5_tree_TreeBuilder = __Pyx_ImportType("sklearn.tree._tree", "TreeBuilder", sizeof(struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_5_tree_TreeBuilder)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_5_tree_TreeBuilder = (struct __pyx_vtabstruct_7sklearn_4tree_5_tree_TreeBuilder*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_5_tree_TreeBuilder->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_5_tree_TreeBuilder)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   /*--- Execution code ---*/

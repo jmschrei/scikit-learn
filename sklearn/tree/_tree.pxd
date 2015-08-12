@@ -41,17 +41,14 @@ cdef class Criterion:
     cdef SIZE_t min_leaf_samples
     cdef DOUBLE_t min_leaf_weight
 
-    cdef DOUBLE_t* w_cl
-    cdef DOUBLE_t* yw_cl
-    cdef DOUBLE_t* yw_sq
-
     # The criterion object is maintained such that left and right collected
     # statistics correspond to samples[start:pos] and samples[pos:end].
 
     # Methods
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight)
+        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+        DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value)
 
     cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
@@ -142,12 +139,15 @@ cdef class Splitter:
     cdef void init(self, object X, 
                    np.ndarray X_idx_sorted,
                    np.ndarray y,
-                   DOUBLE_t* sample_weight) except *
+                   DOUBLE_t* sample_weight,
+                   DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value)
 
     cdef SplitRecord _split(self, SIZE_t start, SIZE_t end,
-        SIZE_t feature, SIZE_t best) nogil
+        SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq, DOUBLE_t* node_value, 
+        SIZE_t best) nogil
 
-    cdef SplitRecord split(self, SIZE_t start, SIZE_t end) nogil
+    cdef SplitRecord split(self, SIZE_t start, SIZE_t end, DOUBLE_t w_sum, 
+        DOUBLE_t yw_sq, DOUBLE_t* node_value) nogil
 
 
 # =============================================================================

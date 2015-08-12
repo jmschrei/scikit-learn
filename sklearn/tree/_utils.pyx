@@ -45,7 +45,7 @@ cdef class Stack:
 
     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,
                   bint is_left, DOUBLE_t impurity, DOUBLE_t weight,
-                  DOUBLE_t* node_value) nogil:
+                  DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
         """Push a new element onto the stack.
 
         Returns 0 if successful; -1 on out of memory error.
@@ -71,6 +71,7 @@ cdef class Stack:
         stack[top].is_left = is_left
         stack[top].impurity = impurity
         stack[top].weight = weight
+        stack[top].yw_sq_sum = yw_sq_sum
         stack[top].node_value = node_value
 
         # Increment stack pointer
