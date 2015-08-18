@@ -1091,14 +1091,14 @@ cdef class BestSplitter(BaseDenseSplitter):
 
         cdef SplitRecord best, current
 
-        cdef SIZE_t f_i = n_features
+        cdef SIZE_t f_i = n_features, i = 0
         cdef SIZE_t f_j, p, tmp
         cdef SIZE_t n_visited_features = 0
         # Number of features discovered to be constant during the split search
         cdef SIZE_t n_found_constants = 0
         # Number of features known to be constant and drawn without replacement
         cdef SIZE_t n_drawn_constants = 0
-        cdef SIZE_t n_known_constants = n_constant_features[0]
+        cdef SIZE_t n_known_constants = 0
         # n_total_constants = n_known_constants + n_found_constants
         cdef SIZE_t n_total_constants = n_known_constants
         cdef DTYPE_t current_feature_value
@@ -1115,14 +1115,8 @@ cdef class BestSplitter(BaseDenseSplitter):
         # for good splitting) by ancestor nodes and save the information on
         # newly discovered constant features to spare computation on descendant
         # nodes.
-        while (f_i > n_total_constants and  # Stop early if remaining features
-                                            # are constant
-                (n_visited_features < max_features or
-                 # At least one drawn features must be non constant
-                 n_visited_features <= n_found_constants + n_drawn_constants)):
-
-            n_visited_features += 1
-
+        while n_visited_features < max_features and i < n_features:
+            i += 1
             # Loop invariant: elements of features in
             # - [:n_drawn_constant[ holds drawn and known constant features;
             # - [n_drawn_constant:n_known_constant[ holds known constant
@@ -1138,83 +1132,60 @@ cdef class BestSplitter(BaseDenseSplitter):
             f_j = rand_int(n_drawn_constants, f_i - n_found_constants,
                            random_state)
 
-            if f_j < n_known_constants:
-                # f_j in the interval [n_drawn_constants, n_known_constants[
-                tmp = features[f_j]
-                features[f_j] = features[n_drawn_constants]
-                features[n_drawn_constants] = tmp
+            n_visited_features += 1
+            current.feature = features[f_j]
 
-                n_drawn_constants += 1
+            for p in range(start, end):
+                Xf[p] = X[X_sample_stride * samples[p] +
+                          X_fx_stride * current.feature]
 
-            else:
-                # f_j in the interval [n_known_constants, f_i - n_found_constants[
-                f_j += n_found_constants
-                # f_j in the interval [n_total_constants, f_i[
+            sort(Xf + start, samples + start, end - start)
 
-                current.feature = features[f_j]
+            if Xf[end - 1] > Xf[start] + FEATURE_THRESHOLD:
+                f_i -= 1
+                features[f_i], features[f_j] = features[f_j], features[f_i]
 
-                # Sort samples along that feature; first copy the feature
-                # values for the active samples into Xf, s.t.
-                # Xf[i] == X[samples[i], j], so the sort uses the cache more
-                # effectively.
-                for p in range(start, end):
-                    Xf[p] = X[X_sample_stride * samples[p] +
-                              X_fx_stride * current.feature]
+                # Evaluate all splits
+                self.criterion.reset()
+                p = start
 
-                sort(Xf + start, samples + start, end - start)
-
-                if Xf[end - 1] <= Xf[start] + FEATURE_THRESHOLD:
-                    features[f_j] = features[n_total_constants]
-                    features[n_total_constants] = current.feature
-
-                    n_found_constants += 1
-                    n_total_constants += 1
-
-                else:
-                    f_i -= 1
-                    features[f_i], features[f_j] = features[f_j], features[f_i]
-
-                    # Evaluate all splits
-                    self.criterion.reset()
-                    p = start
-
-                    while p < end:
-                        while (p + 1 < end and
-                               Xf[p + 1] <= Xf[p] + FEATURE_THRESHOLD):
-                            p += 1
-
-                        # (p + 1 >= end) or (X[samples[p + 1], current.feature] >
-                        #                    X[samples[p], current.feature])
+                while p < end:
+                    while (p + 1 < end and
+                           Xf[p + 1] <= Xf[p] + FEATURE_THRESHOLD):
                         p += 1
-                        # (p >= end) or (X[samples[p], current.feature] >
-                        #                X[samples[p - 1], current.feature])
 
-                        if p < end:
-                            current.pos = p
+                    # (p + 1 >= end) or (X[samples[p + 1], current.feature] >
+                    #                    X[samples[p], current.feature])
+                    p += 1
+                    # (p >= end) or (X[samples[p], current.feature] >
+                    #                X[samples[p - 1], current.feature])
 
-                            # Reject if min_samples_leaf is not guaranteed
-                            if (((current.pos - start) < min_samples_leaf) or
-                                    ((end - current.pos) < min_samples_leaf)):
-                                continue
+                    if p < end:
+                        current.pos = p
 
-                            self.criterion.update(current.pos)
+                        # Reject if min_samples_leaf is not guaranteed
+                        if (((current.pos - start) < min_samples_leaf) or
+                                ((end - current.pos) < min_samples_leaf)):
+                            continue
 
-                            # Reject if min_weight_leaf is not satisfied
-                            if ((self.criterion.weighted_n_left < min_weight_leaf) or
-                                    (self.criterion.weighted_n_right < min_weight_leaf)):
-                                continue
+                        self.criterion.update(current.pos)
 
-                            current.improvement = self.criterion.impurity_improvement(impurity)
+                        # Reject if min_weight_leaf is not satisfied
+                        if ((self.criterion.weighted_n_left < min_weight_leaf) or
+                                (self.criterion.weighted_n_right < min_weight_leaf)):
+                            continue
 
-                            if current.improvement > best.improvement:
-                                self.criterion.children_impurity(&current.impurity_left,
-                                                                 &current.impurity_right)
-                                current.threshold = (Xf[p - 1] + Xf[p]) / 2.0
+                        current.improvement = self.criterion.impurity_improvement(impurity)
 
-                                if current.threshold == Xf[p]:
-                                    current.threshold = Xf[p - 1]
+                        if current.improvement > best.improvement:
+                            self.criterion.children_impurity(&current.impurity_left,
+                                                             &current.impurity_right)
+                            current.threshold = (Xf[p - 1] + Xf[p]) / 2.0
 
-                                best = current  # copy
+                            if current.threshold == Xf[p]:
+                                current.threshold = Xf[p - 1]
+
+                            best = current  # copy
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
@@ -1236,16 +1207,16 @@ cdef class BestSplitter(BaseDenseSplitter):
         # Respect invariant for constant features: the original order of
         # element in features[:n_known_constants] must be preserved for sibling
         # and child nodes
-        memcpy(features, constant_features, sizeof(SIZE_t) * n_known_constants)
+        #memcpy(features, constant_features, sizeof(SIZE_t) * n_known_constants)
 
         # Copy newly found constant features
-        memcpy(constant_features + n_known_constants,
-               features + n_known_constants,
-               sizeof(SIZE_t) * n_found_constants)
+        #memcpy(constant_features + n_known_constants,
+        #       features + n_known_constants,
+        #       sizeof(SIZE_t) * n_found_constants)
 
         # Return values
         split[0] = best
-        n_constant_features[0] = n_total_constants
+        n_constant_features[0] = 0
 
 
 # Sort n-element arrays pointed to by Xf and samples, simultaneously,
