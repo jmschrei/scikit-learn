@@ -24,6 +24,8 @@ import numpy as np
 cimport numpy as np
 np.import_array()
 
+import time
+
 from scipy.sparse import issparse, csc_matrix, csr_matrix
 
 from sklearn.tree._utils cimport Stack, StackRecord
@@ -1061,6 +1063,13 @@ cdef class BaseDenseSplitter(Splitter):
 
 cdef class BestSplitter(BaseDenseSplitter):
     """Splitter for finding the best split."""
+    cdef DOUBLE_t toc
+    def __cinit__(self, Criterion criterion, SIZE_t max_features,
+                  SIZE_t min_samples_leaf, double min_weight_leaf,
+                  object random_state):
+
+        self.toc = 0
+
     def __reduce__(self):
         return (BestSplitter, (self.criterion,
                                self.max_features,
@@ -1104,6 +1113,8 @@ cdef class BestSplitter(BaseDenseSplitter):
         cdef DTYPE_t current_feature_value
         cdef SIZE_t partition_end
 
+        cdef DOUBLE_t tic, toc = self.toc
+
         _init_split(&best, end)
 
         # Sample up to max_features without replacement using a
@@ -1117,22 +1128,7 @@ cdef class BestSplitter(BaseDenseSplitter):
         # nodes.
         while n_visited_features < max_features and i < n_features:
             i += 1
-            # Loop invariant: elements of features in
-            # - [:n_drawn_constant[ holds drawn and known constant features;
-            # - [n_drawn_constant:n_known_constant[ holds known constant
-            #   features that haven't been drawn yet;
-            # - [n_known_constant:n_total_constant[ holds newly found constant
-            #   features;
-            # - [n_total_constant:f_i[ holds features that haven't been drawn
-            #   yet and aren't constant apriori.
-            # - [f_i:n_features[ holds features that have been drawn
-            #   and aren't constant.
-
-            # Draw a feature at random
-            f_j = rand_int(n_drawn_constants, f_i - n_found_constants,
-                           random_state)
-
-            n_visited_features += 1
+            f_j = rand_int(n_drawn_constants, i, random_state)
             current.feature = features[f_j]
 
             for p in range(start, end):
@@ -1142,9 +1138,12 @@ cdef class BestSplitter(BaseDenseSplitter):
             sort(Xf + start, samples + start, end - start)
 
             if Xf[end - 1] > Xf[start] + FEATURE_THRESHOLD:
+                n_visited_features += 1
                 f_i -= 1
                 features[f_i], features[f_j] = features[f_j], features[f_i]
 
+                with gil:
+                    tic = time.time()
                 # Evaluate all splits
                 self.criterion.reset()
                 p = start
@@ -1187,6 +1186,13 @@ cdef class BestSplitter(BaseDenseSplitter):
 
                             best = current  # copy
 
+                with gil:
+                    toc += time.time() - tic
+
+        with gil:
+            print toc
+        self.toc = toc
+
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
             partition_end = end
@@ -1204,17 +1210,6 @@ cdef class BestSplitter(BaseDenseSplitter):
                     samples[partition_end] = samples[p]
                     samples[p] = tmp
 
-        # Respect invariant for constant features: the original order of
-        # element in features[:n_known_constants] must be preserved for sibling
-        # and child nodes
-        #memcpy(features, constant_features, sizeof(SIZE_t) * n_known_constants)
-
-        # Copy newly found constant features
-        #memcpy(constant_features + n_known_constants,
-        #       features + n_known_constants,
-        #       sizeof(SIZE_t) * n_found_constants)
-
-        # Return values
         split[0] = best
         n_constant_features[0] = 0
 
