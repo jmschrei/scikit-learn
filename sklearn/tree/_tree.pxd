@@ -101,7 +101,6 @@ cdef class Splitter:
 
     cdef SIZE_t* samples                 # Sample indices in X, y
     cdef SIZE_t n_samples
-    cdef SIZE_t* sample_mask
     cdef SIZE_t* features                # Feature indices in X
     cdef SIZE_t n_features               # X.shape[1]
 
@@ -109,11 +108,8 @@ cdef class Splitter:
     cdef SIZE_t y_stride
     cdef DOUBLE_t* sample_weight
 
-    cdef np.ndarray X_idx_sorted
-    cdef INT32_t* X_idx_sorted_ptr
-    cdef SIZE_t X_idx_sorted_stride
-
     cdef DTYPE_t* X
+    cdef DTYPE_t* X_i
     cdef SIZE_t X_sample_stride
     cdef SIZE_t X_feature_stride
 
@@ -136,10 +132,7 @@ cdef class Splitter:
     # This allows optimization with depth-based tree building.
 
     # Methods
-    cdef void init(self, object X, 
-                   np.ndarray X_idx_sorted,
-                   np.ndarray y,
-                   DOUBLE_t* sample_weight,
+    cdef void init(self, object X, np.ndarray y, DOUBLE_t* sample_weight,
                    DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value)
 
     cdef SplitRecord _split(self, SIZE_t start, SIZE_t end,
@@ -225,6 +218,5 @@ cdef class TreeBuilder:
     cdef SIZE_t max_depth           # Maximal tree depth
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
-                np.ndarray sample_weight,
-                np.ndarray X_idx_sorted)
+                np.ndarray sample_weight)
     cdef _check_input(self, object X, np.ndarray y, np.ndarray sample_weight)

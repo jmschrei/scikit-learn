@@ -276,10 +276,6 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         min_samples_split = max(self.min_samples_split,
                                 2 * self.min_samples_leaf)
 
-        if X_idx_sorted is None:
-            X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0),
-                                             dtype=np.int32)
-
         # Build tree
         criterion = self.criterion
         if not isinstance(criterion, Criterion):
@@ -317,7 +313,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         #                                   max_depth,
         #                                   max_leaf_nodes)
 
-        builder.build(self.tree_, X, y, sample_weight, X_idx_sorted)
+        builder.build(self.tree_, X, y, sample_weight)
 
         if self.n_outputs_ == 1:
             self.n_classes_ = self.n_classes_[0]

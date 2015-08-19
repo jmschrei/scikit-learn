@@ -1134,7 +1134,6 @@ cdef class Splitter:
         self.samples = NULL
         self.n_samples = 0
         self.sample_weight = NULL
-        self.sample_mask = NULL
 
         self.features = NULL
         self.n_features = 0
@@ -1147,10 +1146,8 @@ cdef class Splitter:
         self.min_weight_leaf = min_weight_leaf
         self.random_state = random_state
 
-        self.X_idx_sorted_ptr = NULL
-        self.X_idx_sorted_stride = 0
-
         self.X = NULL
+        self.X_i = NULL
         self.X_feature_stride = 1
         self.X_sample_stride = 1
 
@@ -1161,7 +1158,7 @@ cdef class Splitter:
 
         free(self.samples)
         free(self.features)
-        free(self.sample_mask)
+        free(self.X_i)
 
     def __getstate__(self):
         return {}
@@ -1170,7 +1167,6 @@ cdef class Splitter:
         pass
 
     cdef void init(self, object X,
-                   np.ndarray[INT32_t, ndim=2] X_idx_sorted,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight, DOUBLE_t* w_sum,
                    DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
@@ -1224,7 +1220,6 @@ cdef class DenseSplitter(Splitter):
                                 self.random_state), self.__getstate__() )
 
     cdef void init(self, object X,
-                   np.ndarray[INT32_t, ndim=2] X_idx_sorted,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight, DOUBLE_t* w_sum,
                    DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
@@ -1234,10 +1229,7 @@ cdef class DenseSplitter(Splitter):
 
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         self.n_samples = X.shape[0]
-        
         safe_realloc(&self.samples, self.n_samples)
-        safe_realloc(&self.sample_mask, self.n_samples)
-        memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
 
         cdef SIZE_t i, j = 0
         # In order to only use positively weighted samples, we must go through
@@ -1263,13 +1255,10 @@ cdef class DenseSplitter(Splitter):
 
         cdef np.ndarray X_ndarray = X
         self.X = <DTYPE_t*> X_ndarray.data
+        safe_realloc(&self.X_i, self.n_samples)
+
         self.X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
         self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
-
-        self.X_idx_sorted = X_idx_sorted
-        self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
-        self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
-                                       <SIZE_t> self.X_idx_sorted.itemsize)
 
         self.criterion.init(self.X, self.X_sample_stride, 
             self.X_feature_stride, self.y, self.y_stride,
@@ -1288,34 +1277,26 @@ cdef class DenseSplitter(Splitter):
         """
 
         cdef DTYPE_t* X = self.X
+        cdef DTYPE_t* X_i = self.X_i
         cdef SIZE_t X_sample_stride = self.X_sample_stride
         cdef SIZE_t X_feature_stride = self.X_feature_stride
-        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
-        cdef SIZE_t X_idx_sorted_stride = self.X_idx_sorted_stride
-        cdef SIZE_t* sample_mask = self.sample_mask
-        cdef SIZE_t* samples
+        cdef SIZE_t* samples = self.samples
         cdef UINT32_t* random_state = &self.rand_r_state
 
-        if self.n_jobs == 1:
-            samples = self.samples
-        else:
-            samples =  <SIZE_t*> calloc(self.n_samples, sizeof(SIZE_t))
-
         cdef SIZE_t i, j, p = start
-        cdef SIZE_t feature_offset = X_idx_sorted_stride * feature
+        cdef SIZE_t feature_offset = X_feature_stride * feature
         
         cdef SplitRecord split
-        cdef SIZE_t curr, next
+        cdef SIZE_t argmax, argmin
 
-        for i in range(self.n_samples): 
-            j = X_idx_sorted[i + feature_offset]
-            if sample_mask[j] == 1:
-                samples[p] = j
-                p += 1
+        for i in range(start, end):
+            X_i[i] = X[X_sample_stride * samples[i] + feature_offset]
 
-        curr = samples[end-1]*X_sample_stride + feature*X_feature_stride
-        next = samples[start]*X_sample_stride + feature*X_feature_stride
-        if X[curr] > X[next] + FEATURE_THRESHOLD:
+        sort(X_i + start, samples + start, end - start)
+
+        argmax = samples[end-1]*X_sample_stride + feature*X_feature_stride
+        argmin = samples[start]*X_sample_stride + feature*X_feature_stride
+        if X[argmax] > X[argmin] + FEATURE_THRESHOLD:
             if best == 1:
                 split = self.criterion.best_split(samples, start, end, feature, w_sum, yw_sq_sum, node_value)
             else:
@@ -1324,8 +1305,6 @@ cdef class DenseSplitter(Splitter):
         else:
             _init_split_record(&split)
 
-        if self.n_jobs != 1:
-            free(samples)
 
         return split
 
@@ -1335,7 +1314,6 @@ cdef class DenseSplitter(Splitter):
 
         cdef SIZE_t* features = self.features
         cdef SIZE_t* samples = self.samples
-        cdef SIZE_t* sample_mask = self.sample_mask
 
         cdef DTYPE_t* X = self.X
         cdef SIZE_t X_sample_stride = self.X_sample_stride
@@ -1348,10 +1326,6 @@ cdef class DenseSplitter(Splitter):
 
         cdef SplitRecord best, current
         _init_split_record(&best)
-
-        # Set a mask to indicate which samples we are considering.
-        for p in range(start, end):
-            sample_mask[samples[p]] = 1
 
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm. To allow for parallelism,
@@ -1399,11 +1373,116 @@ cdef class DenseSplitter(Splitter):
                     samples[partition_end] = samples[p]
                     samples[p] = tmp
 
-        # Reset sample mask
-        for p in range(start, end):
-            sample_mask[samples[p]] = 0
-
         return best
+
+# Sort n-element arrays pointed to by Xf and samples, simultaneously,
+# by the values in Xf. Algorithm: Introsort (Musser, SP&E, 1997).
+cdef inline void sort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
+    cdef int maxd = 2 * <int>log(n)
+    introsort(Xf, samples, n, maxd)
+
+
+cdef inline void swap(DTYPE_t* Xf, SIZE_t* samples, SIZE_t i, SIZE_t j) nogil:
+    # Helper for sort
+    Xf[i], Xf[j] = Xf[j], Xf[i]
+    samples[i], samples[j] = samples[j], samples[i]
+
+
+cdef inline DTYPE_t median3(DTYPE_t* Xf, SIZE_t n) nogil:
+    # Median of three pivot selection, after Bentley and McIlroy (1993).
+    # Engineering a sort function. SP&E. Requires 8/3 comparisons on average.
+    cdef DTYPE_t a = Xf[0], b = Xf[n / 2], c = Xf[n - 1]
+    if a < b:
+        if b < c:
+            return b
+        elif a < c:
+            return c
+        else:
+            return a
+    elif b < c:
+        if a < c:
+            return a
+        else:
+            return c
+    else:
+        return b
+
+
+# Introsort with median of 3 pivot selection and 3-way partition function
+# (robust to repeated elements, e.g. lots of zero features).
+cdef void introsort(DTYPE_t* Xf, SIZE_t *samples, SIZE_t n, int maxd) nogil:
+    cdef DTYPE_t pivot
+    cdef SIZE_t i, l, r
+
+    while n > 1:
+        if maxd <= 0:   # max depth limit exceeded ("gone quadratic")
+            heapsort(Xf, samples, n)
+            return
+        maxd -= 1
+
+        pivot = median3(Xf, n)
+
+        # Three-way partition.
+        i = l = 0
+        r = n
+        while i < r:
+            if Xf[i] < pivot:
+                swap(Xf, samples, i, l)
+                i += 1
+                l += 1
+            elif Xf[i] > pivot:
+                r -= 1
+                swap(Xf, samples, i, r)
+            else:
+                i += 1
+
+        introsort(Xf, samples, l, maxd)
+        Xf += r
+        samples += r
+        n -= r
+
+
+cdef inline void sift_down(DTYPE_t* Xf, SIZE_t* samples,
+                           SIZE_t start, SIZE_t end) nogil:
+    # Restore heap order in Xf[start:end] by moving the max element to start.
+    cdef SIZE_t child, maxind, root
+
+    root = start
+    while True:
+        child = root * 2 + 1
+
+        # find max of root, left child, right child
+        maxind = root
+        if child < end and Xf[maxind] < Xf[child]:
+            maxind = child
+        if child + 1 < end and Xf[maxind] < Xf[child + 1]:
+            maxind = child + 1
+
+        if maxind == root:
+            break
+        else:
+            swap(Xf, samples, root, maxind)
+            root = maxind
+
+
+cdef void heapsort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
+    cdef SIZE_t start, end
+
+    # heapify
+    start = (n - 2) / 2
+    end = n
+    while True:
+        sift_down(Xf, samples, start, end)
+        if start == 0:
+            break
+        start -= 1
+
+    # sort by shrinking the heap, putting the max element immediately after it
+    end = n - 1
+    while end > 0:
+        swap(Xf, samples, 0, end)
+        sift_down(Xf, samples, 0, end)
+        end = end - 1
 
 '''
 cdef inline void extract_nnz_index_to_samples(INT32_t* X_indices,
@@ -2140,8 +2219,7 @@ cdef class TreeBuilder:
     """Interface for different tree building strategies. """
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
-                np.ndarray sample_weight,
-                np.ndarray X_idx_sorted):
+                np.ndarray sample_weight):
         """Build a decision tree from the training set (X, y)."""
         pass
 
@@ -2188,8 +2266,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         self.max_depth = max_depth
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
-                np.ndarray sample_weight,
-                np.ndarray X_idx_sorted):
+                np.ndarray sample_weight):
         """Build a decision tree from the training set (X, y)."""
         X, y, sample_weight = self._check_input(X, y, sample_weight)
 
@@ -2219,7 +2296,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef SplitRecord split
 
         cdef DOUBLE_t w_sum = 0, yw_sq_sum = 0
-        splitter.init(X, X_idx_sorted, y, sample_weight_ptr, &w_sum, &yw_sq_sum, &node_value)
+        splitter.init(X, y, sample_weight_ptr, &w_sum, &yw_sq_sum, &node_value)
         cdef SIZE_t n_node_samples = splitter.n_samples
 
         cdef double threshold, impurity = INFINITY 
