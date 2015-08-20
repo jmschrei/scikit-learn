@@ -259,8 +259,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         n_more_estimators = self.n_estimators - len(self.estimators_)
 
-        X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0),
-                                             dtype=np.int32)
+        X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0), dtype=np.int32)
 
         if n_more_estimators < 0:
             raise ValueError('n_estimators=%d must be larger or equal to '

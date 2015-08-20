@@ -32,7 +32,7 @@ cdef class Criterion:
 
     cdef DTYPE_t* X  
     cdef DOUBLE_t* y                             
-    cdef DOUBLE_t* w               
+    cdef DOUBLE_t* w            
 
     cdef SIZE_t X_sample_stride    
     cdef SIZE_t X_feature_stride
@@ -136,11 +136,10 @@ cdef class Splitter:
     # This allows optimization with depth-based tree building.
 
     # Methods
-    cdef void init(self, object X, 
-                   np.ndarray X_idx_sorted,
-                   np.ndarray y,
-                   DOUBLE_t* sample_weight,
-                   DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value)
+    cdef void init(self, object X, np.ndarray X_idx_sorted, np.ndarray y,
+                   DOUBLE_t* sample_weight, DOUBLE_t* w_sum, 
+                   DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value, 
+                   SIZE_t* n_node_samples)
 
     cdef SplitRecord _split(self, SIZE_t start, SIZE_t end,
         SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq, DOUBLE_t* node_value, 

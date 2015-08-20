@@ -30,7 +30,7 @@ from ..utils.validation import NotFittedError
 
 
 from ._tree import Criterion
-from ._tree import Splitter, DenseSplitter
+from ._tree import Splitter
 from ._tree import DepthFirstTreeBuilder
 from ._tree import Tree
 from . import _tree
@@ -49,7 +49,7 @@ DTYPE = _tree.DTYPE
 DOUBLE = _tree.DOUBLE
 
 CRITERIA_CLF = {"gini": _tree.Gini, "entropy": _tree.Entropy}
-CRITERIA_REG = {"mse": _tree.MSE, "friedman_mse": _tree.FriedmanMSE}
+CRITERIA_REG = {"mse": _tree.MSE}
 
 
 # =============================================================================
@@ -293,8 +293,8 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         #SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
         splitter = self.splitter
-        if not isinstance(self.splitter, DenseSplitter):
-            splitter = DenseSplitter(criterion,
+        if not isinstance(self.splitter, Splitter):
+            splitter = Splitter(criterion,
                                      self.max_features_,
                                      self.min_samples_leaf,
                                      min_weight_leaf,
