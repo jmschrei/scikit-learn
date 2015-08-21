@@ -98,7 +98,8 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         self.tree_ = None
         self.max_features_ = None
 
-    def fit(self, X, y, sample_weight=None, check_input=True, X_idx_sorted=None):
+    def fit(self, X, y, sample_weight=None, check_input=True, presort=False,
+        X_idx_sorted=None):
         """Build a decision tree from the training set (X, y).
 
         Parameters
@@ -123,6 +124,13 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         check_input : boolean, (default=True)
             Allow to bypass several input checking.
             Don't use this parameter unless you know what you do.
+
+        presort : boolean (default='auto')
+            Presort the dataset. If X_idx_sorted has been passed in, use that.
+            If X_idx_sorted has been passed in but presort = False, do not
+            use it. If X_idx_sorted has not been passed in, but presort = True,
+            presort the dataset. Presorting works well with small trees and
+            small datasets.
 
         X_idx_sorted : array-like, shape = [n_samples, n_features]
             The indexes of the sorted training input samples. If many tree
@@ -276,9 +284,10 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         min_samples_split = max(self.min_samples_split,
                                 2 * self.min_samples_leaf)
 
-        if X_idx_sorted is None:
+        if X_idx_sorted is None and presort == True:
             X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0),
                                              dtype=np.int32)
+
 
         # Build tree
         criterion = self.criterion
@@ -317,7 +326,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         #                                   max_depth,
         #                                   max_leaf_nodes)
 
-        builder.build(self.tree_, X, y, sample_weight, X_idx_sorted)
+        builder.build(self.tree_, X, y, sample_weight, presort, X_idx_sorted)
 
         if self.n_outputs_ == 1:
             self.n_classes_ = self.n_classes_[0]

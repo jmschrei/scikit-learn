@@ -36,7 +36,6 @@ from sklearn.tree import ExtraTreeClassifier
 from sklearn.tree import ExtraTreeRegressor
 
 from sklearn import tree
-from sklearn.tree.tree import SPARSE_SPLITTERS
 from sklearn.tree._tree import TREE_LEAF
 from sklearn import datasets
 
@@ -65,7 +64,7 @@ ALL_TREES.update(CLF_TREES)
 ALL_TREES.update(REG_TREES)
 
 SPARSE_TREES = [name for name, Tree in ALL_TREES.items()
-                if Tree().splitter in SPARSE_SPLITTERS]
+                if Tree().splitter is 'Sparse']
 
 
 X_small = np.array([
@@ -765,7 +764,7 @@ def test_memory_layout():
         y = iris.target
         assert_array_equal(est.fit(X, y).predict(X), y)
 
-        if est.splitter in SPARSE_SPLITTERS:
+        if est.splitter is 'Sparse':
             # csr matrix
             X = csr_matrix(iris.data, dtype=dtype)
             y = iris.target
@@ -1266,7 +1265,7 @@ def check_min_weight_leaf_split_level(name):
     sample_weight = [0.2, 0.2, 0.2, 0.2, 0.2]
     _check_min_weight_leaf_split_level(TreeEstimator, X, y, sample_weight)
 
-    if TreeEstimator().splitter in SPARSE_SPLITTERS:
+    if TreeEstimator().splitter is 'Sparse':
         _check_min_weight_leaf_split_level(TreeEstimator, csc_matrix(X), y,
                                            sample_weight)
 

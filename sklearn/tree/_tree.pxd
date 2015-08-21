@@ -114,10 +114,12 @@ cdef class Splitter:
     cdef SIZE_t X_idx_sorted_stride
 
     cdef DTYPE_t* X
+    cdef DTYPE_t* X_i
     cdef SIZE_t X_sample_stride
     cdef SIZE_t X_feature_stride
 
     cdef SIZE_t best
+    cdef bint presort
 
     # The samples vector `samples` is maintained by the Splitter object such
     # that the samples contained in a node are contiguous. With this setting,
@@ -136,8 +138,8 @@ cdef class Splitter:
     # This allows optimization with depth-based tree building.
 
     # Methods
-    cdef void init(self, object X, np.ndarray X_idx_sorted, np.ndarray y,
-                   DOUBLE_t* sample_weight, DOUBLE_t* w_sum, 
+    cdef void init(self, object X, np.ndarray X_idx_sorted, bint presort,
+                   np.ndarray y, DOUBLE_t* sample_weight, DOUBLE_t* w_sum, 
                    DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value, 
                    SIZE_t* n_node_samples)
 
@@ -224,6 +226,6 @@ cdef class TreeBuilder:
     cdef SIZE_t max_depth           # Maximal tree depth
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
-                np.ndarray sample_weight,
+                np.ndarray sample_weight, bint presort,
                 np.ndarray X_idx_sorted)
     cdef _check_input(self, object X, np.ndarray y, np.ndarray sample_weight)

@@ -90,7 +90,7 @@ def _generate_unsampled_indices(random_state, n_samples):
     return unsampled_indices
 
 def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
-                          X_idx_sorted, verbose=0, class_weight=None):
+                          presort, X_idx_sorted, verbose=0, class_weight=None):
     """Private function used to fit a single tree in parallel."""
     if verbose > 1:
         print("building tree %d of %d" % (tree_idx + 1, n_trees))
@@ -113,10 +113,10 @@ def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
         elif class_weight == 'balanced_subsample':
             curr_sample_weight *= compute_sample_weight('balanced', y, indices)
         tree.fit(X, y, sample_weight=curr_sample_weight, check_input=False, 
-            X_idx_sorted=X_idx_sorted)
+            presort=presort, X_idx_sorted=X_idx_sorted)
     else:
         tree.fit(X, y, sample_weight=sample_weight, check_input=False,
-            X_idx_sorted=X_idx_sorted)
+            presort=presort, X_idx_sorted=X_idx_sorted)
 
     return tree
 
@@ -183,7 +183,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         return np.array(results).T
 
-    def fit(self, X, y, sample_weight=None):
+    def fit(self, X, y, sample_weight=None, presort=False):
         """Build a forest of trees from the training set (X, y).
 
         Parameters
@@ -203,6 +203,11 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             ignored while searching for a split in each node. In the case of
             classification, splits are also ignored if they would result in any
             single class carrying a negative weight in either child node.
+
+        presort : boolean (default=False)
+            Presort the dataset. Presorting works well with small trees and
+            small datasets, but can take significantly longer with bigger
+            datasets or deep trees.
 
         Returns
         -------
@@ -259,7 +264,11 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         n_more_estimators = self.n_estimators - len(self.estimators_)
 
-        X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0), dtype=np.int32)
+        if presort:
+            X_idx_sorted = np.asfortranarray(np.argsort(X, axis=0), 
+                dtype=np.int32)
+        else:
+            X_idx_sorted = None
 
         if n_more_estimators < 0:
             raise ValueError('n_estimators=%d must be larger or equal to '
@@ -288,8 +297,8 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             trees = Parallel(n_jobs=self.n_jobs, verbose=self.verbose,
                              backend="threading")(
                 delayed(_parallel_build_trees)(
-                    t, self, X, y, sample_weight, i, len(trees), X_idx_sorted,
-                    verbose=self.verbose, class_weight=self.class_weight)
+                    t, self, X, y, sample_weight, i, len(trees), presort,
+                    X_idx_sorted, self.verbose, self.class_weight)
                 for i, t in enumerate(trees))
 
             # Collect newly grown trees
