@@ -231,8 +231,8 @@ cdef class ClassificationCriterion(Criterion):
             y_stride, w, size, min_leaf_samples, min_leaf_weight,
             w_sum, yw_sq_sum, node_value)
 
-        safe_realloc(&self.yw_cl, self.n*sizeof(DOUBLE_t))
-        safe_realloc(&self.yw_cr, self.n*sizeof(DOUBLE_t))
+        safe_realloc(&self.yw_cl, self.n)
+        safe_realloc(&self.yw_cr, self.n)
 
         cdef SIZE_t i, label
 
@@ -947,6 +947,9 @@ cdef class Splitter:
         free(self.samples)
         free(self.features)
         free(self.sample_mask)
+
+        if self.presort:
+            free(self.X_i)
 
     def __getstate__(self):
         return {}
