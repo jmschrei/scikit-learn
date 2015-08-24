@@ -29,10 +29,7 @@ from ..utils import check_array, check_random_state, compute_sample_weight
 from ..utils.validation import NotFittedError
 
 
-from ._tree import Criterion
-from ._tree import Splitter
-from ._tree import DepthFirstTreeBuilder
-from ._tree import Tree
+from ._tree import Criterion, Splitter, TreeBuilder, Tree
 from . import _tree
 
 __all__ = ["DecisionTreeClassifier",
@@ -313,20 +310,16 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         self.tree_ = Tree(self.n_features_, self.n_classes_, self.n_outputs_)
 
-        # Use BestFirst if max_leaf_nodes given; use DepthFirst otherwise
-        #if max_leaf_nodes < 0:
-        builder = DepthFirstTreeBuilder(splitter, min_samples_split,
-                                            self.min_samples_leaf,
-                                            min_weight_leaf,
-                                            max_depth)
-        #else:
-        #    builder = BestFirstTreeBuilder(splitter, min_samples_split,
-        #                                   self.min_samples_leaf,
-        #                                   min_weight_leaf,
-        #                                   max_depth,
-        #                                   max_leaf_nodes)
+        builder = TreeBuilder(splitter, min_samples_split, 
+            self.min_samples_leaf, min_weight_leaf, max_depth,
+            max_leaf_nodes)
 
-        builder.build(self.tree_, X, y, sample_weight, presort, X_idx_sorted)
+        if max_leaf_nodes < 0:
+            builder.depth_first(self.tree_, X, y, sample_weight, presort, 
+                X_idx_sorted)
+        else:
+            builder.best_first(self.tree_, X, y, sample_weight, presort, 
+                X_idx_sorted)
 
         if self.n_outputs_ == 1:
             self.n_classes_ = self.n_classes_[0]

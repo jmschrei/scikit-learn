@@ -32,7 +32,7 @@ np.import_array()
 from scipy.sparse import issparse, csc_matrix, csr_matrix
 
 from sklearn.tree._utils cimport Stack, StackRecord
-from sklearn.tree._utils cimport PriorityHeap, PriorityHeapRecord
+from sklearn.tree._utils cimport PriorityHeap, SplitRecord
 
 
 
@@ -108,7 +108,7 @@ cdef class Criterion:
 
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+        SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
         """Initialize by passing pointers to the underlying data.
 
@@ -129,7 +129,7 @@ cdef class Criterion:
             next sample.
         w: array-like, dtype=DOUBLE_t
             The weight of each sample
-        size: SIZE_t
+        n_samples: SIZE_t
             The number of data points in the dataset
         min_leaf_samples: SIZE_t
             A constraint on the minimum number of samples a leaf must have
@@ -143,6 +143,7 @@ cdef class Criterion:
 
         self.min_leaf_samples = min_leaf_samples
         self.min_leaf_weight = min_leaf_weight
+        self.n_samples = n_samples
 
         self.X_sample_stride = X_sample_stride
         self.X_feature_stride = X_feature_stride
@@ -223,20 +224,22 @@ cdef class ClassificationCriterion(Criterion):
 
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+        SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
         """Initialize by passing pointers to the underlying data."""
 
         Criterion.init(self, X, X_sample_stride, X_feature_stride, y, 
-            y_stride, w, size, min_leaf_samples, min_leaf_weight,
+            y_stride, w, n_samples, min_leaf_samples, min_leaf_weight,
             w_sum, yw_sq_sum, node_value)
 
-        safe_realloc(&self.yw_cl, self.n)
-        safe_realloc(&self.yw_cr, self.n)
+        self.yw_cl = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
+        self.yw_cr = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
+        memset(self.yw_cl, 0, self.n*sizeof(DOUBLE_t))
+        memset(self.yw_cr, 0, self.n*sizeof(DOUBLE_t))
 
         cdef SIZE_t i, label
 
-        for i in range(size):
+        for i in range(n_samples):
             label = <SIZE_t>y[i]
             w_sum[0] += w[i]
             self.yw_cr[label] += w[i]
@@ -366,6 +369,11 @@ cdef class Entropy(ClassificationCriterion):
                 split.impurity_left = impurity_left / w_cl
                 split.impurity_right = impurity_right / w_cr
 
+        split.improvement = (( 1.0 * n / self.n_samples ) * 
+            split.improvement - 
+            split.weight_left / n * split.impurity_left -
+            split.weight_right / n * split.impurity_right )
+
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
         split.impurity_right /= self.n_outputs
@@ -456,6 +464,11 @@ cdef class Entropy(ClassificationCriterion):
         split.weight = w_sum
         split.weight_left = w_cl
         split.weight_right = w_cr
+
+        split.improvement = (( 1.0 * n / self.n_samples ) * 
+            split.improvement - 
+            split.weight_left / n * split.impurity_left -
+            split.weight_right / n * split.impurity_right )
 
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
@@ -564,6 +577,11 @@ cdef class Gini(ClassificationCriterion):
                 split.impurity_left = 1.-impurity_left/split.weight_left**2
                 split.impurity_right = 1.-impurity_right/split.weight_right**2
 
+        split.improvement = (( 1.0 * n / self.n_samples ) * 
+            split.improvement - 
+            split.weight_left / n * split.impurity_left -
+            split.weight_right / n * split.impurity_right )
+
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
         split.impurity_right /= self.n_outputs
@@ -643,9 +661,6 @@ cdef class Gini(ClassificationCriterion):
             split.impurity_left += yw_cl[i] ** 2.0
             split.impurity_right += yw_cr[i] ** 2.0
 
-        split.improvement = (split.impurity_left / w_cl + 
-            split.impurity_right / w_cr)
-
         for i in range(m):
             split.node_value_left[i] = yw_cl[i]
             split.node_value_right[i] = yw_cr[i]
@@ -656,6 +671,11 @@ cdef class Gini(ClassificationCriterion):
 
         split.impurity_left = 1. - split.impurity_left/split.weight_left**2
         split.impurity_right = 1. - split.impurity_right/split.weight_right**2
+
+        split.improvement = (( 1.0 * n / self.n_samples ) * 
+            split.improvement - 
+            split.weight_left / n * split.impurity_left -
+            split.weight_right / n * split.impurity_right )
 
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
@@ -692,18 +712,19 @@ cdef class RegressionCriterion(Criterion):
 
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+        SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
         """Initialize by passing pointers to the underlying data."""
 
         Criterion.init(self, X, X_sample_stride, X_feature_stride, y, 
-            y_stride, w, size, min_leaf_samples, min_leaf_weight,
+            y_stride, w, n_samples, min_leaf_samples, min_leaf_weight,
             w_sum, yw_sq_sum, node_value)
 
         cdef SIZE_t i
         node_value[0] = <DOUBLE_t*>calloc(1, sizeof(DOUBLE_t))
+        memset(node_value[0], 0, 1*sizeof(DOUBLE_t))
 
-        for i in range(size):
+        for i in range(n_samples):
             w_sum[0] += w[i]
             node_value[0][0] += w[i] *y[i]
             yw_sq_sum[0] += w[i] * y[i] * y[i]
@@ -753,11 +774,6 @@ cdef class MSE(RegressionCriterion):
         split.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
         split.node_value[0] = node_value[0]
 
-        # Now find the best split using sufficient statistics
-        for i in range(n-1):
-            w_cl += w[samples[start+i]]
-            w_cr -= w[samples[start+i]]
-
         w_cl = 0
         w_cr = w_sum
 
@@ -803,6 +819,11 @@ cdef class MSE(RegressionCriterion):
                 split.node_value_right[0] = yw_cr / w_cr
 
         split.feature = feature
+
+        split.improvement = (( 1.0 * n / self.n_samples ) * 
+            split.improvement - 
+            split.weight_left / n * split.impurity_left -
+            split.weight_right / n * split.impurity_right )
 
         if split.pos == -1:
             split.pos = end
@@ -860,13 +881,17 @@ cdef class MSE(RegressionCriterion):
             yw_cr -= w[p] * y[p]
             yw_sq_r -= w[p] * y[p] * y[p]
 
-        split.improvement = yw_cl**2.0 / w_cl + yw_cr**2.0 / w_cr
         split.weight = w_sum 
         split.weight_left = w_cl
         split.weight_right = w_cr
         
         split.impurity_left = yw_sq / w_cl - (yw_cl / w_cl) ** 2.0
         split.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
+
+        split.improvement = (( 1.0 * n / self.n_samples ) * 
+            split.improvement - 
+            split.weight_left / n * split.impurity_left -
+            split.weight_right / n * split.impurity_right )
 
         split.yw_sq_sum = yw_sq_sum
         split.yw_sq_sum_left = yw_sq
@@ -1128,6 +1153,8 @@ cdef class Splitter:
                 free(current.node_value_left)
                 free(current.node_value_right)
 
+        best.start = start
+        best.end = end
         if best.pos == -1:
             best.pos = end
 
@@ -1266,11 +1293,15 @@ cdef void heapsort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
 cdef class TreeBuilder:
     """Interface for different tree building strategies. """
 
-    cpdef build(self, Tree tree, object X, np.ndarray y,
-                np.ndarray sample_weight, bint presort,
-                np.ndarray X_idx_sorted):
-        """Build a decision tree from the training set (X, y)."""
-        pass
+    def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
+                  SIZE_t min_samples_leaf, double min_weight_leaf,
+                  SIZE_t max_depth, SIZE_t max_leaf_nodes):
+        self.splitter = splitter
+        self.min_samples_split = min_samples_split
+        self.min_samples_leaf = min_samples_leaf
+        self.min_weight_leaf = min_weight_leaf
+        self.max_depth = max_depth
+        self.max_leaf_nodes = max_leaf_nodes
 
     cdef inline _check_input(self, object X, np.ndarray y,
                              np.ndarray sample_weight):
@@ -1301,20 +1332,7 @@ cdef class TreeBuilder:
 
         return X, y, sample_weight
 
-# Depth first builder ---------------------------------------------------------
-cdef class DepthFirstTreeBuilder(TreeBuilder):
-    """Build a decision tree in depth-first fashion."""
-
-    def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
-                  SIZE_t min_samples_leaf, double min_weight_leaf,
-                  SIZE_t max_depth):
-        self.splitter = splitter
-        self.min_samples_split = min_samples_split
-        self.min_samples_leaf = min_samples_leaf
-        self.min_weight_leaf = min_weight_leaf
-        self.max_depth = max_depth
-
-    cpdef build(self, Tree tree, object X, np.ndarray y,
+    cpdef depth_first(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight, bint presort,
                 np.ndarray X_idx_sorted):
         """Build a decision tree from the training set (X, y)."""
@@ -1425,15 +1443,113 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         if rc == -1:
             raise MemoryError()
 
-# Best first builder ----------------------------------------------------------
+    cpdef best_first(self, Tree tree, object X, np.ndarray y,
+                np.ndarray sample_weight, bint presort,
+                np.ndarray X_idx_sorted):
+        """Build a decision tree from the training set (X, y)."""
 
-cdef inline int _add_to_frontier(PriorityHeapRecord* rec,
-                                 PriorityHeap frontier) nogil:
-    """Adds record ``rec`` to the priority queue ``frontier``; returns -1
-    on memory-error. """
-    return frontier.push(rec.node_id, rec.start, rec.end, rec.pos, rec.depth,
-                         rec.is_leaf, rec.improvement, rec.impurity,
-                         rec.impurity_left, rec.impurity_right)
+        X, y, sample_weight = self._check_input(X, y, sample_weight)
+        cdef DOUBLE_t* sample_weight_ptr = <DOUBLE_t*> sample_weight.data
+
+        cdef Splitter splitter = self.splitter
+        cdef SIZE_t max_leaf_nodes = self.max_leaf_nodes
+        cdef SIZE_t min_samples_leaf = self.min_samples_leaf
+        cdef double min_weight_leaf = self.min_weight_leaf
+        cdef SIZE_t min_samples_split = self.min_samples_split
+
+        cdef SIZE_t n_node_samples
+        cdef DOUBLE_t w_sum, yw_sq_sum
+        cdef DOUBLE_t* node_value
+
+        # Recursive partition (without actual recursion)
+        splitter.init(X, X_idx_sorted, presort, y, sample_weight_ptr, &w_sum, 
+            &yw_sq_sum, &node_value, &n_node_samples)
+
+        cdef PriorityHeap frontier = PriorityHeap(INITIAL_STACK_SIZE)
+        cdef SplitRecord parent, split
+
+        cdef SIZE_t max_split_nodes = max_leaf_nodes - 1
+        cdef bint is_leaf
+        cdef SIZE_t max_depth_seen = -1
+        cdef int rc = 0
+
+        # Initial capacity
+        cdef SIZE_t init_capacity = max_split_nodes + max_leaf_nodes
+        tree._resize_c(init_capacity)
+
+        with nogil:
+            split = splitter.split(0, n_node_samples, w_sum, yw_sq_sum, 
+                node_value)
+            split.depth = 0
+            split.parent = _TREE_UNDEFINED
+            split.is_left = 0
+
+            frontier.push(split)
+
+            while not frontier.is_empty():
+                frontier.pop(&parent)
+
+                n_node_samples = parent.end - parent.start
+
+                is_leaf = ((parent.depth >= self.max_depth) or
+                           (n_node_samples < min_samples_split) or
+                           (n_node_samples < 2 * min_samples_leaf) or
+                           (parent.weight <= 2 * min_weight_leaf) or 
+                           (parent.impurity <= MIN_IMPURITY_SPLIT) or
+                           (max_split_nodes <= 0))
+
+                node_id = tree._add_node(parent.parent, parent.is_left, 
+                    is_leaf, parent.feature, parent.threshold, 
+                    parent.impurity, n_node_samples, parent.weight,
+                    parent.node_value) 
+
+                if not is_leaf:
+                    max_split_nodes -= 1
+
+                    if ((parent.impurity_left < MIN_IMPURITY_SPLIT) or 
+                        (max_split_nodes <=0)):
+                        tree._add_node(node_id, 1, 1, 0, 0, 
+                            parent.impurity_left, parent.pos-parent.start, 
+                            parent.weight_left, parent.node_value_left)
+                    else: 
+                        split = splitter.split(parent.start, parent.pos, 
+                            parent.weight_left, parent.yw_sq_sum_left, 
+                            parent.node_value_left)
+
+                        split.is_left = 1
+                        split.parent = node_id
+                        split.depth = parent.depth + 1
+
+                        frontier.push(split)
+
+                    if ((parent.impurity_right < MIN_IMPURITY_SPLIT) or 
+                        (max_split_nodes <=0)):
+                        tree._add_node(node_id, 0, 1, 0, 0, 
+                            parent.impurity_right, parent.end-parent.pos, 
+                            parent.weight_right, parent.node_value_right)
+                    else: 
+                        split = splitter.split(parent.pos, parent.end, 
+                            parent.weight_right, parent.yw_sq_sum_right, 
+                            parent.node_value_right)
+
+                        split.is_left = 0
+                        split.parent = node_id
+                        split.depth = parent.depth + 1
+
+                        frontier.push(split)
+
+                    if split.depth > max_depth_seen:
+                        max_depth_seen = split.depth
+
+            if rc >= 0:
+                rc = tree._resize_c(tree.node_count)
+
+            if rc >= 0:
+                tree.max_depth = max_depth_seen
+
+        if rc == -1:
+            raise MemoryError()
+
 
 # =============================================================================
 # Tree

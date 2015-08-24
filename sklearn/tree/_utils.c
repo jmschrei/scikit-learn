@@ -738,7 +738,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 struct __pyx_t_7sklearn_4tree_6_utils_StackRecord;
-struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord;
+struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord;
 
 /* "sklearn/tree/_utils.pxd":20
  * 
@@ -762,21 +762,32 @@ struct __pyx_t_7sklearn_4tree_6_utils_StackRecord {
 /* "sklearn/tree/_utils.pxd":48
  * 
  * # A record on the frontier for best-first tree growing
- * cdef struct PriorityHeapRecord:             # <<<<<<<<<<<<<<
- *     SIZE_t node_id
- *     SIZE_t start
+ * cdef struct SplitRecord:             # <<<<<<<<<<<<<<
+ *     # Data to track sample split
+ *     SIZE_t parent
  */
-struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord {
-  __pyx_t_7sklearn_4tree_6_utils_SIZE_t node_id;
+struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord {
+  __pyx_t_7sklearn_4tree_6_utils_SIZE_t parent;
+  __pyx_t_7sklearn_4tree_6_utils_SIZE_t depth;
+  __pyx_t_7sklearn_4tree_6_utils_SIZE_t is_left;
+  __pyx_t_7sklearn_4tree_6_utils_SIZE_t feature;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t start;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t end;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t pos;
-  __pyx_t_7sklearn_4tree_6_utils_SIZE_t depth;
-  int is_leaf;
-  double impurity;
-  double impurity_left;
-  double impurity_right;
-  double improvement;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t threshold;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t improvement;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t impurity_left;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t impurity_right;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t impurity;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t weight;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t weight_left;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t weight_right;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t yw_sq_sum;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t yw_sq_sum_left;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t yw_sq_sum_right;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t *node_value;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t *node_value_left;
+  __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t *node_value_right;
 };
 
 /* "sklearn/tree/_utils.pxd":31
@@ -795,8 +806,8 @@ struct __pyx_obj_7sklearn_4tree_6_utils_Stack {
 };
 
 
-/* "sklearn/tree/_utils.pxd":60
- *     double improvement
+/* "sklearn/tree/_utils.pxd":74
+ *     DOUBLE_t* node_value_right   # Value predicted by the right child
  * 
  * cdef class PriorityHeap:             # <<<<<<<<<<<<<<
  *     cdef SIZE_t capacity
@@ -807,7 +818,7 @@ struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap {
   struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap *__pyx_vtab;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t capacity;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t heap_ptr;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *heap_;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *heap_;
 };
 
 
@@ -838,8 +849,8 @@ static struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *__pyx_vtabptr_7skle
 
 struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap {
   int (*is_empty)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *);
-  int (*push)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, double, double, double, double);
-  int (*pop)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *);
+  int (*push)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord);
+  int (*pop)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *);
 };
 static struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap *__pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap;
 
@@ -1120,8 +1131,8 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty(struct __pyx_obj_7skle
 static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_parent, int __pyx_v_is_left, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t __pyx_v_impurity, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t __pyx_v_weight, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t *__pyx_v_node_value); /* proto*/
 static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *__pyx_v_res); /* proto*/
 static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self); /* proto*/
-static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_node_id, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_pos, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, int __pyx_v_is_leaf, double __pyx_v_improvement, double __pyx_v_impurity, double __pyx_v_impurity_left, double __pyx_v_impurity_right); /* proto*/
-static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_v_res); /* proto*/
+static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split); /* proto*/
+static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_v_res); /* proto*/
 
 /* Module declarations from 'cpython.buffer' */
 
@@ -1153,8 +1164,8 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, cha
 /* Module declarations from 'sklearn.tree._utils' */
 static PyTypeObject *__pyx_ptype_7sklearn_4tree_6_utils_Stack = 0;
 static PyTypeObject *__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap = 0;
-static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
-static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
+static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
+static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
 #define __Pyx_MODULE_NAME "sklearn.tree._utils"
 int __pyx_module_is_main_sklearn__tree___utils = 0;
 
@@ -1758,16 +1769,16 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
 /* "sklearn/tree/_utils.pyx":103
  * # =============================================================================
  * 
- * cdef void heapify_up(PriorityHeapRecord* heap, SIZE_t pos) nogil:             # <<<<<<<<<<<<<<
+ * cdef void heapify_up(SplitRecord* heap, SIZE_t pos) nogil:             # <<<<<<<<<<<<<<
  *     """Restore heap invariant parent.improvement > child.improvement from
  *        ``pos`` upwards. """
  */
 
-static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_v_heap, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_pos) {
+static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_v_heap, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_pos) {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_parent_pos;
   int __pyx_t_1;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_2;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_3;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_t_2;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_t_3;
 
   /* "sklearn/tree/_utils.pyx":106
  *     """Restore heap invariant parent.improvement > child.improvement from
@@ -1835,7 +1846,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
   /* "sklearn/tree/_utils.pyx":103
  * # =============================================================================
  * 
- * cdef void heapify_up(PriorityHeapRecord* heap, SIZE_t pos) nogil:             # <<<<<<<<<<<<<<
+ * cdef void heapify_up(SplitRecord* heap, SIZE_t pos) nogil:             # <<<<<<<<<<<<<<
  *     """Restore heap invariant parent.improvement > child.improvement from
  *        ``pos`` upwards. """
  */
@@ -1847,19 +1858,19 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
 /* "sklearn/tree/_utils.pyx":116
  * 
  * 
- * cdef void heapify_down(PriorityHeapRecord* heap, SIZE_t pos,             # <<<<<<<<<<<<<<
+ * cdef void heapify_down(SplitRecord* heap, SIZE_t pos,             # <<<<<<<<<<<<<<
  *                        SIZE_t heap_length) nogil:
  *     """Restore heap invariant parent.improvement > children.improvement from
  */
 
-static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_v_heap, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_pos, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_heap_length) {
+static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_v_heap, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_pos, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_heap_length) {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_left_pos;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_right_pos;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_largest;
   int __pyx_t_1;
   int __pyx_t_2;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_3;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_4;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_t_3;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_t_4;
 
   /* "sklearn/tree/_utils.pyx":120
  *     """Restore heap invariant parent.improvement > children.improvement from
@@ -2001,7 +2012,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   /* "sklearn/tree/_utils.pyx":116
  * 
  * 
- * cdef void heapify_down(PriorityHeapRecord* heap, SIZE_t pos,             # <<<<<<<<<<<<<<
+ * cdef void heapify_down(SplitRecord* heap, SIZE_t pos,             # <<<<<<<<<<<<<<
  *                        SIZE_t heap_length) nogil:
  *     """Restore heap invariant parent.improvement > children.improvement from
  */
@@ -2083,7 +2094,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
  *     def __cinit__(self, SIZE_t capacity):
  *         self.capacity = capacity             # <<<<<<<<<<<<<<
  *         self.heap_ptr = 0
- *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))
+ *         self.heap_ = <SplitRecord*> malloc(capacity * sizeof(SplitRecord))
  */
   __pyx_v_self->capacity = __pyx_v_capacity;
 
@@ -2091,7 +2102,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
  *     def __cinit__(self, SIZE_t capacity):
  *         self.capacity = capacity
  *         self.heap_ptr = 0             # <<<<<<<<<<<<<<
- *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))
+ *         self.heap_ = <SplitRecord*> malloc(capacity * sizeof(SplitRecord))
  *         if self.heap_ == NULL:
  */
   __pyx_v_self->heap_ptr = 0;
@@ -2099,15 +2110,15 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
   /* "sklearn/tree/_utils.pyx":160
  *         self.capacity = capacity
  *         self.heap_ptr = 0
- *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))             # <<<<<<<<<<<<<<
+ *         self.heap_ = <SplitRecord*> malloc(capacity * sizeof(SplitRecord))             # <<<<<<<<<<<<<<
  *         if self.heap_ == NULL:
  *             raise MemoryError()
  */
-  __pyx_v_self->heap_ = ((struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *)malloc((__pyx_v_capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord)))));
+  __pyx_v_self->heap_ = ((struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *)malloc((__pyx_v_capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord)))));
 
   /* "sklearn/tree/_utils.pyx":161
  *         self.heap_ptr = 0
- *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))
+ *         self.heap_ = <SplitRecord*> malloc(capacity * sizeof(SplitRecord))
  *         if self.heap_ == NULL:             # <<<<<<<<<<<<<<
  *             raise MemoryError()
  * 
@@ -2116,7 +2127,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
   if (__pyx_t_1) {
 
     /* "sklearn/tree/_utils.pyx":162
- *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))
+ *         self.heap_ = <SplitRecord*> malloc(capacity * sizeof(SplitRecord))
  *         if self.heap_ == NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
@@ -2204,7 +2215,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty(struct __pyx_o
  *     cdef bint is_empty(self) nogil:
  *         return self.heap_ptr <= 0             # <<<<<<<<<<<<<<
  * 
- *     cdef int push(self, SIZE_t node_id, SIZE_t start, SIZE_t end, SIZE_t pos,
+ *     cdef int push(self, SplitRecord split) nogil:
  */
   __pyx_r = (__pyx_v_self->heap_ptr <= 0);
   goto __pyx_L0;
@@ -2225,69 +2236,69 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty(struct __pyx_o
 /* "sklearn/tree/_utils.pyx":170
  *         return self.heap_ptr <= 0
  * 
- *     cdef int push(self, SIZE_t node_id, SIZE_t start, SIZE_t end, SIZE_t pos,             # <<<<<<<<<<<<<<
- *                   SIZE_t depth, bint is_leaf, double improvement,
- *                   double impurity, double impurity_left,
+ *     cdef int push(self, SplitRecord split) nogil:             # <<<<<<<<<<<<<<
+ *         """Push record on the priority heap.
+ * 
  */
 
-static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_node_id, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_pos, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_depth, int __pyx_v_is_leaf, double __pyx_v_improvement, double __pyx_v_impurity, double __pyx_v_impurity_left, double __pyx_v_impurity_right) {
+static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split) {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_heap_ptr;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_v_heap;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_v_heap;
   int __pyx_r;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_t_1;
   int __pyx_t_2;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_t_3;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":178
+  /* "sklearn/tree/_utils.pyx":175
  *         Returns 0 if successful; -1 on out of memory error.
  *         """
  *         cdef SIZE_t heap_ptr = self.heap_ptr             # <<<<<<<<<<<<<<
- *         cdef PriorityHeapRecord* heap = NULL
+ *         cdef SplitRecord* heap = NULL
  * 
  */
   __pyx_t_1 = __pyx_v_self->heap_ptr;
   __pyx_v_heap_ptr = __pyx_t_1;
 
-  /* "sklearn/tree/_utils.pyx":179
+  /* "sklearn/tree/_utils.pyx":176
  *         """
  *         cdef SIZE_t heap_ptr = self.heap_ptr
- *         cdef PriorityHeapRecord* heap = NULL             # <<<<<<<<<<<<<<
+ *         cdef SplitRecord* heap = NULL             # <<<<<<<<<<<<<<
  * 
  *         # Resize if capacity not sufficient
  */
   __pyx_v_heap = NULL;
 
-  /* "sklearn/tree/_utils.pyx":182
+  /* "sklearn/tree/_utils.pyx":179
  * 
  *         # Resize if capacity not sufficient
  *         if heap_ptr >= self.capacity:             # <<<<<<<<<<<<<<
  *             self.capacity *= 2
- *             heap = <PriorityHeapRecord*> realloc(self.heap_,
+ *             heap = <SplitRecord*> realloc(self.heap_,
  */
   __pyx_t_2 = ((__pyx_v_heap_ptr >= __pyx_v_self->capacity) != 0);
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_utils.pyx":183
+    /* "sklearn/tree/_utils.pyx":180
  *         # Resize if capacity not sufficient
  *         if heap_ptr >= self.capacity:
  *             self.capacity *= 2             # <<<<<<<<<<<<<<
- *             heap = <PriorityHeapRecord*> realloc(self.heap_,
+ *             heap = <SplitRecord*> realloc(self.heap_,
  *                                                  self.capacity *
  */
     __pyx_v_self->capacity = (__pyx_v_self->capacity * 2);
 
-    /* "sklearn/tree/_utils.pyx":184
+    /* "sklearn/tree/_utils.pyx":181
  *         if heap_ptr >= self.capacity:
  *             self.capacity *= 2
- *             heap = <PriorityHeapRecord*> realloc(self.heap_,             # <<<<<<<<<<<<<<
+ *             heap = <SplitRecord*> realloc(self.heap_,             # <<<<<<<<<<<<<<
  *                                                  self.capacity *
- *                                                  sizeof(PriorityHeapRecord))
+ *                                                  sizeof(SplitRecord))
  */
-    __pyx_v_heap = ((struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *)realloc(__pyx_v_self->heap_, (__pyx_v_self->capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord)))));
+    __pyx_v_heap = ((struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *)realloc(__pyx_v_self->heap_, (__pyx_v_self->capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord)))));
 
-    /* "sklearn/tree/_utils.pyx":187
+    /* "sklearn/tree/_utils.pyx":184
  *                                                  self.capacity *
- *                                                  sizeof(PriorityHeapRecord))
+ *                                                  sizeof(SplitRecord))
  *             if heap == NULL:             # <<<<<<<<<<<<<<
  *                 # no free; __dealloc__ handles that
  *                 return -1
@@ -2295,7 +2306,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
     __pyx_t_2 = ((__pyx_v_heap == NULL) != 0);
     if (__pyx_t_2) {
 
-      /* "sklearn/tree/_utils.pyx":189
+      /* "sklearn/tree/_utils.pyx":186
  *             if heap == NULL:
  *                 # no free; __dealloc__ handles that
  *                 return -1             # <<<<<<<<<<<<<<
@@ -2306,7 +2317,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
       goto __pyx_L0;
     }
 
-    /* "sklearn/tree/_utils.pyx":190
+    /* "sklearn/tree/_utils.pyx":187
  *                 # no free; __dealloc__ handles that
  *                 return -1
  *             self.heap_ = heap             # <<<<<<<<<<<<<<
@@ -2318,107 +2329,26 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_utils.pyx":193
+  /* "sklearn/tree/_utils.pyx":190
  * 
  *         # Put element as last element of heap
  *         heap = self.heap_             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].node_id = node_id
- *         heap[heap_ptr].start = start
+ *         heap[heap_ptr] = split
+ * 
  */
   __pyx_t_3 = __pyx_v_self->heap_;
   __pyx_v_heap = __pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":194
+  /* "sklearn/tree/_utils.pyx":191
  *         # Put element as last element of heap
  *         heap = self.heap_
- *         heap[heap_ptr].node_id = node_id             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].start = start
- *         heap[heap_ptr].end = end
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).node_id = __pyx_v_node_id;
-
-  /* "sklearn/tree/_utils.pyx":195
- *         heap = self.heap_
- *         heap[heap_ptr].node_id = node_id
- *         heap[heap_ptr].start = start             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].end = end
- *         heap[heap_ptr].pos = pos
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).start = __pyx_v_start;
-
-  /* "sklearn/tree/_utils.pyx":196
- *         heap[heap_ptr].node_id = node_id
- *         heap[heap_ptr].start = start
- *         heap[heap_ptr].end = end             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].pos = pos
- *         heap[heap_ptr].depth = depth
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).end = __pyx_v_end;
-
-  /* "sklearn/tree/_utils.pyx":197
- *         heap[heap_ptr].start = start
- *         heap[heap_ptr].end = end
- *         heap[heap_ptr].pos = pos             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].depth = depth
- *         heap[heap_ptr].is_leaf = is_leaf
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).pos = __pyx_v_pos;
-
-  /* "sklearn/tree/_utils.pyx":198
- *         heap[heap_ptr].end = end
- *         heap[heap_ptr].pos = pos
- *         heap[heap_ptr].depth = depth             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].is_leaf = is_leaf
- *         heap[heap_ptr].impurity = impurity
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).depth = __pyx_v_depth;
-
-  /* "sklearn/tree/_utils.pyx":199
- *         heap[heap_ptr].pos = pos
- *         heap[heap_ptr].depth = depth
- *         heap[heap_ptr].is_leaf = is_leaf             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].impurity = impurity
- *         heap[heap_ptr].impurity_left = impurity_left
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).is_leaf = __pyx_v_is_leaf;
-
-  /* "sklearn/tree/_utils.pyx":200
- *         heap[heap_ptr].depth = depth
- *         heap[heap_ptr].is_leaf = is_leaf
- *         heap[heap_ptr].impurity = impurity             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].impurity_left = impurity_left
- *         heap[heap_ptr].impurity_right = impurity_right
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).impurity = __pyx_v_impurity;
-
-  /* "sklearn/tree/_utils.pyx":201
- *         heap[heap_ptr].is_leaf = is_leaf
- *         heap[heap_ptr].impurity = impurity
- *         heap[heap_ptr].impurity_left = impurity_left             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].impurity_right = impurity_right
- *         heap[heap_ptr].improvement = improvement
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).impurity_left = __pyx_v_impurity_left;
-
-  /* "sklearn/tree/_utils.pyx":202
- *         heap[heap_ptr].impurity = impurity
- *         heap[heap_ptr].impurity_left = impurity_left
- *         heap[heap_ptr].impurity_right = impurity_right             # <<<<<<<<<<<<<<
- *         heap[heap_ptr].improvement = improvement
- * 
- */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).impurity_right = __pyx_v_impurity_right;
-
-  /* "sklearn/tree/_utils.pyx":203
- *         heap[heap_ptr].impurity_left = impurity_left
- *         heap[heap_ptr].impurity_right = impurity_right
- *         heap[heap_ptr].improvement = improvement             # <<<<<<<<<<<<<<
+ *         heap[heap_ptr] = split             # <<<<<<<<<<<<<<
  * 
  *         # Heapify up
  */
-  (__pyx_v_heap[__pyx_v_heap_ptr]).improvement = __pyx_v_improvement;
+  (__pyx_v_heap[__pyx_v_heap_ptr]) = __pyx_v_split;
 
-  /* "sklearn/tree/_utils.pyx":206
+  /* "sklearn/tree/_utils.pyx":194
  * 
  *         # Heapify up
  *         heapify_up(heap, heap_ptr)             # <<<<<<<<<<<<<<
@@ -2427,7 +2357,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   __pyx_f_7sklearn_4tree_6_utils_heapify_up(__pyx_v_heap, __pyx_v_heap_ptr);
 
-  /* "sklearn/tree/_utils.pyx":209
+  /* "sklearn/tree/_utils.pyx":197
  * 
  *         # Increase element count
  *         self.heap_ptr = heap_ptr + 1             # <<<<<<<<<<<<<<
@@ -2436,12 +2366,12 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   __pyx_v_self->heap_ptr = (__pyx_v_heap_ptr + 1);
 
-  /* "sklearn/tree/_utils.pyx":210
+  /* "sklearn/tree/_utils.pyx":198
  *         # Increase element count
  *         self.heap_ptr = heap_ptr + 1
  *         return 0             # <<<<<<<<<<<<<<
  * 
- *     cdef int pop(self, PriorityHeapRecord* res) nogil:
+ *     cdef int pop(self, SplitRecord* res) nogil:
  */
   __pyx_r = 0;
   goto __pyx_L0;
@@ -2449,9 +2379,9 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   /* "sklearn/tree/_utils.pyx":170
  *         return self.heap_ptr <= 0
  * 
- *     cdef int push(self, SIZE_t node_id, SIZE_t start, SIZE_t end, SIZE_t pos,             # <<<<<<<<<<<<<<
- *                   SIZE_t depth, bint is_leaf, double improvement,
- *                   double impurity, double impurity_left,
+ *     cdef int push(self, SplitRecord split) nogil:             # <<<<<<<<<<<<<<
+ *         """Push record on the priority heap.
+ * 
  */
 
   /* function exit code */
@@ -2459,46 +2389,46 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":212
+/* "sklearn/tree/_utils.pyx":200
  *         return 0
  * 
- *     cdef int pop(self, PriorityHeapRecord* res) nogil:             # <<<<<<<<<<<<<<
+ *     cdef int pop(self, SplitRecord* res) nogil:             # <<<<<<<<<<<<<<
  *         """Remove max element from the heap. """
  *         cdef SIZE_t heap_ptr = self.heap_ptr
  */
 
-static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_v_res) {
+static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_v_res) {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_heap_ptr;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_v_heap;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_v_heap;
   int __pyx_r;
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_t_1;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_t_2;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_t_2;
   int __pyx_t_3;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_4;
-  struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_5;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_t_4;
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_t_5;
 
-  /* "sklearn/tree/_utils.pyx":214
- *     cdef int pop(self, PriorityHeapRecord* res) nogil:
+  /* "sklearn/tree/_utils.pyx":202
+ *     cdef int pop(self, SplitRecord* res) nogil:
  *         """Remove max element from the heap. """
  *         cdef SIZE_t heap_ptr = self.heap_ptr             # <<<<<<<<<<<<<<
- *         cdef PriorityHeapRecord* heap = self.heap_
+ *         cdef SplitRecord* heap = self.heap_
  * 
  */
   __pyx_t_1 = __pyx_v_self->heap_ptr;
   __pyx_v_heap_ptr = __pyx_t_1;
 
-  /* "sklearn/tree/_utils.pyx":215
+  /* "sklearn/tree/_utils.pyx":203
  *         """Remove max element from the heap. """
  *         cdef SIZE_t heap_ptr = self.heap_ptr
- *         cdef PriorityHeapRecord* heap = self.heap_             # <<<<<<<<<<<<<<
+ *         cdef SplitRecord* heap = self.heap_             # <<<<<<<<<<<<<<
  * 
  *         if heap_ptr <= 0:
  */
   __pyx_t_2 = __pyx_v_self->heap_;
   __pyx_v_heap = __pyx_t_2;
 
-  /* "sklearn/tree/_utils.pyx":217
- *         cdef PriorityHeapRecord* heap = self.heap_
+  /* "sklearn/tree/_utils.pyx":205
+ *         cdef SplitRecord* heap = self.heap_
  * 
  *         if heap_ptr <= 0:             # <<<<<<<<<<<<<<
  *             return -1
@@ -2507,7 +2437,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_t_3 = ((__pyx_v_heap_ptr <= 0) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_utils.pyx":218
+    /* "sklearn/tree/_utils.pyx":206
  * 
  *         if heap_ptr <= 0:
  *             return -1             # <<<<<<<<<<<<<<
@@ -2518,7 +2448,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_utils.pyx":221
+  /* "sklearn/tree/_utils.pyx":209
  * 
  *         # Take first element
  *         res[0] = heap[0]             # <<<<<<<<<<<<<<
@@ -2527,7 +2457,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
  */
   (__pyx_v_res[0]) = (__pyx_v_heap[0]);
 
-  /* "sklearn/tree/_utils.pyx":224
+  /* "sklearn/tree/_utils.pyx":212
  * 
  *         # Put last element to the front
  *         heap[0], heap[heap_ptr - 1] = heap[heap_ptr - 1], heap[0]             # <<<<<<<<<<<<<<
@@ -2539,7 +2469,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   (__pyx_v_heap[0]) = __pyx_t_4;
   (__pyx_v_heap[(__pyx_v_heap_ptr - 1)]) = __pyx_t_5;
 
-  /* "sklearn/tree/_utils.pyx":227
+  /* "sklearn/tree/_utils.pyx":215
  * 
  *         # Restore heap invariant
  *         if heap_ptr > 1:             # <<<<<<<<<<<<<<
@@ -2549,7 +2479,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_t_3 = ((__pyx_v_heap_ptr > 1) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_utils.pyx":228
+    /* "sklearn/tree/_utils.pyx":216
  *         # Restore heap invariant
  *         if heap_ptr > 1:
  *             heapify_down(heap, 0, heap_ptr - 1)             # <<<<<<<<<<<<<<
@@ -2561,7 +2491,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   }
   __pyx_L4:;
 
-  /* "sklearn/tree/_utils.pyx":230
+  /* "sklearn/tree/_utils.pyx":218
  *             heapify_down(heap, 0, heap_ptr - 1)
  * 
  *         self.heap_ptr = heap_ptr - 1             # <<<<<<<<<<<<<<
@@ -2570,7 +2500,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
  */
   __pyx_v_self->heap_ptr = (__pyx_v_heap_ptr - 1);
 
-  /* "sklearn/tree/_utils.pyx":232
+  /* "sklearn/tree/_utils.pyx":220
  *         self.heap_ptr = heap_ptr - 1
  * 
  *         return 0             # <<<<<<<<<<<<<<
@@ -2578,10 +2508,10 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_utils.pyx":212
+  /* "sklearn/tree/_utils.pyx":200
  *         return 0
  * 
- *     cdef int pop(self, PriorityHeapRecord* res) nogil:             # <<<<<<<<<<<<<<
+ *     cdef int pop(self, SplitRecord* res) nogil:             # <<<<<<<<<<<<<<
  *         """Remove max element from the heap. """
  *         cdef SIZE_t heap_ptr = self.heap_ptr
  */
@@ -4754,7 +4684,7 @@ static PyTypeObject __pyx_type_7sklearn_4tree_6_utils_PriorityHeap = {
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  "A priority queue implemented as a binary heap.\n\n    The heap invariant is that the impurity improvement of the parent record\n    is larger then the impurity improvement of the children.\n\n    Attributes\n    ----------\n    capacity : SIZE_t\n        The capacity of the heap\n\n    heap_ptr : SIZE_t\n        The water mark of the heap; the heap grows from left to right in the\n        array ``heap_``. The following invariant holds ``heap_ptr < capacity``.\n\n    heap_ : PriorityHeapRecord*\n        The array of heap records. The maximum element is on the left;\n        the heap grows from left to right\n    ", /*tp_doc*/
+  "A priority queue implemented as a binary heap.\n\n    The heap invariant is that the impurity improvement of the parent record\n    is larger then the impurity improvement of the children.\n\n    Attributes\n    ----------\n    capacity : SIZE_t\n        The capacity of the heap\n\n    heap_ptr : SIZE_t\n        The water mark of the heap; the heap grows from left to right in the\n        array ``heap_``. The following invariant holds ``heap_ptr < capacity``.\n\n    heap_ : SplitRecord*\n        The array of heap records. The maximum element is on the left;\n        the heap grows from left to right\n    ", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
@@ -5010,8 +4940,8 @@ PyMODINIT_FUNC PyInit__utils(void)
   __pyx_ptype_7sklearn_4tree_6_utils_Stack = &__pyx_type_7sklearn_4tree_6_utils_Stack;
   __pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap = &__pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap;
   __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.is_empty = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty;
-  __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.push = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, double, double, double, double))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push;
-  __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.pop = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop;
+  __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.push = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push;
+  __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.pop = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop;
   if (PyType_Ready(&__pyx_type_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_6_utils_PriorityHeap.tp_print = 0;
   if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_6_utils_PriorityHeap.tp_dict, __pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}

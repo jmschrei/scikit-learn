@@ -17,6 +17,7 @@ ctypedef np.npy_intp SIZE_t              # Type for indices and counters
 ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
 ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
 
+from sklearn.tree._utils cimport SplitRecord
 
 # =============================================================================
 # Criterion
@@ -40,6 +41,7 @@ cdef class Criterion:
 
     cdef SIZE_t min_leaf_samples
     cdef DOUBLE_t min_leaf_weight
+    cdef SIZE_t n_samples
 
     # The criterion object is maintained such that left and right collected
     # statistics correspond to samples[start:pos] and samples[pos:end].
@@ -47,7 +49,7 @@ cdef class Criterion:
     # Methods
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t size, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+        SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value)
 
     cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
@@ -61,27 +63,6 @@ cdef class Criterion:
 # =============================================================================
 # Splitter
 # =============================================================================
-
-cdef struct SplitRecord:
-    # Data to track sample split
-    SIZE_t feature            # Which feature to split on.
-    SIZE_t pos                # Split samples array at the given position,
-                              # i.e. count of samples below threshold for feature.
-                              # pos is >= end if the node is a leaf.
-    DOUBLE_t threshold          # Threshold to split at.
-    DOUBLE_t improvement        # Impurity improvement given parent node.
-    DOUBLE_t impurity_left      # Impurity of the left split.
-    DOUBLE_t impurity_right     # Impurity of the right split.
-    DOUBLE_t impurity           # Impurity of the current node
-    DOUBLE_t weight             # Weight of the current node
-    DOUBLE_t weight_left        # Weight of the left child
-    DOUBLE_t weight_right       # Weight of the right child
-    DOUBLE_t yw_sq_sum
-    DOUBLE_t yw_sq_sum_left
-    DOUBLE_t yw_sq_sum_right
-    DOUBLE_t* node_value         # Value predicted by this node
-    DOUBLE_t* node_value_left    # Value predicted by the left child
-    DOUBLE_t* node_value_right   # Value predicted by the right child
 
 cdef class Splitter:
     # The splitter searches in the input space for a feature and a threshold
@@ -224,8 +205,15 @@ cdef class TreeBuilder:
     cdef SIZE_t min_samples_leaf    # Minimum number of samples in a leaf
     cdef double min_weight_leaf     # Minimum weight in a leaf
     cdef SIZE_t max_depth           # Maximal tree depth
+    cdef SIZE_t max_leaf_nodes      # Maximal number of leaf nodes the tree
+                                    # can have, used in best first splitting
 
-    cpdef build(self, Tree tree, object X, np.ndarray y,
+    cdef _check_input(self, object X, np.ndarray y, np.ndarray sample_weight)
+
+    cpdef depth_first(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight, bint presort,
                 np.ndarray X_idx_sorted)
-    cdef _check_input(self, object X, np.ndarray y, np.ndarray sample_weight)
+
+    cpdef best_first(self, Tree tree, object X, np.ndarray y,
+                np.ndarray sample_weight, bint presort,
+                np.ndarray X_idx_sorted)
