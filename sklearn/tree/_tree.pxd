@@ -42,6 +42,7 @@ cdef class Criterion:
     cdef SIZE_t min_leaf_samples
     cdef DOUBLE_t min_leaf_weight
     cdef SIZE_t n_samples
+    cdef DOUBLE_t weighted_n_samples
 
     # The criterion object is maintained such that left and right collected
     # statistics correspond to samples[start:pos] and samples[pos:end].

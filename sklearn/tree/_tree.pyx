@@ -249,6 +249,7 @@ cdef class ClassificationCriterion(Criterion):
             node_value[0][i] = self.yw_cr[i]
 
         yw_sq_sum[0] = 0
+        self.weighted_n_samples = w_sum[0]
 
     def __dealloc__(self):
         free(self.yw_cl)
@@ -369,14 +370,13 @@ cdef class Entropy(ClassificationCriterion):
                 split.impurity_left = impurity_left / w_cl
                 split.impurity_right = impurity_right / w_cr
 
-        split.improvement = (( 1.0 * n / self.n_samples ) * 
-            split.improvement - 
-            split.weight_left / n * split.impurity_left -
-            split.weight_right / n * split.impurity_right )
-
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
         split.impurity_right /= self.n_outputs
+
+        split.improvement = (w_sum / self.weighted_n_samples * 
+            (split.impurity - split.weight_left / w_sum * split.impurity_left - 
+                split.weight_right / w_sum * split.impurity_right))
 
         split.feature = feature
         if split.pos == -1:
@@ -454,9 +454,6 @@ cdef class Entropy(ClassificationCriterion):
             if yw_cr[i] > 0:
                 split.impurity_right -= yw_cr[i] / w_cr * log(yw_cr[i] / w_cr)
 
-        split.improvement = (-w_cl * split.impurity_left - 
-            w_cr * split.impurity_right)
-
         for i in range(m):
             split.node_value_left[i] = yw_cl[i]
             split.node_value_right[i] = yw_cr[i]
@@ -465,14 +462,13 @@ cdef class Entropy(ClassificationCriterion):
         split.weight_left = w_cl
         split.weight_right = w_cr
 
-        split.improvement = (( 1.0 * n / self.n_samples ) * 
-            split.improvement - 
-            split.weight_left / n * split.impurity_left -
-            split.weight_right / n * split.impurity_right )
-
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
         split.impurity_right /= self.n_outputs
+
+        split.improvement = (w_sum / self.weighted_n_samples * 
+            (split.impurity - split.weight_left / w_sum * split.impurity_left - 
+                split.weight_right / w_sum * split.impurity_right))
 
         split.feature = feature
         return split
@@ -526,7 +522,7 @@ cdef class Gini(ClassificationCriterion):
             yw_cr[i] = node_value[i]
             split.impurity += yw_cr[i] ** 2
 
-        split.impurity = 1.0 - split.impurity / (w_sum ** 2.0) 
+        split.impurity = 1.0 - split.impurity / w_sum ** 2 
 
         w_cr = w_sum
         w_cl = 0
@@ -574,17 +570,17 @@ cdef class Gini(ClassificationCriterion):
                 split.weight_left = w_cl
                 split.weight_right = w_cr
 
-                split.impurity_left = 1.-impurity_left/split.weight_left**2
-                split.impurity_right = 1.-impurity_right/split.weight_right**2
+                split.impurity_left = 1. - impurity_left / w_cl ** 2
+                split.impurity_right = 1. - impurity_right / w_cr ** 2
 
-        split.improvement = (( 1.0 * n / self.n_samples ) * 
-            split.improvement - 
-            split.weight_left / n * split.impurity_left -
-            split.weight_right / n * split.impurity_right )
 
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
         split.impurity_right /= self.n_outputs
+
+        split.improvement = (w_sum / self.weighted_n_samples * 
+            (split.impurity - split.weight_left / w_sum * split.impurity_left - 
+                split.weight_right / w_sum * split.impurity_right))
 
         split.feature = feature
         if split.pos == -1:
@@ -669,17 +665,16 @@ cdef class Gini(ClassificationCriterion):
         split.weight_left = w_cl
         split.weight_right = w_cr
 
-        split.impurity_left = 1. - split.impurity_left/split.weight_left**2
-        split.impurity_right = 1. - split.impurity_right/split.weight_right**2
-
-        split.improvement = (( 1.0 * n / self.n_samples ) * 
-            split.improvement - 
-            split.weight_left / n * split.impurity_left -
-            split.weight_right / n * split.impurity_right )
+        split.impurity_left = 1. - split.impurity_left / w_cl ** 2
+        split.impurity_right = 1. - split.impurity_right / w_cr ** 2
 
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
         split.impurity_right /= self.n_outputs
+
+        split.improvement = (w_sum / self.weighted_n_samples * 
+            (split.impurity - split.weight_left / w_sum * split.impurity_left - 
+                split.weight_right / w_sum * split.impurity_right))
 
         split.feature = feature
         return split
@@ -730,6 +725,7 @@ cdef class RegressionCriterion(Criterion):
             yw_sq_sum[0] += w[i] * y[i] * y[i]
 
         node_value[0][0] /= w_sum[0]
+        self.weighted_n_samples = w_sum[0]
 
     def __reduce__(self):
         return (RegressionCriterion, (self.n_outputs, self.n_jobs), self.__getstate__())
@@ -820,10 +816,13 @@ cdef class MSE(RegressionCriterion):
 
         split.feature = feature
 
-        split.improvement = (( 1.0 * n / self.n_samples ) * 
-            split.improvement - 
-            split.weight_left / n * split.impurity_left -
-            split.weight_right / n * split.impurity_right )
+        split.impurity /= self.n_outputs
+        split.impurity_left /= self.n_outputs
+        split.impurity_right /= self.n_outputs
+
+        split.improvement = (w_sum / self.weighted_n_samples * 
+            (split.impurity - split.weight_left / w_sum * split.impurity_left - 
+                split.weight_right / w_sum * split.impurity_right))
 
         if split.pos == -1:
             split.pos = end
@@ -888,10 +887,13 @@ cdef class MSE(RegressionCriterion):
         split.impurity_left = yw_sq / w_cl - (yw_cl / w_cl) ** 2.0
         split.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
 
-        split.improvement = (( 1.0 * n / self.n_samples ) * 
-            split.improvement - 
-            split.weight_left / n * split.impurity_left -
-            split.weight_right / n * split.impurity_right )
+        split.impurity /= self.n_outputs
+        split.impurity_left /= self.n_outputs
+        split.impurity_right /= self.n_outputs
+
+        split.improvement = (w_sum / self.weighted_n_samples * 
+            (split.impurity - split.weight_left / w_sum * split.impurity_left - 
+                split.weight_right / w_sum * split.impurity_right))
 
         split.yw_sq_sum = yw_sq_sum
         split.yw_sq_sum_left = yw_sq
