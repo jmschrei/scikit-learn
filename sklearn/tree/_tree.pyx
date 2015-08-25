@@ -106,6 +106,10 @@ cdef class Criterion:
     different metrics.
     """
 
+    def __dealloc__(self):
+        free(self.node_value_left)
+        free(self.node_value_right)
+
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
@@ -149,6 +153,11 @@ cdef class Criterion:
         self.X_feature_stride = X_feature_stride
         self.y_stride = y_stride
 
+        self.node_value_left = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
+        self.node_value_right = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
+        memset(self.node_value_left, 0, self.n*sizeof(DOUBLE_t))
+        memset(self.node_value_right, 0, self.n*sizeof(DOUBLE_t))
+
     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start, 
         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
         DOUBLE_t* node_value) nogil:
@@ -180,7 +189,6 @@ cdef class ClassificationCriterion(Criterion):
     """
     
     cdef SIZE_t [:] n_classes
-    cdef SIZE_t n
     cdef DOUBLE_t* yw_cr
     cdef DOUBLE_t* yw_cl
 
@@ -217,6 +225,8 @@ cdef class ClassificationCriterion(Criterion):
 
         self.yw_cl = NULL
         self.yw_cr = NULL
+        self.node_value_left = NULL
+        self.node_value_right = NULL
 
         self.n = 0
         for i in range(n_outputs):
@@ -307,8 +317,8 @@ cdef class Entropy(ClassificationCriterion):
         cdef SplitRecord split
         _init_split_record(&split)
         split.node_value = node_value
-        split.node_value_left = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
-        split.node_value_right = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
+        split.node_value_left = self.node_value_left
+        split.node_value_right = self.node_value_right
 
         # Get sufficient statistics for the impurity improvement and children
         # impurity calculations and cache them for all possible splits
@@ -414,8 +424,8 @@ cdef class Entropy(ClassificationCriterion):
         cdef SplitRecord split
         _init_split_record(&split)
         split.node_value = node_value
-        split.node_value_left = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
-        split.node_value_right = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
+        split.node_value_left = self.node_value_left
+        split.node_value_right = self.node_value_right
 
         split.impurity = 0
         for i in range(m):
@@ -514,8 +524,8 @@ cdef class Gini(ClassificationCriterion):
         cdef SplitRecord split
         _init_split_record(&split)
         split.node_value = node_value
-        split.node_value_left = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
-        split.node_value_right = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
+        split.node_value_left = self.node_value_left
+        split.node_value_right = self.node_value_right
 
         split.impurity = 0
         for i in range(m):
@@ -573,7 +583,6 @@ cdef class Gini(ClassificationCriterion):
                 split.impurity_left = 1. - impurity_left / w_cl ** 2
                 split.impurity_right = 1. - impurity_right / w_cr ** 2
 
-
         split.impurity /= self.n_outputs
         split.impurity_left /= self.n_outputs
         split.impurity_right /= self.n_outputs
@@ -618,8 +627,8 @@ cdef class Gini(ClassificationCriterion):
         cdef SplitRecord split
         _init_split_record(&split)
         split.node_value = node_value
-        split.node_value_left = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
-        split.node_value_right = <DOUBLE_t*> calloc(m, sizeof(DOUBLE_t))
+        split.node_value_left = self.node_value_left
+        split.node_value_right = self.node_value_right
 
         split.impurity = 0
         for i in range(m):
@@ -705,6 +714,8 @@ cdef class RegressionCriterion(Criterion):
         self.min_leaf_samples = 0
         self.min_leaf_weight = 0
 
+        self.n = n_outputs
+
     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
@@ -716,8 +727,8 @@ cdef class RegressionCriterion(Criterion):
             w_sum, yw_sq_sum, node_value)
 
         cdef SIZE_t i
-        node_value[0] = <DOUBLE_t*>calloc(1, sizeof(DOUBLE_t))
-        memset(node_value[0], 0, 1*sizeof(DOUBLE_t))
+        node_value[0] = <DOUBLE_t*>calloc(self.n, sizeof(DOUBLE_t))
+        memset(node_value[0], 0, self.n*sizeof(DOUBLE_t))
 
         for i in range(n_samples):
             w_sum[0] += w[i]
@@ -764,8 +775,8 @@ cdef class MSE(RegressionCriterion):
         cdef SplitRecord split
         _init_split_record(&split)
         split.node_value = node_value
-        split.node_value_left = <DOUBLE_t*> calloc(1, sizeof(DOUBLE_t))
-        split.node_value_right = <DOUBLE_t*> calloc(1, sizeof(DOUBLE_t))
+        split.node_value_left = self.node_value_left
+        split.node_value_right = self.node_value_right
 
         split.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
         split.node_value[0] = node_value[0]
@@ -852,8 +863,8 @@ cdef class MSE(RegressionCriterion):
         cdef SplitRecord split
         _init_split_record(&split)
         split.node_value = node_value
-        split.node_value_left = <DOUBLE_t*> calloc(1, sizeof(DOUBLE_t))
-        split.node_value_right = <DOUBLE_t*> calloc(1, sizeof(DOUBLE_t))
+        split.node_value_left = self.node_value_left
+        split.node_value_right = self.node_value_right
 
         cdef SIZE_t feature_offset = feature*self.X_feature_stride
 
@@ -903,7 +914,6 @@ cdef class MSE(RegressionCriterion):
         split.node_value_right[0] = yw_cr / w_cr 
 
         split.feature = feature
-
         return split
 
 
@@ -1124,6 +1134,11 @@ cdef class Splitter:
         cdef SplitRecord best, current
         _init_split_record(&best)
 
+        cdef SIZE_t n = self.criterion.n
+
+        cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+
         # Set a mask to indicate which samples we are considering.
         if self.presort == 1:
             for p in range(start, end):
@@ -1146,15 +1161,14 @@ cdef class Splitter:
                 n_visited_features += 1
 
             if current.improvement > best.improvement and best.pos < end:
-                if best.node_value is not NULL:
-                    free(best.node_value_left)
-                    free(best.node_value_right)
-
                 best = current
-            else:
-                free(current.node_value_left)
-                free(current.node_value_right)
+                memcpy(node_value_left, current.node_value_left, 
+                    n*sizeof(DOUBLE_t))
+                memcpy(node_value_right, current.node_value_right, 
+                    n*sizeof(DOUBLE_t))
 
+        best.node_value_left = node_value_left
+        best.node_value_right = node_value_right
         best.start = start
         best.end = end
         if best.pos == -1:

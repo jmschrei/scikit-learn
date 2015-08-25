@@ -28,7 +28,7 @@ cdef class Criterion:
     # impurity of a split on that node. It also computes the output statistics
     # such as the mean in regression and class probabilities in classification.
 
-    cdef DOUBLE_t n_outputs
+    cdef SIZE_t n_outputs
     cdef SIZE_t n_jobs
 
     cdef DTYPE_t* X  
@@ -38,6 +38,11 @@ cdef class Criterion:
     cdef SIZE_t X_sample_stride    
     cdef SIZE_t X_feature_stride
     cdef SIZE_t y_stride
+
+    cdef DOUBLE_t* node_value_left
+    cdef DOUBLE_t* node_value_right
+
+    cdef public SIZE_t n
 
     cdef SIZE_t min_leaf_samples
     cdef DOUBLE_t min_leaf_weight
