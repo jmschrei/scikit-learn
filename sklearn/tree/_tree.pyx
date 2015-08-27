@@ -180,8 +180,7 @@ cdef class ClassificationCriterion(Criterion):
     cdef DOUBLE_t* yw_cr
     cdef DOUBLE_t* yw_cl
 
-    def __cinit__(self, SIZE_t n_outputs, np.ndarray[SIZE_t, ndim=1] n_classes, 
-        SIZE_t n_jobs):
+    def __cinit__(self, SIZE_t n_outputs, np.ndarray[SIZE_t, ndim=1] n_classes):
         """
         Initialize attributes for this classifier, automatically calling the
         parent __cinit__ method as well.
@@ -198,7 +197,6 @@ cdef class ClassificationCriterion(Criterion):
 
         self.n_outputs = n_outputs
         self.n_classes = n_classes
-        self.n_jobs = n_jobs
 
         self.y = NULL
         self.w = NULL
@@ -655,9 +653,8 @@ cdef class RegressionCriterion(Criterion):
             = (\sum_i^n y_i ** 2) - n_samples * y_bar ** 2 
     """
 
-    def __cinit__(self, SIZE_t n_outputs, SIZE_t n_jobs):
+    def __cinit__(self, SIZE_t n_outputs):
         self.n_outputs = n_outputs
-        self.n_jobs = n_jobs
 
         self.y = NULL
         self.w = NULL
@@ -885,10 +882,9 @@ cdef class Splitter:
 
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t min_samples_leaf, double min_weight_leaf, 
-                  object random_state, SIZE_t n_jobs, SIZE_t best):
+                  object random_state, SIZE_t best):
 
         self.criterion = criterion
-        self.n_jobs = n_jobs
 
         self.samples = NULL
         self.n_samples = 0
@@ -1244,6 +1240,18 @@ cdef class SparseSplitter(Splitter):
     tree.
     """
 
+    cdef DTYPE_t* X_data
+    cdef INT32_t* X_indices
+    cdef INT32_t* X_indptr
+
+    cdef SIZE_t* index_to_samples
+    cdef SIZE_t* sorted_samples
+
+    def __dealloc(self):
+        """Deallocate memory."""
+        free(self.index_to_samples)
+        free(self.sorted_samples)
+
     cdef void init(self, object X, np.ndarray[INT32_t, ndim=2] X_idx_sorted,
                    bint presort, np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight, DOUBLE_t* w_sum,
@@ -1290,15 +1298,8 @@ cdef class SparseSplitter(Splitter):
         self.X_indptr = <INT32_t*> indptr.data 
 
         safe_realloc(&self.X_i, self.n_samples)
-
-        if presort == 1:
-            safe_realloc(&self.sample_mask, self.n_samples)
-            memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
-
-            self.X_idx_sorted = X_idx_sorted
-            self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
-            self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
-                                           <SIZE_t> self.X_idx_sorted.itemsize)
+        safe_realloc(&self.index_to_samples, self.n_samples)
+        safe_realloc(&self.sorted_samples, self.n_samples)
 
         self.criterion.init(self.y, self.y_stride, self.sample_weight, 
             self.n_samples, self.min_samples_leaf, self.min_weight_leaf,
@@ -1314,38 +1315,39 @@ cdef class SparseSplitter(Splitter):
         at the same time.
         """
 
-        cdef DTYPE_t* X = self.X
         cdef DTYPE_t* X_i = self.X_i
-        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
-        cdef SIZE_t* sample_mask = self.sample_mask
+        cdef SIZE_t* index_to_samples = self.index_to_samples
         cdef SIZE_t* samples = self.samples
         cdef UINT32_t* random_state = &self.rand_r_state
 
         cdef SIZE_t i, j, p = start
-        cdef SIZE_t feature_offset = self.X_idx_sorted_stride * feature
-        cdef SIZE_t argmin, argmax
+        cdef SIZE_t start_positive
+        cdef SIZE_t end_negative
+        cdef bint is_samples_sorted = 0
 
         cdef SplitRecord split
 
-        if self.presort == 1:
-            for i in range(self.n_samples): 
-                j = X_idx_sorted[i + feature_offset]
-                if sample_mask[j] == 1:
-                    samples[p] = j
-                    X_i[p] = X[self.X_sample_stride * j +
-                               self.X_feature_stride * feature]
-                    p += 1
-        else:
-            for i in range(start, end):
-                X_i[i] = X[self.X_sample_stride * samples[i] +
-                           self.X_feature_stride * feature]
+        self.extract_nnz(feature, start, end, &end_negative, &start_positive,
+                         &is_samples_sorted)
 
-            sort(X_i + start, samples + start, end - start)
+        sort(X_i + start, samples + start, end_negative - start)
+        sort(X_i + start_positive, samples + start_positive,
+             end - start_positive)
 
-        feature_offset = feature*self.X_feature_stride
-        argmax = samples[end-1]*self.X_sample_stride + feature_offset
-        argmin = samples[start]*self.X_sample_stride + feature_offset
-        if X[argmax] > X[argmin] + FEATURE_THRESHOLD:
+        for p in range(start, end_negative):
+            index_to_samples[samples[p]] = p
+        for p in range(start_positive, end):
+            index_to_samples[samples[p]] = p
+
+        if end_negative < start_positive:
+            start_positive -= 1
+            X_i[start_positive] = 0.0
+
+            if end_negative != start_positive:
+                X_i[end_negative] = 0.0
+                end_negative += 1
+
+        if X_i[end-1] > X_i[start] + FEATURE_THRESHOLD:
             if best == 1:
                 split = self.criterion.best_split(X_i, samples, start, end, 
                     feature, w_sum, yw_sq_sum, node_value)
@@ -1363,15 +1365,12 @@ cdef class SparseSplitter(Splitter):
 
         cdef SIZE_t* features = self.features
         cdef SIZE_t* samples = self.samples
-        cdef SIZE_t* sample_mask = self.sample_mask
-
-        cdef DTYPE_t* X = self.X
-        cdef SIZE_t X_sample_stride = self.X_sample_stride
-        cdef SIZE_t X_feature_stride = self.X_feature_stride
+        cdef SIZE_t start_positive
+        cdef SIZE_t end_negative
         cdef UINT32_t* random_state = &self.rand_r_state
+        cdef bint is_samples_sorted = 0
 
         cdef SIZE_t n_visited_features = 0
-        cdef SIZE_t tmp, partition_end
         cdef SIZE_t i=0, j, p
 
         cdef SplitRecord best, current
@@ -1381,11 +1380,6 @@ cdef class SparseSplitter(Splitter):
 
         cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
         cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
-
-        # Set a mask to indicate which samples we are considering.
-        if self.presort == 1:
-            for p in range(start, end):
-                sample_mask[samples[p]] = 1
 
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm. To allow for parallelism,
@@ -1419,27 +1413,251 @@ cdef class SparseSplitter(Splitter):
 
         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
         if best.pos < end:
-            partition_end = end
-            p = start
+            self.extract_nnz(best.feature, start, end, &end_negative, 
+                             &start_positive, &is_samples_sorted)
 
-            while p < partition_end:
-                if X[X_sample_stride * samples[p] + X_feature_stride 
-                    * best.feature] <= best.threshold:
-                    p += 1
-
-                else:
-                    partition_end -= 1
-
-                    tmp = samples[partition_end]
-                    samples[partition_end] = samples[p]
-                    samples[p] = tmp
-
-        # Reset sample mask
-        if self.presort == 1:
-            for p in range(start, end):
-                sample_mask[samples[p]] = 0
+            self._partition(best.threshold, start, end, end_negative, 
+                            start_positive, best.pos)
 
         return best
+
+    cdef inline SIZE_t _partition(self, double threshold, SIZE_t start, 
+                                  SIZE_t end, SIZE_t end_negative, 
+                                  SIZE_t start_positive, SIZE_t zero_pos) nogil:
+        """Partition samples[start:end] based on threshold."""
+
+        cdef double value
+        cdef SIZE_t partition_end
+        cdef SIZE_t p
+
+        cdef DTYPE_t* X_i = self.X_i
+        cdef SIZE_t* samples = self.samples
+        cdef SIZE_t* index_to_samples = self.index_to_samples
+
+        if threshold < 0.:
+            p = start
+            partition_end = end_negative
+        elif threshold > 0.:
+            p = start_positive
+            partition_end = end
+        else:
+            # Data are already split
+            return zero_pos
+
+        while p < partition_end:
+            value = X_i[p]
+
+            if value <= threshold:
+                p += 1
+
+            else:
+                partition_end -= 1
+
+                X_i[p] = X_i[partition_end]
+                X_i[partition_end] = value
+                sparse_swap(index_to_samples, samples, p, partition_end)
+
+        return partition_end
+
+    cdef inline void extract_nnz(self, SIZE_t feature, SIZE_t start, SIZE_t end,
+                                 SIZE_t* end_negative, SIZE_t* start_positive,
+                                 bint* is_samples_sorted) nogil:
+        """Extract and partition values for a given feature.
+        The extracted values are partitioned between negative values
+        X_i[start:end_negative[0]] and positive values X_i[start_positive[0]:end].
+        The samples and index_to_samples are modified according to this
+        partition.
+        The extraction corresponds to the intersection between the arrays
+        X_indices[indptr_start:indptr_end] and samples[start:end].
+        This is done efficiently using either an index_to_samples based approach
+        or binary search based approach.
+        Parameters
+        ----------
+        feature : SIZE_t,
+            Index of the feature we want to extract non zero value.
+        end_negative, start_positive : SIZE_t*, SIZE_t*,
+            Return extracted non zero values in self.samples[start:end] where
+            negative values are in self.X_i[start:end_negative[0]] and positive 
+            values are in self.X_i[start_positive[0]:end].
+        is_samples_sorted : bint*,
+            If is_samples_sorted, then self.sorted_samples[start:end] will be
+            the sorted version of self.samples[start:end].
+        """
+        cdef SIZE_t indptr_start = self.X_indptr[feature],
+        cdef SIZE_t indptr_end = self.X_indptr[feature + 1]
+        cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)
+        cdef SIZE_t n_samples = end - start
+
+        # Use binary search if n_samples * log(n_indices) <
+        # n_indices and index_to_samples approach otherwise.
+        # O(n_samples * log(n_indices)) is the running time of binary
+        # search and O(n_indices) is the running time of index_to_samples
+        # approach.
+        if ((1 - is_samples_sorted[0]) * n_samples * log(n_samples) +
+                n_samples * log(n_indices) < EXTRACT_NNZ_SWITCH * n_indices):
+            extract_nnz_binary_search(self.X_indices, self.X_data,
+                                      indptr_start, indptr_end,
+                                      self.samples, start, end,
+                                      self.index_to_samples, self.X_i,
+                                      end_negative, start_positive,
+                                      self.sorted_samples, is_samples_sorted)
+
+        # Using an index to samples  technique to extract non zero values
+        # index_to_samples is a mapping from X_indices to samples
+        else:
+            extract_nnz_index_to_samples(self.X_indices, self.X_data,
+                                         indptr_start, indptr_end,
+                                         self.samples, start, end,
+                                         self.index_to_samples, self.X_i,
+                                         end_negative, start_positive)
+
+
+cdef int compare_SIZE_t(const void* a, const void* b) nogil:
+    """Comparison function for sort."""
+    return <int>((<SIZE_t*>a)[0] - (<SIZE_t*>b)[0])
+
+
+cdef inline void binary_search(INT32_t* sorted_array,
+                               INT32_t start, INT32_t end,
+                               SIZE_t value, SIZE_t* index,
+                               INT32_t* new_start) nogil:
+    """Return the index of value in the sorted array.
+    If not found, return -1. new_start is the last pivot + 1
+    """
+    cdef INT32_t pivot
+    index[0] = -1
+    while start < end:
+        pivot = start + (end - start) / 2
+
+        if sorted_array[pivot] == value:
+            index[0] = pivot
+            start = pivot + 1
+            break
+
+        if sorted_array[pivot] < value:
+            start = pivot + 1
+        else:
+            end = pivot
+    new_start[0] = start
+
+
+cdef inline void extract_nnz_index_to_samples(INT32_t* X_indices,
+                                              DTYPE_t* X_data,
+                                              INT32_t indptr_start,
+                                              INT32_t indptr_end,
+                                              SIZE_t* samples,
+                                              SIZE_t start,
+                                              SIZE_t end,
+                                              SIZE_t* index_to_samples,
+                                              DTYPE_t* Xf,
+                                              SIZE_t* end_negative,
+                                              SIZE_t* start_positive) nogil:
+    """Extract and partition values for a feature using index_to_samples.
+    Complexity is O(indptr_end - indptr_start).
+    """
+    cdef INT32_t k
+    cdef SIZE_t index
+    cdef SIZE_t end_negative_ = start
+    cdef SIZE_t start_positive_ = end
+
+    for k in range(indptr_start, indptr_end):
+        if start <= index_to_samples[X_indices[k]] < end:
+            if X_data[k] > 0:
+                start_positive_ -= 1
+                Xf[start_positive_] = X_data[k]
+                index = index_to_samples[X_indices[k]]
+                sparse_swap(index_to_samples, samples, index, start_positive_)
+
+
+            elif X_data[k] < 0:
+                Xf[end_negative_] = X_data[k]
+                index = index_to_samples[X_indices[k]]
+                sparse_swap(index_to_samples, samples, index, end_negative_)
+                end_negative_ += 1
+
+    # Returned values
+    end_negative[0] = end_negative_
+    start_positive[0] = start_positive_
+
+
+cdef inline void extract_nnz_binary_search(INT32_t* X_indices,
+                                           DTYPE_t* X_data,
+                                           INT32_t indptr_start,
+                                           INT32_t indptr_end,
+                                           SIZE_t* samples,
+                                           SIZE_t start,
+                                           SIZE_t end,
+                                           SIZE_t* index_to_samples,
+                                           DTYPE_t* Xf,
+                                           SIZE_t* end_negative,
+                                           SIZE_t* start_positive,
+                                           SIZE_t* sorted_samples,
+                                           bint* is_samples_sorted) nogil:
+    """Extract and partition values for a given feature using binary search.
+    If n_samples = end - start and n_indices = indptr_end - indptr_start,
+    the complexity is
+        O((1 - is_samples_sorted[0]) * n_samples * log(n_samples) +
+          n_samples * log(n_indices)).
+    """
+    cdef SIZE_t n_samples
+
+    if not is_samples_sorted[0]:
+        n_samples = end - start
+        memcpy(sorted_samples + start, samples + start,
+               n_samples * sizeof(SIZE_t))
+        qsort(sorted_samples + start, n_samples, sizeof(SIZE_t),
+              compare_SIZE_t)
+        is_samples_sorted[0] = 1
+
+    while (indptr_start < indptr_end and
+           sorted_samples[start] > X_indices[indptr_start]):
+        indptr_start += 1
+
+    while (indptr_start < indptr_end and
+           sorted_samples[end - 1] < X_indices[indptr_end - 1]):
+        indptr_end -= 1
+
+    cdef SIZE_t p = start
+    cdef SIZE_t index
+    cdef SIZE_t k
+    cdef SIZE_t end_negative_ = start
+    cdef SIZE_t start_positive_ = end
+
+    while (p < end and indptr_start < indptr_end):
+        # Find index of sorted_samples[p] in X_indices
+        binary_search(X_indices, indptr_start, indptr_end,
+                      sorted_samples[p], &k, &indptr_start)
+
+        if k != -1:
+             # If k != -1, we have found a non zero value
+
+            if X_data[k] > 0:
+                start_positive_ -= 1
+                Xf[start_positive_] = X_data[k]
+                index = index_to_samples[X_indices[k]]
+                sparse_swap(index_to_samples, samples, index, start_positive_)
+
+
+            elif X_data[k] < 0:
+                Xf[end_negative_] = X_data[k]
+                index = index_to_samples[X_indices[k]]
+                sparse_swap(index_to_samples, samples, index, end_negative_)
+                end_negative_ += 1
+        p += 1
+
+    # Returned values
+    end_negative[0] = end_negative_
+    start_positive[0] = start_positive_
+
+
+cdef inline void sparse_swap(SIZE_t* index_to_samples, SIZE_t* samples,
+                             SIZE_t pos_1, SIZE_t pos_2) nogil  :
+    """Swap sample pos_1 and pos_2 preserving sparse invariant."""
+    samples[pos_1], samples[pos_2] =  samples[pos_2], samples[pos_1]
+    index_to_samples[samples[pos_1]] = pos_1
+    index_to_samples[samples[pos_2]] = pos_2
+
+
 
 # =============================================================================
 # Tree builders

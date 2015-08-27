@@ -48,7 +48,6 @@ DOUBLE = _tree.DOUBLE
 CRITERIA_CLF = {"gini": _tree.Gini, "entropy": _tree.Entropy}
 CRITERIA_REG = {"mse": _tree.MSE}
 
-
 # =============================================================================
 # Base decision tree
 # =============================================================================
@@ -73,8 +72,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
                  max_features,
                  max_leaf_nodes,
                  random_state,
-                 class_weight=None,
-                 n_jobs=1):
+                 class_weight=None):
         self.criterion = criterion
         self.splitter = splitter
         self.max_depth = max_depth
@@ -85,7 +83,6 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         self.random_state = random_state
         self.max_leaf_nodes = max_leaf_nodes
         self.class_weight = class_weight
-        self.n_jobs=n_jobs
 
         self.n_features_ = None
         self.n_outputs_ = None
@@ -291,22 +288,26 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         if not isinstance(criterion, Criterion):
             if is_classification:
                 criterion = CRITERIA_CLF[self.criterion](self.n_outputs_,
-                                                         self.n_classes_,
-                                                         self.n_jobs)
+                                                         self.n_classes_)
             else:
-                criterion = CRITERIA_REG[self.criterion](self.n_outputs_,
-                                                         self.n_jobs)
+                criterion = CRITERIA_REG[self.criterion](self.n_outputs_)
 
-        #SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
         splitter = self.splitter
         if not isinstance(self.splitter, Splitter):
-            splitter = Splitter(criterion,
-                                     self.max_features_,
-                                     self.min_samples_leaf,
-                                     min_weight_leaf,
-                                     random_state,
-                                     self.n_jobs,
-                                     self.splitter == 'best')
+            if issparse(X):
+                splitter = SparseSplitter(criterion,
+                                          self.max_features_,
+                                          self.min_samples_leaf,
+                                          min_weight_leaf,
+                                          random_state,
+                                          self.splitter == 'best')
+            else:
+                splitter = Splitter(criterion,
+                                    self.max_features_,
+                                    self.min_samples_leaf,
+                                    min_weight_leaf,
+                                    random_state,
+                                    self.splitter == 'best')
 
         self.tree_ = Tree(self.n_features_, self.n_classes_, self.n_outputs_)
 
@@ -524,9 +525,6 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
         If None, the random number generator is the RandomState instance used
         by `np.random`.
 
-    n_jobs : int, the number of jobs used to build this tree in parallel when
-        searching for the best feature to split on.
-
     Attributes
     ----------
     classes_ : array of shape = [n_classes] or a list of such arrays
@@ -552,9 +550,6 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
 
     n_outputs_ : int
         The number of outputs when ``fit`` is performed.
-
-    n_jobs : int
-        The number of jobs used in parallel to build the tree
 
     tree_ : Tree object
         The underlying Tree object.
@@ -600,8 +595,7 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
                  max_features=None,
                  random_state=None,
                  max_leaf_nodes=None,
-                 class_weight=None,
-                 n_jobs=1):
+                 class_weight=None):
         super(DecisionTreeClassifier, self).__init__(
             criterion=criterion,
             splitter=splitter,
@@ -612,8 +606,7 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
             max_features=max_features,
             max_leaf_nodes=max_leaf_nodes,
             class_weight=class_weight,
-            random_state=random_state,
-            n_jobs=n_jobs)
+            random_state=random_state)
 
     def predict_proba(self, X, check_input=True):
         """Predict class probabilities of the input samples X.
@@ -751,9 +744,6 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
         If None, the random number generator is the RandomState instance used
         by `np.random`.
 
-    n_jobs : int, the number of jobs used to build this tree in parallel when
-        searching for the best feature to split on.
-
     Attributes
     ----------
     feature_importances_ : array of shape = [n_features]
@@ -771,9 +761,6 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
 
     n_outputs_ : int
         The number of outputs when ``fit`` is performed.
-
-    n_jobs : int
-        The number of jobs used in parallel to build the tree
 
     tree_ : Tree object
         The underlying Tree object.
@@ -818,8 +805,7 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
                  min_weight_fraction_leaf=0.,
                  max_features=None,
                  random_state=None,
-                 max_leaf_nodes=None,
-                 n_jobs=1):
+                 max_leaf_nodes=None):
         super(DecisionTreeRegressor, self).__init__(
             criterion=criterion,
             splitter=splitter,
@@ -829,8 +815,7 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
             min_weight_fraction_leaf=min_weight_fraction_leaf,
             max_features=max_features,
             max_leaf_nodes=max_leaf_nodes,
-            random_state=random_state,
-            n_jobs=n_jobs)
+            random_state=random_state)
 
 
 class ExtraTreeClassifier(DecisionTreeClassifier):
