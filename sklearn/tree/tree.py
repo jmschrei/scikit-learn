@@ -29,7 +29,7 @@ from ..utils import check_array, check_random_state, compute_sample_weight
 from ..utils.validation import NotFittedError
 
 
-from ._tree import Criterion, Splitter, TreeBuilder, Tree
+from ._tree import Criterion, Splitter, SparseSplitter, TreeBuilder, Tree
 from . import _tree
 
 __all__ = ["DecisionTreeClassifier",

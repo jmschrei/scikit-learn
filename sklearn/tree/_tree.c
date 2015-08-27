@@ -11281,39 +11281,39 @@ static void __pyx_f_7sklearn_4tree_5_tree_14SparseSplitter_init(struct __pyx_obj
  *         self.X_indices = <INT32_t*> indices.data
  *         self.X_indptr = <INT32_t*> indptr.data             # <<<<<<<<<<<<<<
  * 
- *         safe_realloc(&self.X_i, self.n_samples)
+ *         safe_realloc(&self.X_i, self.n_samples*sizeof(DTYPE_t))
  */
   __pyx_v_self->X_indptr = ((__pyx_t_7sklearn_4tree_5_tree_INT32_t *)__pyx_v_indptr->data);
 
   /* "sklearn/tree/_tree.pyx":1300
  *         self.X_indptr = <INT32_t*> indptr.data
  * 
- *         safe_realloc(&self.X_i, self.n_samples)             # <<<<<<<<<<<<<<
- *         safe_realloc(&self.index_to_samples, self.n_samples)
- *         safe_realloc(&self.sorted_samples, self.n_samples)
+ *         safe_realloc(&self.X_i, self.n_samples*sizeof(DTYPE_t))             # <<<<<<<<<<<<<<
+ *         safe_realloc(&self.index_to_samples, self.n_samples*sizeof(SIZE_t))
+ *         safe_realloc(&self.sorted_samples, self.n_samples*sizeof(SIZE_t))
  */
-  __pyx_fuse_0__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->__pyx_base.X_i), __pyx_v_self->__pyx_base.n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_0__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->__pyx_base.X_i), (__pyx_v_self->__pyx_base.n_samples * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DTYPE_t)))); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "sklearn/tree/_tree.pyx":1301
  * 
- *         safe_realloc(&self.X_i, self.n_samples)
- *         safe_realloc(&self.index_to_samples, self.n_samples)             # <<<<<<<<<<<<<<
- *         safe_realloc(&self.sorted_samples, self.n_samples)
+ *         safe_realloc(&self.X_i, self.n_samples*sizeof(DTYPE_t))
+ *         safe_realloc(&self.index_to_samples, self.n_samples*sizeof(SIZE_t))             # <<<<<<<<<<<<<<
+ *         safe_realloc(&self.sorted_samples, self.n_samples*sizeof(SIZE_t))
  * 
  */
-  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->index_to_samples), __pyx_v_self->__pyx_base.n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->index_to_samples), (__pyx_v_self->__pyx_base.n_samples * (sizeof(__pyx_t_7sklearn_4tree_5_tree_SIZE_t)))); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "sklearn/tree/_tree.pyx":1302
- *         safe_realloc(&self.X_i, self.n_samples)
- *         safe_realloc(&self.index_to_samples, self.n_samples)
- *         safe_realloc(&self.sorted_samples, self.n_samples)             # <<<<<<<<<<<<<<
+ *         safe_realloc(&self.X_i, self.n_samples*sizeof(DTYPE_t))
+ *         safe_realloc(&self.index_to_samples, self.n_samples*sizeof(SIZE_t))
+ *         safe_realloc(&self.sorted_samples, self.n_samples*sizeof(SIZE_t))             # <<<<<<<<<<<<<<
  * 
  *         self.criterion.init(self.y, self.y_stride, self.sample_weight,
  */
-  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->sorted_samples), __pyx_v_self->__pyx_base.n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->sorted_samples), (__pyx_v_self->__pyx_base.n_samples * (sizeof(__pyx_t_7sklearn_4tree_5_tree_SIZE_t)))); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "sklearn/tree/_tree.pyx":1304
- *         safe_realloc(&self.sorted_samples, self.n_samples)
+ *         safe_realloc(&self.sorted_samples, self.n_samples*sizeof(SIZE_t))
  * 
  *         self.criterion.init(self.y, self.y_stride, self.sample_weight,             # <<<<<<<<<<<<<<
  *             self.n_samples, self.min_samples_leaf, self.min_weight_leaf,
@@ -12258,17 +12258,17 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_14SparseSplitter_extract
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples;
   int __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1486
- *             the sorted version of self.samples[start:end].
+  /* "sklearn/tree/_tree.pyx":1487
  *         """
+ * 
  *         cdef SIZE_t indptr_start = self.X_indptr[feature],             # <<<<<<<<<<<<<<
  *         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]
  *         cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)
  */
   __pyx_v_indptr_start = (__pyx_v_self->X_indptr[__pyx_v_feature]);
 
-  /* "sklearn/tree/_tree.pyx":1487
- *         """
+  /* "sklearn/tree/_tree.pyx":1488
+ * 
  *         cdef SIZE_t indptr_start = self.X_indptr[feature],
  *         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]             # <<<<<<<<<<<<<<
  *         cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)
@@ -12276,21 +12276,21 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_14SparseSplitter_extract
  */
   __pyx_v_indptr_end = (__pyx_v_self->X_indptr[(__pyx_v_feature + 1)]);
 
-  /* "sklearn/tree/_tree.pyx":1488
+  /* "sklearn/tree/_tree.pyx":1489
  *         cdef SIZE_t indptr_start = self.X_indptr[feature],
  *         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]
  *         cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)             # <<<<<<<<<<<<<<
  *         cdef SIZE_t n_samples = end - start
- * 
+ *         # Use binary search if n_samples * log(n_indices) <
  */
   __pyx_v_n_indices = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_indptr_end - __pyx_v_indptr_start));
 
-  /* "sklearn/tree/_tree.pyx":1489
+  /* "sklearn/tree/_tree.pyx":1490
  *         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]
  *         cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)
  *         cdef SIZE_t n_samples = end - start             # <<<<<<<<<<<<<<
- * 
  *         # Use binary search if n_samples * log(n_indices) <
+ *         # n_indices and index_to_samples approach otherwise.
  */
   __pyx_v_n_samples = (__pyx_v_end - __pyx_v_start);
 
@@ -12861,12 +12861,12 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
  *     cdef SIZE_t end_negative_ = start
  *     cdef SIZE_t start_positive_ = end             # <<<<<<<<<<<<<<
  * 
- *     while (p < end and indptr_start < indptr_end):
+ * 
  */
   __pyx_v_start_positive_ = __pyx_v_end;
 
-  /* "sklearn/tree/_tree.pyx":1626
- *     cdef SIZE_t start_positive_ = end
+  /* "sklearn/tree/_tree.pyx":1627
+ * 
  * 
  *     while (p < end and indptr_start < indptr_end):             # <<<<<<<<<<<<<<
  *         # Find index of sorted_samples[p] in X_indices
@@ -12884,7 +12884,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
     __pyx_L14_bool_binop_done:;
     if (!__pyx_t_1) break;
 
-    /* "sklearn/tree/_tree.pyx":1628
+    /* "sklearn/tree/_tree.pyx":1629
  *     while (p < end and indptr_start < indptr_end):
  *         # Find index of sorted_samples[p] in X_indices
  *         binary_search(X_indices, indptr_start, indptr_end,             # <<<<<<<<<<<<<<
@@ -12893,19 +12893,19 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
  */
     __pyx_f_7sklearn_4tree_5_tree_binary_search(__pyx_v_X_indices, __pyx_v_indptr_start, __pyx_v_indptr_end, (__pyx_v_sorted_samples[__pyx_v_p]), (&__pyx_v_k), (&__pyx_v_indptr_start));
 
-    /* "sklearn/tree/_tree.pyx":1631
+    /* "sklearn/tree/_tree.pyx":1632
  *                       sorted_samples[p], &k, &indptr_start)
  * 
  *         if k != -1:             # <<<<<<<<<<<<<<
  *              # If k != -1, we have found a non zero value
- * 
+ *             if X_data[k] > 0:
  */
     __pyx_t_1 = ((__pyx_v_k != -1) != 0);
     if (__pyx_t_1) {
 
       /* "sklearn/tree/_tree.pyx":1634
+ *         if k != -1:
  *              # If k != -1, we have found a non zero value
- * 
  *             if X_data[k] > 0:             # <<<<<<<<<<<<<<
  *                 start_positive_ -= 1
  *                 Xf[start_positive_] = X_data[k]
@@ -12914,7 +12914,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
       if (__pyx_t_1) {
 
         /* "sklearn/tree/_tree.pyx":1635
- * 
+ *              # If k != -1, we have found a non zero value
  *             if X_data[k] > 0:
  *                 start_positive_ -= 1             # <<<<<<<<<<<<<<
  *                 Xf[start_positive_] = X_data[k]
@@ -12945,14 +12945,14 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, start_positive_)             # <<<<<<<<<<<<<<
  * 
- * 
+ *             elif X_data[k] < 0:
  */
         __pyx_f_7sklearn_4tree_5_tree_sparse_swap(__pyx_v_index_to_samples, __pyx_v_samples, __pyx_v_index, __pyx_v_start_positive_);
         goto __pyx_L17;
       }
 
-      /* "sklearn/tree/_tree.pyx":1641
- * 
+      /* "sklearn/tree/_tree.pyx":1640
+ *                 sparse_swap(index_to_samples, samples, index, start_positive_)
  * 
  *             elif X_data[k] < 0:             # <<<<<<<<<<<<<<
  *                 Xf[end_negative_] = X_data[k]
@@ -12961,7 +12961,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
       __pyx_t_1 = (((__pyx_v_X_data[__pyx_v_k]) < 0.0) != 0);
       if (__pyx_t_1) {
 
-        /* "sklearn/tree/_tree.pyx":1642
+        /* "sklearn/tree/_tree.pyx":1641
  * 
  *             elif X_data[k] < 0:
  *                 Xf[end_negative_] = X_data[k]             # <<<<<<<<<<<<<<
@@ -12970,7 +12970,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
  */
         (__pyx_v_Xf[__pyx_v_end_negative_]) = (__pyx_v_X_data[__pyx_v_k]);
 
-        /* "sklearn/tree/_tree.pyx":1643
+        /* "sklearn/tree/_tree.pyx":1642
  *             elif X_data[k] < 0:
  *                 Xf[end_negative_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]             # <<<<<<<<<<<<<<
@@ -12979,21 +12979,21 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
  */
         __pyx_v_index = (__pyx_v_index_to_samples[(__pyx_v_X_indices[__pyx_v_k])]);
 
-        /* "sklearn/tree/_tree.pyx":1644
+        /* "sklearn/tree/_tree.pyx":1643
  *                 Xf[end_negative_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, end_negative_)             # <<<<<<<<<<<<<<
  *                 end_negative_ += 1
- *         p += 1
+ * 
  */
         __pyx_f_7sklearn_4tree_5_tree_sparse_swap(__pyx_v_index_to_samples, __pyx_v_samples, __pyx_v_index, __pyx_v_end_negative_);
 
-        /* "sklearn/tree/_tree.pyx":1645
+        /* "sklearn/tree/_tree.pyx":1644
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, end_negative_)
  *                 end_negative_ += 1             # <<<<<<<<<<<<<<
- *         p += 1
  * 
+ *         p += 1
  */
         __pyx_v_end_negative_ = (__pyx_v_end_negative_ + 1);
         goto __pyx_L17;
@@ -13004,8 +13004,8 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_extract_nnz_binary_searc
     __pyx_L16:;
 
     /* "sklearn/tree/_tree.pyx":1646
- *                 sparse_swap(index_to_samples, samples, index, end_negative_)
  *                 end_negative_ += 1
+ * 
  *         p += 1             # <<<<<<<<<<<<<<
  * 
  *     # Returned values

@@ -1297,9 +1297,9 @@ cdef class SparseSplitter(Splitter):
         self.X_indices = <INT32_t*> indices.data
         self.X_indptr = <INT32_t*> indptr.data 
 
-        safe_realloc(&self.X_i, self.n_samples)
-        safe_realloc(&self.index_to_samples, self.n_samples)
-        safe_realloc(&self.sorted_samples, self.n_samples)
+        safe_realloc(&self.X_i, self.n_samples*sizeof(DTYPE_t))
+        safe_realloc(&self.index_to_samples, self.n_samples*sizeof(SIZE_t))
+        safe_realloc(&self.sorted_samples, self.n_samples*sizeof(SIZE_t))
 
         self.criterion.init(self.y, self.y_stride, self.sample_weight, 
             self.n_samples, self.min_samples_leaf, self.min_weight_leaf,
@@ -1483,11 +1483,11 @@ cdef class SparseSplitter(Splitter):
             If is_samples_sorted, then self.sorted_samples[start:end] will be
             the sorted version of self.samples[start:end].
         """
+
         cdef SIZE_t indptr_start = self.X_indptr[feature],
         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]
         cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)
         cdef SIZE_t n_samples = end - start
-
         # Use binary search if n_samples * log(n_indices) <
         # n_indices and index_to_samples approach otherwise.
         # O(n_samples * log(n_indices)) is the running time of binary
@@ -1623,6 +1623,7 @@ cdef inline void extract_nnz_binary_search(INT32_t* X_indices,
     cdef SIZE_t end_negative_ = start
     cdef SIZE_t start_positive_ = end
 
+
     while (p < end and indptr_start < indptr_end):
         # Find index of sorted_samples[p] in X_indices
         binary_search(X_indices, indptr_start, indptr_end,
@@ -1630,19 +1631,18 @@ cdef inline void extract_nnz_binary_search(INT32_t* X_indices,
 
         if k != -1:
              # If k != -1, we have found a non zero value
-
             if X_data[k] > 0:
                 start_positive_ -= 1
                 Xf[start_positive_] = X_data[k]
                 index = index_to_samples[X_indices[k]]
                 sparse_swap(index_to_samples, samples, index, start_positive_)
 
-
             elif X_data[k] < 0:
                 Xf[end_negative_] = X_data[k]
                 index = index_to_samples[X_indices[k]]
                 sparse_swap(index_to_samples, samples, index, end_negative_)
                 end_negative_ += 1
+
         p += 1
 
     # Returned values
