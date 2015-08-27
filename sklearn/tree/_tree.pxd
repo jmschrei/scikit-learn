@@ -31,13 +31,9 @@ cdef class Criterion:
     cdef SIZE_t n_outputs
     cdef SIZE_t n_jobs
 
-    cdef DTYPE_t* X  
-    cdef DOUBLE_t* y                             
-    cdef DOUBLE_t* w            
-
-    cdef SIZE_t X_sample_stride    
-    cdef SIZE_t X_feature_stride
-    cdef SIZE_t y_stride
+    cdef DOUBLE_t* y
+    cdef SIZE_t y_stride               
+    cdef DOUBLE_t* w        
 
     cdef DOUBLE_t* node_value_left
     cdef DOUBLE_t* node_value_right
@@ -53,18 +49,17 @@ cdef class Criterion:
     # statistics correspond to samples[start:pos] and samples[pos:end].
 
     # Methods
-    cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride, 
-        SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+    cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value)
 
-    cdef SplitRecord best_split(self, SIZE_t* index, SIZE_t start, 
-        SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
-        DOUBLE_t* node_value) nogil
+    cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples, 
+        SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, 
+        DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil
 
-    cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start, 
-        SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
-        DOUBLE_t* node_value, UINT32_t* rand_r) nogil
+    cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples, 
+        SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, 
+        DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil
 
 # =============================================================================
 # Splitter

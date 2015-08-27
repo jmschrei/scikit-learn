@@ -950,7 +950,7 @@ struct __pyx_t_7sklearn_4tree_5_tree_Node;
 struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree__resize_c;
 struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree_compute_feature_importances;
 
-/* "sklearn/tree/_tree.pxd":145
+/* "sklearn/tree/_tree.pxd":140
  * # =============================================================================
  * 
  * cdef struct Node:             # <<<<<<<<<<<<<<
@@ -967,7 +967,7 @@ struct __pyx_t_7sklearn_4tree_5_tree_Node {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t weighted_n_node_samples;
 };
 
-/* "sklearn/tree/_tree.pxd":183
+/* "sklearn/tree/_tree.pxd":178
  *                           double weighted_n_samples, DOUBLE_t* value) nogil
  *     cdef void _resize(self, SIZE_t capacity) except *
  *     cdef int _resize_c(self, SIZE_t capacity=*) nogil             # <<<<<<<<<<<<<<
@@ -979,7 +979,7 @@ struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree__resize_c {
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t capacity;
 };
 
-/* "sklearn/tree/_tree.pxd":193
+/* "sklearn/tree/_tree.pxd":188
  *     cdef np.ndarray _apply_sparse_csr(self, object X)
  * 
  *     cpdef compute_feature_importances(self, normalize=*)             # <<<<<<<<<<<<<<
@@ -1046,12 +1046,9 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Criterion {
   struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *__pyx_vtab;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t n_outputs;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t n_jobs;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *X;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *y;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *w;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t X_sample_stride;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t X_feature_stride;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t y_stride;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *w;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *node_value_left;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *node_value_right;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t n;
@@ -1062,7 +1059,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Criterion {
 };
 
 
-/* "sklearn/tree/_tree.pxd":73
+/* "sklearn/tree/_tree.pxd":68
  * # =============================================================================
  * 
  * cdef class Splitter:             # <<<<<<<<<<<<<<
@@ -1099,7 +1096,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Splitter {
 };
 
 
-/* "sklearn/tree/_tree.pxd":157
+/* "sklearn/tree/_tree.pxd":152
  * 
  * 
  * cdef class Tree:             # <<<<<<<<<<<<<<
@@ -1122,7 +1119,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Tree {
 };
 
 
-/* "sklearn/tree/_tree.pxd":200
+/* "sklearn/tree/_tree.pxd":195
  * # =============================================================================
  * 
  * cdef class TreeBuilder:             # <<<<<<<<<<<<<<
@@ -1141,7 +1138,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder {
 };
 
 
-/* "sklearn/tree/_tree.pyx":186
+/* "sklearn/tree/_tree.pyx":174
  *         pass
  * 
  * cdef class ClassificationCriterion(Criterion):             # <<<<<<<<<<<<<<
@@ -1156,7 +1153,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_ClassificationCriterion {
 };
 
 
-/* "sklearn/tree/_tree.pyx":279
+/* "sklearn/tree/_tree.pyx":262
  *         pass
  * 
  * cdef class Entropy(ClassificationCriterion):             # <<<<<<<<<<<<<<
@@ -1168,7 +1165,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Entropy {
 };
 
 
-/* "sklearn/tree/_tree.pyx":486
+/* "sklearn/tree/_tree.pyx":455
  *         return split
  * 
  * cdef class Gini(ClassificationCriterion):             # <<<<<<<<<<<<<<
@@ -1180,7 +1177,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_Gini {
 };
 
 
-/* "sklearn/tree/_tree.pyx":691
+/* "sklearn/tree/_tree.pyx":647
  *         return split
  * 
  * cdef class RegressionCriterion(Criterion):             # <<<<<<<<<<<<<<
@@ -1192,7 +1189,7 @@ struct __pyx_obj_7sklearn_4tree_5_tree_RegressionCriterion {
 };
 
 
-/* "sklearn/tree/_tree.pyx":750
+/* "sklearn/tree/_tree.pyx":701
  *         pass
  * 
  * cdef class MSE(RegressionCriterion):             # <<<<<<<<<<<<<<
@@ -1322,14 +1319,14 @@ static struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap *__pyx_vtabpt
  */
 
 struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion {
-  void (*init)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **);
-  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*best_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
-  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*random_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *);
+  void (*init)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **);
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*best_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *);
+  struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*random_split)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *);
 };
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *__pyx_vtabptr_7sklearn_4tree_5_tree_Criterion;
 
 
-/* "sklearn/tree/_tree.pyx":942
+/* "sklearn/tree/_tree.pyx":879
  *     split.node_value_right = NULL
  * 
  * cdef class Splitter:             # <<<<<<<<<<<<<<
@@ -1345,7 +1342,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter {
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *__pyx_vtabptr_7sklearn_4tree_5_tree_Splitter;
 
 
-/* "sklearn/tree/_tree.pyx":1574
+/* "sklearn/tree/_tree.pyx":1508
  * # =============================================================================
  * 
  * cdef class Tree:             # <<<<<<<<<<<<<<
@@ -1370,7 +1367,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
 static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, PyObject *);
 
 
-/* "sklearn/tree/_tree.pyx":1309
+/* "sklearn/tree/_tree.pyx":1243
  * # Tree builders
  * # =============================================================================
  * cdef class TreeBuilder:             # <<<<<<<<<<<<<<
@@ -1387,7 +1384,7 @@ static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_TreeBuilder *__pyx_vtabptr_
 static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder *, PyObject *, PyArrayObject *, PyArrayObject *);
 
 
-/* "sklearn/tree/_tree.pyx":186
+/* "sklearn/tree/_tree.pyx":174
  *         pass
  * 
  * cdef class ClassificationCriterion(Criterion):             # <<<<<<<<<<<<<<
@@ -1401,7 +1398,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_5_tree_ClassificationCriterion {
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_ClassificationCriterion *__pyx_vtabptr_7sklearn_4tree_5_tree_ClassificationCriterion;
 
 
-/* "sklearn/tree/_tree.pyx":279
+/* "sklearn/tree/_tree.pyx":262
  *         pass
  * 
  * cdef class Entropy(ClassificationCriterion):             # <<<<<<<<<<<<<<
@@ -1415,7 +1412,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Entropy {
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Entropy *__pyx_vtabptr_7sklearn_4tree_5_tree_Entropy;
 
 
-/* "sklearn/tree/_tree.pyx":486
+/* "sklearn/tree/_tree.pyx":455
  *         return split
  * 
  * cdef class Gini(ClassificationCriterion):             # <<<<<<<<<<<<<<
@@ -1429,7 +1426,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Gini {
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Gini *__pyx_vtabptr_7sklearn_4tree_5_tree_Gini;
 
 
-/* "sklearn/tree/_tree.pyx":691
+/* "sklearn/tree/_tree.pyx":647
  *         return split
  * 
  * cdef class RegressionCriterion(Criterion):             # <<<<<<<<<<<<<<
@@ -1443,7 +1440,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_5_tree_RegressionCriterion {
 static struct __pyx_vtabstruct_7sklearn_4tree_5_tree_RegressionCriterion *__pyx_vtabptr_7sklearn_4tree_5_tree_RegressionCriterion;
 
 
-/* "sklearn/tree/_tree.pyx":750
+/* "sklearn/tree/_tree.pyx":701
  *         pass
  * 
  * cdef class MSE(RegressionCriterion):             # <<<<<<<<<<<<<<
@@ -2032,17 +2029,17 @@ static PyTypeObject *__Pyx_ImportType(const char *module_name, const char *class
 
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_sample_stride, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_feature_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_best_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_random_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
-static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_ClassificationCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_sample_stride, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_feature_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
-static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_RegressionCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_sample_stride, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_feature_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
+static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_best_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_random_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
+static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_ClassificationCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
+static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_RegressionCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r); /* proto*/
 static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *__pyx_v_self, PyObject *__pyx_v_X, PyArrayObject *__pyx_v_X_idx_sorted, int __pyx_v_presort, PyArrayObject *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_sample_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_n_node_samples); /* proto*/
 static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_8Splitter__split(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_best); /* proto*/
 static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_8Splitter_split(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value); /* proto*/
@@ -2787,7 +2784,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_9Criterion___dealloc__(struct __pyx_o
  *         free(self.node_value_left)
  *         free(self.node_value_right)             # <<<<<<<<<<<<<<
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
  */
   free(__pyx_v_self->node_value_right);
 
@@ -2806,35 +2803,26 @@ static void __pyx_pf_7sklearn_4tree_5_tree_9Criterion___dealloc__(struct __pyx_o
 /* "sklearn/tree/_tree.pyx":113
  *         free(self.node_value_right)
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,             # <<<<<<<<<<<<<<
- *         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,             # <<<<<<<<<<<<<<
  *         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+ *         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
  */
 
-static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_sample_stride, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_feature_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value) {
+static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("init", 0);
 
-  /* "sklearn/tree/_tree.pyx":144
+  /* "sklearn/tree/_tree.pyx":135
  *         """
  * 
- *         self.X = X             # <<<<<<<<<<<<<<
- *         self.y = y
- *         self.w = w
- */
-  __pyx_v_self->X = __pyx_v_X;
-
-  /* "sklearn/tree/_tree.pyx":145
- * 
- *         self.X = X
  *         self.y = y             # <<<<<<<<<<<<<<
  *         self.w = w
  * 
  */
   __pyx_v_self->y = __pyx_v_y;
 
-  /* "sklearn/tree/_tree.pyx":146
- *         self.X = X
+  /* "sklearn/tree/_tree.pyx":136
+ * 
  *         self.y = y
  *         self.w = w             # <<<<<<<<<<<<<<
  * 
@@ -2842,7 +2830,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7skle
  */
   __pyx_v_self->w = __pyx_v_w;
 
-  /* "sklearn/tree/_tree.pyx":148
+  /* "sklearn/tree/_tree.pyx":138
  *         self.w = w
  * 
  *         self.min_leaf_samples = min_leaf_samples             # <<<<<<<<<<<<<<
@@ -2851,7 +2839,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7skle
  */
   __pyx_v_self->min_leaf_samples = __pyx_v_min_leaf_samples;
 
-  /* "sklearn/tree/_tree.pyx":149
+  /* "sklearn/tree/_tree.pyx":139
  * 
  *         self.min_leaf_samples = min_leaf_samples
  *         self.min_leaf_weight = min_leaf_weight             # <<<<<<<<<<<<<<
@@ -2860,43 +2848,25 @@ static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7skle
  */
   __pyx_v_self->min_leaf_weight = __pyx_v_min_leaf_weight;
 
-  /* "sklearn/tree/_tree.pyx":150
+  /* "sklearn/tree/_tree.pyx":140
  *         self.min_leaf_samples = min_leaf_samples
  *         self.min_leaf_weight = min_leaf_weight
  *         self.n_samples = n_samples             # <<<<<<<<<<<<<<
  * 
- *         self.X_sample_stride = X_sample_stride
+ *         self.y_stride = y_stride
  */
   __pyx_v_self->n_samples = __pyx_v_n_samples;
 
-  /* "sklearn/tree/_tree.pyx":152
+  /* "sklearn/tree/_tree.pyx":142
  *         self.n_samples = n_samples
  * 
- *         self.X_sample_stride = X_sample_stride             # <<<<<<<<<<<<<<
- *         self.X_feature_stride = X_feature_stride
- *         self.y_stride = y_stride
- */
-  __pyx_v_self->X_sample_stride = __pyx_v_X_sample_stride;
-
-  /* "sklearn/tree/_tree.pyx":153
- * 
- *         self.X_sample_stride = X_sample_stride
- *         self.X_feature_stride = X_feature_stride             # <<<<<<<<<<<<<<
- *         self.y_stride = y_stride
- * 
- */
-  __pyx_v_self->X_feature_stride = __pyx_v_X_feature_stride;
-
-  /* "sklearn/tree/_tree.pyx":154
- *         self.X_sample_stride = X_sample_stride
- *         self.X_feature_stride = X_feature_stride
  *         self.y_stride = y_stride             # <<<<<<<<<<<<<<
  * 
  *         self.node_value_left = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  */
   __pyx_v_self->y_stride = __pyx_v_y_stride;
 
-  /* "sklearn/tree/_tree.pyx":156
+  /* "sklearn/tree/_tree.pyx":144
  *         self.y_stride = y_stride
  * 
  *         self.node_value_left = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -2905,7 +2875,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7skle
  */
   __pyx_v_self->node_value_left = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_self->n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":157
+  /* "sklearn/tree/_tree.pyx":145
  * 
  *         self.node_value_left = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         self.node_value_right = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -2914,7 +2884,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7skle
  */
   __pyx_v_self->node_value_right = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_self->n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":158
+  /* "sklearn/tree/_tree.pyx":146
  *         self.node_value_left = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         self.node_value_right = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         memset(self.node_value_left, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -2923,58 +2893,58 @@ static void __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(struct __pyx_obj_7skle
  */
   memset(__pyx_v_self->node_value_left, 0, (__pyx_v_self->n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":159
+  /* "sklearn/tree/_tree.pyx":147
  *         self.node_value_right = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         memset(self.node_value_left, 0, self.n*sizeof(DOUBLE_t))
  *         memset(self.node_value_right, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,
  */
   memset(__pyx_v_self->node_value_right, 0, (__pyx_v_self->n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
   /* "sklearn/tree/_tree.pyx":113
  *         free(self.node_value_right)
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,             # <<<<<<<<<<<<<<
- *         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,             # <<<<<<<<<<<<<<
  *         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+ *         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
  */
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":161
+/* "sklearn/tree/_tree.pyx":149
  *         memset(self.node_value_right, 0, self.n*sizeof(DOUBLE_t))
  * 
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value) nogil:
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_best_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_best_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
 
   /* function exit code */
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":180
+/* "sklearn/tree/_tree.pyx":168
  *         pass
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_random_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_9Criterion_random_split(CYTHON_UNUSED struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *__pyx_v_self, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
 
   /* function exit code */
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":45
+/* "sklearn/tree/_tree.pxd":41
  *     cdef DOUBLE_t* node_value_right
  * 
  *     cdef public SIZE_t n             # <<<<<<<<<<<<<<
@@ -3004,7 +2974,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_9Criterion_1n___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3042,7 +3012,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_9Criterion_1n_2__set__(struct __pyx_ob
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->n = __pyx_t_1;
 
   /* function exit code */
@@ -3056,7 +3026,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_9Criterion_1n_2__set__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":195
+/* "sklearn/tree/_tree.pyx":183
  *     cdef DOUBLE_t* yw_cl
  * 
  *     def __cinit__(self, SIZE_t n_outputs, np.ndarray[SIZE_t, ndim=1] n_classes,             # <<<<<<<<<<<<<<
@@ -3097,16 +3067,16 @@ static int __pyx_pw_7sklearn_4tree_5_tree_23ClassificationCriterion_1__cinit__(P
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_classes)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_jobs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3115,19 +3085,19 @@ static int __pyx_pw_7sklearn_4tree_5_tree_23ClassificationCriterion_1__cinit__(P
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_n_outputs = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_n_outputs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_outputs = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_n_outputs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_n_classes = ((PyArrayObject *)values[1]);
-    __pyx_v_n_jobs = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_n_jobs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_jobs = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_n_jobs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.ClassificationCriterion.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_n_classes), __pyx_ptype_5numpy_ndarray, 1, "n_classes", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_n_classes), __pyx_ptype_5numpy_ndarray, 1, "n_classes", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(((struct __pyx_obj_7sklearn_4tree_5_tree_ClassificationCriterion *)__pyx_v_self), __pyx_v_n_outputs, __pyx_v_n_classes, __pyx_v_n_jobs);
 
   /* function exit code */
@@ -3159,11 +3129,11 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
   __pyx_pybuffernd_n_classes.rcbuffer = &__pyx_pybuffer_n_classes;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_n_classes.rcbuffer->pybuffer, (PyObject*)__pyx_v_n_classes, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_n_classes.rcbuffer->pybuffer, (PyObject*)__pyx_v_n_classes, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_pybuffernd_n_classes.diminfo[0].strides = __pyx_pybuffernd_n_classes.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_n_classes.diminfo[0].shape = __pyx_pybuffernd_n_classes.rcbuffer->pybuffer.shape[0];
 
-  /* "sklearn/tree/_tree.pyx":211
+  /* "sklearn/tree/_tree.pyx":199
  *         cdef SIZE_t i
  * 
  *         self.n_outputs = n_outputs             # <<<<<<<<<<<<<<
@@ -3172,7 +3142,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->__pyx_base.n_outputs = __pyx_v_n_outputs;
 
-  /* "sklearn/tree/_tree.pyx":212
+  /* "sklearn/tree/_tree.pyx":200
  * 
  *         self.n_outputs = n_outputs
  *         self.n_classes = n_classes             # <<<<<<<<<<<<<<
@@ -3180,76 +3150,49 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  * 
  */
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t(((PyObject *)__pyx_v_n_classes));
-  if (unlikely(!__pyx_t_1.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_1.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->n_classes, 0);
   __pyx_v_self->n_classes = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "sklearn/tree/_tree.pyx":213
+  /* "sklearn/tree/_tree.pyx":201
  *         self.n_outputs = n_outputs
  *         self.n_classes = n_classes
  *         self.n_jobs = n_jobs             # <<<<<<<<<<<<<<
  * 
- *         self.X = NULL
+ *         self.y = NULL
  */
   __pyx_v_self->__pyx_base.n_jobs = __pyx_v_n_jobs;
 
-  /* "sklearn/tree/_tree.pyx":215
+  /* "sklearn/tree/_tree.pyx":203
  *         self.n_jobs = n_jobs
  * 
- *         self.X = NULL             # <<<<<<<<<<<<<<
- *         self.y = NULL
- *         self.w = NULL
- */
-  __pyx_v_self->__pyx_base.X = NULL;
-
-  /* "sklearn/tree/_tree.pyx":216
- * 
- *         self.X = NULL
  *         self.y = NULL             # <<<<<<<<<<<<<<
  *         self.w = NULL
  * 
  */
   __pyx_v_self->__pyx_base.y = NULL;
 
-  /* "sklearn/tree/_tree.pyx":217
- *         self.X = NULL
+  /* "sklearn/tree/_tree.pyx":204
+ * 
  *         self.y = NULL
  *         self.w = NULL             # <<<<<<<<<<<<<<
  * 
- *         self.X_sample_stride = 1
+ *         self.y_stride = 1
  */
   __pyx_v_self->__pyx_base.w = NULL;
 
-  /* "sklearn/tree/_tree.pyx":219
+  /* "sklearn/tree/_tree.pyx":206
  *         self.w = NULL
  * 
- *         self.X_sample_stride = 1             # <<<<<<<<<<<<<<
- *         self.X_feature_stride = 1
- *         self.y_stride = 1
- */
-  __pyx_v_self->__pyx_base.X_sample_stride = 1;
-
-  /* "sklearn/tree/_tree.pyx":220
- * 
- *         self.X_sample_stride = 1
- *         self.X_feature_stride = 1             # <<<<<<<<<<<<<<
- *         self.y_stride = 1
- * 
- */
-  __pyx_v_self->__pyx_base.X_feature_stride = 1;
-
-  /* "sklearn/tree/_tree.pyx":221
- *         self.X_sample_stride = 1
- *         self.X_feature_stride = 1
  *         self.y_stride = 1             # <<<<<<<<<<<<<<
  * 
  *         self.min_leaf_samples = 0
  */
   __pyx_v_self->__pyx_base.y_stride = 1;
 
-  /* "sklearn/tree/_tree.pyx":223
+  /* "sklearn/tree/_tree.pyx":208
  *         self.y_stride = 1
  * 
  *         self.min_leaf_samples = 0             # <<<<<<<<<<<<<<
@@ -3258,7 +3201,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->__pyx_base.min_leaf_samples = 0;
 
-  /* "sklearn/tree/_tree.pyx":224
+  /* "sklearn/tree/_tree.pyx":209
  * 
  *         self.min_leaf_samples = 0
  *         self.min_leaf_weight = 0             # <<<<<<<<<<<<<<
@@ -3267,7 +3210,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->__pyx_base.min_leaf_weight = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":226
+  /* "sklearn/tree/_tree.pyx":211
  *         self.min_leaf_weight = 0
  * 
  *         self.yw_cl = NULL             # <<<<<<<<<<<<<<
@@ -3276,7 +3219,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->yw_cl = NULL;
 
-  /* "sklearn/tree/_tree.pyx":227
+  /* "sklearn/tree/_tree.pyx":212
  * 
  *         self.yw_cl = NULL
  *         self.yw_cr = NULL             # <<<<<<<<<<<<<<
@@ -3285,7 +3228,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->yw_cr = NULL;
 
-  /* "sklearn/tree/_tree.pyx":228
+  /* "sklearn/tree/_tree.pyx":213
  *         self.yw_cl = NULL
  *         self.yw_cr = NULL
  *         self.node_value_left = NULL             # <<<<<<<<<<<<<<
@@ -3294,7 +3237,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->__pyx_base.node_value_left = NULL;
 
-  /* "sklearn/tree/_tree.pyx":229
+  /* "sklearn/tree/_tree.pyx":214
  *         self.yw_cr = NULL
  *         self.node_value_left = NULL
  *         self.node_value_right = NULL             # <<<<<<<<<<<<<<
@@ -3303,7 +3246,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->__pyx_base.node_value_right = NULL;
 
-  /* "sklearn/tree/_tree.pyx":231
+  /* "sklearn/tree/_tree.pyx":216
  *         self.node_value_right = NULL
  * 
  *         self.n = 0             # <<<<<<<<<<<<<<
@@ -3312,7 +3255,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
  */
   __pyx_v_self->__pyx_base.n = 0;
 
-  /* "sklearn/tree/_tree.pyx":232
+  /* "sklearn/tree/_tree.pyx":217
  * 
  *         self.n = 0
  *         for i in range(n_outputs):             # <<<<<<<<<<<<<<
@@ -3323,18 +3266,18 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":233
+    /* "sklearn/tree/_tree.pyx":218
  *         self.n = 0
  *         for i in range(n_outputs):
  *             self.n += n_classes[i]             # <<<<<<<<<<<<<<
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
  */
     __pyx_t_4 = __pyx_v_i;
     __pyx_v_self->__pyx_base.n = (__pyx_v_self->__pyx_base.n + (*__Pyx_BufPtrStrided1d(__pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_pybuffernd_n_classes.rcbuffer->pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_n_classes.diminfo[0].strides)));
   }
 
-  /* "sklearn/tree/_tree.pyx":195
+  /* "sklearn/tree/_tree.pyx":183
  *     cdef DOUBLE_t* yw_cl
  * 
  *     def __cinit__(self, SIZE_t n_outputs, np.ndarray[SIZE_t, ndim=1] n_classes,             # <<<<<<<<<<<<<<
@@ -3361,15 +3304,15 @@ static int __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion___cinit__(st
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":235
+/* "sklearn/tree/_tree.pyx":220
  *             self.n += n_classes[i]
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,             # <<<<<<<<<<<<<<
- *         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,             # <<<<<<<<<<<<<<
  *         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+ *         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
  */
 
-static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_ClassificationCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_sample_stride, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_feature_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value) {
+static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_ClassificationCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value) {
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_label;
   __Pyx_RefNannyDeclarations
@@ -3379,17 +3322,17 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_4;
   __Pyx_RefNannySetupContext("init", 0);
 
-  /* "sklearn/tree/_tree.pyx":241
+  /* "sklearn/tree/_tree.pyx":225
  *         """Initialize by passing pointers to the underlying data."""
  * 
- *         Criterion.init(self, X, X_sample_stride, X_feature_stride, y,             # <<<<<<<<<<<<<<
- *             y_stride, w, n_samples, min_leaf_samples, min_leaf_weight,
- *             w_sum, yw_sq_sum, node_value)
+ *         Criterion.init(self, y, y_stride, w, n_samples, min_leaf_samples,             # <<<<<<<<<<<<<<
+ *             min_leaf_weight, w_sum, yw_sq_sum, node_value)
+ * 
  */
-  __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(((struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self), __pyx_v_X, __pyx_v_X_sample_stride, __pyx_v_X_feature_stride, __pyx_v_y, __pyx_v_y_stride, __pyx_v_w, __pyx_v_n_samples, __pyx_v_min_leaf_samples, __pyx_v_min_leaf_weight, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
+  __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(((struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self), __pyx_v_y, __pyx_v_y_stride, __pyx_v_w, __pyx_v_n_samples, __pyx_v_min_leaf_samples, __pyx_v_min_leaf_weight, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
 
-  /* "sklearn/tree/_tree.pyx":245
- *             w_sum, yw_sq_sum, node_value)
+  /* "sklearn/tree/_tree.pyx":228
+ *             min_leaf_weight, w_sum, yw_sq_sum, node_value)
  * 
  *         self.yw_cl = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  *         self.yw_cr = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
@@ -3397,7 +3340,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
   __pyx_v_self->yw_cl = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_self->__pyx_base.n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":246
+  /* "sklearn/tree/_tree.pyx":229
  * 
  *         self.yw_cl = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         self.yw_cr = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -3406,7 +3349,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
   __pyx_v_self->yw_cr = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_self->__pyx_base.n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":247
+  /* "sklearn/tree/_tree.pyx":230
  *         self.yw_cl = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         self.yw_cr = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         memset(self.yw_cl, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -3415,7 +3358,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
   memset(__pyx_v_self->yw_cl, 0, (__pyx_v_self->__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":248
+  /* "sklearn/tree/_tree.pyx":231
  *         self.yw_cr = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         memset(self.yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(self.yw_cr, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -3424,7 +3367,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
   memset(__pyx_v_self->yw_cr, 0, (__pyx_v_self->__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":252
+  /* "sklearn/tree/_tree.pyx":235
  *         cdef SIZE_t i, label
  * 
  *         for i in range(n_samples):             # <<<<<<<<<<<<<<
@@ -3435,7 +3378,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "sklearn/tree/_tree.pyx":253
+    /* "sklearn/tree/_tree.pyx":236
  * 
  *         for i in range(n_samples):
  *             label = <SIZE_t>y[i]             # <<<<<<<<<<<<<<
@@ -3444,7 +3387,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
     __pyx_v_label = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_y[__pyx_v_i]));
 
-    /* "sklearn/tree/_tree.pyx":254
+    /* "sklearn/tree/_tree.pyx":237
  *         for i in range(n_samples):
  *             label = <SIZE_t>y[i]
  *             w_sum[0] += w[i]             # <<<<<<<<<<<<<<
@@ -3454,7 +3397,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
     __pyx_t_3 = 0;
     (__pyx_v_w_sum[__pyx_t_3]) = ((__pyx_v_w_sum[__pyx_t_3]) + (__pyx_v_w[__pyx_v_i]));
 
-    /* "sklearn/tree/_tree.pyx":255
+    /* "sklearn/tree/_tree.pyx":238
  *             label = <SIZE_t>y[i]
  *             w_sum[0] += w[i]
  *             self.yw_cr[label] += w[i]             # <<<<<<<<<<<<<<
@@ -3465,7 +3408,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
     (__pyx_v_self->yw_cr[__pyx_t_4]) = ((__pyx_v_self->yw_cr[__pyx_t_4]) + (__pyx_v_w[__pyx_v_i]));
   }
 
-  /* "sklearn/tree/_tree.pyx":257
+  /* "sklearn/tree/_tree.pyx":240
  *             self.yw_cr[label] += w[i]
  * 
  *         node_value[0] = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -3474,7 +3417,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
   (__pyx_v_node_value[0]) = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_self->__pyx_base.n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":258
+  /* "sklearn/tree/_tree.pyx":241
  * 
  *         node_value[0] = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         for i in range(self.n):             # <<<<<<<<<<<<<<
@@ -3485,7 +3428,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "sklearn/tree/_tree.pyx":259
+    /* "sklearn/tree/_tree.pyx":242
  *         node_value[0] = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
  *         for i in range(self.n):
  *             node_value[0][i] = self.yw_cr[i]             # <<<<<<<<<<<<<<
@@ -3495,7 +3438,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
     ((__pyx_v_node_value[0])[__pyx_v_i]) = (__pyx_v_self->yw_cr[__pyx_v_i]);
   }
 
-  /* "sklearn/tree/_tree.pyx":261
+  /* "sklearn/tree/_tree.pyx":244
  *             node_value[0][i] = self.yw_cr[i]
  * 
  *         yw_sq_sum[0] = 0             # <<<<<<<<<<<<<<
@@ -3504,7 +3447,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
   (__pyx_v_yw_sq_sum[0]) = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":262
+  /* "sklearn/tree/_tree.pyx":245
  * 
  *         yw_sq_sum[0] = 0
  *         self.weighted_n_samples = w_sum[0]             # <<<<<<<<<<<<<<
@@ -3513,19 +3456,19 @@ static void __pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init(struct 
  */
   __pyx_v_self->__pyx_base.weighted_n_samples = (__pyx_v_w_sum[0]);
 
-  /* "sklearn/tree/_tree.pyx":235
+  /* "sklearn/tree/_tree.pyx":220
  *             self.n += n_classes[i]
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,             # <<<<<<<<<<<<<<
- *         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,             # <<<<<<<<<<<<<<
  *         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+ *         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
  */
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":264
+/* "sklearn/tree/_tree.pyx":247
  *         self.weighted_n_samples = w_sum[0]
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -3548,7 +3491,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_2__dealloc_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sklearn/tree/_tree.pyx":265
+  /* "sklearn/tree/_tree.pyx":248
  * 
  *     def __dealloc__(self):
  *         free(self.yw_cl)             # <<<<<<<<<<<<<<
@@ -3557,7 +3500,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_2__dealloc_
  */
   free(__pyx_v_self->yw_cl);
 
-  /* "sklearn/tree/_tree.pyx":266
+  /* "sklearn/tree/_tree.pyx":249
  *     def __dealloc__(self):
  *         free(self.yw_cl)
  *         free(self.yw_cr)             # <<<<<<<<<<<<<<
@@ -3566,7 +3509,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_2__dealloc_
  */
   free(__pyx_v_self->yw_cr);
 
-  /* "sklearn/tree/_tree.pyx":264
+  /* "sklearn/tree/_tree.pyx":247
  *         self.weighted_n_samples = w_sum[0]
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -3578,7 +3521,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_2__dealloc_
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":268
+/* "sklearn/tree/_tree.pyx":251
  *         free(self.yw_cr)
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -3611,7 +3554,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_4__red
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "sklearn/tree/_tree.pyx":269
+  /* "sklearn/tree/_tree.pyx":252
  * 
  *     def __reduce__(self):
  *         return (ClassificationCriterion,             # <<<<<<<<<<<<<<
@@ -3620,21 +3563,21 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_4__red
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "sklearn/tree/_tree.pyx":270
+  /* "sklearn/tree/_tree.pyx":253
  *     def __reduce__(self):
  *         return (ClassificationCriterion,
  *                 (self.n_outputs, self.n_classes, self.n_jobs),             # <<<<<<<<<<<<<<
  *                 self.__getstate__())
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(!__pyx_v_self->n_classes.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->n_classes, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->n_classes.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->n_classes, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_jobs); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_jobs); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -3646,14 +3589,14 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_4__red
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
 
-  /* "sklearn/tree/_tree.pyx":271
+  /* "sklearn/tree/_tree.pyx":254
  *         return (ClassificationCriterion,
  *                 (self.n_outputs, self.n_classes, self.n_jobs),
  *                 self.__getstate__())             # <<<<<<<<<<<<<<
  * 
  *     def __getstate__(self):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3666,22 +3609,22 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_4__red
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sklearn/tree/_tree.pyx":269
+  /* "sklearn/tree/_tree.pyx":252
  * 
  *     def __reduce__(self):
  *         return (ClassificationCriterion,             # <<<<<<<<<<<<<<
  *                 (self.n_outputs, self.n_classes, self.n_jobs),
  *                 self.__getstate__())
  */
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_ClassificationCriterion)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_ClassificationCriterion)));
@@ -3696,7 +3639,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_4__red
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":268
+  /* "sklearn/tree/_tree.pyx":251
  *         free(self.yw_cr)
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -3718,7 +3661,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_4__red
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":273
+/* "sklearn/tree/_tree.pyx":256
  *                 self.__getstate__())
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -3748,7 +3691,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_6__get
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getstate__", 0);
 
-  /* "sklearn/tree/_tree.pyx":274
+  /* "sklearn/tree/_tree.pyx":257
  * 
  *     def __getstate__(self):
  *         return {}             # <<<<<<<<<<<<<<
@@ -3756,13 +3699,13 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_6__get
  *     def __setstate__(self, d):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":273
+  /* "sklearn/tree/_tree.pyx":256
  *                 self.__getstate__())
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -3781,7 +3724,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_6__get
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":276
+/* "sklearn/tree/_tree.pyx":259
  *         return {}
  * 
  *     def __setstate__(self, d):             # <<<<<<<<<<<<<<
@@ -3814,30 +3757,27 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_23ClassificationCriterion_8__set
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":294
+/* "sklearn/tree/_tree.pyx":277
  *     """
  * 
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value) nogil:
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X;
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_upper;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_lower;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cr;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cr;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature_offset;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_label;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_j;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_p;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_k;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_m;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_impurity_left;
@@ -3845,76 +3785,65 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_improvement;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_t_1;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_2;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_1;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_2;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_4;
+  int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
-  int __pyx_t_7;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_8;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_7;
 
-  /* "sklearn/tree/_tree.pyx":298
- *         DOUBLE_t* node_value) nogil:
+  /* "sklearn/tree/_tree.pyx":281
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  * 
- *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
- *         cdef DOUBLE_t* y = self.y
- *         cdef DOUBLE_t* w = self.w
- */
-  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.X;
-  __pyx_v_X = __pyx_t_1;
-
-  /* "sklearn/tree/_tree.pyx":299
- * 
- *         cdef DTYPE_t* X = self.X
  *         cdef DOUBLE_t* y = self.y             # <<<<<<<<<<<<<<
+ *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t* w = self.w
+ */
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.y;
+  __pyx_v_y = __pyx_t_1;
+
+  /* "sklearn/tree/_tree.pyx":282
+ * 
+ *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* w = self.w
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y;
-  __pyx_v_y = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
+  __pyx_v_y_stride = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":300
- *         cdef DTYPE_t* X = self.X
+  /* "sklearn/tree/_tree.pyx":283
  *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride
  *         cdef DOUBLE_t* w = self.w             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t w_cl, w_cr
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.w;
-  __pyx_v_w = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.w;
+  __pyx_v_w = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":302
- *         cdef DOUBLE_t* w = self.w
- * 
- *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
- *         cdef SIZE_t upper, lower
- * 
- */
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
-  __pyx_v_y_stride = __pyx_t_3;
-
-  /* "sklearn/tree/_tree.pyx":306
+  /* "sklearn/tree/_tree.pyx":286
  * 
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cl;
-  __pyx_v_yw_cl = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cl;
+  __pyx_v_yw_cl = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":307
+  /* "sklearn/tree/_tree.pyx":287
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr             # <<<<<<<<<<<<<<
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cr;
-  __pyx_v_yw_cr = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cr;
+  __pyx_v_yw_cr = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":308
+  /* "sklearn/tree/_tree.pyx":288
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -3923,46 +3852,37 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   memset(__pyx_v_yw_cl, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":309
+  /* "sklearn/tree/_tree.pyx":289
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride
+ *         cdef SIZE_t label
  */
   memset(__pyx_v_yw_cr, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":311
- *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
- * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride             # <<<<<<<<<<<<<<
+  /* "sklearn/tree/_tree.pyx":293
  *         cdef SIZE_t label
  * 
- */
-  __pyx_v_feature_offset = (__pyx_v_feature * __pyx_v_self->__pyx_base.__pyx_base.X_feature_stride);
-
-  /* "sklearn/tree/_tree.pyx":314
- *         cdef SIZE_t label
- * 
- *         cdef SIZE_t i, j, p, n = end-start, m = self.n             # <<<<<<<<<<<<<<
+ *         cdef SIZE_t i, j, p, k, n = end-start, m = self.n             # <<<<<<<<<<<<<<
  * 
  *         cdef DOUBLE_t impurity_left, impurity_right, improvement
  */
   __pyx_v_n = (__pyx_v_end - __pyx_v_start);
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.n;
-  __pyx_v_m = __pyx_t_3;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.n;
+  __pyx_v_m = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":318
- *         cdef DOUBLE_t impurity_left, impurity_right, improvement
+  /* "sklearn/tree/_tree.pyx":298
  *         cdef SplitRecord split
+ * 
  *         _init_split_record(&split)             # <<<<<<<<<<<<<<
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  */
   __pyx_f_7sklearn_4tree_5_tree__init_split_record((&__pyx_v_split));
 
-  /* "sklearn/tree/_tree.pyx":319
- *         cdef SplitRecord split
+  /* "sklearn/tree/_tree.pyx":299
+ * 
  *         _init_split_record(&split)
  *         split.node_value = node_value             # <<<<<<<<<<<<<<
  *         split.node_value_left = self.node_value_left
@@ -3970,27 +3890,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.node_value = __pyx_v_node_value;
 
-  /* "sklearn/tree/_tree.pyx":320
+  /* "sklearn/tree/_tree.pyx":300
  *         _init_split_record(&split)
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left             # <<<<<<<<<<<<<<
  *         split.node_value_right = self.node_value_right
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
-  __pyx_v_split.node_value_left = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
+  __pyx_v_split.node_value_left = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":321
+  /* "sklearn/tree/_tree.pyx":301
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  *         split.node_value_right = self.node_value_right             # <<<<<<<<<<<<<<
  * 
  *         # Get sufficient statistics for the impurity improvement and children
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
-  __pyx_v_split.node_value_right = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
+  __pyx_v_split.node_value_right = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":325
+  /* "sklearn/tree/_tree.pyx":305
  *         # Get sufficient statistics for the impurity improvement and children
  *         # impurity calculations and cache them for all possible splits
  *         split.impurity = 0             # <<<<<<<<<<<<<<
@@ -3999,18 +3919,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":326
+  /* "sklearn/tree/_tree.pyx":306
  *         # impurity calculations and cache them for all possible splits
  *         split.impurity = 0
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             yw_cr[i] = node_value[i]
  *             if node_value[i] > 0:
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":327
+    /* "sklearn/tree/_tree.pyx":307
  *         split.impurity = 0
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]             # <<<<<<<<<<<<<<
@@ -4019,17 +3939,17 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     (__pyx_v_yw_cr[__pyx_v_i]) = (__pyx_v_node_value[__pyx_v_i]);
 
-    /* "sklearn/tree/_tree.pyx":328
+    /* "sklearn/tree/_tree.pyx":308
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]
  *             if node_value[i] > 0:             # <<<<<<<<<<<<<<
  *                 split.impurity -= (node_value[i] / w_sum *
  *                     log(node_value[i] / w_sum))
  */
-    __pyx_t_5 = (((__pyx_v_node_value[__pyx_v_i]) > 0.0) != 0);
-    if (__pyx_t_5) {
+    __pyx_t_4 = (((__pyx_v_node_value[__pyx_v_i]) > 0.0) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":329
+      /* "sklearn/tree/_tree.pyx":309
  *             yw_cr[i] = node_value[i]
  *             if node_value[i] > 0:
  *                 split.impurity -= (node_value[i] / w_sum *             # <<<<<<<<<<<<<<
@@ -4042,7 +3962,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_L5:;
   }
 
-  /* "sklearn/tree/_tree.pyx":332
+  /* "sklearn/tree/_tree.pyx":312
  *                     log(node_value[i] / w_sum))
  * 
  *         w_cr = w_sum             # <<<<<<<<<<<<<<
@@ -4051,7 +3971,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_w_cr = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":333
+  /* "sklearn/tree/_tree.pyx":313
  * 
  *         w_cr = w_sum
  *         w_cl = 0             # <<<<<<<<<<<<<<
@@ -4060,56 +3980,65 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_w_cl = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":336
+  /* "sklearn/tree/_tree.pyx":316
  *         # Find the best split by scanning the entire range and calculating
  *         # improvement for each split point.
  *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):             # <<<<<<<<<<<<<<
- *             p = samples[start+i]
- *             label = <SIZE_t>y[p]
+ *             k = start + i
+ *             p = samples[k]
  */
-  __pyx_t_6 = (__pyx_v_n - __pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples);
-  for (__pyx_t_3 = (__pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples - 1); __pyx_t_3 < __pyx_t_6; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
+  __pyx_t_5 = (__pyx_v_n - __pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples);
+  for (__pyx_t_2 = (__pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples - 1); __pyx_t_2 < __pyx_t_5; __pyx_t_2+=1) {
+    __pyx_v_i = __pyx_t_2;
 
-    /* "sklearn/tree/_tree.pyx":337
+    /* "sklearn/tree/_tree.pyx":317
  *         # improvement for each split point.
  *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
- *             p = samples[start+i]             # <<<<<<<<<<<<<<
+ *             k = start + i             # <<<<<<<<<<<<<<
+ *             p = samples[k]
+ *             label = <SIZE_t>y[p]
+ */
+    __pyx_v_k = (__pyx_v_start + __pyx_v_i);
+
+    /* "sklearn/tree/_tree.pyx":318
+ *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
+ *             k = start + i
+ *             p = samples[k]             # <<<<<<<<<<<<<<
  *             label = <SIZE_t>y[p]
  * 
  */
-    __pyx_v_p = (__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]);
+    __pyx_v_p = (__pyx_v_samples[__pyx_v_k]);
 
-    /* "sklearn/tree/_tree.pyx":338
- *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
- *             p = samples[start+i]
+    /* "sklearn/tree/_tree.pyx":319
+ *             k = start + i
+ *             p = samples[k]
  *             label = <SIZE_t>y[p]             # <<<<<<<<<<<<<<
  * 
  *             yw_cr[label] -= w[p]
  */
     __pyx_v_label = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_y[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":340
+    /* "sklearn/tree/_tree.pyx":321
  *             label = <SIZE_t>y[p]
  * 
  *             yw_cr[label] -= w[p]             # <<<<<<<<<<<<<<
  *             yw_cl[label] += w[p]
  * 
  */
-    __pyx_t_4 = __pyx_v_label;
-    (__pyx_v_yw_cr[__pyx_t_4]) = ((__pyx_v_yw_cr[__pyx_t_4]) - (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_3 = __pyx_v_label;
+    (__pyx_v_yw_cr[__pyx_t_3]) = ((__pyx_v_yw_cr[__pyx_t_3]) - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":341
+    /* "sklearn/tree/_tree.pyx":322
  * 
  *             yw_cr[label] -= w[p]
  *             yw_cl[label] += w[p]             # <<<<<<<<<<<<<<
  * 
  *             w_cr -= w[p]
  */
-    __pyx_t_4 = __pyx_v_label;
-    (__pyx_v_yw_cl[__pyx_t_4]) = ((__pyx_v_yw_cl[__pyx_t_4]) + (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_3 = __pyx_v_label;
+    (__pyx_v_yw_cl[__pyx_t_3]) = ((__pyx_v_yw_cl[__pyx_t_3]) + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":343
+    /* "sklearn/tree/_tree.pyx":324
  *             yw_cl[label] += w[p]
  * 
  *             w_cr -= w[p]             # <<<<<<<<<<<<<<
@@ -4118,54 +4047,56 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cr = (__pyx_v_w_cr - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":344
+    /* "sklearn/tree/_tree.pyx":325
  * 
  *             w_cr -= w[p]
  *             w_cl += w[p]             # <<<<<<<<<<<<<<
  * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset
+ *             if i < self.min_leaf_samples-1:
  */
     __pyx_v_w_cl = (__pyx_v_w_cl + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":346
+    /* "sklearn/tree/_tree.pyx":327
  *             w_cl += w[p]
  * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset
- * 
- */
-    __pyx_v_upper = (((__pyx_v_samples[((__pyx_v_start + __pyx_v_i) + 1)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset);
-
-    /* "sklearn/tree/_tree.pyx":347
- * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
- * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:
- */
-    __pyx_v_lower = (((__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset);
-
-    /* "sklearn/tree/_tree.pyx":349
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset
- * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
+ *             if i < self.min_leaf_samples-1:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_7 = ((((__pyx_v_start + __pyx_v_i) + 1) < __pyx_v_end) != 0);
-    if (__pyx_t_7) {
-    } else {
-      __pyx_t_5 = __pyx_t_7;
-      goto __pyx_L9_bool_binop_done;
-    }
-    __pyx_t_7 = (((__pyx_v_X[__pyx_v_upper]) <= ((__pyx_v_X[__pyx_v_lower]) + __pyx_v_7sklearn_4tree_5_tree_FEATURE_THRESHOLD)) != 0);
-    __pyx_t_5 = __pyx_t_7;
-    __pyx_L9_bool_binop_done:;
-    if (__pyx_t_5) {
+    __pyx_t_4 = ((__pyx_v_i < (__pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples - 1)) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":350
+      /* "sklearn/tree/_tree.pyx":328
  * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:
+ *             if i < self.min_leaf_samples-1:
+ *                 continue             # <<<<<<<<<<<<<<
+ * 
+ *             if k+1 < end and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:
+ */
+      goto __pyx_L6_continue;
+    }
+
+    /* "sklearn/tree/_tree.pyx":330
+ *                 continue
+ * 
+ *             if k+1 < end and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
+ *                 continue
+ * 
+ */
+    __pyx_t_6 = (((__pyx_v_k + 1) < __pyx_v_end) != 0);
+    if (__pyx_t_6) {
+    } else {
+      __pyx_t_4 = __pyx_t_6;
+      goto __pyx_L10_bool_binop_done;
+    }
+    __pyx_t_6 = (((__pyx_v_X_i[(__pyx_v_k + 1)]) <= ((__pyx_v_X_i[__pyx_v_k]) + __pyx_v_7sklearn_4tree_5_tree_FEATURE_THRESHOLD)) != 0);
+    __pyx_t_4 = __pyx_t_6;
+    __pyx_L10_bool_binop_done:;
+    if (__pyx_t_4) {
+
+      /* "sklearn/tree/_tree.pyx":331
+ * 
+ *             if k+1 < end and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:
  *                 continue             # <<<<<<<<<<<<<<
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:
@@ -4173,25 +4104,25 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L6_continue;
     }
 
-    /* "sklearn/tree/_tree.pyx":352
+    /* "sklearn/tree/_tree.pyx":333
  *                 continue
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_7 = ((__pyx_v_w_cl < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
-    if (!__pyx_t_7) {
+    __pyx_t_6 = ((__pyx_v_w_cl < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
+    if (!__pyx_t_6) {
     } else {
-      __pyx_t_5 = __pyx_t_7;
-      goto __pyx_L12_bool_binop_done;
+      __pyx_t_4 = __pyx_t_6;
+      goto __pyx_L13_bool_binop_done;
     }
-    __pyx_t_7 = ((__pyx_v_w_cr < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
-    __pyx_t_5 = __pyx_t_7;
-    __pyx_L12_bool_binop_done:;
-    if (__pyx_t_5) {
+    __pyx_t_6 = ((__pyx_v_w_cr < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
+    __pyx_t_4 = __pyx_t_6;
+    __pyx_L13_bool_binop_done:;
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":353
+      /* "sklearn/tree/_tree.pyx":334
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:
  *                 continue             # <<<<<<<<<<<<<<
@@ -4201,7 +4132,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L6_continue;
     }
 
-    /* "sklearn/tree/_tree.pyx":355
+    /* "sklearn/tree/_tree.pyx":336
  *                 continue
  * 
  *             impurity_left = 0             # <<<<<<<<<<<<<<
@@ -4210,7 +4141,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_impurity_left = 0.0;
 
-    /* "sklearn/tree/_tree.pyx":356
+    /* "sklearn/tree/_tree.pyx":337
  * 
  *             impurity_left = 0
  *             impurity_right = 0             # <<<<<<<<<<<<<<
@@ -4219,28 +4150,28 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_impurity_right = 0.0;
 
-    /* "sklearn/tree/_tree.pyx":357
+    /* "sklearn/tree/_tree.pyx":338
  *             impurity_left = 0
  *             impurity_right = 0
  *             for j in range(m):             # <<<<<<<<<<<<<<
  *                 if yw_cl[j] > 0:
  *                     impurity_left -= yw_cl[j] * log(yw_cl[j] / w_cl)
  */
-    __pyx_t_4 = __pyx_v_m;
-    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_4; __pyx_t_8+=1) {
-      __pyx_v_j = __pyx_t_8;
+    __pyx_t_3 = __pyx_v_m;
+    for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_3; __pyx_t_7+=1) {
+      __pyx_v_j = __pyx_t_7;
 
-      /* "sklearn/tree/_tree.pyx":358
+      /* "sklearn/tree/_tree.pyx":339
  *             impurity_right = 0
  *             for j in range(m):
  *                 if yw_cl[j] > 0:             # <<<<<<<<<<<<<<
  *                     impurity_left -= yw_cl[j] * log(yw_cl[j] / w_cl)
  *                 if yw_cr[j] > 0:
  */
-      __pyx_t_5 = (((__pyx_v_yw_cl[__pyx_v_j]) > 0.0) != 0);
-      if (__pyx_t_5) {
+      __pyx_t_4 = (((__pyx_v_yw_cl[__pyx_v_j]) > 0.0) != 0);
+      if (__pyx_t_4) {
 
-        /* "sklearn/tree/_tree.pyx":359
+        /* "sklearn/tree/_tree.pyx":340
  *             for j in range(m):
  *                 if yw_cl[j] > 0:
  *                     impurity_left -= yw_cl[j] * log(yw_cl[j] / w_cl)             # <<<<<<<<<<<<<<
@@ -4248,21 +4179,21 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  *                     impurity_right -= yw_cr[j] * log(yw_cr[j] / w_cr)
  */
         __pyx_v_impurity_left = (__pyx_v_impurity_left - ((__pyx_v_yw_cl[__pyx_v_j]) * __pyx_f_7sklearn_4tree_5_tree_log(((__pyx_v_yw_cl[__pyx_v_j]) / __pyx_v_w_cl))));
-        goto __pyx_L16;
+        goto __pyx_L17;
       }
-      __pyx_L16:;
+      __pyx_L17:;
 
-      /* "sklearn/tree/_tree.pyx":360
+      /* "sklearn/tree/_tree.pyx":341
  *                 if yw_cl[j] > 0:
  *                     impurity_left -= yw_cl[j] * log(yw_cl[j] / w_cl)
  *                 if yw_cr[j] > 0:             # <<<<<<<<<<<<<<
  *                     impurity_right -= yw_cr[j] * log(yw_cr[j] / w_cr)
  * 
  */
-      __pyx_t_5 = (((__pyx_v_yw_cr[__pyx_v_j]) > 0.0) != 0);
-      if (__pyx_t_5) {
+      __pyx_t_4 = (((__pyx_v_yw_cr[__pyx_v_j]) > 0.0) != 0);
+      if (__pyx_t_4) {
 
-        /* "sklearn/tree/_tree.pyx":361
+        /* "sklearn/tree/_tree.pyx":342
  *                     impurity_left -= yw_cl[j] * log(yw_cl[j] / w_cl)
  *                 if yw_cr[j] > 0:
  *                     impurity_right -= yw_cr[j] * log(yw_cr[j] / w_cr)             # <<<<<<<<<<<<<<
@@ -4270,12 +4201,12 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  *             improvement = -impurity_left - impurity_right
  */
         __pyx_v_impurity_right = (__pyx_v_impurity_right - ((__pyx_v_yw_cr[__pyx_v_j]) * __pyx_f_7sklearn_4tree_5_tree_log(((__pyx_v_yw_cr[__pyx_v_j]) / __pyx_v_w_cr))));
-        goto __pyx_L17;
+        goto __pyx_L18;
       }
-      __pyx_L17:;
+      __pyx_L18:;
     }
 
-    /* "sklearn/tree/_tree.pyx":363
+    /* "sklearn/tree/_tree.pyx":344
  *                     impurity_right -= yw_cr[j] * log(yw_cr[j] / w_cr)
  * 
  *             improvement = -impurity_left - impurity_right             # <<<<<<<<<<<<<<
@@ -4284,77 +4215,55 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_improvement = ((-__pyx_v_impurity_left) - __pyx_v_impurity_right);
 
-    /* "sklearn/tree/_tree.pyx":365
+    /* "sklearn/tree/_tree.pyx":346
  *             improvement = -impurity_left - impurity_right
  * 
  *             if improvement > split.improvement:             # <<<<<<<<<<<<<<
  *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0
  */
-    __pyx_t_5 = ((__pyx_v_improvement > __pyx_v_split.improvement) != 0);
-    if (__pyx_t_5) {
+    __pyx_t_4 = ((__pyx_v_improvement > __pyx_v_split.improvement) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":366
+      /* "sklearn/tree/_tree.pyx":347
  * 
  *             if improvement > split.improvement:
  *                 split.improvement = improvement             # <<<<<<<<<<<<<<
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 if split.threshold == X[upper]:
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0
+ *                 split.pos = k+1
  */
       __pyx_v_split.improvement = __pyx_v_improvement;
 
-      /* "sklearn/tree/_tree.pyx":367
+      /* "sklearn/tree/_tree.pyx":348
  *             if improvement > split.improvement:
  *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0             # <<<<<<<<<<<<<<
- *                 if split.threshold == X[upper]:
- *                     split.threshold = X[lower]
- */
-      __pyx_v_split.threshold = (((__pyx_v_X[__pyx_v_upper]) + (__pyx_v_X[__pyx_v_lower])) / 2.0);
-
-      /* "sklearn/tree/_tree.pyx":368
- *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 if split.threshold == X[upper]:             # <<<<<<<<<<<<<<
- *                     split.threshold = X[lower]
- *                 split.pos = i+1
- */
-      __pyx_t_5 = ((__pyx_v_split.threshold == (__pyx_v_X[__pyx_v_upper])) != 0);
-      if (__pyx_t_5) {
-
-        /* "sklearn/tree/_tree.pyx":369
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 if split.threshold == X[upper]:
- *                     split.threshold = X[lower]             # <<<<<<<<<<<<<<
- *                 split.pos = i+1
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0             # <<<<<<<<<<<<<<
+ *                 split.pos = k+1
  * 
  */
-        __pyx_v_split.threshold = (__pyx_v_X[__pyx_v_lower]);
-        goto __pyx_L19;
-      }
-      __pyx_L19:;
+      __pyx_v_split.threshold = (((__pyx_v_X_i[(__pyx_v_k + 1)]) + (__pyx_v_X_i[__pyx_v_k])) / 2.0);
 
-      /* "sklearn/tree/_tree.pyx":370
- *                 if split.threshold == X[upper]:
- *                     split.threshold = X[lower]
- *                 split.pos = i+1             # <<<<<<<<<<<<<<
+      /* "sklearn/tree/_tree.pyx":349
+ *                 split.improvement = improvement
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0
+ *                 split.pos = k+1             # <<<<<<<<<<<<<<
  * 
  *                 for j in range(m):
  */
-      __pyx_v_split.pos = (__pyx_v_i + 1);
+      __pyx_v_split.pos = (__pyx_v_k + 1);
 
-      /* "sklearn/tree/_tree.pyx":372
- *                 split.pos = i+1
+      /* "sklearn/tree/_tree.pyx":351
+ *                 split.pos = k+1
  * 
  *                 for j in range(m):             # <<<<<<<<<<<<<<
  *                     split.node_value_left[j] = yw_cl[j]
  *                     split.node_value_right[j] = yw_cr[j]
  */
-      __pyx_t_4 = __pyx_v_m;
-      for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_4; __pyx_t_8+=1) {
-        __pyx_v_j = __pyx_t_8;
+      __pyx_t_3 = __pyx_v_m;
+      for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_3; __pyx_t_7+=1) {
+        __pyx_v_j = __pyx_t_7;
 
-        /* "sklearn/tree/_tree.pyx":373
+        /* "sklearn/tree/_tree.pyx":352
  * 
  *                 for j in range(m):
  *                     split.node_value_left[j] = yw_cl[j]             # <<<<<<<<<<<<<<
@@ -4363,7 +4272,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
         (__pyx_v_split.node_value_left[__pyx_v_j]) = (__pyx_v_yw_cl[__pyx_v_j]);
 
-        /* "sklearn/tree/_tree.pyx":374
+        /* "sklearn/tree/_tree.pyx":353
  *                 for j in range(m):
  *                     split.node_value_left[j] = yw_cl[j]
  *                     split.node_value_right[j] = yw_cr[j]             # <<<<<<<<<<<<<<
@@ -4373,7 +4282,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
         (__pyx_v_split.node_value_right[__pyx_v_j]) = (__pyx_v_yw_cr[__pyx_v_j]);
       }
 
-      /* "sklearn/tree/_tree.pyx":376
+      /* "sklearn/tree/_tree.pyx":355
  *                     split.node_value_right[j] = yw_cr[j]
  * 
  *                 split.weight = w_sum             # <<<<<<<<<<<<<<
@@ -4382,7 +4291,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight = __pyx_v_w_sum;
 
-      /* "sklearn/tree/_tree.pyx":377
+      /* "sklearn/tree/_tree.pyx":356
  * 
  *                 split.weight = w_sum
  *                 split.weight_left = w_cl             # <<<<<<<<<<<<<<
@@ -4391,7 +4300,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight_left = __pyx_v_w_cl;
 
-      /* "sklearn/tree/_tree.pyx":378
+      /* "sklearn/tree/_tree.pyx":357
  *                 split.weight = w_sum
  *                 split.weight_left = w_cl
  *                 split.weight_right = w_cr             # <<<<<<<<<<<<<<
@@ -4400,7 +4309,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight_right = __pyx_v_w_cr;
 
-      /* "sklearn/tree/_tree.pyx":380
+      /* "sklearn/tree/_tree.pyx":359
  *                 split.weight_right = w_cr
  * 
  *                 split.impurity_left = impurity_left / w_cl             # <<<<<<<<<<<<<<
@@ -4409,7 +4318,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.impurity_left = (__pyx_v_impurity_left / __pyx_v_w_cl);
 
-      /* "sklearn/tree/_tree.pyx":381
+      /* "sklearn/tree/_tree.pyx":360
  * 
  *                 split.impurity_left = impurity_left / w_cl
  *                 split.impurity_right = impurity_right / w_cr             # <<<<<<<<<<<<<<
@@ -4417,13 +4326,13 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  *         split.impurity /= self.n_outputs
  */
       __pyx_v_split.impurity_right = (__pyx_v_impurity_right / __pyx_v_w_cr);
-      goto __pyx_L18;
+      goto __pyx_L19;
     }
-    __pyx_L18:;
+    __pyx_L19:;
     __pyx_L6_continue:;
   }
 
-  /* "sklearn/tree/_tree.pyx":383
+  /* "sklearn/tree/_tree.pyx":362
  *                 split.impurity_right = impurity_right / w_cr
  * 
  *         split.impurity /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -4432,7 +4341,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (__pyx_v_split.impurity / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":384
+  /* "sklearn/tree/_tree.pyx":363
  * 
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -4441,7 +4350,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = (__pyx_v_split.impurity_left / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":385
+  /* "sklearn/tree/_tree.pyx":364
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs
  *         split.impurity_right /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -4450,7 +4359,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = (__pyx_v_split.impurity_right / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":387
+  /* "sklearn/tree/_tree.pyx":366
  *         split.impurity_right /= self.n_outputs
  * 
  *         split.improvement = (w_sum / self.weighted_n_samples *             # <<<<<<<<<<<<<<
@@ -4459,7 +4368,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.improvement = ((__pyx_v_w_sum / __pyx_v_self->__pyx_base.__pyx_base.weighted_n_samples) * ((__pyx_v_split.impurity - ((__pyx_v_split.weight_left / __pyx_v_w_sum) * __pyx_v_split.impurity_left)) - ((__pyx_v_split.weight_right / __pyx_v_w_sum) * __pyx_v_split.impurity_right)));
 
-  /* "sklearn/tree/_tree.pyx":391
+  /* "sklearn/tree/_tree.pyx":370
  *                 split.weight_right / w_sum * split.impurity_right))
  * 
  *         split.feature = feature             # <<<<<<<<<<<<<<
@@ -4468,55 +4377,44 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.feature = __pyx_v_feature;
 
-  /* "sklearn/tree/_tree.pyx":392
+  /* "sklearn/tree/_tree.pyx":371
  * 
  *         split.feature = feature
  *         if split.pos == -1:             # <<<<<<<<<<<<<<
  *             split.pos = end
- *         else:
+ *         return split
  */
-  __pyx_t_5 = ((__pyx_v_split.pos == -1) != 0);
-  if (__pyx_t_5) {
+  __pyx_t_4 = ((__pyx_v_split.pos == -1) != 0);
+  if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":393
+    /* "sklearn/tree/_tree.pyx":372
  *         split.feature = feature
  *         if split.pos == -1:
  *             split.pos = end             # <<<<<<<<<<<<<<
- *         else:
- *             split.pos += start
+ *         return split
+ * 
  */
     __pyx_v_split.pos = __pyx_v_end;
     goto __pyx_L22;
   }
-  /*else*/ {
-
-    /* "sklearn/tree/_tree.pyx":395
- *             split.pos = end
- *         else:
- *             split.pos += start             # <<<<<<<<<<<<<<
- *         return split
- * 
- */
-    __pyx_v_split.pos = (__pyx_v_split.pos + __pyx_v_start);
-  }
   __pyx_L22:;
 
-  /* "sklearn/tree/_tree.pyx":396
- *         else:
- *             split.pos += start
+  /* "sklearn/tree/_tree.pyx":373
+ *         if split.pos == -1:
+ *             split.pos = end
  *         return split             # <<<<<<<<<<<<<<
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,
  */
   __pyx_r = __pyx_v_split;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":294
+  /* "sklearn/tree/_tree.pyx":277
  *     """
  * 
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value) nogil:
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  */
 
   /* function exit code */
@@ -4524,27 +4422,22 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":398
+/* "sklearn/tree/_tree.pyx":375
  *         return split
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X;
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_7Entropy_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Entropy *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_upper;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_lower;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_value;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cr;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cr;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature_offset;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_label;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_p;
@@ -4552,74 +4445,63 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_m;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_t_1;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_2;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_1;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_2;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_4;
-  int __pyx_t_5;
-  long __pyx_t_6;
+  int __pyx_t_4;
+  long __pyx_t_5;
 
-  /* "sklearn/tree/_tree.pyx":405
+  /* "sklearn/tree/_tree.pyx":382
  *         """
  * 
- *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
- *         cdef DOUBLE_t* y = self.y
- *         cdef DOUBLE_t* w = self.w
- */
-  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.X;
-  __pyx_v_X = __pyx_t_1;
-
-  /* "sklearn/tree/_tree.pyx":406
- * 
- *         cdef DTYPE_t* X = self.X
  *         cdef DOUBLE_t* y = self.y             # <<<<<<<<<<<<<<
+ *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t* w = self.w
+ */
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.y;
+  __pyx_v_y = __pyx_t_1;
+
+  /* "sklearn/tree/_tree.pyx":383
+ * 
+ *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* w = self.w
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y;
-  __pyx_v_y = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
+  __pyx_v_y_stride = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":407
- *         cdef DTYPE_t* X = self.X
+  /* "sklearn/tree/_tree.pyx":384
  *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride
  *         cdef DOUBLE_t* w = self.w             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t w_cl, w_cr
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.w;
-  __pyx_v_w = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.w;
+  __pyx_v_w = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":409
- *         cdef DOUBLE_t* w = self.w
- * 
- *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
- *         cdef DTYPE_t upper, lower, value
- * 
- */
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
-  __pyx_v_y_stride = __pyx_t_3;
-
-  /* "sklearn/tree/_tree.pyx":413
+  /* "sklearn/tree/_tree.pyx":387
  * 
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cl;
-  __pyx_v_yw_cl = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cl;
+  __pyx_v_yw_cl = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":414
+  /* "sklearn/tree/_tree.pyx":388
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr             # <<<<<<<<<<<<<<
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cr;
-  __pyx_v_yw_cr = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cr;
+  __pyx_v_yw_cr = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":415
+  /* "sklearn/tree/_tree.pyx":389
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -4628,25 +4510,16 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   memset(__pyx_v_yw_cl, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":416
+  /* "sklearn/tree/_tree.pyx":390
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride
+ *         cdef SIZE_t label
  */
   memset(__pyx_v_yw_cr, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":418
- *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
- * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride             # <<<<<<<<<<<<<<
- *         cdef SIZE_t label
- * 
- */
-  __pyx_v_feature_offset = (__pyx_v_feature * __pyx_v_self->__pyx_base.__pyx_base.X_feature_stride);
-
-  /* "sklearn/tree/_tree.pyx":421
+  /* "sklearn/tree/_tree.pyx":394
  *         cdef SIZE_t label
  * 
  *         cdef SIZE_t i, p, n = end-start, m = self.n             # <<<<<<<<<<<<<<
@@ -4654,20 +4527,20 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  *         cdef DOUBLE_t improvement
  */
   __pyx_v_n = (__pyx_v_end - __pyx_v_start);
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.n;
-  __pyx_v_m = __pyx_t_3;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.n;
+  __pyx_v_m = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":425
- *         cdef DOUBLE_t improvement
+  /* "sklearn/tree/_tree.pyx":399
  *         cdef SplitRecord split
+ * 
  *         _init_split_record(&split)             # <<<<<<<<<<<<<<
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  */
   __pyx_f_7sklearn_4tree_5_tree__init_split_record((&__pyx_v_split));
 
-  /* "sklearn/tree/_tree.pyx":426
- *         cdef SplitRecord split
+  /* "sklearn/tree/_tree.pyx":400
+ * 
  *         _init_split_record(&split)
  *         split.node_value = node_value             # <<<<<<<<<<<<<<
  *         split.node_value_left = self.node_value_left
@@ -4675,27 +4548,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.node_value = __pyx_v_node_value;
 
-  /* "sklearn/tree/_tree.pyx":427
+  /* "sklearn/tree/_tree.pyx":401
  *         _init_split_record(&split)
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left             # <<<<<<<<<<<<<<
  *         split.node_value_right = self.node_value_right
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
-  __pyx_v_split.node_value_left = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
+  __pyx_v_split.node_value_left = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":428
+  /* "sklearn/tree/_tree.pyx":402
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  *         split.node_value_right = self.node_value_right             # <<<<<<<<<<<<<<
  * 
  *         split.impurity = 0
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
-  __pyx_v_split.node_value_right = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
+  __pyx_v_split.node_value_right = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":430
+  /* "sklearn/tree/_tree.pyx":404
  *         split.node_value_right = self.node_value_right
  * 
  *         split.impurity = 0             # <<<<<<<<<<<<<<
@@ -4704,18 +4577,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":431
+  /* "sklearn/tree/_tree.pyx":405
  * 
  *         split.impurity = 0
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             yw_cr[i] = node_value[i]
  *             if yw_cr[i] > 0:
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":432
+    /* "sklearn/tree/_tree.pyx":406
  *         split.impurity = 0
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]             # <<<<<<<<<<<<<<
@@ -4724,17 +4597,17 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     (__pyx_v_yw_cr[__pyx_v_i]) = (__pyx_v_node_value[__pyx_v_i]);
 
-    /* "sklearn/tree/_tree.pyx":433
+    /* "sklearn/tree/_tree.pyx":407
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]
  *             if yw_cr[i] > 0:             # <<<<<<<<<<<<<<
  *                 split.impurity -= yw_cr[i] / w_sum * log(yw_cr[i] / w_sum)
  * 
  */
-    __pyx_t_5 = (((__pyx_v_yw_cr[__pyx_v_i]) > 0.0) != 0);
-    if (__pyx_t_5) {
+    __pyx_t_4 = (((__pyx_v_yw_cr[__pyx_v_i]) > 0.0) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":434
+      /* "sklearn/tree/_tree.pyx":408
  *             yw_cr[i] = node_value[i]
  *             if yw_cr[i] > 0:
  *                 split.impurity -= yw_cr[i] / w_sum * log(yw_cr[i] / w_sum)             # <<<<<<<<<<<<<<
@@ -4747,62 +4620,44 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_L5:;
   }
 
-  /* "sklearn/tree/_tree.pyx":436
+  /* "sklearn/tree/_tree.pyx":410
  *                 split.impurity -= yw_cr[i] / w_sum * log(yw_cr[i] / w_sum)
  * 
  *         w_cr = w_sum             # <<<<<<<<<<<<<<
  *         w_cl = 0
- *         # Find the best split by scanning the entire range and calculating
+ * 
  */
   __pyx_v_w_cr = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":437
+  /* "sklearn/tree/_tree.pyx":411
  * 
  *         w_cr = w_sum
  *         w_cl = 0             # <<<<<<<<<<<<<<
- *         # Find the best split by scanning the entire range and calculating
- *         # improvement for each split point.
+ * 
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  */
   __pyx_v_w_cl = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":440
- *         # Find the best split by scanning the entire range and calculating
- *         # improvement for each split point.
- *         upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]
+  /* "sklearn/tree/_tree.pyx":413
+ *         w_cl = 0
  * 
- */
-  __pyx_v_upper = (__pyx_v_X[(((__pyx_v_samples[((__pyx_v_start + __pyx_v_n) - 1)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-  /* "sklearn/tree/_tree.pyx":441
- *         # improvement for each split point.
- *         upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
- * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)
- */
-  __pyx_v_lower = (__pyx_v_X[(((__pyx_v_samples[__pyx_v_start]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-  /* "sklearn/tree/_tree.pyx":443
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]
- * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)             # <<<<<<<<<<<<<<
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)             # <<<<<<<<<<<<<<
  *         split.impurity_left = 0
  *         split.impurity_right = 0
  */
-  __pyx_v_split.threshold = __pyx_f_7sklearn_4tree_5_tree_rand_uniform(__pyx_v_lower, __pyx_v_upper, __pyx_v_rand_r);
+  __pyx_v_split.threshold = __pyx_f_7sklearn_4tree_5_tree_rand_uniform((__pyx_v_X_i[__pyx_v_start]), (__pyx_v_X_i[(__pyx_v_end - 1)]), __pyx_v_rand_r);
 
-  /* "sklearn/tree/_tree.pyx":444
+  /* "sklearn/tree/_tree.pyx":414
  * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  *         split.impurity_left = 0             # <<<<<<<<<<<<<<
  *         split.impurity_right = 0
  * 
  */
   __pyx_v_split.impurity_left = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":445
- *         split.threshold = rand_uniform(lower, upper, rand_r)
+  /* "sklearn/tree/_tree.pyx":415
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  *         split.impurity_left = 0
  *         split.impurity_right = 0             # <<<<<<<<<<<<<<
  * 
@@ -4810,57 +4665,48 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":447
+  /* "sklearn/tree/_tree.pyx":417
  *         split.impurity_right = 0
  * 
  *         for i in range(n-1):             # <<<<<<<<<<<<<<
  *             p = samples[start+i]
- *             value = X[p*self.X_sample_stride + feature_offset]
+ * 
  */
-  __pyx_t_6 = (__pyx_v_n - 1);
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_6; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
+  __pyx_t_5 = (__pyx_v_n - 1);
+  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_5; __pyx_t_2+=1) {
+    __pyx_v_i = __pyx_t_2;
 
-    /* "sklearn/tree/_tree.pyx":448
+    /* "sklearn/tree/_tree.pyx":418
  * 
  *         for i in range(n-1):
  *             p = samples[start+i]             # <<<<<<<<<<<<<<
- *             value = X[p*self.X_sample_stride + feature_offset]
  * 
+ *             if X_i[start+i] > split.threshold:
  */
     __pyx_v_p = (__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]);
 
-    /* "sklearn/tree/_tree.pyx":449
- *         for i in range(n-1):
+    /* "sklearn/tree/_tree.pyx":420
  *             p = samples[start+i]
- *             value = X[p*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
  * 
- *             if value > split.threshold:
- */
-    __pyx_v_value = (__pyx_v_X[((__pyx_v_p * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-    /* "sklearn/tree/_tree.pyx":451
- *             value = X[p*self.X_sample_stride + feature_offset]
- * 
- *             if value > split.threshold:             # <<<<<<<<<<<<<<
- *                 split.pos = i+start
+ *             if X_i[start+i] > split.threshold:             # <<<<<<<<<<<<<<
+ *                 split.pos = start+i
  *                 break
  */
-    __pyx_t_5 = ((__pyx_v_value > __pyx_v_split.threshold) != 0);
-    if (__pyx_t_5) {
+    __pyx_t_4 = (((__pyx_v_X_i[(__pyx_v_start + __pyx_v_i)]) > __pyx_v_split.threshold) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":452
+      /* "sklearn/tree/_tree.pyx":421
  * 
- *             if value > split.threshold:
- *                 split.pos = i+start             # <<<<<<<<<<<<<<
+ *             if X_i[start+i] > split.threshold:
+ *                 split.pos = start+i             # <<<<<<<<<<<<<<
  *                 break
  * 
  */
-      __pyx_v_split.pos = (__pyx_v_i + __pyx_v_start);
+      __pyx_v_split.pos = (__pyx_v_start + __pyx_v_i);
 
-      /* "sklearn/tree/_tree.pyx":453
- *             if value > split.threshold:
- *                 split.pos = i+start
+      /* "sklearn/tree/_tree.pyx":422
+ *             if X_i[start+i] > split.threshold:
+ *                 split.pos = start+i
  *                 break             # <<<<<<<<<<<<<<
  * 
  *             label = <SIZE_t>y[p]
@@ -4868,7 +4714,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L7_break;
     }
 
-    /* "sklearn/tree/_tree.pyx":455
+    /* "sklearn/tree/_tree.pyx":424
  *                 break
  * 
  *             label = <SIZE_t>y[p]             # <<<<<<<<<<<<<<
@@ -4877,27 +4723,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_label = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_y[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":456
+    /* "sklearn/tree/_tree.pyx":425
  * 
  *             label = <SIZE_t>y[p]
  *             yw_cr[label] -= w[p]             # <<<<<<<<<<<<<<
  *             yw_cl[label] += w[p]
  *             w_cr -= w[p]
  */
-    __pyx_t_4 = __pyx_v_label;
-    (__pyx_v_yw_cr[__pyx_t_4]) = ((__pyx_v_yw_cr[__pyx_t_4]) - (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_3 = __pyx_v_label;
+    (__pyx_v_yw_cr[__pyx_t_3]) = ((__pyx_v_yw_cr[__pyx_t_3]) - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":457
+    /* "sklearn/tree/_tree.pyx":426
  *             label = <SIZE_t>y[p]
  *             yw_cr[label] -= w[p]
  *             yw_cl[label] += w[p]             # <<<<<<<<<<<<<<
  *             w_cr -= w[p]
  *             w_cl += w[p]
  */
-    __pyx_t_4 = __pyx_v_label;
-    (__pyx_v_yw_cl[__pyx_t_4]) = ((__pyx_v_yw_cl[__pyx_t_4]) + (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_3 = __pyx_v_label;
+    (__pyx_v_yw_cl[__pyx_t_3]) = ((__pyx_v_yw_cl[__pyx_t_3]) + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":458
+    /* "sklearn/tree/_tree.pyx":427
  *             yw_cr[label] -= w[p]
  *             yw_cl[label] += w[p]
  *             w_cr -= w[p]             # <<<<<<<<<<<<<<
@@ -4906,7 +4752,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cr = (__pyx_v_w_cr - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":459
+    /* "sklearn/tree/_tree.pyx":428
  *             yw_cl[label] += w[p]
  *             w_cr -= w[p]
  *             w_cl += w[p]             # <<<<<<<<<<<<<<
@@ -4917,28 +4763,28 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L7_break:;
 
-  /* "sklearn/tree/_tree.pyx":461
+  /* "sklearn/tree/_tree.pyx":430
  *             w_cl += w[p]
  * 
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             if yw_cl[i] > 0:
  *                 split.impurity_left -= yw_cl[i] / w_cl * log(yw_cl[i] / w_cl)
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":462
+    /* "sklearn/tree/_tree.pyx":431
  * 
  *         for i in range(m):
  *             if yw_cl[i] > 0:             # <<<<<<<<<<<<<<
  *                 split.impurity_left -= yw_cl[i] / w_cl * log(yw_cl[i] / w_cl)
  *             if yw_cr[i] > 0:
  */
-    __pyx_t_5 = (((__pyx_v_yw_cl[__pyx_v_i]) > 0.0) != 0);
-    if (__pyx_t_5) {
+    __pyx_t_4 = (((__pyx_v_yw_cl[__pyx_v_i]) > 0.0) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":463
+      /* "sklearn/tree/_tree.pyx":432
  *         for i in range(m):
  *             if yw_cl[i] > 0:
  *                 split.impurity_left -= yw_cl[i] / w_cl * log(yw_cl[i] / w_cl)             # <<<<<<<<<<<<<<
@@ -4950,17 +4796,17 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     }
     __pyx_L11:;
 
-    /* "sklearn/tree/_tree.pyx":464
+    /* "sklearn/tree/_tree.pyx":433
  *             if yw_cl[i] > 0:
  *                 split.impurity_left -= yw_cl[i] / w_cl * log(yw_cl[i] / w_cl)
  *             if yw_cr[i] > 0:             # <<<<<<<<<<<<<<
  *                 split.impurity_right -= yw_cr[i] / w_cr * log(yw_cr[i] / w_cr)
  * 
  */
-    __pyx_t_5 = (((__pyx_v_yw_cr[__pyx_v_i]) > 0.0) != 0);
-    if (__pyx_t_5) {
+    __pyx_t_4 = (((__pyx_v_yw_cr[__pyx_v_i]) > 0.0) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":465
+      /* "sklearn/tree/_tree.pyx":434
  *                 split.impurity_left -= yw_cl[i] / w_cl * log(yw_cl[i] / w_cl)
  *             if yw_cr[i] > 0:
  *                 split.impurity_right -= yw_cr[i] / w_cr * log(yw_cr[i] / w_cr)             # <<<<<<<<<<<<<<
@@ -4973,18 +4819,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_L12:;
   }
 
-  /* "sklearn/tree/_tree.pyx":467
+  /* "sklearn/tree/_tree.pyx":436
  *                 split.impurity_right -= yw_cr[i] / w_cr * log(yw_cr[i] / w_cr)
  * 
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             split.node_value_left[i] = yw_cl[i]
  *             split.node_value_right[i] = yw_cr[i]
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":468
+    /* "sklearn/tree/_tree.pyx":437
  * 
  *         for i in range(m):
  *             split.node_value_left[i] = yw_cl[i]             # <<<<<<<<<<<<<<
@@ -4993,7 +4839,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     (__pyx_v_split.node_value_left[__pyx_v_i]) = (__pyx_v_yw_cl[__pyx_v_i]);
 
-    /* "sklearn/tree/_tree.pyx":469
+    /* "sklearn/tree/_tree.pyx":438
  *         for i in range(m):
  *             split.node_value_left[i] = yw_cl[i]
  *             split.node_value_right[i] = yw_cr[i]             # <<<<<<<<<<<<<<
@@ -5003,7 +4849,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     (__pyx_v_split.node_value_right[__pyx_v_i]) = (__pyx_v_yw_cr[__pyx_v_i]);
   }
 
-  /* "sklearn/tree/_tree.pyx":471
+  /* "sklearn/tree/_tree.pyx":440
  *             split.node_value_right[i] = yw_cr[i]
  * 
  *         split.weight = w_sum             # <<<<<<<<<<<<<<
@@ -5012,7 +4858,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":472
+  /* "sklearn/tree/_tree.pyx":441
  * 
  *         split.weight = w_sum
  *         split.weight_left = w_cl             # <<<<<<<<<<<<<<
@@ -5021,7 +4867,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight_left = __pyx_v_w_cl;
 
-  /* "sklearn/tree/_tree.pyx":473
+  /* "sklearn/tree/_tree.pyx":442
  *         split.weight = w_sum
  *         split.weight_left = w_cl
  *         split.weight_right = w_cr             # <<<<<<<<<<<<<<
@@ -5030,7 +4876,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight_right = __pyx_v_w_cr;
 
-  /* "sklearn/tree/_tree.pyx":475
+  /* "sklearn/tree/_tree.pyx":444
  *         split.weight_right = w_cr
  * 
  *         split.impurity /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -5039,7 +4885,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (__pyx_v_split.impurity / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":476
+  /* "sklearn/tree/_tree.pyx":445
  * 
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -5048,7 +4894,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = (__pyx_v_split.impurity_left / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":477
+  /* "sklearn/tree/_tree.pyx":446
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs
  *         split.impurity_right /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -5057,7 +4903,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = (__pyx_v_split.impurity_right / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":479
+  /* "sklearn/tree/_tree.pyx":448
  *         split.impurity_right /= self.n_outputs
  * 
  *         split.improvement = (w_sum / self.weighted_n_samples *             # <<<<<<<<<<<<<<
@@ -5066,7 +4912,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.improvement = ((__pyx_v_w_sum / __pyx_v_self->__pyx_base.__pyx_base.weighted_n_samples) * ((__pyx_v_split.impurity - ((__pyx_v_split.weight_left / __pyx_v_w_sum) * __pyx_v_split.impurity_left)) - ((__pyx_v_split.weight_right / __pyx_v_w_sum) * __pyx_v_split.impurity_right)));
 
-  /* "sklearn/tree/_tree.pyx":483
+  /* "sklearn/tree/_tree.pyx":452
  *                 split.weight_right / w_sum * split.impurity_right))
  * 
  *         split.feature = feature             # <<<<<<<<<<<<<<
@@ -5075,7 +4921,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.feature = __pyx_v_feature;
 
-  /* "sklearn/tree/_tree.pyx":484
+  /* "sklearn/tree/_tree.pyx":453
  * 
  *         split.feature = feature
  *         return split             # <<<<<<<<<<<<<<
@@ -5085,12 +4931,12 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_r = __pyx_v_split;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":398
+  /* "sklearn/tree/_tree.pyx":375
  *         return split
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  */
 
   /* function exit code */
@@ -5098,30 +4944,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":501
+/* "sklearn/tree/_tree.pyx":470
  *               = 1 - \sum_{k=0}^{K-1} pmk ** 2
  *     """
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value) nogil:
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X;
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_upper;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_lower;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cr;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cr;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature_offset;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_label;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_j;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_p;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_k;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_m;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_impurity_left;
@@ -5129,76 +4972,65 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_improvement;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_t_1;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_2;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_1;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_2;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_4;
+  int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
-  int __pyx_t_7;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_8;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_7;
 
-  /* "sklearn/tree/_tree.pyx":505
- *         DOUBLE_t* node_value) nogil:
+  /* "sklearn/tree/_tree.pyx":474
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  * 
- *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
- *         cdef DOUBLE_t* y = self.y
- *         cdef DOUBLE_t* w = self.w
- */
-  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.X;
-  __pyx_v_X = __pyx_t_1;
-
-  /* "sklearn/tree/_tree.pyx":506
- * 
- *         cdef DTYPE_t* X = self.X
  *         cdef DOUBLE_t* y = self.y             # <<<<<<<<<<<<<<
+ *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t* w = self.w
+ */
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.y;
+  __pyx_v_y = __pyx_t_1;
+
+  /* "sklearn/tree/_tree.pyx":475
+ * 
+ *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* w = self.w
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y;
-  __pyx_v_y = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
+  __pyx_v_y_stride = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":507
- *         cdef DTYPE_t* X = self.X
+  /* "sklearn/tree/_tree.pyx":476
  *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride
  *         cdef DOUBLE_t* w = self.w             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t w_cl, w_cr
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.w;
-  __pyx_v_w = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.w;
+  __pyx_v_w = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":509
- *         cdef DOUBLE_t* w = self.w
- * 
- *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
- *         cdef SIZE_t upper, lower
- * 
- */
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
-  __pyx_v_y_stride = __pyx_t_3;
-
-  /* "sklearn/tree/_tree.pyx":513
+  /* "sklearn/tree/_tree.pyx":479
  * 
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cl;
-  __pyx_v_yw_cl = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cl;
+  __pyx_v_yw_cl = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":514
+  /* "sklearn/tree/_tree.pyx":480
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr             # <<<<<<<<<<<<<<
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cr;
-  __pyx_v_yw_cr = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cr;
+  __pyx_v_yw_cr = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":515
+  /* "sklearn/tree/_tree.pyx":481
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -5207,46 +5039,37 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   memset(__pyx_v_yw_cl, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":516
+  /* "sklearn/tree/_tree.pyx":482
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride
+ *         cdef SIZE_t label
  */
   memset(__pyx_v_yw_cr, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":518
- *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
- * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride             # <<<<<<<<<<<<<<
+  /* "sklearn/tree/_tree.pyx":486
  *         cdef SIZE_t label
  * 
- */
-  __pyx_v_feature_offset = (__pyx_v_feature * __pyx_v_self->__pyx_base.__pyx_base.X_feature_stride);
-
-  /* "sklearn/tree/_tree.pyx":521
- *         cdef SIZE_t label
- * 
- *         cdef SIZE_t i, j, p, n = end-start, m = self.n             # <<<<<<<<<<<<<<
+ *         cdef SIZE_t i, j, p, k, n = end-start, m = self.n             # <<<<<<<<<<<<<<
  * 
  *         cdef DOUBLE_t impurity_left, impurity_right, improvement
  */
   __pyx_v_n = (__pyx_v_end - __pyx_v_start);
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.n;
-  __pyx_v_m = __pyx_t_3;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.n;
+  __pyx_v_m = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":525
- *         cdef DOUBLE_t impurity_left, impurity_right, improvement
+  /* "sklearn/tree/_tree.pyx":491
  *         cdef SplitRecord split
+ * 
  *         _init_split_record(&split)             # <<<<<<<<<<<<<<
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  */
   __pyx_f_7sklearn_4tree_5_tree__init_split_record((&__pyx_v_split));
 
-  /* "sklearn/tree/_tree.pyx":526
- *         cdef SplitRecord split
+  /* "sklearn/tree/_tree.pyx":492
+ * 
  *         _init_split_record(&split)
  *         split.node_value = node_value             # <<<<<<<<<<<<<<
  *         split.node_value_left = self.node_value_left
@@ -5254,27 +5077,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.node_value = __pyx_v_node_value;
 
-  /* "sklearn/tree/_tree.pyx":527
+  /* "sklearn/tree/_tree.pyx":493
  *         _init_split_record(&split)
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left             # <<<<<<<<<<<<<<
  *         split.node_value_right = self.node_value_right
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
-  __pyx_v_split.node_value_left = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
+  __pyx_v_split.node_value_left = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":528
+  /* "sklearn/tree/_tree.pyx":494
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  *         split.node_value_right = self.node_value_right             # <<<<<<<<<<<<<<
  * 
  *         split.impurity = 0
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
-  __pyx_v_split.node_value_right = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
+  __pyx_v_split.node_value_right = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":530
+  /* "sklearn/tree/_tree.pyx":496
  *         split.node_value_right = self.node_value_right
  * 
  *         split.impurity = 0             # <<<<<<<<<<<<<<
@@ -5283,18 +5106,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":531
+  /* "sklearn/tree/_tree.pyx":497
  * 
  *         split.impurity = 0
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             yw_cr[i] = node_value[i]
  *             split.impurity += yw_cr[i] ** 2
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":532
+    /* "sklearn/tree/_tree.pyx":498
  *         split.impurity = 0
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]             # <<<<<<<<<<<<<<
@@ -5303,7 +5126,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     (__pyx_v_yw_cr[__pyx_v_i]) = (__pyx_v_node_value[__pyx_v_i]);
 
-    /* "sklearn/tree/_tree.pyx":533
+    /* "sklearn/tree/_tree.pyx":499
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]
  *             split.impurity += yw_cr[i] ** 2             # <<<<<<<<<<<<<<
@@ -5313,7 +5136,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_v_split.impurity = (__pyx_v_split.impurity + pow((__pyx_v_yw_cr[__pyx_v_i]), 2.0));
   }
 
-  /* "sklearn/tree/_tree.pyx":535
+  /* "sklearn/tree/_tree.pyx":501
  *             split.impurity += yw_cr[i] ** 2
  * 
  *         split.impurity = 1.0 - split.impurity / w_sum ** 2             # <<<<<<<<<<<<<<
@@ -5322,7 +5145,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (1.0 - (__pyx_v_split.impurity / pow(__pyx_v_w_sum, 2.0)));
 
-  /* "sklearn/tree/_tree.pyx":537
+  /* "sklearn/tree/_tree.pyx":503
  *         split.impurity = 1.0 - split.impurity / w_sum ** 2
  * 
  *         w_cr = w_sum             # <<<<<<<<<<<<<<
@@ -5331,7 +5154,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_w_cr = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":538
+  /* "sklearn/tree/_tree.pyx":504
  * 
  *         w_cr = w_sum
  *         w_cl = 0             # <<<<<<<<<<<<<<
@@ -5340,56 +5163,65 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_w_cl = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":541
+  /* "sklearn/tree/_tree.pyx":507
  *         # Find the best split by scanning the entire range and calculating
  *         # improvement for each split point.
  *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):             # <<<<<<<<<<<<<<
- *             p = samples[start+i]
- *             label = <SIZE_t>y[p]
+ *             k = start+i
+ *             p = samples[k]
  */
-  __pyx_t_5 = (__pyx_v_n - __pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples);
-  for (__pyx_t_3 = (__pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples - 1); __pyx_t_3 < __pyx_t_5; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
+  __pyx_t_4 = (__pyx_v_n - __pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples);
+  for (__pyx_t_2 = (__pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples - 1); __pyx_t_2 < __pyx_t_4; __pyx_t_2+=1) {
+    __pyx_v_i = __pyx_t_2;
 
-    /* "sklearn/tree/_tree.pyx":542
+    /* "sklearn/tree/_tree.pyx":508
  *         # improvement for each split point.
  *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
- *             p = samples[start+i]             # <<<<<<<<<<<<<<
+ *             k = start+i             # <<<<<<<<<<<<<<
+ *             p = samples[k]
+ *             label = <SIZE_t>y[p]
+ */
+    __pyx_v_k = (__pyx_v_start + __pyx_v_i);
+
+    /* "sklearn/tree/_tree.pyx":509
+ *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
+ *             k = start+i
+ *             p = samples[k]             # <<<<<<<<<<<<<<
  *             label = <SIZE_t>y[p]
  * 
  */
-    __pyx_v_p = (__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]);
+    __pyx_v_p = (__pyx_v_samples[__pyx_v_k]);
 
-    /* "sklearn/tree/_tree.pyx":543
- *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
- *             p = samples[start+i]
+    /* "sklearn/tree/_tree.pyx":510
+ *             k = start+i
+ *             p = samples[k]
  *             label = <SIZE_t>y[p]             # <<<<<<<<<<<<<<
  * 
  *             yw_cr[label] -= w[p]
  */
     __pyx_v_label = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_y[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":545
+    /* "sklearn/tree/_tree.pyx":512
  *             label = <SIZE_t>y[p]
  * 
  *             yw_cr[label] -= w[p]             # <<<<<<<<<<<<<<
  *             yw_cl[label] += w[p]
  * 
  */
-    __pyx_t_4 = __pyx_v_label;
-    (__pyx_v_yw_cr[__pyx_t_4]) = ((__pyx_v_yw_cr[__pyx_t_4]) - (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_3 = __pyx_v_label;
+    (__pyx_v_yw_cr[__pyx_t_3]) = ((__pyx_v_yw_cr[__pyx_t_3]) - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":546
+    /* "sklearn/tree/_tree.pyx":513
  * 
  *             yw_cr[label] -= w[p]
  *             yw_cl[label] += w[p]             # <<<<<<<<<<<<<<
  * 
  *             w_cr -= w[p]
  */
-    __pyx_t_4 = __pyx_v_label;
-    (__pyx_v_yw_cl[__pyx_t_4]) = ((__pyx_v_yw_cl[__pyx_t_4]) + (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_3 = __pyx_v_label;
+    (__pyx_v_yw_cl[__pyx_t_3]) = ((__pyx_v_yw_cl[__pyx_t_3]) + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":548
+    /* "sklearn/tree/_tree.pyx":515
  *             yw_cl[label] += w[p]
  * 
  *             w_cr -= w[p]             # <<<<<<<<<<<<<<
@@ -5398,54 +5230,36 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cr = (__pyx_v_w_cr - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":549
+    /* "sklearn/tree/_tree.pyx":516
  * 
  *             w_cr -= w[p]
  *             w_cl += w[p]             # <<<<<<<<<<<<<<
  * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset
+ *             #if i < self.min_leaf_samples-1:
  */
     __pyx_v_w_cl = (__pyx_v_w_cl + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":551
- *             w_cl += w[p]
+    /* "sklearn/tree/_tree.pyx":521
+ *             #    continue
  * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset
- * 
- */
-    __pyx_v_upper = (((__pyx_v_samples[((__pyx_v_start + __pyx_v_i) + 1)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset);
-
-    /* "sklearn/tree/_tree.pyx":552
- * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
- * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:
- */
-    __pyx_v_lower = (((__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset);
-
-    /* "sklearn/tree/_tree.pyx":554
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset
- * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
+ *             if k+1 < end-1 and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_7 = ((((__pyx_v_start + __pyx_v_i) + 1) < __pyx_v_end) != 0);
-    if (__pyx_t_7) {
+    __pyx_t_6 = (((__pyx_v_k + 1) < (__pyx_v_end - 1)) != 0);
+    if (__pyx_t_6) {
     } else {
-      __pyx_t_6 = __pyx_t_7;
+      __pyx_t_5 = __pyx_t_6;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_7 = (((__pyx_v_X[__pyx_v_upper]) <= ((__pyx_v_X[__pyx_v_lower]) + __pyx_v_7sklearn_4tree_5_tree_FEATURE_THRESHOLD)) != 0);
-    __pyx_t_6 = __pyx_t_7;
+    __pyx_t_6 = (((__pyx_v_X_i[(__pyx_v_k + 1)]) <= ((__pyx_v_X_i[__pyx_v_k]) + __pyx_v_7sklearn_4tree_5_tree_FEATURE_THRESHOLD)) != 0);
+    __pyx_t_5 = __pyx_t_6;
     __pyx_L8_bool_binop_done:;
-    if (__pyx_t_6) {
+    if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":555
+      /* "sklearn/tree/_tree.pyx":522
  * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:
+ *             if k+1 < end-1 and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:
  *                 continue             # <<<<<<<<<<<<<<
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:
@@ -5453,25 +5267,25 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L5_continue;
     }
 
-    /* "sklearn/tree/_tree.pyx":557
+    /* "sklearn/tree/_tree.pyx":524
  *                 continue
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_7 = ((__pyx_v_w_cl < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
-    if (!__pyx_t_7) {
+    __pyx_t_6 = ((__pyx_v_w_cl < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
+    if (!__pyx_t_6) {
     } else {
-      __pyx_t_6 = __pyx_t_7;
+      __pyx_t_5 = __pyx_t_6;
       goto __pyx_L11_bool_binop_done;
     }
-    __pyx_t_7 = ((__pyx_v_w_cr < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
-    __pyx_t_6 = __pyx_t_7;
+    __pyx_t_6 = ((__pyx_v_w_cr < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
+    __pyx_t_5 = __pyx_t_6;
     __pyx_L11_bool_binop_done:;
-    if (__pyx_t_6) {
+    if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":558
+      /* "sklearn/tree/_tree.pyx":525
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:
  *                 continue             # <<<<<<<<<<<<<<
@@ -5481,7 +5295,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L5_continue;
     }
 
-    /* "sklearn/tree/_tree.pyx":560
+    /* "sklearn/tree/_tree.pyx":527
  *                 continue
  * 
  *             impurity_left = 0             # <<<<<<<<<<<<<<
@@ -5490,7 +5304,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_impurity_left = 0.0;
 
-    /* "sklearn/tree/_tree.pyx":561
+    /* "sklearn/tree/_tree.pyx":528
  * 
  *             impurity_left = 0
  *             impurity_right = 0             # <<<<<<<<<<<<<<
@@ -5499,18 +5313,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_impurity_right = 0.0;
 
-    /* "sklearn/tree/_tree.pyx":562
+    /* "sklearn/tree/_tree.pyx":529
  *             impurity_left = 0
  *             impurity_right = 0
  *             for j in range(m):             # <<<<<<<<<<<<<<
  *                 impurity_left += yw_cl[j] ** 2.0
  *                 impurity_right += yw_cr[j] ** 2.0
  */
-    __pyx_t_4 = __pyx_v_m;
-    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_4; __pyx_t_8+=1) {
-      __pyx_v_j = __pyx_t_8;
+    __pyx_t_3 = __pyx_v_m;
+    for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_3; __pyx_t_7+=1) {
+      __pyx_v_j = __pyx_t_7;
 
-      /* "sklearn/tree/_tree.pyx":563
+      /* "sklearn/tree/_tree.pyx":530
  *             impurity_right = 0
  *             for j in range(m):
  *                 impurity_left += yw_cl[j] ** 2.0             # <<<<<<<<<<<<<<
@@ -5519,7 +5333,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_impurity_left = (__pyx_v_impurity_left + pow(((double)(__pyx_v_yw_cl[__pyx_v_j])), 2.0));
 
-      /* "sklearn/tree/_tree.pyx":564
+      /* "sklearn/tree/_tree.pyx":531
  *             for j in range(m):
  *                 impurity_left += yw_cl[j] ** 2.0
  *                 impurity_right += yw_cr[j] ** 2.0             # <<<<<<<<<<<<<<
@@ -5529,7 +5343,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       __pyx_v_impurity_right = (__pyx_v_impurity_right + pow(((double)(__pyx_v_yw_cr[__pyx_v_j])), 2.0));
     }
 
-    /* "sklearn/tree/_tree.pyx":566
+    /* "sklearn/tree/_tree.pyx":533
  *                 impurity_right += yw_cr[j] ** 2.0
  * 
  *             improvement = impurity_left / w_cl + impurity_right / w_cr             # <<<<<<<<<<<<<<
@@ -5538,77 +5352,55 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_improvement = ((__pyx_v_impurity_left / __pyx_v_w_cl) + (__pyx_v_impurity_right / __pyx_v_w_cr));
 
-    /* "sklearn/tree/_tree.pyx":568
+    /* "sklearn/tree/_tree.pyx":535
  *             improvement = impurity_left / w_cl + impurity_right / w_cr
  * 
  *             if improvement > split.improvement:             # <<<<<<<<<<<<<<
  *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0
  */
-    __pyx_t_6 = ((__pyx_v_improvement > __pyx_v_split.improvement) != 0);
-    if (__pyx_t_6) {
+    __pyx_t_5 = ((__pyx_v_improvement > __pyx_v_split.improvement) != 0);
+    if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":569
+      /* "sklearn/tree/_tree.pyx":536
  * 
  *             if improvement > split.improvement:
  *                 split.improvement = improvement             # <<<<<<<<<<<<<<
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 if split.threshold == X[upper]:
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0
+ *                 split.pos = k+1
  */
       __pyx_v_split.improvement = __pyx_v_improvement;
 
-      /* "sklearn/tree/_tree.pyx":570
+      /* "sklearn/tree/_tree.pyx":537
  *             if improvement > split.improvement:
  *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0             # <<<<<<<<<<<<<<
- *                 if split.threshold == X[upper]:
- *                     split.threshold = X[lower]
- */
-      __pyx_v_split.threshold = (((__pyx_v_X[__pyx_v_upper]) + (__pyx_v_X[__pyx_v_lower])) / 2.0);
-
-      /* "sklearn/tree/_tree.pyx":571
- *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 if split.threshold == X[upper]:             # <<<<<<<<<<<<<<
- *                     split.threshold = X[lower]
- *                 split.pos = i+1
- */
-      __pyx_t_6 = ((__pyx_v_split.threshold == (__pyx_v_X[__pyx_v_upper])) != 0);
-      if (__pyx_t_6) {
-
-        /* "sklearn/tree/_tree.pyx":572
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 if split.threshold == X[upper]:
- *                     split.threshold = X[lower]             # <<<<<<<<<<<<<<
- *                 split.pos = i+1
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0             # <<<<<<<<<<<<<<
+ *                 split.pos = k+1
  * 
  */
-        __pyx_v_split.threshold = (__pyx_v_X[__pyx_v_lower]);
-        goto __pyx_L16;
-      }
-      __pyx_L16:;
+      __pyx_v_split.threshold = (((__pyx_v_X_i[(__pyx_v_k + 1)]) + (__pyx_v_X_i[__pyx_v_k])) / 2.0);
 
-      /* "sklearn/tree/_tree.pyx":573
- *                 if split.threshold == X[upper]:
- *                     split.threshold = X[lower]
- *                 split.pos = i+1             # <<<<<<<<<<<<<<
+      /* "sklearn/tree/_tree.pyx":538
+ *                 split.improvement = improvement
+ *                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0
+ *                 split.pos = k+1             # <<<<<<<<<<<<<<
  * 
  *                 for j in range(m):
  */
-      __pyx_v_split.pos = (__pyx_v_i + 1);
+      __pyx_v_split.pos = (__pyx_v_k + 1);
 
-      /* "sklearn/tree/_tree.pyx":575
- *                 split.pos = i+1
+      /* "sklearn/tree/_tree.pyx":540
+ *                 split.pos = k+1
  * 
  *                 for j in range(m):             # <<<<<<<<<<<<<<
  *                     split.node_value_left[j] = yw_cl[j]
  *                     split.node_value_right[j] = yw_cr[j]
  */
-      __pyx_t_4 = __pyx_v_m;
-      for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_4; __pyx_t_8+=1) {
-        __pyx_v_j = __pyx_t_8;
+      __pyx_t_3 = __pyx_v_m;
+      for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_3; __pyx_t_7+=1) {
+        __pyx_v_j = __pyx_t_7;
 
-        /* "sklearn/tree/_tree.pyx":576
+        /* "sklearn/tree/_tree.pyx":541
  * 
  *                 for j in range(m):
  *                     split.node_value_left[j] = yw_cl[j]             # <<<<<<<<<<<<<<
@@ -5617,7 +5409,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
         (__pyx_v_split.node_value_left[__pyx_v_j]) = (__pyx_v_yw_cl[__pyx_v_j]);
 
-        /* "sklearn/tree/_tree.pyx":577
+        /* "sklearn/tree/_tree.pyx":542
  *                 for j in range(m):
  *                     split.node_value_left[j] = yw_cl[j]
  *                     split.node_value_right[j] = yw_cr[j]             # <<<<<<<<<<<<<<
@@ -5627,7 +5419,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
         (__pyx_v_split.node_value_right[__pyx_v_j]) = (__pyx_v_yw_cr[__pyx_v_j]);
       }
 
-      /* "sklearn/tree/_tree.pyx":579
+      /* "sklearn/tree/_tree.pyx":544
  *                     split.node_value_right[j] = yw_cr[j]
  * 
  *                 split.weight = w_sum             # <<<<<<<<<<<<<<
@@ -5636,7 +5428,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight = __pyx_v_w_sum;
 
-      /* "sklearn/tree/_tree.pyx":580
+      /* "sklearn/tree/_tree.pyx":545
  * 
  *                 split.weight = w_sum
  *                 split.weight_left = w_cl             # <<<<<<<<<<<<<<
@@ -5645,7 +5437,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight_left = __pyx_v_w_cl;
 
-      /* "sklearn/tree/_tree.pyx":581
+      /* "sklearn/tree/_tree.pyx":546
  *                 split.weight = w_sum
  *                 split.weight_left = w_cl
  *                 split.weight_right = w_cr             # <<<<<<<<<<<<<<
@@ -5654,7 +5446,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight_right = __pyx_v_w_cr;
 
-      /* "sklearn/tree/_tree.pyx":583
+      /* "sklearn/tree/_tree.pyx":548
  *                 split.weight_right = w_cr
  * 
  *                 split.impurity_left = 1. - impurity_left / w_cl ** 2             # <<<<<<<<<<<<<<
@@ -5663,7 +5455,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.impurity_left = (1. - (__pyx_v_impurity_left / pow(__pyx_v_w_cl, 2.0)));
 
-      /* "sklearn/tree/_tree.pyx":584
+      /* "sklearn/tree/_tree.pyx":549
  * 
  *                 split.impurity_left = 1. - impurity_left / w_cl ** 2
  *                 split.impurity_right = 1. - impurity_right / w_cr ** 2             # <<<<<<<<<<<<<<
@@ -5677,7 +5469,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_L5_continue:;
   }
 
-  /* "sklearn/tree/_tree.pyx":586
+  /* "sklearn/tree/_tree.pyx":551
  *                 split.impurity_right = 1. - impurity_right / w_cr ** 2
  * 
  *         split.impurity /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -5686,7 +5478,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (__pyx_v_split.impurity / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":587
+  /* "sklearn/tree/_tree.pyx":552
  * 
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -5695,7 +5487,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = (__pyx_v_split.impurity_left / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":588
+  /* "sklearn/tree/_tree.pyx":553
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs
  *         split.impurity_right /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -5704,7 +5496,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = (__pyx_v_split.impurity_right / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":590
+  /* "sklearn/tree/_tree.pyx":555
  *         split.impurity_right /= self.n_outputs
  * 
  *         split.improvement = (w_sum / self.weighted_n_samples *             # <<<<<<<<<<<<<<
@@ -5713,7 +5505,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.improvement = ((__pyx_v_w_sum / __pyx_v_self->__pyx_base.__pyx_base.weighted_n_samples) * ((__pyx_v_split.impurity - ((__pyx_v_split.weight_left / __pyx_v_w_sum) * __pyx_v_split.impurity_left)) - ((__pyx_v_split.weight_right / __pyx_v_w_sum) * __pyx_v_split.impurity_right)));
 
-  /* "sklearn/tree/_tree.pyx":594
+  /* "sklearn/tree/_tree.pyx":559
  *                 split.weight_right / w_sum * split.impurity_right))
  * 
  *         split.feature = feature             # <<<<<<<<<<<<<<
@@ -5722,55 +5514,44 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.feature = __pyx_v_feature;
 
-  /* "sklearn/tree/_tree.pyx":595
+  /* "sklearn/tree/_tree.pyx":560
  * 
  *         split.feature = feature
  *         if split.pos == -1:             # <<<<<<<<<<<<<<
  *             split.pos = end
- *         else:
+ * 
  */
-  __pyx_t_6 = ((__pyx_v_split.pos == -1) != 0);
-  if (__pyx_t_6) {
+  __pyx_t_5 = ((__pyx_v_split.pos == -1) != 0);
+  if (__pyx_t_5) {
 
-    /* "sklearn/tree/_tree.pyx":596
+    /* "sklearn/tree/_tree.pyx":561
  *         split.feature = feature
  *         if split.pos == -1:
  *             split.pos = end             # <<<<<<<<<<<<<<
- *         else:
- *             split.pos += start
+ * 
+ *         return split
  */
     __pyx_v_split.pos = __pyx_v_end;
-    goto __pyx_L19;
+    goto __pyx_L18;
   }
-  /*else*/ {
+  __pyx_L18:;
 
-    /* "sklearn/tree/_tree.pyx":598
+  /* "sklearn/tree/_tree.pyx":563
  *             split.pos = end
- *         else:
- *             split.pos += start             # <<<<<<<<<<<<<<
- *         return split
  * 
- */
-    __pyx_v_split.pos = (__pyx_v_split.pos + __pyx_v_start);
-  }
-  __pyx_L19:;
-
-  /* "sklearn/tree/_tree.pyx":599
- *         else:
- *             split.pos += start
  *         return split             # <<<<<<<<<<<<<<
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,
  */
   __pyx_r = __pyx_v_split;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":501
+  /* "sklearn/tree/_tree.pyx":470
  *               = 1 - \sum_{k=0}^{K-1} pmk ** 2
  *     """
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value) nogil:
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  */
 
   /* function exit code */
@@ -5778,27 +5559,22 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":601
+/* "sklearn/tree/_tree.pyx":565
  *         return split
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X;
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_4Gini_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_Gini *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_upper;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_lower;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_value;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cr;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_cr;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature_offset;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_label;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_p;
@@ -5806,74 +5582,63 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_m;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_t_1;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_2;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_1;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_2;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_4;
-  int __pyx_t_5;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_6;
+  int __pyx_t_4;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_5;
 
-  /* "sklearn/tree/_tree.pyx":608
+  /* "sklearn/tree/_tree.pyx":572
  *         """
  * 
- *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
- *         cdef DOUBLE_t* y = self.y
- *         cdef DOUBLE_t* w = self.w
- */
-  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.X;
-  __pyx_v_X = __pyx_t_1;
-
-  /* "sklearn/tree/_tree.pyx":609
- * 
- *         cdef DTYPE_t* X = self.X
  *         cdef DOUBLE_t* y = self.y             # <<<<<<<<<<<<<<
+ *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t* w = self.w
+ */
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.y;
+  __pyx_v_y = __pyx_t_1;
+
+  /* "sklearn/tree/_tree.pyx":573
+ * 
+ *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* w = self.w
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y;
-  __pyx_v_y = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
+  __pyx_v_y_stride = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":610
- *         cdef DTYPE_t* X = self.X
+  /* "sklearn/tree/_tree.pyx":574
  *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride
  *         cdef DOUBLE_t* w = self.w             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t w_cl, w_cr
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.w;
-  __pyx_v_w = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.w;
+  __pyx_v_w = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":612
- *         cdef DOUBLE_t* w = self.w
- * 
- *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
- *         cdef DTYPE_t upper, lower, value
- * 
- */
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
-  __pyx_v_y_stride = __pyx_t_3;
-
-  /* "sklearn/tree/_tree.pyx":616
+  /* "sklearn/tree/_tree.pyx":577
  * 
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cl;
-  __pyx_v_yw_cl = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cl;
+  __pyx_v_yw_cl = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":617
+  /* "sklearn/tree/_tree.pyx":578
  *         cdef DOUBLE_t w_cl, w_cr
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr             # <<<<<<<<<<<<<<
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.yw_cr;
-  __pyx_v_yw_cr = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.yw_cr;
+  __pyx_v_yw_cr = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":618
+  /* "sklearn/tree/_tree.pyx":579
  *         cdef DOUBLE_t* yw_cl = self.yw_cl
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -5882,25 +5647,16 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   memset(__pyx_v_yw_cl, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":619
+  /* "sklearn/tree/_tree.pyx":580
  *         cdef DOUBLE_t* yw_cr = self.yw_cr
  *         memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
  *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride
+ *         cdef SIZE_t label
  */
   memset(__pyx_v_yw_cr, 0, (__pyx_v_self->__pyx_base.__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":621
- *         memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
- * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride             # <<<<<<<<<<<<<<
- *         cdef SIZE_t label
- * 
- */
-  __pyx_v_feature_offset = (__pyx_v_feature * __pyx_v_self->__pyx_base.__pyx_base.X_feature_stride);
-
-  /* "sklearn/tree/_tree.pyx":624
+  /* "sklearn/tree/_tree.pyx":584
  *         cdef SIZE_t label
  * 
  *         cdef SIZE_t i, p, n = end-start, m = self.n             # <<<<<<<<<<<<<<
@@ -5908,20 +5664,20 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  *         cdef DOUBLE_t impurity_left, impurity_right, improvement
  */
   __pyx_v_n = (__pyx_v_end - __pyx_v_start);
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.n;
-  __pyx_v_m = __pyx_t_3;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.n;
+  __pyx_v_m = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":628
- *         cdef DOUBLE_t impurity_left, impurity_right, improvement
+  /* "sklearn/tree/_tree.pyx":589
  *         cdef SplitRecord split
+ * 
  *         _init_split_record(&split)             # <<<<<<<<<<<<<<
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  */
   __pyx_f_7sklearn_4tree_5_tree__init_split_record((&__pyx_v_split));
 
-  /* "sklearn/tree/_tree.pyx":629
- *         cdef SplitRecord split
+  /* "sklearn/tree/_tree.pyx":590
+ * 
  *         _init_split_record(&split)
  *         split.node_value = node_value             # <<<<<<<<<<<<<<
  *         split.node_value_left = self.node_value_left
@@ -5929,27 +5685,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.node_value = __pyx_v_node_value;
 
-  /* "sklearn/tree/_tree.pyx":630
+  /* "sklearn/tree/_tree.pyx":591
  *         _init_split_record(&split)
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left             # <<<<<<<<<<<<<<
  *         split.node_value_right = self.node_value_right
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
-  __pyx_v_split.node_value_left = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
+  __pyx_v_split.node_value_left = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":631
+  /* "sklearn/tree/_tree.pyx":592
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  *         split.node_value_right = self.node_value_right             # <<<<<<<<<<<<<<
  * 
  *         split.impurity = 0
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
-  __pyx_v_split.node_value_right = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
+  __pyx_v_split.node_value_right = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":633
+  /* "sklearn/tree/_tree.pyx":594
  *         split.node_value_right = self.node_value_right
  * 
  *         split.impurity = 0             # <<<<<<<<<<<<<<
@@ -5958,18 +5714,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":634
+  /* "sklearn/tree/_tree.pyx":595
  * 
  *         split.impurity = 0
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             yw_cr[i] = node_value[i]
  *             split.impurity += yw_cr[i] ** 2
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":635
+    /* "sklearn/tree/_tree.pyx":596
  *         split.impurity = 0
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]             # <<<<<<<<<<<<<<
@@ -5978,7 +5734,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     (__pyx_v_yw_cr[__pyx_v_i]) = (__pyx_v_node_value[__pyx_v_i]);
 
-    /* "sklearn/tree/_tree.pyx":636
+    /* "sklearn/tree/_tree.pyx":597
  *         for i in range(m):
  *             yw_cr[i] = node_value[i]
  *             split.impurity += yw_cr[i] ** 2             # <<<<<<<<<<<<<<
@@ -5988,7 +5744,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_v_split.impurity = (__pyx_v_split.impurity + pow((__pyx_v_yw_cr[__pyx_v_i]), 2.0));
   }
 
-  /* "sklearn/tree/_tree.pyx":638
+  /* "sklearn/tree/_tree.pyx":599
  *             split.impurity += yw_cr[i] ** 2
  * 
  *         split.impurity = 1.0 - split.impurity / (w_sum ** 2.0)             # <<<<<<<<<<<<<<
@@ -5997,62 +5753,44 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (1.0 - (__pyx_v_split.impurity / pow(((double)__pyx_v_w_sum), 2.0)));
 
-  /* "sklearn/tree/_tree.pyx":640
+  /* "sklearn/tree/_tree.pyx":601
  *         split.impurity = 1.0 - split.impurity / (w_sum ** 2.0)
  * 
  *         w_cr = w_sum             # <<<<<<<<<<<<<<
  *         w_cl = 0
- *         # Find the best split by scanning the entire range and calculating
+ * 
  */
   __pyx_v_w_cr = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":641
+  /* "sklearn/tree/_tree.pyx":602
  * 
  *         w_cr = w_sum
  *         w_cl = 0             # <<<<<<<<<<<<<<
- *         # Find the best split by scanning the entire range and calculating
- *         # improvement for each split point.
+ * 
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  */
   __pyx_v_w_cl = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":644
- *         # Find the best split by scanning the entire range and calculating
- *         # improvement for each split point.
- *         upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]
+  /* "sklearn/tree/_tree.pyx":604
+ *         w_cl = 0
  * 
- */
-  __pyx_v_upper = (__pyx_v_X[(((__pyx_v_samples[((__pyx_v_start + __pyx_v_n) - 1)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-  /* "sklearn/tree/_tree.pyx":645
- *         # improvement for each split point.
- *         upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
- * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)
- */
-  __pyx_v_lower = (__pyx_v_X[(((__pyx_v_samples[__pyx_v_start]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-  /* "sklearn/tree/_tree.pyx":647
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]
- * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)             # <<<<<<<<<<<<<<
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)             # <<<<<<<<<<<<<<
  *         split.impurity_left = 0
  *         split.impurity_right = 0
  */
-  __pyx_v_split.threshold = __pyx_f_7sklearn_4tree_5_tree_rand_uniform(__pyx_v_lower, __pyx_v_upper, __pyx_v_rand_r);
+  __pyx_v_split.threshold = __pyx_f_7sklearn_4tree_5_tree_rand_uniform((__pyx_v_X_i[__pyx_v_start]), (__pyx_v_X_i[(__pyx_v_end - 1)]), __pyx_v_rand_r);
 
-  /* "sklearn/tree/_tree.pyx":648
+  /* "sklearn/tree/_tree.pyx":605
  * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  *         split.impurity_left = 0             # <<<<<<<<<<<<<<
  *         split.impurity_right = 0
  * 
  */
   __pyx_v_split.impurity_left = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":649
- *         split.threshold = rand_uniform(lower, upper, rand_r)
+  /* "sklearn/tree/_tree.pyx":606
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  *         split.impurity_left = 0
  *         split.impurity_right = 0             # <<<<<<<<<<<<<<
  * 
@@ -6060,57 +5798,48 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":651
+  /* "sklearn/tree/_tree.pyx":608
  *         split.impurity_right = 0
  * 
  *         for i in range(n):             # <<<<<<<<<<<<<<
  *             p = samples[start+i]
- *             value = X[p*self.X_sample_stride + feature_offset]
+ * 
  */
-  __pyx_t_3 = __pyx_v_n;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_n;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":652
+    /* "sklearn/tree/_tree.pyx":609
  * 
  *         for i in range(n):
  *             p = samples[start+i]             # <<<<<<<<<<<<<<
- *             value = X[p*self.X_sample_stride + feature_offset]
  * 
+ *             if X_i[start+i] > split.threshold:
  */
     __pyx_v_p = (__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]);
 
-    /* "sklearn/tree/_tree.pyx":653
- *         for i in range(n):
+    /* "sklearn/tree/_tree.pyx":611
  *             p = samples[start+i]
- *             value = X[p*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
  * 
- *             if value > split.threshold:
- */
-    __pyx_v_value = (__pyx_v_X[((__pyx_v_p * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-    /* "sklearn/tree/_tree.pyx":655
- *             value = X[p*self.X_sample_stride + feature_offset]
- * 
- *             if value > split.threshold:             # <<<<<<<<<<<<<<
- *                 split.pos = i+start
+ *             if X_i[start+i] > split.threshold:             # <<<<<<<<<<<<<<
+ *                 split.pos = start+i
  *                 break
  */
-    __pyx_t_5 = ((__pyx_v_value > __pyx_v_split.threshold) != 0);
-    if (__pyx_t_5) {
+    __pyx_t_4 = (((__pyx_v_X_i[(__pyx_v_start + __pyx_v_i)]) > __pyx_v_split.threshold) != 0);
+    if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":656
+      /* "sklearn/tree/_tree.pyx":612
  * 
- *             if value > split.threshold:
- *                 split.pos = i+start             # <<<<<<<<<<<<<<
+ *             if X_i[start+i] > split.threshold:
+ *                 split.pos = start+i             # <<<<<<<<<<<<<<
  *                 break
  * 
  */
-      __pyx_v_split.pos = (__pyx_v_i + __pyx_v_start);
+      __pyx_v_split.pos = (__pyx_v_start + __pyx_v_i);
 
-      /* "sklearn/tree/_tree.pyx":657
- *             if value > split.threshold:
- *                 split.pos = i+start
+      /* "sklearn/tree/_tree.pyx":613
+ *             if X_i[start+i] > split.threshold:
+ *                 split.pos = start+i
  *                 break             # <<<<<<<<<<<<<<
  * 
  *             label = <SIZE_t>y[p]
@@ -6118,7 +5847,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L6_break;
     }
 
-    /* "sklearn/tree/_tree.pyx":659
+    /* "sklearn/tree/_tree.pyx":615
  *                 break
  * 
  *             label = <SIZE_t>y[p]             # <<<<<<<<<<<<<<
@@ -6127,27 +5856,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_label = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_y[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":660
+    /* "sklearn/tree/_tree.pyx":616
  * 
  *             label = <SIZE_t>y[p]
  *             yw_cr[label] -= w[p]             # <<<<<<<<<<<<<<
  *             yw_cl[label] += w[p]
  *             w_cr -= w[p]
  */
-    __pyx_t_6 = __pyx_v_label;
-    (__pyx_v_yw_cr[__pyx_t_6]) = ((__pyx_v_yw_cr[__pyx_t_6]) - (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_5 = __pyx_v_label;
+    (__pyx_v_yw_cr[__pyx_t_5]) = ((__pyx_v_yw_cr[__pyx_t_5]) - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":661
+    /* "sklearn/tree/_tree.pyx":617
  *             label = <SIZE_t>y[p]
  *             yw_cr[label] -= w[p]
  *             yw_cl[label] += w[p]             # <<<<<<<<<<<<<<
  *             w_cr -= w[p]
  *             w_cl += w[p]
  */
-    __pyx_t_6 = __pyx_v_label;
-    (__pyx_v_yw_cl[__pyx_t_6]) = ((__pyx_v_yw_cl[__pyx_t_6]) + (__pyx_v_w[__pyx_v_p]));
+    __pyx_t_5 = __pyx_v_label;
+    (__pyx_v_yw_cl[__pyx_t_5]) = ((__pyx_v_yw_cl[__pyx_t_5]) + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":662
+    /* "sklearn/tree/_tree.pyx":618
  *             yw_cr[label] -= w[p]
  *             yw_cl[label] += w[p]
  *             w_cr -= w[p]             # <<<<<<<<<<<<<<
@@ -6156,7 +5885,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cr = (__pyx_v_w_cr - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":663
+    /* "sklearn/tree/_tree.pyx":619
  *             yw_cl[label] += w[p]
  *             w_cr -= w[p]
  *             w_cl += w[p]             # <<<<<<<<<<<<<<
@@ -6167,18 +5896,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L6_break:;
 
-  /* "sklearn/tree/_tree.pyx":665
+  /* "sklearn/tree/_tree.pyx":621
  *             w_cl += w[p]
  * 
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             split.impurity_left += yw_cl[i] ** 2.0
  *             split.impurity_right += yw_cr[i] ** 2.0
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":666
+    /* "sklearn/tree/_tree.pyx":622
  * 
  *         for i in range(m):
  *             split.impurity_left += yw_cl[i] ** 2.0             # <<<<<<<<<<<<<<
@@ -6187,7 +5916,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_split.impurity_left = (__pyx_v_split.impurity_left + pow(((double)(__pyx_v_yw_cl[__pyx_v_i])), 2.0));
 
-    /* "sklearn/tree/_tree.pyx":667
+    /* "sklearn/tree/_tree.pyx":623
  *         for i in range(m):
  *             split.impurity_left += yw_cl[i] ** 2.0
  *             split.impurity_right += yw_cr[i] ** 2.0             # <<<<<<<<<<<<<<
@@ -6197,18 +5926,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_v_split.impurity_right = (__pyx_v_split.impurity_right + pow(((double)(__pyx_v_yw_cr[__pyx_v_i])), 2.0));
   }
 
-  /* "sklearn/tree/_tree.pyx":669
+  /* "sklearn/tree/_tree.pyx":625
  *             split.impurity_right += yw_cr[i] ** 2.0
  * 
  *         for i in range(m):             # <<<<<<<<<<<<<<
  *             split.node_value_left[i] = yw_cl[i]
  *             split.node_value_right[i] = yw_cr[i]
  */
-  __pyx_t_3 = __pyx_v_m;
-  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  __pyx_t_2 = __pyx_v_m;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":670
+    /* "sklearn/tree/_tree.pyx":626
  * 
  *         for i in range(m):
  *             split.node_value_left[i] = yw_cl[i]             # <<<<<<<<<<<<<<
@@ -6217,7 +5946,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     (__pyx_v_split.node_value_left[__pyx_v_i]) = (__pyx_v_yw_cl[__pyx_v_i]);
 
-    /* "sklearn/tree/_tree.pyx":671
+    /* "sklearn/tree/_tree.pyx":627
  *         for i in range(m):
  *             split.node_value_left[i] = yw_cl[i]
  *             split.node_value_right[i] = yw_cr[i]             # <<<<<<<<<<<<<<
@@ -6227,7 +5956,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     (__pyx_v_split.node_value_right[__pyx_v_i]) = (__pyx_v_yw_cr[__pyx_v_i]);
   }
 
-  /* "sklearn/tree/_tree.pyx":673
+  /* "sklearn/tree/_tree.pyx":629
  *             split.node_value_right[i] = yw_cr[i]
  * 
  *         split.weight = w_sum             # <<<<<<<<<<<<<<
@@ -6236,7 +5965,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":674
+  /* "sklearn/tree/_tree.pyx":630
  * 
  *         split.weight = w_sum
  *         split.weight_left = w_cl             # <<<<<<<<<<<<<<
@@ -6245,7 +5974,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight_left = __pyx_v_w_cl;
 
-  /* "sklearn/tree/_tree.pyx":675
+  /* "sklearn/tree/_tree.pyx":631
  *         split.weight = w_sum
  *         split.weight_left = w_cl
  *         split.weight_right = w_cr             # <<<<<<<<<<<<<<
@@ -6254,7 +5983,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight_right = __pyx_v_w_cr;
 
-  /* "sklearn/tree/_tree.pyx":677
+  /* "sklearn/tree/_tree.pyx":633
  *         split.weight_right = w_cr
  * 
  *         split.impurity_left = 1. - split.impurity_left / w_cl ** 2             # <<<<<<<<<<<<<<
@@ -6263,7 +5992,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = (1. - (__pyx_v_split.impurity_left / pow(__pyx_v_w_cl, 2.0)));
 
-  /* "sklearn/tree/_tree.pyx":678
+  /* "sklearn/tree/_tree.pyx":634
  * 
  *         split.impurity_left = 1. - split.impurity_left / w_cl ** 2
  *         split.impurity_right = 1. - split.impurity_right / w_cr ** 2             # <<<<<<<<<<<<<<
@@ -6272,7 +6001,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = (1. - (__pyx_v_split.impurity_right / pow(__pyx_v_w_cr, 2.0)));
 
-  /* "sklearn/tree/_tree.pyx":680
+  /* "sklearn/tree/_tree.pyx":636
  *         split.impurity_right = 1. - split.impurity_right / w_cr ** 2
  * 
  *         split.impurity /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -6281,7 +6010,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (__pyx_v_split.impurity / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":681
+  /* "sklearn/tree/_tree.pyx":637
  * 
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -6290,7 +6019,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = (__pyx_v_split.impurity_left / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":682
+  /* "sklearn/tree/_tree.pyx":638
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs
  *         split.impurity_right /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -6299,7 +6028,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = (__pyx_v_split.impurity_right / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":684
+  /* "sklearn/tree/_tree.pyx":640
  *         split.impurity_right /= self.n_outputs
  * 
  *         split.improvement = (w_sum / self.weighted_n_samples *             # <<<<<<<<<<<<<<
@@ -6308,7 +6037,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.improvement = ((__pyx_v_w_sum / __pyx_v_self->__pyx_base.__pyx_base.weighted_n_samples) * ((__pyx_v_split.impurity - ((__pyx_v_split.weight_left / __pyx_v_w_sum) * __pyx_v_split.impurity_left)) - ((__pyx_v_split.weight_right / __pyx_v_w_sum) * __pyx_v_split.impurity_right)));
 
-  /* "sklearn/tree/_tree.pyx":688
+  /* "sklearn/tree/_tree.pyx":644
  *                 split.weight_right / w_sum * split.impurity_right))
  * 
  *         split.feature = feature             # <<<<<<<<<<<<<<
@@ -6317,7 +6046,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.feature = __pyx_v_feature;
 
-  /* "sklearn/tree/_tree.pyx":689
+  /* "sklearn/tree/_tree.pyx":645
  * 
  *         split.feature = feature
  *         return split             # <<<<<<<<<<<<<<
@@ -6327,12 +6056,12 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_r = __pyx_v_split;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":601
+  /* "sklearn/tree/_tree.pyx":565
  *         return split
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  */
 
   /* function exit code */
@@ -6340,7 +6069,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":702
+/* "sklearn/tree/_tree.pyx":658
  *     """
  * 
  *     def __cinit__(self, SIZE_t n_outputs, SIZE_t n_jobs):             # <<<<<<<<<<<<<<
@@ -6379,11 +6108,11 @@ static int __pyx_pw_7sklearn_4tree_5_tree_19RegressionCriterion_1__cinit__(PyObj
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_jobs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6391,12 +6120,12 @@ static int __pyx_pw_7sklearn_4tree_5_tree_19RegressionCriterion_1__cinit__(PyObj
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_n_outputs = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_n_outputs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_n_jobs = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_n_jobs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_outputs = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_n_outputs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_jobs = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_n_jobs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.RegressionCriterion.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6414,7 +6143,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion___cinit__(struct
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sklearn/tree/_tree.pyx":703
+  /* "sklearn/tree/_tree.pyx":659
  * 
  *     def __cinit__(self, SIZE_t n_outputs, SIZE_t n_jobs):
  *         self.n_outputs = n_outputs             # <<<<<<<<<<<<<<
@@ -6423,70 +6152,43 @@ static int __pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion___cinit__(struct
  */
   __pyx_v_self->__pyx_base.n_outputs = __pyx_v_n_outputs;
 
-  /* "sklearn/tree/_tree.pyx":704
+  /* "sklearn/tree/_tree.pyx":660
  *     def __cinit__(self, SIZE_t n_outputs, SIZE_t n_jobs):
  *         self.n_outputs = n_outputs
  *         self.n_jobs = n_jobs             # <<<<<<<<<<<<<<
  * 
- *         self.X = NULL
+ *         self.y = NULL
  */
   __pyx_v_self->__pyx_base.n_jobs = __pyx_v_n_jobs;
 
-  /* "sklearn/tree/_tree.pyx":706
+  /* "sklearn/tree/_tree.pyx":662
  *         self.n_jobs = n_jobs
  * 
- *         self.X = NULL             # <<<<<<<<<<<<<<
- *         self.y = NULL
- *         self.w = NULL
- */
-  __pyx_v_self->__pyx_base.X = NULL;
-
-  /* "sklearn/tree/_tree.pyx":707
- * 
- *         self.X = NULL
  *         self.y = NULL             # <<<<<<<<<<<<<<
  *         self.w = NULL
  * 
  */
   __pyx_v_self->__pyx_base.y = NULL;
 
-  /* "sklearn/tree/_tree.pyx":708
- *         self.X = NULL
+  /* "sklearn/tree/_tree.pyx":663
+ * 
  *         self.y = NULL
  *         self.w = NULL             # <<<<<<<<<<<<<<
  * 
- *         self.X_sample_stride = 1
+ *         self.y_stride = 1
  */
   __pyx_v_self->__pyx_base.w = NULL;
 
-  /* "sklearn/tree/_tree.pyx":710
+  /* "sklearn/tree/_tree.pyx":665
  *         self.w = NULL
  * 
- *         self.X_sample_stride = 1             # <<<<<<<<<<<<<<
- *         self.X_feature_stride = 1
- *         self.y_stride = 1
- */
-  __pyx_v_self->__pyx_base.X_sample_stride = 1;
-
-  /* "sklearn/tree/_tree.pyx":711
- * 
- *         self.X_sample_stride = 1
- *         self.X_feature_stride = 1             # <<<<<<<<<<<<<<
- *         self.y_stride = 1
- * 
- */
-  __pyx_v_self->__pyx_base.X_feature_stride = 1;
-
-  /* "sklearn/tree/_tree.pyx":712
- *         self.X_sample_stride = 1
- *         self.X_feature_stride = 1
  *         self.y_stride = 1             # <<<<<<<<<<<<<<
  * 
  *         self.min_leaf_samples = 0
  */
   __pyx_v_self->__pyx_base.y_stride = 1;
 
-  /* "sklearn/tree/_tree.pyx":714
+  /* "sklearn/tree/_tree.pyx":667
  *         self.y_stride = 1
  * 
  *         self.min_leaf_samples = 0             # <<<<<<<<<<<<<<
@@ -6495,7 +6197,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion___cinit__(struct
  */
   __pyx_v_self->__pyx_base.min_leaf_samples = 0;
 
-  /* "sklearn/tree/_tree.pyx":715
+  /* "sklearn/tree/_tree.pyx":668
  * 
  *         self.min_leaf_samples = 0
  *         self.min_leaf_weight = 0             # <<<<<<<<<<<<<<
@@ -6504,16 +6206,16 @@ static int __pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion___cinit__(struct
  */
   __pyx_v_self->__pyx_base.min_leaf_weight = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":717
+  /* "sklearn/tree/_tree.pyx":670
  *         self.min_leaf_weight = 0
  * 
  *         self.n = n_outputs             # <<<<<<<<<<<<<<
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
  */
   __pyx_v_self->__pyx_base.n = __pyx_v_n_outputs;
 
-  /* "sklearn/tree/_tree.pyx":702
+  /* "sklearn/tree/_tree.pyx":658
  *     """
  * 
  *     def __cinit__(self, SIZE_t n_outputs, SIZE_t n_jobs):             # <<<<<<<<<<<<<<
@@ -6527,15 +6229,15 @@ static int __pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion___cinit__(struct
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":719
+/* "sklearn/tree/_tree.pyx":672
  *         self.n = n_outputs
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,             # <<<<<<<<<<<<<<
- *         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,             # <<<<<<<<<<<<<<
  *         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+ *         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
  */
 
-static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_RegressionCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_sample_stride, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_X_feature_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value) {
+static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __pyx_obj_7sklearn_4tree_5_tree_RegressionCriterion *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_min_leaf_samples, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_min_leaf_weight, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **__pyx_v_node_value) {
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_i;
   __Pyx_RefNannyDeclarations
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_1;
@@ -6544,16 +6246,16 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
   long __pyx_t_4;
   __Pyx_RefNannySetupContext("init", 0);
 
-  /* "sklearn/tree/_tree.pyx":725
+  /* "sklearn/tree/_tree.pyx":677
  *         """Initialize by passing pointers to the underlying data."""
  * 
- *         Criterion.init(self, X, X_sample_stride, X_feature_stride, y,             # <<<<<<<<<<<<<<
- *             y_stride, w, n_samples, min_leaf_samples, min_leaf_weight,
- *             w_sum, yw_sq_sum, node_value)
+ *         Criterion.init(self, y, y_stride, w, n_samples, min_leaf_samples,             # <<<<<<<<<<<<<<
+ *             min_leaf_weight, w_sum, yw_sq_sum, node_value)
+ * 
  */
-  __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(((struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self), __pyx_v_X, __pyx_v_X_sample_stride, __pyx_v_X_feature_stride, __pyx_v_y, __pyx_v_y_stride, __pyx_v_w, __pyx_v_n_samples, __pyx_v_min_leaf_samples, __pyx_v_min_leaf_weight, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
+  __pyx_f_7sklearn_4tree_5_tree_9Criterion_init(((struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self), __pyx_v_y, __pyx_v_y_stride, __pyx_v_w, __pyx_v_n_samples, __pyx_v_min_leaf_samples, __pyx_v_min_leaf_weight, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
 
-  /* "sklearn/tree/_tree.pyx":730
+  /* "sklearn/tree/_tree.pyx":681
  * 
  *         cdef SIZE_t i
  *         node_value[0] = <DOUBLE_t*>calloc(self.n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -6562,7 +6264,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
  */
   (__pyx_v_node_value[0]) = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_self->__pyx_base.n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":731
+  /* "sklearn/tree/_tree.pyx":682
  *         cdef SIZE_t i
  *         node_value[0] = <DOUBLE_t*>calloc(self.n, sizeof(DOUBLE_t))
  *         memset(node_value[0], 0, self.n*sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -6571,7 +6273,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
  */
   memset((__pyx_v_node_value[0]), 0, (__pyx_v_self->__pyx_base.n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":733
+  /* "sklearn/tree/_tree.pyx":684
  *         memset(node_value[0], 0, self.n*sizeof(DOUBLE_t))
  * 
  *         for i in range(n_samples):             # <<<<<<<<<<<<<<
@@ -6582,7 +6284,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "sklearn/tree/_tree.pyx":734
+    /* "sklearn/tree/_tree.pyx":685
  * 
  *         for i in range(n_samples):
  *             w_sum[0] += w[i]             # <<<<<<<<<<<<<<
@@ -6592,7 +6294,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
     __pyx_t_3 = 0;
     (__pyx_v_w_sum[__pyx_t_3]) = ((__pyx_v_w_sum[__pyx_t_3]) + (__pyx_v_w[__pyx_v_i]));
 
-    /* "sklearn/tree/_tree.pyx":735
+    /* "sklearn/tree/_tree.pyx":686
  *         for i in range(n_samples):
  *             w_sum[0] += w[i]
  *             node_value[0][0] += w[i] *y[i]             # <<<<<<<<<<<<<<
@@ -6603,7 +6305,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
     __pyx_t_4 = 0;
     ((__pyx_v_node_value[__pyx_t_3])[__pyx_t_4]) = (((__pyx_v_node_value[__pyx_t_3])[__pyx_t_4]) + ((__pyx_v_w[__pyx_v_i]) * (__pyx_v_y[__pyx_v_i])));
 
-    /* "sklearn/tree/_tree.pyx":736
+    /* "sklearn/tree/_tree.pyx":687
  *             w_sum[0] += w[i]
  *             node_value[0][0] += w[i] *y[i]
  *             yw_sq_sum[0] += w[i] * y[i] * y[i]             # <<<<<<<<<<<<<<
@@ -6614,7 +6316,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
     (__pyx_v_yw_sq_sum[__pyx_t_3]) = ((__pyx_v_yw_sq_sum[__pyx_t_3]) + (((__pyx_v_w[__pyx_v_i]) * (__pyx_v_y[__pyx_v_i])) * (__pyx_v_y[__pyx_v_i])));
   }
 
-  /* "sklearn/tree/_tree.pyx":738
+  /* "sklearn/tree/_tree.pyx":689
  *             yw_sq_sum[0] += w[i] * y[i] * y[i]
  * 
  *         node_value[0][0] /= w_sum[0]             # <<<<<<<<<<<<<<
@@ -6625,7 +6327,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
   __pyx_t_4 = 0;
   ((__pyx_v_node_value[__pyx_t_3])[__pyx_t_4]) = (((__pyx_v_node_value[__pyx_t_3])[__pyx_t_4]) / (__pyx_v_w_sum[0]));
 
-  /* "sklearn/tree/_tree.pyx":739
+  /* "sklearn/tree/_tree.pyx":690
  * 
  *         node_value[0][0] /= w_sum[0]
  *         self.weighted_n_samples = w_sum[0]             # <<<<<<<<<<<<<<
@@ -6634,19 +6336,19 @@ static void __pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init(struct __py
  */
   __pyx_v_self->__pyx_base.weighted_n_samples = (__pyx_v_w_sum[0]);
 
-  /* "sklearn/tree/_tree.pyx":719
+  /* "sklearn/tree/_tree.pyx":672
  *         self.n = n_outputs
  * 
- *     cdef void init(self, DTYPE_t* X, SIZE_t X_sample_stride,             # <<<<<<<<<<<<<<
- *         SIZE_t X_feature_stride, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
+ *     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,             # <<<<<<<<<<<<<<
  *         SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
+ *         DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
  */
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":741
+/* "sklearn/tree/_tree.pyx":692
  *         self.weighted_n_samples = w_sum[0]
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -6679,7 +6381,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_2__reduce_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "sklearn/tree/_tree.pyx":742
+  /* "sklearn/tree/_tree.pyx":693
  * 
  *     def __reduce__(self):
  *         return (RegressionCriterion, (self.n_outputs, self.n_jobs), self.__getstate__())             # <<<<<<<<<<<<<<
@@ -6687,11 +6389,11 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_2__reduce_
  *     def __getstate__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 742; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_jobs); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 742; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.n_jobs); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 742; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -6699,7 +6401,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_2__reduce_
   PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 742; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
@@ -6712,14 +6414,14 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_2__reduce_
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 742; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 742; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 742; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_RegressionCriterion)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_RegressionCriterion)));
@@ -6734,7 +6436,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_2__reduce_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":741
+  /* "sklearn/tree/_tree.pyx":692
  *         self.weighted_n_samples = w_sum[0]
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -6756,7 +6458,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_2__reduce_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":744
+/* "sklearn/tree/_tree.pyx":695
  *         return (RegressionCriterion, (self.n_outputs, self.n_jobs), self.__getstate__())
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -6786,7 +6488,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_4__getstat
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getstate__", 0);
 
-  /* "sklearn/tree/_tree.pyx":745
+  /* "sklearn/tree/_tree.pyx":696
  * 
  *     def __getstate__(self):
  *         return {}             # <<<<<<<<<<<<<<
@@ -6794,13 +6496,13 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_4__getstat
  *     def __setstate__(self, d):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 696; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":744
+  /* "sklearn/tree/_tree.pyx":695
  *         return (RegressionCriterion, (self.n_outputs, self.n_jobs), self.__getstate__())
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -6819,7 +6521,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_4__getstat
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":747
+/* "sklearn/tree/_tree.pyx":698
  *         return {}
  * 
  *     def __setstate__(self, d):             # <<<<<<<<<<<<<<
@@ -6852,22 +6554,18 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_19RegressionCriterion_6__setstat
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":755
+/* "sklearn/tree/_tree.pyx":706
  *         MSE = var_left + var_right
  *     """
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value) nogil:
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X;
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_best_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value) {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_upper;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_lower;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature_offset;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sum;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_cl;
@@ -6877,69 +6575,50 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_r;
   int __pyx_v_i;
   int __pyx_v_p;
+  int __pyx_v_k;
   int __pyx_v_n;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_improvement;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_t_1;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_2;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_1;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_2;
+  int __pyx_t_3;
   int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
-  int __pyx_t_7;
 
-  /* "sklearn/tree/_tree.pyx":759
- *         DOUBLE_t* node_value) nogil:
+  /* "sklearn/tree/_tree.pyx":710
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  * 
- *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
- *         cdef DOUBLE_t* y = self.y
- *         cdef DOUBLE_t* w = self.w
- */
-  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.X;
-  __pyx_v_X = __pyx_t_1;
-
-  /* "sklearn/tree/_tree.pyx":760
- * 
- *         cdef DTYPE_t* X = self.X
  *         cdef DOUBLE_t* y = self.y             # <<<<<<<<<<<<<<
- *         cdef DOUBLE_t* w = self.w
- * 
- */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y;
-  __pyx_v_y = __pyx_t_2;
-
-  /* "sklearn/tree/_tree.pyx":761
- *         cdef DTYPE_t* X = self.X
- *         cdef DOUBLE_t* y = self.y
- *         cdef DOUBLE_t* w = self.w             # <<<<<<<<<<<<<<
- * 
  *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t* w = self.w
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.w;
-  __pyx_v_w = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.y;
+  __pyx_v_y = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":763
+  /* "sklearn/tree/_tree.pyx":711
+ * 
+ *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* w = self.w
  * 
- *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
- *         cdef SIZE_t upper, lower
- * 
  */
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
-  __pyx_v_y_stride = __pyx_t_3;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
+  __pyx_v_y_stride = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":766
- *         cdef SIZE_t upper, lower
- * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride             # <<<<<<<<<<<<<<
+  /* "sklearn/tree/_tree.pyx":712
+ *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t* w = self.w             # <<<<<<<<<<<<<<
  * 
  *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
  */
-  __pyx_v_feature_offset = (__pyx_v_feature * __pyx_v_self->__pyx_base.__pyx_base.X_feature_stride);
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.w;
+  __pyx_v_w = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":768
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride
+  /* "sklearn/tree/_tree.pyx":714
+ *         cdef DOUBLE_t* w = self.w
  * 
  *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t w_cl = 0, yw_cl = 0, yw_sq = 0
@@ -6947,7 +6626,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_yw_sum = ((__pyx_v_node_value[0]) * __pyx_v_w_sum);
 
-  /* "sklearn/tree/_tree.pyx":769
+  /* "sklearn/tree/_tree.pyx":715
  * 
  *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
  *         cdef DOUBLE_t w_cl = 0, yw_cl = 0, yw_sq = 0             # <<<<<<<<<<<<<<
@@ -6958,37 +6637,37 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_v_yw_cl = 0.0;
   __pyx_v_yw_sq = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":770
+  /* "sklearn/tree/_tree.pyx":716
  *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
  *         cdef DOUBLE_t w_cl = 0, yw_cl = 0, yw_sq = 0
  *         cdef DOUBLE_t w_cr = w_sum, yw_cr = yw_sum, yw_sq_r = yw_sq_sum             # <<<<<<<<<<<<<<
  * 
- *         cdef int i, p, n = end-start
+ *         cdef int i, p, k, n = end-start
  */
   __pyx_v_w_cr = __pyx_v_w_sum;
   __pyx_v_yw_cr = __pyx_v_yw_sum;
   __pyx_v_yw_sq_r = __pyx_v_yw_sq_sum;
 
-  /* "sklearn/tree/_tree.pyx":772
+  /* "sklearn/tree/_tree.pyx":718
  *         cdef DOUBLE_t w_cr = w_sum, yw_cr = yw_sum, yw_sq_r = yw_sq_sum
  * 
- *         cdef int i, p, n = end-start             # <<<<<<<<<<<<<<
+ *         cdef int i, p, k, n = end-start             # <<<<<<<<<<<<<<
  * 
  *         cdef DOUBLE_t improvement
  */
   __pyx_v_n = (__pyx_v_end - __pyx_v_start);
 
-  /* "sklearn/tree/_tree.pyx":776
- *         cdef DOUBLE_t improvement
+  /* "sklearn/tree/_tree.pyx":723
  *         cdef SplitRecord split
+ * 
  *         _init_split_record(&split)             # <<<<<<<<<<<<<<
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  */
   __pyx_f_7sklearn_4tree_5_tree__init_split_record((&__pyx_v_split));
 
-  /* "sklearn/tree/_tree.pyx":777
- *         cdef SplitRecord split
+  /* "sklearn/tree/_tree.pyx":724
+ * 
  *         _init_split_record(&split)
  *         split.node_value = node_value             # <<<<<<<<<<<<<<
  *         split.node_value_left = self.node_value_left
@@ -6996,27 +6675,27 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.node_value = __pyx_v_node_value;
 
-  /* "sklearn/tree/_tree.pyx":778
+  /* "sklearn/tree/_tree.pyx":725
  *         _init_split_record(&split)
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left             # <<<<<<<<<<<<<<
  *         split.node_value_right = self.node_value_right
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
-  __pyx_v_split.node_value_left = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
+  __pyx_v_split.node_value_left = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":779
+  /* "sklearn/tree/_tree.pyx":726
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  *         split.node_value_right = self.node_value_right             # <<<<<<<<<<<<<<
  * 
  *         split.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
-  __pyx_v_split.node_value_right = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
+  __pyx_v_split.node_value_right = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":781
+  /* "sklearn/tree/_tree.pyx":728
  *         split.node_value_right = self.node_value_right
  * 
  *         split.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0             # <<<<<<<<<<<<<<
@@ -7025,7 +6704,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow(((double)(__pyx_v_yw_sum / __pyx_v_w_sum)), 2.0));
 
-  /* "sklearn/tree/_tree.pyx":782
+  /* "sklearn/tree/_tree.pyx":729
  * 
  *         split.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
  *         split.node_value[0] = node_value[0]             # <<<<<<<<<<<<<<
@@ -7034,7 +6713,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   (__pyx_v_split.node_value[0]) = (__pyx_v_node_value[0]);
 
-  /* "sklearn/tree/_tree.pyx":784
+  /* "sklearn/tree/_tree.pyx":731
  *         split.node_value[0] = node_value[0]
  * 
  *         w_cl = 0             # <<<<<<<<<<<<<<
@@ -7043,37 +6722,46 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_w_cl = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":785
+  /* "sklearn/tree/_tree.pyx":732
  * 
  *         w_cl = 0
  *         w_cr = w_sum             # <<<<<<<<<<<<<<
  * 
- *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
+ *         for i in range(n-self.min_leaf_samples):
  */
   __pyx_v_w_cr = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":787
+  /* "sklearn/tree/_tree.pyx":734
  *         w_cr = w_sum
  * 
- *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):             # <<<<<<<<<<<<<<
- *             p = samples[start+i]
+ *         for i in range(n-self.min_leaf_samples):             # <<<<<<<<<<<<<<
+ *             k = start + i
+ *             p = samples[k]
+ */
+  __pyx_t_3 = (__pyx_v_n - __pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples);
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
+
+    /* "sklearn/tree/_tree.pyx":735
+ * 
+ *         for i in range(n-self.min_leaf_samples):
+ *             k = start + i             # <<<<<<<<<<<<<<
+ *             p = samples[k]
  * 
  */
-  __pyx_t_4 = (__pyx_v_n - __pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples);
-  for (__pyx_t_5 = (__pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples - 1); __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_i = __pyx_t_5;
+    __pyx_v_k = (__pyx_v_start + __pyx_v_i);
 
-    /* "sklearn/tree/_tree.pyx":788
- * 
- *         for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
- *             p = samples[start+i]             # <<<<<<<<<<<<<<
+    /* "sklearn/tree/_tree.pyx":736
+ *         for i in range(n-self.min_leaf_samples):
+ *             k = start + i
+ *             p = samples[k]             # <<<<<<<<<<<<<<
  * 
  *             w_cl += w[p]
  */
-    __pyx_v_p = (__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]);
+    __pyx_v_p = (__pyx_v_samples[__pyx_v_k]);
 
-    /* "sklearn/tree/_tree.pyx":790
- *             p = samples[start+i]
+    /* "sklearn/tree/_tree.pyx":738
+ *             p = samples[k]
  * 
  *             w_cl += w[p]             # <<<<<<<<<<<<<<
  *             yw_cl += w[p] * y[p]
@@ -7081,7 +6769,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cl = (__pyx_v_w_cl + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":791
+    /* "sklearn/tree/_tree.pyx":739
  * 
  *             w_cl += w[p]
  *             yw_cl += w[p] * y[p]             # <<<<<<<<<<<<<<
@@ -7090,7 +6778,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_yw_cl = (__pyx_v_yw_cl + ((__pyx_v_w[__pyx_v_p]) * (__pyx_v_y[__pyx_v_p])));
 
-    /* "sklearn/tree/_tree.pyx":792
+    /* "sklearn/tree/_tree.pyx":740
  *             w_cl += w[p]
  *             yw_cl += w[p] * y[p]
  *             yw_sq += w[p] * y[p] * y[p]             # <<<<<<<<<<<<<<
@@ -7099,7 +6787,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_yw_sq = (__pyx_v_yw_sq + (((__pyx_v_w[__pyx_v_p]) * (__pyx_v_y[__pyx_v_p])) * (__pyx_v_y[__pyx_v_p])));
 
-    /* "sklearn/tree/_tree.pyx":794
+    /* "sklearn/tree/_tree.pyx":742
  *             yw_sq += w[p] * y[p] * y[p]
  * 
  *             w_cr -= w[p]             # <<<<<<<<<<<<<<
@@ -7108,7 +6796,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cr = (__pyx_v_w_cr - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":795
+    /* "sklearn/tree/_tree.pyx":743
  * 
  *             w_cr -= w[p]
  *             yw_cr -= w[p] * y[p]             # <<<<<<<<<<<<<<
@@ -7117,54 +6805,56 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_yw_cr = (__pyx_v_yw_cr - ((__pyx_v_w[__pyx_v_p]) * (__pyx_v_y[__pyx_v_p])));
 
-    /* "sklearn/tree/_tree.pyx":796
+    /* "sklearn/tree/_tree.pyx":744
  *             w_cr -= w[p]
  *             yw_cr -= w[p] * y[p]
  *             yw_sq_r -= w[p] * y[p] * y[p]             # <<<<<<<<<<<<<<
  * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset
+ *             if i < self.min_leaf_samples-1:
  */
     __pyx_v_yw_sq_r = (__pyx_v_yw_sq_r - (((__pyx_v_w[__pyx_v_p]) * (__pyx_v_y[__pyx_v_p])) * (__pyx_v_y[__pyx_v_p])));
 
-    /* "sklearn/tree/_tree.pyx":798
+    /* "sklearn/tree/_tree.pyx":746
  *             yw_sq_r -= w[p] * y[p] * y[p]
  * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset
- * 
- */
-    __pyx_v_upper = (((__pyx_v_samples[((__pyx_v_start + __pyx_v_i) + 1)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset);
-
-    /* "sklearn/tree/_tree.pyx":799
- * 
- *             upper = samples[start+i+1]*self.X_sample_stride + feature_offset
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
- * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:
- */
-    __pyx_v_lower = (((__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset);
-
-    /* "sklearn/tree/_tree.pyx":801
- *             lower = samples[start+i]*self.X_sample_stride + feature_offset
- * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
+ *             if i < self.min_leaf_samples-1:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_7 = ((((__pyx_v_start + __pyx_v_i) + 1) < __pyx_v_end) != 0);
-    if (__pyx_t_7) {
-    } else {
-      __pyx_t_6 = __pyx_t_7;
-      goto __pyx_L6_bool_binop_done;
-    }
-    __pyx_t_7 = (((__pyx_v_X[__pyx_v_upper]) <= ((__pyx_v_X[__pyx_v_lower]) + __pyx_v_7sklearn_4tree_5_tree_FEATURE_THRESHOLD)) != 0);
-    __pyx_t_6 = __pyx_t_7;
-    __pyx_L6_bool_binop_done:;
-    if (__pyx_t_6) {
+    __pyx_t_5 = ((__pyx_v_i < (__pyx_v_self->__pyx_base.__pyx_base.min_leaf_samples - 1)) != 0);
+    if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":802
+      /* "sklearn/tree/_tree.pyx":747
  * 
- *             if start+i+1 < end and X[upper] <= X[lower] + FEATURE_THRESHOLD:
+ *             if i < self.min_leaf_samples-1:
+ *                 continue             # <<<<<<<<<<<<<<
+ * 
+ *             if k+1 < end and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:
+ */
+      goto __pyx_L3_continue;
+    }
+
+    /* "sklearn/tree/_tree.pyx":749
+ *                 continue
+ * 
+ *             if k+1 < end and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
+ *                 continue
+ * 
+ */
+    __pyx_t_6 = (((__pyx_v_k + 1) < __pyx_v_end) != 0);
+    if (__pyx_t_6) {
+    } else {
+      __pyx_t_5 = __pyx_t_6;
+      goto __pyx_L7_bool_binop_done;
+    }
+    __pyx_t_6 = (((__pyx_v_X_i[(__pyx_v_k + 1)]) <= ((__pyx_v_X_i[__pyx_v_k]) + __pyx_v_7sklearn_4tree_5_tree_FEATURE_THRESHOLD)) != 0);
+    __pyx_t_5 = __pyx_t_6;
+    __pyx_L7_bool_binop_done:;
+    if (__pyx_t_5) {
+
+      /* "sklearn/tree/_tree.pyx":750
+ * 
+ *             if k+1 < end and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:
  *                 continue             # <<<<<<<<<<<<<<
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:
@@ -7172,25 +6862,25 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L3_continue;
     }
 
-    /* "sklearn/tree/_tree.pyx":804
+    /* "sklearn/tree/_tree.pyx":752
  *                 continue
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_7 = ((__pyx_v_w_cl < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
-    if (!__pyx_t_7) {
+    __pyx_t_6 = ((__pyx_v_w_cl < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
+    if (!__pyx_t_6) {
     } else {
-      __pyx_t_6 = __pyx_t_7;
-      goto __pyx_L9_bool_binop_done;
+      __pyx_t_5 = __pyx_t_6;
+      goto __pyx_L10_bool_binop_done;
     }
-    __pyx_t_7 = ((__pyx_v_w_cr < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
-    __pyx_t_6 = __pyx_t_7;
-    __pyx_L9_bool_binop_done:;
-    if (__pyx_t_6) {
+    __pyx_t_6 = ((__pyx_v_w_cr < __pyx_v_self->__pyx_base.__pyx_base.min_leaf_weight) != 0);
+    __pyx_t_5 = __pyx_t_6;
+    __pyx_L10_bool_binop_done:;
+    if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":805
+      /* "sklearn/tree/_tree.pyx":753
  * 
  *             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:
  *                 continue             # <<<<<<<<<<<<<<
@@ -7200,7 +6890,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L3_continue;
     }
 
-    /* "sklearn/tree/_tree.pyx":807
+    /* "sklearn/tree/_tree.pyx":755
  *                 continue
  * 
  *             improvement = yw_cl**2.0 / w_cl + yw_cr**2.0 / w_cr             # <<<<<<<<<<<<<<
@@ -7209,45 +6899,45 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_improvement = ((pow(((double)__pyx_v_yw_cl), 2.0) / __pyx_v_w_cl) + (pow(((double)__pyx_v_yw_cr), 2.0) / __pyx_v_w_cr));
 
-    /* "sklearn/tree/_tree.pyx":809
+    /* "sklearn/tree/_tree.pyx":757
  *             improvement = yw_cl**2.0 / w_cl + yw_cr**2.0 / w_cr
  * 
  *             if improvement > split.improvement:             # <<<<<<<<<<<<<<
  *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
+ *                 split.threshold = (X_i[k] + X_i[k+1]) / 2.0
  */
-    __pyx_t_6 = ((__pyx_v_improvement > __pyx_v_split.improvement) != 0);
-    if (__pyx_t_6) {
+    __pyx_t_5 = ((__pyx_v_improvement > __pyx_v_split.improvement) != 0);
+    if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":810
+      /* "sklearn/tree/_tree.pyx":758
  * 
  *             if improvement > split.improvement:
  *                 split.improvement = improvement             # <<<<<<<<<<<<<<
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 split.pos = i+1
+ *                 split.threshold = (X_i[k] + X_i[k+1]) / 2.0
+ *                 split.pos = k+1
  */
       __pyx_v_split.improvement = __pyx_v_improvement;
 
-      /* "sklearn/tree/_tree.pyx":811
+      /* "sklearn/tree/_tree.pyx":759
  *             if improvement > split.improvement:
  *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0             # <<<<<<<<<<<<<<
- *                 split.pos = i+1
+ *                 split.threshold = (X_i[k] + X_i[k+1]) / 2.0             # <<<<<<<<<<<<<<
+ *                 split.pos = k+1
  * 
  */
-      __pyx_v_split.threshold = (((__pyx_v_X[__pyx_v_upper]) + (__pyx_v_X[__pyx_v_lower])) / 2.0);
+      __pyx_v_split.threshold = (((__pyx_v_X_i[__pyx_v_k]) + (__pyx_v_X_i[(__pyx_v_k + 1)])) / 2.0);
 
-      /* "sklearn/tree/_tree.pyx":812
+      /* "sklearn/tree/_tree.pyx":760
  *                 split.improvement = improvement
- *                 split.threshold = (X[upper] + X[lower]) / 2.0
- *                 split.pos = i+1             # <<<<<<<<<<<<<<
+ *                 split.threshold = (X_i[k] + X_i[k+1]) / 2.0
+ *                 split.pos = k+1             # <<<<<<<<<<<<<<
  * 
  *                 split.weight = w_sum
  */
-      __pyx_v_split.pos = (__pyx_v_i + 1);
+      __pyx_v_split.pos = (__pyx_v_k + 1);
 
-      /* "sklearn/tree/_tree.pyx":814
- *                 split.pos = i+1
+      /* "sklearn/tree/_tree.pyx":762
+ *                 split.pos = k+1
  * 
  *                 split.weight = w_sum             # <<<<<<<<<<<<<<
  *                 split.weight_left = w_cl
@@ -7255,7 +6945,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight = __pyx_v_w_sum;
 
-      /* "sklearn/tree/_tree.pyx":815
+      /* "sklearn/tree/_tree.pyx":763
  * 
  *                 split.weight = w_sum
  *                 split.weight_left = w_cl             # <<<<<<<<<<<<<<
@@ -7264,7 +6954,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight_left = __pyx_v_w_cl;
 
-      /* "sklearn/tree/_tree.pyx":816
+      /* "sklearn/tree/_tree.pyx":764
  *                 split.weight = w_sum
  *                 split.weight_left = w_cl
  *                 split.weight_right = w_cr             # <<<<<<<<<<<<<<
@@ -7273,7 +6963,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.weight_right = __pyx_v_w_cr;
 
-      /* "sklearn/tree/_tree.pyx":818
+      /* "sklearn/tree/_tree.pyx":766
  *                 split.weight_right = w_cr
  * 
  *                 split.yw_sq_sum = yw_sq_sum             # <<<<<<<<<<<<<<
@@ -7282,7 +6972,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.yw_sq_sum = __pyx_v_yw_sq_sum;
 
-      /* "sklearn/tree/_tree.pyx":819
+      /* "sklearn/tree/_tree.pyx":767
  * 
  *                 split.yw_sq_sum = yw_sq_sum
  *                 split.yw_sq_sum_left = yw_sq             # <<<<<<<<<<<<<<
@@ -7291,7 +6981,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.yw_sq_sum_left = __pyx_v_yw_sq;
 
-      /* "sklearn/tree/_tree.pyx":820
+      /* "sklearn/tree/_tree.pyx":768
  *                 split.yw_sq_sum = yw_sq_sum
  *                 split.yw_sq_sum_left = yw_sq
  *                 split.yw_sq_sum_right = yw_sq_r             # <<<<<<<<<<<<<<
@@ -7300,7 +6990,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.yw_sq_sum_right = __pyx_v_yw_sq_r;
 
-      /* "sklearn/tree/_tree.pyx":822
+      /* "sklearn/tree/_tree.pyx":770
  *                 split.yw_sq_sum_right = yw_sq_r
  * 
  *                 split.impurity_left = yw_sq / w_cl - (yw_cl / w_cl) ** 2.0             # <<<<<<<<<<<<<<
@@ -7309,7 +6999,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.impurity_left = ((__pyx_v_yw_sq / __pyx_v_w_cl) - pow(((double)(__pyx_v_yw_cl / __pyx_v_w_cl)), 2.0));
 
-      /* "sklearn/tree/_tree.pyx":823
+      /* "sklearn/tree/_tree.pyx":771
  * 
  *                 split.impurity_left = yw_sq / w_cl - (yw_cl / w_cl) ** 2.0
  *                 split.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0             # <<<<<<<<<<<<<<
@@ -7318,7 +7008,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_split.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow(((double)(__pyx_v_yw_cr / __pyx_v_w_cr)), 2.0));
 
-      /* "sklearn/tree/_tree.pyx":825
+      /* "sklearn/tree/_tree.pyx":773
  *                 split.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
  * 
  *                 split.node_value_left[0] = yw_cl / w_cl             # <<<<<<<<<<<<<<
@@ -7327,7 +7017,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       (__pyx_v_split.node_value_left[0]) = (__pyx_v_yw_cl / __pyx_v_w_cl);
 
-      /* "sklearn/tree/_tree.pyx":826
+      /* "sklearn/tree/_tree.pyx":774
  * 
  *                 split.node_value_left[0] = yw_cl / w_cl
  *                 split.node_value_right[0] = yw_cr / w_cr             # <<<<<<<<<<<<<<
@@ -7335,13 +7025,13 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  *         split.feature = feature
  */
       (__pyx_v_split.node_value_right[0]) = (__pyx_v_yw_cr / __pyx_v_w_cr);
-      goto __pyx_L11;
+      goto __pyx_L12;
     }
-    __pyx_L11:;
+    __pyx_L12:;
     __pyx_L3_continue:;
   }
 
-  /* "sklearn/tree/_tree.pyx":828
+  /* "sklearn/tree/_tree.pyx":776
  *                 split.node_value_right[0] = yw_cr / w_cr
  * 
  *         split.feature = feature             # <<<<<<<<<<<<<<
@@ -7350,7 +7040,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.feature = __pyx_v_feature;
 
-  /* "sklearn/tree/_tree.pyx":830
+  /* "sklearn/tree/_tree.pyx":778
  *         split.feature = feature
  * 
  *         split.impurity /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -7359,7 +7049,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (__pyx_v_split.impurity / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":831
+  /* "sklearn/tree/_tree.pyx":779
  * 
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -7368,7 +7058,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = (__pyx_v_split.impurity_left / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":832
+  /* "sklearn/tree/_tree.pyx":780
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs
  *         split.impurity_right /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -7377,7 +7067,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = (__pyx_v_split.impurity_right / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":834
+  /* "sklearn/tree/_tree.pyx":782
  *         split.impurity_right /= self.n_outputs
  * 
  *         split.improvement = (w_sum / self.weighted_n_samples *             # <<<<<<<<<<<<<<
@@ -7386,55 +7076,44 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.improvement = ((__pyx_v_w_sum / __pyx_v_self->__pyx_base.__pyx_base.weighted_n_samples) * ((__pyx_v_split.impurity - ((__pyx_v_split.weight_left / __pyx_v_w_sum) * __pyx_v_split.impurity_left)) - ((__pyx_v_split.weight_right / __pyx_v_w_sum) * __pyx_v_split.impurity_right)));
 
-  /* "sklearn/tree/_tree.pyx":838
+  /* "sklearn/tree/_tree.pyx":786
  *                 split.weight_right / w_sum * split.impurity_right))
  * 
  *         if split.pos == -1:             # <<<<<<<<<<<<<<
  *             split.pos = end
- *         else:
+ *         return split
  */
-  __pyx_t_6 = ((__pyx_v_split.pos == -1) != 0);
-  if (__pyx_t_6) {
+  __pyx_t_5 = ((__pyx_v_split.pos == -1) != 0);
+  if (__pyx_t_5) {
 
-    /* "sklearn/tree/_tree.pyx":839
+    /* "sklearn/tree/_tree.pyx":787
  * 
  *         if split.pos == -1:
  *             split.pos = end             # <<<<<<<<<<<<<<
- *         else:
- *             split.pos += start
+ *         return split
+ * 
  */
     __pyx_v_split.pos = __pyx_v_end;
-    goto __pyx_L12;
+    goto __pyx_L13;
   }
-  /*else*/ {
+  __pyx_L13:;
 
-    /* "sklearn/tree/_tree.pyx":841
+  /* "sklearn/tree/_tree.pyx":788
+ *         if split.pos == -1:
  *             split.pos = end
- *         else:
- *             split.pos += start             # <<<<<<<<<<<<<<
- * 
- *         return split
- */
-    __pyx_v_split.pos = (__pyx_v_split.pos + __pyx_v_start);
-  }
-  __pyx_L12:;
-
-  /* "sklearn/tree/_tree.pyx":843
- *             split.pos += start
- * 
  *         return split             # <<<<<<<<<<<<<<
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,
  */
   __pyx_r = __pyx_v_split;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":755
+  /* "sklearn/tree/_tree.pyx":706
  *         MSE = var_left + var_right
  *     """
- *     cdef SplitRecord best_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value) nogil:
+ *     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
  */
 
   /* function exit code */
@@ -7442,22 +7121,18 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":845
+/* "sklearn/tree/_tree.pyx":790
  *         return split
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  */
 
-static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X;
+static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_5_tree_3MSE_random_split(struct __pyx_obj_7sklearn_4tree_5_tree_MSE *__pyx_v_self, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_X_i, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_start, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sq_sum, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_node_value, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_rand_r) {
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_y;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   CYTHON_UNUSED __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_y_stride;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_upper;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_lower;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_v_value;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_v_w;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_sum;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_w_cl;
   __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t __pyx_v_yw_cl;
@@ -7469,57 +7144,45 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   int __pyx_v_p;
   int __pyx_v_n;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_v_split;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_feature_offset;
   struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_r;
-  __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_t_1;
-  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_2;
-  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
-  long __pyx_t_4;
+  __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *__pyx_t_1;
+  __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_2;
+  long __pyx_t_3;
+  int __pyx_t_4;
   int __pyx_t_5;
-  int __pyx_t_6;
 
-  /* "sklearn/tree/_tree.pyx":849
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+  /* "sklearn/tree/_tree.pyx":794
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  * 
- *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
- *         cdef DOUBLE_t* y = self.y
- *         cdef DOUBLE_t* w = self.w
- */
-  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.X;
-  __pyx_v_X = __pyx_t_1;
-
-  /* "sklearn/tree/_tree.pyx":850
- * 
- *         cdef DTYPE_t* X = self.X
  *         cdef DOUBLE_t* y = self.y             # <<<<<<<<<<<<<<
+ *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t* w = self.w
+ */
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.y;
+  __pyx_v_y = __pyx_t_1;
+
+  /* "sklearn/tree/_tree.pyx":795
+ * 
+ *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* w = self.w
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y;
-  __pyx_v_y = __pyx_t_2;
+  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
+  __pyx_v_y_stride = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":851
- *         cdef DTYPE_t* X = self.X
+  /* "sklearn/tree/_tree.pyx":796
  *         cdef DOUBLE_t* y = self.y
+ *         cdef SIZE_t y_stride = self.y_stride
  *         cdef DOUBLE_t* w = self.w             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t y_stride = self.y_stride
+ *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.w;
-  __pyx_v_w = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.w;
+  __pyx_v_w = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":853
+  /* "sklearn/tree/_tree.pyx":798
  *         cdef DOUBLE_t* w = self.w
- * 
- *         cdef SIZE_t y_stride = self.y_stride             # <<<<<<<<<<<<<<
- *         cdef DTYPE_t upper, lower, value
- * 
- */
-  __pyx_t_3 = __pyx_v_self->__pyx_base.__pyx_base.y_stride;
-  __pyx_v_y_stride = __pyx_t_3;
-
-  /* "sklearn/tree/_tree.pyx":856
- *         cdef DTYPE_t upper, lower, value
  * 
  *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t w_cl = 0, yw_cl = 0, yw_sq = 0
@@ -7527,7 +7190,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_yw_sum = ((__pyx_v_node_value[0]) * __pyx_v_w_sum);
 
-  /* "sklearn/tree/_tree.pyx":857
+  /* "sklearn/tree/_tree.pyx":799
  * 
  *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
  *         cdef DOUBLE_t w_cl = 0, yw_cl = 0, yw_sq = 0             # <<<<<<<<<<<<<<
@@ -7538,7 +7201,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_v_yw_cl = 0.0;
   __pyx_v_yw_sq = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":858
+  /* "sklearn/tree/_tree.pyx":800
  *         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
  *         cdef DOUBLE_t w_cl = 0, yw_cl = 0, yw_sq = 0
  *         cdef DOUBLE_t w_cr = w_sum, yw_cr = yw_sum, yw_sq_r = yw_sq_sum             # <<<<<<<<<<<<<<
@@ -7549,7 +7212,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_v_yw_cr = __pyx_v_yw_sum;
   __pyx_v_yw_sq_r = __pyx_v_yw_sq_sum;
 
-  /* "sklearn/tree/_tree.pyx":860
+  /* "sklearn/tree/_tree.pyx":802
  *         cdef DOUBLE_t w_cr = w_sum, yw_cr = yw_sum, yw_sq_r = yw_sq_sum
  * 
  *         cdef int i, p, n = end-start             # <<<<<<<<<<<<<<
@@ -7558,17 +7221,17 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_n = (__pyx_v_end - __pyx_v_start);
 
-  /* "sklearn/tree/_tree.pyx":864
- *         cdef DOUBLE_t impurity_left, impurity_right, improvement
+  /* "sklearn/tree/_tree.pyx":807
  *         cdef SplitRecord split
+ * 
  *         _init_split_record(&split)             # <<<<<<<<<<<<<<
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  */
   __pyx_f_7sklearn_4tree_5_tree__init_split_record((&__pyx_v_split));
 
-  /* "sklearn/tree/_tree.pyx":865
- *         cdef SplitRecord split
+  /* "sklearn/tree/_tree.pyx":808
+ * 
  *         _init_split_record(&split)
  *         split.node_value = node_value             # <<<<<<<<<<<<<<
  *         split.node_value_left = self.node_value_left
@@ -7576,122 +7239,86 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.node_value = __pyx_v_node_value;
 
-  /* "sklearn/tree/_tree.pyx":866
+  /* "sklearn/tree/_tree.pyx":809
  *         _init_split_record(&split)
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left             # <<<<<<<<<<<<<<
  *         split.node_value_right = self.node_value_right
  * 
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
-  __pyx_v_split.node_value_left = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_left;
+  __pyx_v_split.node_value_left = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":867
+  /* "sklearn/tree/_tree.pyx":810
  *         split.node_value = node_value
  *         split.node_value_left = self.node_value_left
  *         split.node_value_right = self.node_value_right             # <<<<<<<<<<<<<<
  * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  */
-  __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
-  __pyx_v_split.node_value_right = __pyx_t_2;
+  __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.node_value_right;
+  __pyx_v_split.node_value_right = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":869
+  /* "sklearn/tree/_tree.pyx":812
  *         split.node_value_right = self.node_value_right
  * 
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride             # <<<<<<<<<<<<<<
- * 
- *         upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]
- */
-  __pyx_v_feature_offset = (__pyx_v_feature * __pyx_v_self->__pyx_base.__pyx_base.X_feature_stride);
-
-  /* "sklearn/tree/_tree.pyx":871
- *         cdef SIZE_t feature_offset = feature*self.X_feature_stride
- * 
- *         upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]
- * 
- */
-  __pyx_v_upper = (__pyx_v_X[(((__pyx_v_samples[((__pyx_v_start + __pyx_v_n) - 1)]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-  /* "sklearn/tree/_tree.pyx":872
- * 
- *         upper = X[samples[start+n-1]*self.X_sample_stride + feature_offset]
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
- * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)
- */
-  __pyx_v_lower = (__pyx_v_X[(((__pyx_v_samples[__pyx_v_start]) * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-  /* "sklearn/tree/_tree.pyx":874
- *         lower = X[samples[start]*self.X_sample_stride + feature_offset]
- * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)             # <<<<<<<<<<<<<<
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)             # <<<<<<<<<<<<<<
  *         split.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0
  * 
  */
-  __pyx_v_split.threshold = __pyx_f_7sklearn_4tree_5_tree_rand_uniform(__pyx_v_lower, __pyx_v_upper, __pyx_v_rand_r);
+  __pyx_v_split.threshold = __pyx_f_7sklearn_4tree_5_tree_rand_uniform((__pyx_v_X_i[__pyx_v_start]), (__pyx_v_X_i[(__pyx_v_end - 1)]), __pyx_v_rand_r);
 
-  /* "sklearn/tree/_tree.pyx":875
+  /* "sklearn/tree/_tree.pyx":813
  * 
- *         split.threshold = rand_uniform(lower, upper, rand_r)
+ *         split.threshold = rand_uniform(X_i[start], X_i[end-1], rand_r)
  *         split.impurity = yw_sq_sum / w_sum - (yw_sum / w_sum) ** 2.0             # <<<<<<<<<<<<<<
  * 
  *         # Now find the best split using sufficient statistics
  */
   __pyx_v_split.impurity = ((__pyx_v_yw_sq_sum / __pyx_v_w_sum) - pow(((double)(__pyx_v_yw_sum / __pyx_v_w_sum)), 2.0));
 
-  /* "sklearn/tree/_tree.pyx":878
+  /* "sklearn/tree/_tree.pyx":816
  * 
  *         # Now find the best split using sufficient statistics
  *         for i in range(n-1):             # <<<<<<<<<<<<<<
  *             p = samples[start+i]
- *             value = X[p*self.X_sample_stride + feature_offset]
+ * 
  */
-  __pyx_t_4 = (__pyx_v_n - 1);
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_i = __pyx_t_5;
+  __pyx_t_3 = (__pyx_v_n - 1);
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
 
-    /* "sklearn/tree/_tree.pyx":879
+    /* "sklearn/tree/_tree.pyx":817
  *         # Now find the best split using sufficient statistics
  *         for i in range(n-1):
  *             p = samples[start+i]             # <<<<<<<<<<<<<<
- *             value = X[p*self.X_sample_stride + feature_offset]
  * 
+ *             if X_i[start+i] > split.threshold:
  */
     __pyx_v_p = (__pyx_v_samples[(__pyx_v_start + __pyx_v_i)]);
 
-    /* "sklearn/tree/_tree.pyx":880
- *         for i in range(n-1):
+    /* "sklearn/tree/_tree.pyx":819
  *             p = samples[start+i]
- *             value = X[p*self.X_sample_stride + feature_offset]             # <<<<<<<<<<<<<<
  * 
- *             if value > split.threshold:
- */
-    __pyx_v_value = (__pyx_v_X[((__pyx_v_p * __pyx_v_self->__pyx_base.__pyx_base.X_sample_stride) + __pyx_v_feature_offset)]);
-
-    /* "sklearn/tree/_tree.pyx":882
- *             value = X[p*self.X_sample_stride + feature_offset]
- * 
- *             if value > split.threshold:             # <<<<<<<<<<<<<<
- *                 split.pos = i+start
+ *             if X_i[start+i] > split.threshold:             # <<<<<<<<<<<<<<
+ *                 split.pos = start+i
  *                 break
  */
-    __pyx_t_6 = ((__pyx_v_value > __pyx_v_split.threshold) != 0);
-    if (__pyx_t_6) {
+    __pyx_t_5 = (((__pyx_v_X_i[(__pyx_v_start + __pyx_v_i)]) > __pyx_v_split.threshold) != 0);
+    if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":883
+      /* "sklearn/tree/_tree.pyx":820
  * 
- *             if value > split.threshold:
- *                 split.pos = i+start             # <<<<<<<<<<<<<<
+ *             if X_i[start+i] > split.threshold:
+ *                 split.pos = start+i             # <<<<<<<<<<<<<<
  *                 break
  * 
  */
-      __pyx_v_split.pos = (__pyx_v_i + __pyx_v_start);
+      __pyx_v_split.pos = (__pyx_v_start + __pyx_v_i);
 
-      /* "sklearn/tree/_tree.pyx":884
- *             if value > split.threshold:
- *                 split.pos = i+start
+      /* "sklearn/tree/_tree.pyx":821
+ *             if X_i[start+i] > split.threshold:
+ *                 split.pos = start+i
  *                 break             # <<<<<<<<<<<<<<
  * 
  *             w_cl += w[p]
@@ -7699,7 +7326,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       goto __pyx_L4_break;
     }
 
-    /* "sklearn/tree/_tree.pyx":886
+    /* "sklearn/tree/_tree.pyx":823
  *                 break
  * 
  *             w_cl += w[p]             # <<<<<<<<<<<<<<
@@ -7708,7 +7335,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cl = (__pyx_v_w_cl + (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":887
+    /* "sklearn/tree/_tree.pyx":824
  * 
  *             w_cl += w[p]
  *             yw_cr += w[p] * y[p]             # <<<<<<<<<<<<<<
@@ -7717,7 +7344,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_yw_cr = (__pyx_v_yw_cr + ((__pyx_v_w[__pyx_v_p]) * (__pyx_v_y[__pyx_v_p])));
 
-    /* "sklearn/tree/_tree.pyx":888
+    /* "sklearn/tree/_tree.pyx":825
  *             w_cl += w[p]
  *             yw_cr += w[p] * y[p]
  *             yw_sq += w[p] * y[p] * y[p]             # <<<<<<<<<<<<<<
@@ -7726,7 +7353,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_yw_sq = (__pyx_v_yw_sq + (((__pyx_v_w[__pyx_v_p]) * (__pyx_v_y[__pyx_v_p])) * (__pyx_v_y[__pyx_v_p])));
 
-    /* "sklearn/tree/_tree.pyx":890
+    /* "sklearn/tree/_tree.pyx":827
  *             yw_sq += w[p] * y[p] * y[p]
  * 
  *             w_cr -= w[p]             # <<<<<<<<<<<<<<
@@ -7735,7 +7362,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_w_cr = (__pyx_v_w_cr - (__pyx_v_w[__pyx_v_p]));
 
-    /* "sklearn/tree/_tree.pyx":891
+    /* "sklearn/tree/_tree.pyx":828
  * 
  *             w_cr -= w[p]
  *             yw_cr -= w[p] * y[p]             # <<<<<<<<<<<<<<
@@ -7744,7 +7371,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_yw_cr = (__pyx_v_yw_cr - ((__pyx_v_w[__pyx_v_p]) * (__pyx_v_y[__pyx_v_p])));
 
-    /* "sklearn/tree/_tree.pyx":892
+    /* "sklearn/tree/_tree.pyx":829
  *             w_cr -= w[p]
  *             yw_cr -= w[p] * y[p]
  *             yw_sq_r -= w[p] * y[p] * y[p]             # <<<<<<<<<<<<<<
@@ -7755,7 +7382,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L4_break:;
 
-  /* "sklearn/tree/_tree.pyx":894
+  /* "sklearn/tree/_tree.pyx":831
  *             yw_sq_r -= w[p] * y[p] * y[p]
  * 
  *         split.weight = w_sum             # <<<<<<<<<<<<<<
@@ -7764,7 +7391,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight = __pyx_v_w_sum;
 
-  /* "sklearn/tree/_tree.pyx":895
+  /* "sklearn/tree/_tree.pyx":832
  * 
  *         split.weight = w_sum
  *         split.weight_left = w_cl             # <<<<<<<<<<<<<<
@@ -7773,7 +7400,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight_left = __pyx_v_w_cl;
 
-  /* "sklearn/tree/_tree.pyx":896
+  /* "sklearn/tree/_tree.pyx":833
  *         split.weight = w_sum
  *         split.weight_left = w_cl
  *         split.weight_right = w_cr             # <<<<<<<<<<<<<<
@@ -7782,7 +7409,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.weight_right = __pyx_v_w_cr;
 
-  /* "sklearn/tree/_tree.pyx":898
+  /* "sklearn/tree/_tree.pyx":835
  *         split.weight_right = w_cr
  * 
  *         split.impurity_left = yw_sq / w_cl - (yw_cl / w_cl) ** 2.0             # <<<<<<<<<<<<<<
@@ -7791,7 +7418,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = ((__pyx_v_yw_sq / __pyx_v_w_cl) - pow(((double)(__pyx_v_yw_cl / __pyx_v_w_cl)), 2.0));
 
-  /* "sklearn/tree/_tree.pyx":899
+  /* "sklearn/tree/_tree.pyx":836
  * 
  *         split.impurity_left = yw_sq / w_cl - (yw_cl / w_cl) ** 2.0
  *         split.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0             # <<<<<<<<<<<<<<
@@ -7800,7 +7427,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = ((__pyx_v_yw_sq_r / __pyx_v_w_cr) - pow(((double)(__pyx_v_yw_cr / __pyx_v_w_cr)), 2.0));
 
-  /* "sklearn/tree/_tree.pyx":901
+  /* "sklearn/tree/_tree.pyx":838
  *         split.impurity_right =  yw_sq_r / w_cr - (yw_cr / w_cr) ** 2.0
  * 
  *         split.impurity /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -7809,7 +7436,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity = (__pyx_v_split.impurity / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":902
+  /* "sklearn/tree/_tree.pyx":839
  * 
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -7818,7 +7445,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_left = (__pyx_v_split.impurity_left / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":903
+  /* "sklearn/tree/_tree.pyx":840
  *         split.impurity /= self.n_outputs
  *         split.impurity_left /= self.n_outputs
  *         split.impurity_right /= self.n_outputs             # <<<<<<<<<<<<<<
@@ -7827,7 +7454,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.impurity_right = (__pyx_v_split.impurity_right / __pyx_v_self->__pyx_base.__pyx_base.n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":905
+  /* "sklearn/tree/_tree.pyx":842
  *         split.impurity_right /= self.n_outputs
  * 
  *         split.improvement = (w_sum / self.weighted_n_samples *             # <<<<<<<<<<<<<<
@@ -7836,7 +7463,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.improvement = ((__pyx_v_w_sum / __pyx_v_self->__pyx_base.__pyx_base.weighted_n_samples) * ((__pyx_v_split.impurity - ((__pyx_v_split.weight_left / __pyx_v_w_sum) * __pyx_v_split.impurity_left)) - ((__pyx_v_split.weight_right / __pyx_v_w_sum) * __pyx_v_split.impurity_right)));
 
-  /* "sklearn/tree/_tree.pyx":909
+  /* "sklearn/tree/_tree.pyx":846
  *                 split.weight_right / w_sum * split.impurity_right))
  * 
  *         split.yw_sq_sum = yw_sq_sum             # <<<<<<<<<<<<<<
@@ -7845,7 +7472,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.yw_sq_sum = __pyx_v_yw_sq_sum;
 
-  /* "sklearn/tree/_tree.pyx":910
+  /* "sklearn/tree/_tree.pyx":847
  * 
  *         split.yw_sq_sum = yw_sq_sum
  *         split.yw_sq_sum_left = yw_sq             # <<<<<<<<<<<<<<
@@ -7854,7 +7481,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.yw_sq_sum_left = __pyx_v_yw_sq;
 
-  /* "sklearn/tree/_tree.pyx":911
+  /* "sklearn/tree/_tree.pyx":848
  *         split.yw_sq_sum = yw_sq_sum
  *         split.yw_sq_sum_left = yw_sq
  *         split.yw_sq_sum_right = yw_sq_r             # <<<<<<<<<<<<<<
@@ -7863,7 +7490,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.yw_sq_sum_right = __pyx_v_yw_sq_r;
 
-  /* "sklearn/tree/_tree.pyx":913
+  /* "sklearn/tree/_tree.pyx":850
  *         split.yw_sq_sum_right = yw_sq_r
  * 
  *         split.node_value_left[0] = yw_cl / w_cl             # <<<<<<<<<<<<<<
@@ -7872,7 +7499,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   (__pyx_v_split.node_value_left[0]) = (__pyx_v_yw_cl / __pyx_v_w_cl);
 
-  /* "sklearn/tree/_tree.pyx":914
+  /* "sklearn/tree/_tree.pyx":851
  * 
  *         split.node_value_left[0] = yw_cl / w_cl
  *         split.node_value_right[0] = yw_cr / w_cr             # <<<<<<<<<<<<<<
@@ -7881,7 +7508,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   (__pyx_v_split.node_value_right[0]) = (__pyx_v_yw_cr / __pyx_v_w_cr);
 
-  /* "sklearn/tree/_tree.pyx":916
+  /* "sklearn/tree/_tree.pyx":853
  *         split.node_value_right[0] = yw_cr / w_cr
  * 
  *         split.feature = feature             # <<<<<<<<<<<<<<
@@ -7890,7 +7517,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_split.feature = __pyx_v_feature;
 
-  /* "sklearn/tree/_tree.pyx":917
+  /* "sklearn/tree/_tree.pyx":854
  * 
  *         split.feature = feature
  *         return split             # <<<<<<<<<<<<<<
@@ -7900,12 +7527,12 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_r = __pyx_v_split;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":845
+  /* "sklearn/tree/_tree.pyx":790
  *         return split
  * 
- *     cdef SplitRecord random_split(self, SIZE_t* samples, SIZE_t start,             # <<<<<<<<<<<<<<
- *         SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum,
- *         DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
+ *     cdef SplitRecord random_split(self, DTYPE_t* X_i, SIZE_t* samples,             # <<<<<<<<<<<<<<
+ *         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum,
+ *         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
  */
 
   /* function exit code */
@@ -7913,7 +7540,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":924
+/* "sklearn/tree/_tree.pyx":861
  * # =============================================================================
  * 
  * cdef inline void _init_split_record(SplitRecord* split) nogil:             # <<<<<<<<<<<<<<
@@ -7923,7 +7550,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
 
 static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord *__pyx_v_split) {
 
-  /* "sklearn/tree/_tree.pyx":925
+  /* "sklearn/tree/_tree.pyx":862
  * 
  * cdef inline void _init_split_record(SplitRecord* split) nogil:
  *     split.improvement = -INFINITY             # <<<<<<<<<<<<<<
@@ -7932,7 +7559,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->improvement = (-__pyx_v_7sklearn_4tree_5_tree_INFINITY);
 
-  /* "sklearn/tree/_tree.pyx":926
+  /* "sklearn/tree/_tree.pyx":863
  * cdef inline void _init_split_record(SplitRecord* split) nogil:
  *     split.improvement = -INFINITY
  *     split.pos = -1             # <<<<<<<<<<<<<<
@@ -7941,7 +7568,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->pos = -1;
 
-  /* "sklearn/tree/_tree.pyx":927
+  /* "sklearn/tree/_tree.pyx":864
  *     split.improvement = -INFINITY
  *     split.pos = -1
  *     split.threshold = -INFINITY             # <<<<<<<<<<<<<<
@@ -7950,7 +7577,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->threshold = (-__pyx_v_7sklearn_4tree_5_tree_INFINITY);
 
-  /* "sklearn/tree/_tree.pyx":928
+  /* "sklearn/tree/_tree.pyx":865
  *     split.pos = -1
  *     split.threshold = -INFINITY
  *     split.feature = 0             # <<<<<<<<<<<<<<
@@ -7959,7 +7586,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->feature = 0;
 
-  /* "sklearn/tree/_tree.pyx":929
+  /* "sklearn/tree/_tree.pyx":866
  *     split.threshold = -INFINITY
  *     split.feature = 0
  *     split.impurity = 0             # <<<<<<<<<<<<<<
@@ -7968,7 +7595,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->impurity = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":930
+  /* "sklearn/tree/_tree.pyx":867
  *     split.feature = 0
  *     split.impurity = 0
  *     split.impurity_right = 0             # <<<<<<<<<<<<<<
@@ -7977,7 +7604,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->impurity_right = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":931
+  /* "sklearn/tree/_tree.pyx":868
  *     split.impurity = 0
  *     split.impurity_right = 0
  *     split.impurity_left = 0             # <<<<<<<<<<<<<<
@@ -7986,7 +7613,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->impurity_left = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":932
+  /* "sklearn/tree/_tree.pyx":869
  *     split.impurity_right = 0
  *     split.impurity_left = 0
  *     split.weight = 0             # <<<<<<<<<<<<<<
@@ -7995,7 +7622,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->weight = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":933
+  /* "sklearn/tree/_tree.pyx":870
  *     split.impurity_left = 0
  *     split.weight = 0
  *     split.weight_left = 0             # <<<<<<<<<<<<<<
@@ -8004,7 +7631,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->weight_left = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":934
+  /* "sklearn/tree/_tree.pyx":871
  *     split.weight = 0
  *     split.weight_left = 0
  *     split.weight_right = 0             # <<<<<<<<<<<<<<
@@ -8013,7 +7640,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->weight_right = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":935
+  /* "sklearn/tree/_tree.pyx":872
  *     split.weight_left = 0
  *     split.weight_right = 0
  *     split.yw_sq_sum = 0             # <<<<<<<<<<<<<<
@@ -8022,7 +7649,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->yw_sq_sum = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":936
+  /* "sklearn/tree/_tree.pyx":873
  *     split.weight_right = 0
  *     split.yw_sq_sum = 0
  *     split.yw_sq_sum_left = 0             # <<<<<<<<<<<<<<
@@ -8031,7 +7658,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->yw_sq_sum_left = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":937
+  /* "sklearn/tree/_tree.pyx":874
  *     split.yw_sq_sum = 0
  *     split.yw_sq_sum_left = 0
  *     split.yw_sq_sum_right = 0             # <<<<<<<<<<<<<<
@@ -8040,7 +7667,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->yw_sq_sum_right = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":938
+  /* "sklearn/tree/_tree.pyx":875
  *     split.yw_sq_sum_left = 0
  *     split.yw_sq_sum_right = 0
  *     split.node_value = NULL             # <<<<<<<<<<<<<<
@@ -8049,7 +7676,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->node_value = NULL;
 
-  /* "sklearn/tree/_tree.pyx":939
+  /* "sklearn/tree/_tree.pyx":876
  *     split.yw_sq_sum_right = 0
  *     split.node_value = NULL
  *     split.node_value_left = NULL             # <<<<<<<<<<<<<<
@@ -8058,7 +7685,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->node_value_left = NULL;
 
-  /* "sklearn/tree/_tree.pyx":940
+  /* "sklearn/tree/_tree.pyx":877
  *     split.node_value = NULL
  *     split.node_value_left = NULL
  *     split.node_value_right = NULL             # <<<<<<<<<<<<<<
@@ -8067,7 +7694,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
  */
   __pyx_v_split->node_value_right = NULL;
 
-  /* "sklearn/tree/_tree.pyx":924
+  /* "sklearn/tree/_tree.pyx":861
  * # =============================================================================
  * 
  * cdef inline void _init_split_record(SplitRecord* split) nogil:             # <<<<<<<<<<<<<<
@@ -8078,7 +7705,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree__init_split_record(struc
   /* function exit code */
 }
 
-/* "sklearn/tree/_tree.pyx":949
+/* "sklearn/tree/_tree.pyx":886
  *     """
  * 
  *     def __cinit__(self, Criterion criterion, SIZE_t max_features,             # <<<<<<<<<<<<<<
@@ -8127,36 +7754,36 @@ static int __pyx_pw_7sklearn_4tree_5_tree_8Splitter_1__cinit__(PyObject *__pyx_v
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_max_features)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_samples_leaf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_weight_leaf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_random_state)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_jobs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  6:
         if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_best)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 6); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, 6); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 7) {
       goto __pyx_L5_argtuple_error;
@@ -8170,22 +7797,22 @@ static int __pyx_pw_7sklearn_4tree_5_tree_8Splitter_1__cinit__(PyObject *__pyx_v
       values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
     }
     __pyx_v_criterion = ((struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *)values[0]);
-    __pyx_v_max_features = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_max_features == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_min_samples_leaf = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_min_samples_leaf == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 950; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_min_weight_leaf = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_min_weight_leaf == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 950; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_max_features = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_max_features == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_min_samples_leaf = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_min_samples_leaf == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 887; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_min_weight_leaf = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_min_weight_leaf == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 887; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_random_state = values[4];
-    __pyx_v_n_jobs = __Pyx_PyInt_As_Py_intptr_t(values[5]); if (unlikely((__pyx_v_n_jobs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_best = __Pyx_PyInt_As_Py_intptr_t(values[6]); if (unlikely((__pyx_v_best == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_jobs = __Pyx_PyInt_As_Py_intptr_t(values[5]); if (unlikely((__pyx_v_n_jobs == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 888; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_best = __Pyx_PyInt_As_Py_intptr_t(values[6]); if (unlikely((__pyx_v_best == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 888; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.Splitter.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_criterion), __pyx_ptype_7sklearn_4tree_5_tree_Criterion, 1, "criterion", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_criterion), __pyx_ptype_7sklearn_4tree_5_tree_Criterion, 1, "criterion", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 886; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(((struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *)__pyx_v_self), __pyx_v_criterion, __pyx_v_max_features, __pyx_v_min_samples_leaf, __pyx_v_min_weight_leaf, __pyx_v_random_state, __pyx_v_n_jobs, __pyx_v_best);
 
   /* function exit code */
@@ -8202,7 +7829,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sklearn/tree/_tree.pyx":953
+  /* "sklearn/tree/_tree.pyx":890
  *                   object random_state, SIZE_t n_jobs, SIZE_t best):
  * 
  *         self.criterion = criterion             # <<<<<<<<<<<<<<
@@ -8215,7 +7842,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
   __Pyx_DECREF(((PyObject *)__pyx_v_self->criterion));
   __pyx_v_self->criterion = __pyx_v_criterion;
 
-  /* "sklearn/tree/_tree.pyx":954
+  /* "sklearn/tree/_tree.pyx":891
  * 
  *         self.criterion = criterion
  *         self.n_jobs = n_jobs             # <<<<<<<<<<<<<<
@@ -8224,7 +7851,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->n_jobs = __pyx_v_n_jobs;
 
-  /* "sklearn/tree/_tree.pyx":956
+  /* "sklearn/tree/_tree.pyx":893
  *         self.n_jobs = n_jobs
  * 
  *         self.samples = NULL             # <<<<<<<<<<<<<<
@@ -8233,7 +7860,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->samples = NULL;
 
-  /* "sklearn/tree/_tree.pyx":957
+  /* "sklearn/tree/_tree.pyx":894
  * 
  *         self.samples = NULL
  *         self.n_samples = 0             # <<<<<<<<<<<<<<
@@ -8242,7 +7869,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->n_samples = 0;
 
-  /* "sklearn/tree/_tree.pyx":958
+  /* "sklearn/tree/_tree.pyx":895
  *         self.samples = NULL
  *         self.n_samples = 0
  *         self.sample_weight = NULL             # <<<<<<<<<<<<<<
@@ -8251,7 +7878,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->sample_weight = NULL;
 
-  /* "sklearn/tree/_tree.pyx":959
+  /* "sklearn/tree/_tree.pyx":896
  *         self.n_samples = 0
  *         self.sample_weight = NULL
  *         self.sample_mask = NULL             # <<<<<<<<<<<<<<
@@ -8260,7 +7887,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->sample_mask = NULL;
 
-  /* "sklearn/tree/_tree.pyx":961
+  /* "sklearn/tree/_tree.pyx":898
  *         self.sample_mask = NULL
  * 
  *         self.features = NULL             # <<<<<<<<<<<<<<
@@ -8269,7 +7896,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->features = NULL;
 
-  /* "sklearn/tree/_tree.pyx":962
+  /* "sklearn/tree/_tree.pyx":899
  * 
  *         self.features = NULL
  *         self.n_features = 0             # <<<<<<<<<<<<<<
@@ -8278,7 +7905,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->n_features = 0;
 
-  /* "sklearn/tree/_tree.pyx":964
+  /* "sklearn/tree/_tree.pyx":901
  *         self.n_features = 0
  * 
  *         self.y = NULL             # <<<<<<<<<<<<<<
@@ -8287,7 +7914,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->y = NULL;
 
-  /* "sklearn/tree/_tree.pyx":965
+  /* "sklearn/tree/_tree.pyx":902
  * 
  *         self.y = NULL
  *         self.y_stride = 0             # <<<<<<<<<<<<<<
@@ -8296,7 +7923,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->y_stride = 0;
 
-  /* "sklearn/tree/_tree.pyx":967
+  /* "sklearn/tree/_tree.pyx":904
  *         self.y_stride = 0
  * 
  *         self.max_features = max_features             # <<<<<<<<<<<<<<
@@ -8305,7 +7932,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->max_features = __pyx_v_max_features;
 
-  /* "sklearn/tree/_tree.pyx":968
+  /* "sklearn/tree/_tree.pyx":905
  * 
  *         self.max_features = max_features
  *         self.min_samples_leaf = min_samples_leaf             # <<<<<<<<<<<<<<
@@ -8314,7 +7941,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->min_samples_leaf = __pyx_v_min_samples_leaf;
 
-  /* "sklearn/tree/_tree.pyx":969
+  /* "sklearn/tree/_tree.pyx":906
  *         self.max_features = max_features
  *         self.min_samples_leaf = min_samples_leaf
  *         self.min_weight_leaf = min_weight_leaf             # <<<<<<<<<<<<<<
@@ -8323,7 +7950,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->min_weight_leaf = __pyx_v_min_weight_leaf;
 
-  /* "sklearn/tree/_tree.pyx":970
+  /* "sklearn/tree/_tree.pyx":907
  *         self.min_samples_leaf = min_samples_leaf
  *         self.min_weight_leaf = min_weight_leaf
  *         self.random_state = random_state             # <<<<<<<<<<<<<<
@@ -8336,7 +7963,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
   __Pyx_DECREF(__pyx_v_self->random_state);
   __pyx_v_self->random_state = __pyx_v_random_state;
 
-  /* "sklearn/tree/_tree.pyx":972
+  /* "sklearn/tree/_tree.pyx":909
  *         self.random_state = random_state
  * 
  *         self.X_idx_sorted_ptr = NULL             # <<<<<<<<<<<<<<
@@ -8345,7 +7972,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->X_idx_sorted_ptr = NULL;
 
-  /* "sklearn/tree/_tree.pyx":973
+  /* "sklearn/tree/_tree.pyx":910
  * 
  *         self.X_idx_sorted_ptr = NULL
  *         self.X_idx_sorted_stride = 0             # <<<<<<<<<<<<<<
@@ -8354,7 +7981,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->X_idx_sorted_stride = 0;
 
-  /* "sklearn/tree/_tree.pyx":975
+  /* "sklearn/tree/_tree.pyx":912
  *         self.X_idx_sorted_stride = 0
  * 
  *         self.X = NULL             # <<<<<<<<<<<<<<
@@ -8363,7 +7990,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->X = NULL;
 
-  /* "sklearn/tree/_tree.pyx":976
+  /* "sklearn/tree/_tree.pyx":913
  * 
  *         self.X = NULL
  *         self.X_feature_stride = 1             # <<<<<<<<<<<<<<
@@ -8372,7 +7999,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->X_feature_stride = 1;
 
-  /* "sklearn/tree/_tree.pyx":977
+  /* "sklearn/tree/_tree.pyx":914
  *         self.X = NULL
  *         self.X_feature_stride = 1
  *         self.X_sample_stride = 1             # <<<<<<<<<<<<<<
@@ -8381,7 +8008,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->X_sample_stride = 1;
 
-  /* "sklearn/tree/_tree.pyx":979
+  /* "sklearn/tree/_tree.pyx":916
  *         self.X_sample_stride = 1
  * 
  *         self.best = best             # <<<<<<<<<<<<<<
@@ -8390,7 +8017,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
  */
   __pyx_v_self->best = __pyx_v_best;
 
-  /* "sklearn/tree/_tree.pyx":949
+  /* "sklearn/tree/_tree.pyx":886
  *     """
  * 
  *     def __cinit__(self, Criterion criterion, SIZE_t max_features,             # <<<<<<<<<<<<<<
@@ -8404,7 +8031,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter___cinit__(struct __pyx_obj_7
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":981
+/* "sklearn/tree/_tree.pyx":918
  *         self.best = best
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -8428,7 +8055,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_8Splitter_2__dealloc__(struct __pyx_o
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sklearn/tree/_tree.pyx":984
+  /* "sklearn/tree/_tree.pyx":921
  *         """Destructor."""
  * 
  *         free(self.samples)             # <<<<<<<<<<<<<<
@@ -8437,7 +8064,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_8Splitter_2__dealloc__(struct __pyx_o
  */
   free(__pyx_v_self->samples);
 
-  /* "sklearn/tree/_tree.pyx":985
+  /* "sklearn/tree/_tree.pyx":922
  * 
  *         free(self.samples)
  *         free(self.features)             # <<<<<<<<<<<<<<
@@ -8446,7 +8073,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_8Splitter_2__dealloc__(struct __pyx_o
  */
   free(__pyx_v_self->features);
 
-  /* "sklearn/tree/_tree.pyx":986
+  /* "sklearn/tree/_tree.pyx":923
  *         free(self.samples)
  *         free(self.features)
  *         free(self.sample_mask)             # <<<<<<<<<<<<<<
@@ -8455,7 +8082,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_8Splitter_2__dealloc__(struct __pyx_o
  */
   free(__pyx_v_self->sample_mask);
 
-  /* "sklearn/tree/_tree.pyx":988
+  /* "sklearn/tree/_tree.pyx":925
  *         free(self.sample_mask)
  * 
  *         if self.presort:             # <<<<<<<<<<<<<<
@@ -8465,7 +8092,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_8Splitter_2__dealloc__(struct __pyx_o
   __pyx_t_1 = (__pyx_v_self->presort != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":989
+    /* "sklearn/tree/_tree.pyx":926
  * 
  *         if self.presort:
  *             free(self.X_i)             # <<<<<<<<<<<<<<
@@ -8477,7 +8104,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_8Splitter_2__dealloc__(struct __pyx_o
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_tree.pyx":981
+  /* "sklearn/tree/_tree.pyx":918
  *         self.best = best
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -8489,7 +8116,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_8Splitter_2__dealloc__(struct __pyx_o
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":991
+/* "sklearn/tree/_tree.pyx":928
  *             free(self.X_i)
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -8519,7 +8146,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_4__getstate__(CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getstate__", 0);
 
-  /* "sklearn/tree/_tree.pyx":992
+  /* "sklearn/tree/_tree.pyx":929
  * 
  *     def __getstate__(self):
  *         return {}             # <<<<<<<<<<<<<<
@@ -8527,13 +8154,13 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_4__getstate__(CYTHON_U
  *     def __setstate__(self, d):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 992; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 929; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":991
+  /* "sklearn/tree/_tree.pyx":928
  *             free(self.X_i)
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -8552,7 +8179,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_4__getstate__(CYTHON_U
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":994
+/* "sklearn/tree/_tree.pyx":931
  *         return {}
  * 
  *     def __setstate__(self, d):             # <<<<<<<<<<<<<<
@@ -8585,7 +8212,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_6__setstate__(CYTHON_U
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":997
+/* "sklearn/tree/_tree.pyx":934
  *         pass
  * 
  *     def __reduce(self):             # <<<<<<<<<<<<<<
@@ -8618,7 +8245,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_8__reduce(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce", 0);
 
-  /* "sklearn/tree/_tree.pyx":998
+  /* "sklearn/tree/_tree.pyx":935
  * 
  *     def __reduce(self):
  *         return (Splitter, (self.criterion,             # <<<<<<<<<<<<<<
@@ -8627,44 +8254,44 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_8__reduce(struct __pyx
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "sklearn/tree/_tree.pyx":999
+  /* "sklearn/tree/_tree.pyx":936
  *     def __reduce(self):
  *         return (Splitter, (self.criterion,
  *                            self.max_features,             # <<<<<<<<<<<<<<
  *                            self.min_samples_leaf,
  *                            self.min_weight_leaf,
  */
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 999; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 936; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sklearn/tree/_tree.pyx":1000
+  /* "sklearn/tree/_tree.pyx":937
  *         return (Splitter, (self.criterion,
  *                            self.max_features,
  *                            self.min_samples_leaf,             # <<<<<<<<<<<<<<
  *                            self.min_weight_leaf,
  *                            self.random_state), self.__getstate__() )
  */
-  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->min_samples_leaf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1000; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->min_samples_leaf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 937; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "sklearn/tree/_tree.pyx":1001
+  /* "sklearn/tree/_tree.pyx":938
  *                            self.max_features,
  *                            self.min_samples_leaf,
  *                            self.min_weight_leaf,             # <<<<<<<<<<<<<<
  *                            self.random_state), self.__getstate__() )
  * 
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->min_weight_leaf); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1001; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->min_weight_leaf); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 938; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "sklearn/tree/_tree.pyx":998
+  /* "sklearn/tree/_tree.pyx":935
  * 
  *     def __reduce(self):
  *         return (Splitter, (self.criterion,             # <<<<<<<<<<<<<<
  *                            self.max_features,
  *                            self.min_samples_leaf,
  */
-  __pyx_t_4 = PyTuple_New(5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 935; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->criterion));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->criterion));
@@ -8682,14 +8309,14 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_8__reduce(struct __pyx
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1002
+  /* "sklearn/tree/_tree.pyx":939
  *                            self.min_samples_leaf,
  *                            self.min_weight_leaf,
  *                            self.random_state), self.__getstate__() )             # <<<<<<<<<<<<<<
  * 
  *     cdef void init(self, object X, np.ndarray[INT32_t, ndim=2] X_idx_sorted,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 939; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -8702,22 +8329,22 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_8__reduce(struct __pyx
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 939; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1002; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 939; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sklearn/tree/_tree.pyx":998
+  /* "sklearn/tree/_tree.pyx":935
  * 
  *     def __reduce(self):
  *         return (Splitter, (self.criterion,             # <<<<<<<<<<<<<<
  *                            self.max_features,
  *                            self.min_samples_leaf,
  */
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 935; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_Splitter)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_Splitter)));
@@ -8732,7 +8359,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_8__reduce(struct __pyx
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":997
+  /* "sklearn/tree/_tree.pyx":934
  *         pass
  * 
  *     def __reduce(self):             # <<<<<<<<<<<<<<
@@ -8754,7 +8381,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_8__reduce(struct __pyx
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1004
+/* "sklearn/tree/_tree.pyx":941
  *                            self.random_state), self.__getstate__() )
  * 
  *     cdef void init(self, object X, np.ndarray[INT32_t, ndim=2] X_idx_sorted,             # <<<<<<<<<<<<<<
@@ -8795,16 +8422,16 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
   __pyx_pybuffernd_y.rcbuffer = &__pyx_pybuffer_y;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_X_idx_sorted.rcbuffer->pybuffer, (PyObject*)__pyx_v_X_idx_sorted, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1004; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_X_idx_sorted.rcbuffer->pybuffer, (PyObject*)__pyx_v_X_idx_sorted, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 941; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_pybuffernd_X_idx_sorted.diminfo[0].strides = __pyx_pybuffernd_X_idx_sorted.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_X_idx_sorted.diminfo[0].shape = __pyx_pybuffernd_X_idx_sorted.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_X_idx_sorted.diminfo[1].strides = __pyx_pybuffernd_X_idx_sorted.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_X_idx_sorted.diminfo[1].shape = __pyx_pybuffernd_X_idx_sorted.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_y.rcbuffer->pybuffer, (PyObject*)__pyx_v_y, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1004; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_y.rcbuffer->pybuffer, (PyObject*)__pyx_v_y, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 941; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_pybuffernd_y.diminfo[0].strides = __pyx_pybuffernd_y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_y.diminfo[0].shape = __pyx_pybuffernd_y.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_y.diminfo[1].strides = __pyx_pybuffernd_y.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_y.diminfo[1].shape = __pyx_pybuffernd_y.rcbuffer->pybuffer.shape[1];
 
-  /* "sklearn/tree/_tree.pyx":1013
+  /* "sklearn/tree/_tree.pyx":950
  *         """
  * 
  *         self.presort = presort             # <<<<<<<<<<<<<<
@@ -8813,16 +8440,16 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
   __pyx_v_self->presort = __pyx_v_presort;
 
-  /* "sklearn/tree/_tree.pyx":1014
+  /* "sklearn/tree/_tree.pyx":951
  * 
  *         self.presort = presort
  *         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)             # <<<<<<<<<<<<<<
  * 
  *         self.n_samples = X.shape[0]
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->random_state, __pyx_n_s_randint); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->random_state, __pyx_n_s_randint); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_e_7sklearn_4tree_5_tree_RAND_R_MAX); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_e_7sklearn_4tree_5_tree_RAND_R_MAX); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -8836,7 +8463,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
       __pyx_t_5 = 1;
     }
   }
-  __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   if (__pyx_t_4) {
     __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -8847,40 +8474,40 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = __Pyx_PyInt_As_npy_uint32(__pyx_t_1); if (unlikely((__pyx_t_7 == (npy_uint32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1014; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyInt_As_npy_uint32(__pyx_t_1); if (unlikely((__pyx_t_7 == (npy_uint32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->rand_r_state = __pyx_t_7;
 
-  /* "sklearn/tree/_tree.pyx":1016
+  /* "sklearn/tree/_tree.pyx":953
  *         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
  * 
  *         self.n_samples = X.shape[0]             # <<<<<<<<<<<<<<
  *         safe_realloc(&self.samples, self.n_samples)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1016; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 953; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1016; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 953; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_2); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1016; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_2); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 953; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_self->n_samples = __pyx_t_8;
 
-  /* "sklearn/tree/_tree.pyx":1017
+  /* "sklearn/tree/_tree.pyx":954
  * 
  *         self.n_samples = X.shape[0]
  *         safe_realloc(&self.samples, self.n_samples)             # <<<<<<<<<<<<<<
  * 
  *         cdef SIZE_t i, j = 0
  */
-  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->samples), __pyx_v_self->n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1017; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->samples), __pyx_v_self->n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_tree.pyx":1019
+  /* "sklearn/tree/_tree.pyx":956
  *         safe_realloc(&self.samples, self.n_samples)
  * 
  *         cdef SIZE_t i, j = 0             # <<<<<<<<<<<<<<
@@ -8889,7 +8516,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
   __pyx_v_j = 0;
 
-  /* "sklearn/tree/_tree.pyx":1023
+  /* "sklearn/tree/_tree.pyx":960
  *         # In order to only use positively weighted samples, we must go through
  *         # each sample and check its associated weight.
  *         for i in range(self.n_samples):             # <<<<<<<<<<<<<<
@@ -8900,7 +8527,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
   for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
     __pyx_v_i = __pyx_t_9;
 
-    /* "sklearn/tree/_tree.pyx":1024
+    /* "sklearn/tree/_tree.pyx":961
  *         # each sample and check its associated weight.
  *         for i in range(self.n_samples):
  *             if sample_weight[i] != 0.0:             # <<<<<<<<<<<<<<
@@ -8910,7 +8537,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
     __pyx_t_10 = (((__pyx_v_sample_weight[__pyx_v_i]) != 0.0) != 0);
     if (__pyx_t_10) {
 
-      /* "sklearn/tree/_tree.pyx":1025
+      /* "sklearn/tree/_tree.pyx":962
  *         for i in range(self.n_samples):
  *             if sample_weight[i] != 0.0:
  *                 self.samples[j] = i             # <<<<<<<<<<<<<<
@@ -8919,7 +8546,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
       (__pyx_v_self->samples[__pyx_v_j]) = __pyx_v_i;
 
-      /* "sklearn/tree/_tree.pyx":1026
+      /* "sklearn/tree/_tree.pyx":963
  *             if sample_weight[i] != 0.0:
  *                 self.samples[j] = i
  *                 j += 1             # <<<<<<<<<<<<<<
@@ -8932,7 +8559,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
     __pyx_L5:;
   }
 
-  /* "sklearn/tree/_tree.pyx":1028
+  /* "sklearn/tree/_tree.pyx":965
  *                 j += 1
  * 
  *         n_node_samples[0] = j             # <<<<<<<<<<<<<<
@@ -8941,32 +8568,32 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
   (__pyx_v_n_node_samples[0]) = __pyx_v_j;
 
-  /* "sklearn/tree/_tree.pyx":1030
+  /* "sklearn/tree/_tree.pyx":967
  *         n_node_samples[0] = j
  * 
  *         self.n_features = X.shape[1]             # <<<<<<<<<<<<<<
  *         safe_realloc(&self.features, self.n_features)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 967; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 967; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 967; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->n_features = __pyx_t_8;
 
-  /* "sklearn/tree/_tree.pyx":1031
+  /* "sklearn/tree/_tree.pyx":968
  * 
  *         self.n_features = X.shape[1]
  *         safe_realloc(&self.features, self.n_features)             # <<<<<<<<<<<<<<
  * 
  *         for i in range(self.n_features):
  */
-  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->features), __pyx_v_self->n_features); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->features), __pyx_v_self->n_features); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 968; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_tree.pyx":1033
+  /* "sklearn/tree/_tree.pyx":970
  *         safe_realloc(&self.features, self.n_features)
  * 
  *         for i in range(self.n_features):             # <<<<<<<<<<<<<<
@@ -8977,7 +8604,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
   for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
     __pyx_v_i = __pyx_t_9;
 
-    /* "sklearn/tree/_tree.pyx":1034
+    /* "sklearn/tree/_tree.pyx":971
  * 
  *         for i in range(self.n_features):
  *             self.features[i] = i             # <<<<<<<<<<<<<<
@@ -8987,7 +8614,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
     (__pyx_v_self->features[__pyx_v_i]) = __pyx_v_i;
   }
 
-  /* "sklearn/tree/_tree.pyx":1036
+  /* "sklearn/tree/_tree.pyx":973
  *             self.features[i] = i
  * 
  *         self.y = <DOUBLE_t*> y.data             # <<<<<<<<<<<<<<
@@ -8996,20 +8623,20 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
   __pyx_v_self->y = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)__pyx_v_y->data);
 
-  /* "sklearn/tree/_tree.pyx":1037
+  /* "sklearn/tree/_tree.pyx":974
  * 
  *         self.y = <DOUBLE_t*> y.data
  *         self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize             # <<<<<<<<<<<<<<
  * 
  *         self.sample_weight = sample_weight
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_y), __pyx_n_s_itemsize); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_y), __pyx_n_s_itemsize); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 974; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1037; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 974; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->y_stride = (((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_y->strides[0])) / ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_8));
 
-  /* "sklearn/tree/_tree.pyx":1039
+  /* "sklearn/tree/_tree.pyx":976
  *         self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
  * 
  *         self.sample_weight = sample_weight             # <<<<<<<<<<<<<<
@@ -9018,20 +8645,20 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
   __pyx_v_self->sample_weight = __pyx_v_sample_weight;
 
-  /* "sklearn/tree/_tree.pyx":1041
+  /* "sklearn/tree/_tree.pyx":978
  *         self.sample_weight = sample_weight
  * 
  *         cdef np.ndarray X_ndarray = X             # <<<<<<<<<<<<<<
  *         self.X = <DTYPE_t*> X_ndarray.data
  *         self.X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
  */
-  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1041; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 978; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_1 = __pyx_v_X;
   __Pyx_INCREF(__pyx_t_1);
   __pyx_v_X_ndarray = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1042
+  /* "sklearn/tree/_tree.pyx":979
  * 
  *         cdef np.ndarray X_ndarray = X
  *         self.X = <DTYPE_t*> X_ndarray.data             # <<<<<<<<<<<<<<
@@ -9040,48 +8667,57 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
   __pyx_v_self->X = ((__pyx_t_7sklearn_4tree_5_tree_DTYPE_t *)__pyx_v_X_ndarray->data);
 
-  /* "sklearn/tree/_tree.pyx":1043
+  /* "sklearn/tree/_tree.pyx":980
  *         cdef np.ndarray X_ndarray = X
  *         self.X = <DTYPE_t*> X_ndarray.data
  *         self.X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize             # <<<<<<<<<<<<<<
  *         self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_2); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_2); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_2); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1043; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_2); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 980; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_self->X_sample_stride = (((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_8) / ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_9));
 
-  /* "sklearn/tree/_tree.pyx":1044
+  /* "sklearn/tree/_tree.pyx":981
  *         self.X = <DTYPE_t*> X_ndarray.data
  *         self.X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
  *         self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize             # <<<<<<<<<<<<<<
  * 
- *         if presort == 1:
+ *         safe_realloc(&self.X_i, self.n_samples)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1044; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1044; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1044; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1044; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1044; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 981; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->X_feature_stride = (((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_9) / ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_8));
 
-  /* "sklearn/tree/_tree.pyx":1046
+  /* "sklearn/tree/_tree.pyx":983
  *         self.X_feature_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
+ * 
+ *         safe_realloc(&self.X_i, self.n_samples)             # <<<<<<<<<<<<<<
+ * 
+ *         if presort == 1:
+ */
+  __pyx_fuse_0__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->X_i), __pyx_v_self->n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 983; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+  /* "sklearn/tree/_tree.pyx":985
+ *         safe_realloc(&self.X_i, self.n_samples)
  * 
  *         if presort == 1:             # <<<<<<<<<<<<<<
  *             safe_realloc(&self.sample_mask, self.n_samples)
@@ -9090,16 +8726,16 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
   __pyx_t_10 = ((__pyx_v_presort == 1) != 0);
   if (__pyx_t_10) {
 
-    /* "sklearn/tree/_tree.pyx":1047
+    /* "sklearn/tree/_tree.pyx":986
  * 
  *         if presort == 1:
  *             safe_realloc(&self.sample_mask, self.n_samples)             # <<<<<<<<<<<<<<
  *             memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
  * 
  */
-    __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->sample_mask), __pyx_v_self->n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1047; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->sample_mask), __pyx_v_self->n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 986; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "sklearn/tree/_tree.pyx":1048
+    /* "sklearn/tree/_tree.pyx":987
  *         if presort == 1:
  *             safe_realloc(&self.sample_mask, self.n_samples)
  *             memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))             # <<<<<<<<<<<<<<
@@ -9108,7 +8744,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
     memset(__pyx_v_self->sample_mask, 0, (__pyx_v_self->n_samples * (sizeof(__pyx_t_7sklearn_4tree_5_tree_SIZE_t))));
 
-    /* "sklearn/tree/_tree.pyx":1050
+    /* "sklearn/tree/_tree.pyx":989
  *             memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
  * 
  *             self.X_idx_sorted = X_idx_sorted             # <<<<<<<<<<<<<<
@@ -9121,7 +8757,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
     __Pyx_DECREF(((PyObject *)__pyx_v_self->X_idx_sorted));
     __pyx_v_self->X_idx_sorted = ((PyArrayObject *)__pyx_v_X_idx_sorted);
 
-    /* "sklearn/tree/_tree.pyx":1051
+    /* "sklearn/tree/_tree.pyx":990
  * 
  *             self.X_idx_sorted = X_idx_sorted
  *             self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data             # <<<<<<<<<<<<<<
@@ -9130,51 +8766,40 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
  */
     __pyx_v_self->X_idx_sorted_ptr = ((__pyx_t_7sklearn_4tree_5_tree_INT32_t *)__pyx_v_self->X_idx_sorted->data);
 
-    /* "sklearn/tree/_tree.pyx":1053
+    /* "sklearn/tree/_tree.pyx":992
  *             self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
  *             self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
  *                                            <SIZE_t> self.X_idx_sorted.itemsize)             # <<<<<<<<<<<<<<
- *         else:
- *             safe_realloc(&self.X_i, self.n_samples)
+ * 
+ *         self.criterion.init(self.y, self.y_stride, self.sample_weight,
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self->X_idx_sorted), __pyx_n_s_itemsize); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1053; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self->X_idx_sorted), __pyx_n_s_itemsize); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 992; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1053; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 992; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "sklearn/tree/_tree.pyx":1052
+    /* "sklearn/tree/_tree.pyx":991
  *             self.X_idx_sorted = X_idx_sorted
  *             self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
  *             self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /             # <<<<<<<<<<<<<<
  *                                            <SIZE_t> self.X_idx_sorted.itemsize)
- *         else:
+ * 
  */
     __pyx_v_self->X_idx_sorted_stride = (((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_self->X_idx_sorted->strides[1])) / ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_8));
     goto __pyx_L8;
   }
-  /*else*/ {
-
-    /* "sklearn/tree/_tree.pyx":1055
- *                                            <SIZE_t> self.X_idx_sorted.itemsize)
- *         else:
- *             safe_realloc(&self.X_i, self.n_samples)             # <<<<<<<<<<<<<<
- * 
- *         self.criterion.init(self.X, self.X_sample_stride,
- */
-    __pyx_fuse_0__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->X_i), __pyx_v_self->n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1055; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  }
   __pyx_L8:;
 
-  /* "sklearn/tree/_tree.pyx":1057
- *             safe_realloc(&self.X_i, self.n_samples)
+  /* "sklearn/tree/_tree.pyx":994
+ *                                            <SIZE_t> self.X_idx_sorted.itemsize)
  * 
- *         self.criterion.init(self.X, self.X_sample_stride,             # <<<<<<<<<<<<<<
- *             self.X_feature_stride, self.y, self.y_stride,
- *             self.sample_weight, self.n_samples,
+ *         self.criterion.init(self.y, self.y_stride, self.sample_weight,             # <<<<<<<<<<<<<<
+ *             self.n_samples, self.min_samples_leaf, self.min_weight_leaf,
+ *             w_sum, yw_sq_sum, node_value)
  */
-  ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self->criterion->__pyx_vtab)->init(__pyx_v_self->criterion, __pyx_v_self->X, __pyx_v_self->X_sample_stride, __pyx_v_self->X_feature_stride, __pyx_v_self->y, __pyx_v_self->y_stride, __pyx_v_self->sample_weight, __pyx_v_self->n_samples, __pyx_v_self->min_samples_leaf, __pyx_v_self->min_weight_leaf, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
+  ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self->criterion->__pyx_vtab)->init(__pyx_v_self->criterion, __pyx_v_self->y, __pyx_v_self->y_stride, __pyx_v_self->sample_weight, __pyx_v_self->n_samples, __pyx_v_self->min_samples_leaf, __pyx_v_self->min_weight_leaf, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
 
-  /* "sklearn/tree/_tree.pyx":1004
+  /* "sklearn/tree/_tree.pyx":941
  *                            self.random_state), self.__getstate__() )
  * 
  *     cdef void init(self, object X, np.ndarray[INT32_t, ndim=2] X_idx_sorted,             # <<<<<<<<<<<<<<
@@ -9205,7 +8830,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_8Splitter_init(struct __pyx_obj_7sklea
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":1063
+/* "sklearn/tree/_tree.pyx":998
  *             w_sum, yw_sq_sum, node_value)
  * 
  *     cdef SplitRecord _split(self, SIZE_t start, SIZE_t end,             # <<<<<<<<<<<<<<
@@ -9235,7 +8860,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_5;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_6;
 
-  /* "sklearn/tree/_tree.pyx":1073
+  /* "sklearn/tree/_tree.pyx":1008
  *         """
  * 
  *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
@@ -9245,7 +8870,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_1 = __pyx_v_self->X;
   __pyx_v_X = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1074
+  /* "sklearn/tree/_tree.pyx":1009
  * 
  *         cdef DTYPE_t* X = self.X
  *         cdef DTYPE_t* X_i = self.X_i             # <<<<<<<<<<<<<<
@@ -9255,7 +8880,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_1 = __pyx_v_self->X_i;
   __pyx_v_X_i = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1075
+  /* "sklearn/tree/_tree.pyx":1010
  *         cdef DTYPE_t* X = self.X
  *         cdef DTYPE_t* X_i = self.X_i
  *         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr             # <<<<<<<<<<<<<<
@@ -9265,7 +8890,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_2 = __pyx_v_self->X_idx_sorted_ptr;
   __pyx_v_X_idx_sorted = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":1076
+  /* "sklearn/tree/_tree.pyx":1011
  *         cdef DTYPE_t* X_i = self.X_i
  *         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
  *         cdef SIZE_t* sample_mask = self.sample_mask             # <<<<<<<<<<<<<<
@@ -9275,7 +8900,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_3 = __pyx_v_self->sample_mask;
   __pyx_v_sample_mask = __pyx_t_3;
 
-  /* "sklearn/tree/_tree.pyx":1077
+  /* "sklearn/tree/_tree.pyx":1012
  *         cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
  *         cdef SIZE_t* sample_mask = self.sample_mask
  *         cdef SIZE_t* samples = self.samples             # <<<<<<<<<<<<<<
@@ -9285,7 +8910,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_3 = __pyx_v_self->samples;
   __pyx_v_samples = __pyx_t_3;
 
-  /* "sklearn/tree/_tree.pyx":1078
+  /* "sklearn/tree/_tree.pyx":1013
  *         cdef SIZE_t* sample_mask = self.sample_mask
  *         cdef SIZE_t* samples = self.samples
  *         cdef UINT32_t* random_state = &self.rand_r_state             # <<<<<<<<<<<<<<
@@ -9294,7 +8919,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_random_state = (&__pyx_v_self->rand_r_state);
 
-  /* "sklearn/tree/_tree.pyx":1080
+  /* "sklearn/tree/_tree.pyx":1015
  *         cdef UINT32_t* random_state = &self.rand_r_state
  * 
  *         cdef SIZE_t i, j, p = start             # <<<<<<<<<<<<<<
@@ -9303,7 +8928,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_p = __pyx_v_start;
 
-  /* "sklearn/tree/_tree.pyx":1081
+  /* "sklearn/tree/_tree.pyx":1016
  * 
  *         cdef SIZE_t i, j, p = start
  *         cdef SIZE_t feature_offset = self.X_idx_sorted_stride * feature             # <<<<<<<<<<<<<<
@@ -9312,7 +8937,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_feature_offset = (__pyx_v_self->X_idx_sorted_stride * __pyx_v_feature);
 
-  /* "sklearn/tree/_tree.pyx":1086
+  /* "sklearn/tree/_tree.pyx":1021
  *         cdef SplitRecord split
  * 
  *         if self.presort == 1:             # <<<<<<<<<<<<<<
@@ -9322,7 +8947,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_4 = ((__pyx_v_self->presort == 1) != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1087
+    /* "sklearn/tree/_tree.pyx":1022
  * 
  *         if self.presort == 1:
  *             for i in range(self.n_samples):             # <<<<<<<<<<<<<<
@@ -9333,7 +8958,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
       __pyx_v_i = __pyx_t_6;
 
-      /* "sklearn/tree/_tree.pyx":1088
+      /* "sklearn/tree/_tree.pyx":1023
  *         if self.presort == 1:
  *             for i in range(self.n_samples):
  *                 j = X_idx_sorted[i + feature_offset]             # <<<<<<<<<<<<<<
@@ -9342,28 +8967,37 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_j = (__pyx_v_X_idx_sorted[(__pyx_v_i + __pyx_v_feature_offset)]);
 
-      /* "sklearn/tree/_tree.pyx":1089
+      /* "sklearn/tree/_tree.pyx":1024
  *             for i in range(self.n_samples):
  *                 j = X_idx_sorted[i + feature_offset]
  *                 if sample_mask[j] == 1:             # <<<<<<<<<<<<<<
  *                     samples[p] = j
- *                     p += 1
+ *                     X_i[p] = X[self.X_sample_stride * j +
  */
       __pyx_t_4 = (((__pyx_v_sample_mask[__pyx_v_j]) == 1) != 0);
       if (__pyx_t_4) {
 
-        /* "sklearn/tree/_tree.pyx":1090
+        /* "sklearn/tree/_tree.pyx":1025
  *                 j = X_idx_sorted[i + feature_offset]
  *                 if sample_mask[j] == 1:
  *                     samples[p] = j             # <<<<<<<<<<<<<<
- *                     p += 1
- *         else:
+ *                     X_i[p] = X[self.X_sample_stride * j +
+ *                                self.X_feature_stride * feature]
  */
         (__pyx_v_samples[__pyx_v_p]) = __pyx_v_j;
 
-        /* "sklearn/tree/_tree.pyx":1091
+        /* "sklearn/tree/_tree.pyx":1026
  *                 if sample_mask[j] == 1:
  *                     samples[p] = j
+ *                     X_i[p] = X[self.X_sample_stride * j +             # <<<<<<<<<<<<<<
+ *                                self.X_feature_stride * feature]
+ *                     p += 1
+ */
+        (__pyx_v_X_i[__pyx_v_p]) = (__pyx_v_X[((__pyx_v_self->X_sample_stride * __pyx_v_j) + (__pyx_v_self->X_feature_stride * __pyx_v_feature))]);
+
+        /* "sklearn/tree/_tree.pyx":1028
+ *                     X_i[p] = X[self.X_sample_stride * j +
+ *                                self.X_feature_stride * feature]
  *                     p += 1             # <<<<<<<<<<<<<<
  *         else:
  *             for i in range(start, end):
@@ -9377,7 +9011,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   /*else*/ {
 
-    /* "sklearn/tree/_tree.pyx":1093
+    /* "sklearn/tree/_tree.pyx":1030
  *                     p += 1
  *         else:
  *             for i in range(start, end):             # <<<<<<<<<<<<<<
@@ -9388,7 +9022,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     for (__pyx_t_6 = __pyx_v_start; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
       __pyx_v_i = __pyx_t_6;
 
-      /* "sklearn/tree/_tree.pyx":1094
+      /* "sklearn/tree/_tree.pyx":1031
  *         else:
  *             for i in range(start, end):
  *                 X_i[i] = X[self.X_sample_stride * samples[i] +             # <<<<<<<<<<<<<<
@@ -9398,91 +9032,91 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       (__pyx_v_X_i[__pyx_v_i]) = (__pyx_v_X[((__pyx_v_self->X_sample_stride * (__pyx_v_samples[__pyx_v_i])) + (__pyx_v_self->X_feature_stride * __pyx_v_feature))]);
     }
 
-    /* "sklearn/tree/_tree.pyx":1097
+    /* "sklearn/tree/_tree.pyx":1034
  *                            self.X_feature_stride * feature]
  * 
  *             sort(X_i + start, samples + start, end - start)             # <<<<<<<<<<<<<<
  * 
- * 
+ *         feature_offset = feature*self.X_feature_stride
  */
     __pyx_f_7sklearn_4tree_5_tree_sort((__pyx_v_X_i + __pyx_v_start), (__pyx_v_samples + __pyx_v_start), (__pyx_v_end - __pyx_v_start));
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_tree.pyx":1100
- * 
+  /* "sklearn/tree/_tree.pyx":1036
+ *             sort(X_i + start, samples + start, end - start)
  * 
  *         feature_offset = feature*self.X_feature_stride             # <<<<<<<<<<<<<<
- * 
  *         argmax = samples[end-1]*self.X_sample_stride + feature_offset
+ *         argmin = samples[start]*self.X_sample_stride + feature_offset
  */
   __pyx_v_feature_offset = (__pyx_v_feature * __pyx_v_self->X_feature_stride);
 
-  /* "sklearn/tree/_tree.pyx":1102
- *         feature_offset = feature*self.X_feature_stride
+  /* "sklearn/tree/_tree.pyx":1037
  * 
+ *         feature_offset = feature*self.X_feature_stride
  *         argmax = samples[end-1]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
  *         argmin = samples[start]*self.X_sample_stride + feature_offset
- * 
+ *         if X[argmax] > X[argmin] + FEATURE_THRESHOLD:
  */
   __pyx_v_argmax = (((__pyx_v_samples[(__pyx_v_end - 1)]) * __pyx_v_self->X_sample_stride) + __pyx_v_feature_offset);
 
-  /* "sklearn/tree/_tree.pyx":1103
- * 
+  /* "sklearn/tree/_tree.pyx":1038
+ *         feature_offset = feature*self.X_feature_stride
  *         argmax = samples[end-1]*self.X_sample_stride + feature_offset
  *         argmin = samples[start]*self.X_sample_stride + feature_offset             # <<<<<<<<<<<<<<
- * 
  *         if X[argmax] > X[argmin] + FEATURE_THRESHOLD:
+ *             if best == 1:
  */
   __pyx_v_argmin = (((__pyx_v_samples[__pyx_v_start]) * __pyx_v_self->X_sample_stride) + __pyx_v_feature_offset);
 
-  /* "sklearn/tree/_tree.pyx":1105
+  /* "sklearn/tree/_tree.pyx":1039
+ *         argmax = samples[end-1]*self.X_sample_stride + feature_offset
  *         argmin = samples[start]*self.X_sample_stride + feature_offset
- * 
  *         if X[argmax] > X[argmin] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
  *             if best == 1:
- *                 split = self.criterion.best_split(samples, start, end,
+ *                 split = self.criterion.best_split(X_i, samples, start, end,
  */
   __pyx_t_4 = (((__pyx_v_X[__pyx_v_argmax]) > ((__pyx_v_X[__pyx_v_argmin]) + __pyx_v_7sklearn_4tree_5_tree_FEATURE_THRESHOLD)) != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1106
- * 
+    /* "sklearn/tree/_tree.pyx":1040
+ *         argmin = samples[start]*self.X_sample_stride + feature_offset
  *         if X[argmax] > X[argmin] + FEATURE_THRESHOLD:
  *             if best == 1:             # <<<<<<<<<<<<<<
- *                 split = self.criterion.best_split(samples, start, end,
+ *                 split = self.criterion.best_split(X_i, samples, start, end,
  *                     feature, w_sum, yw_sq_sum, node_value)
  */
     __pyx_t_4 = ((__pyx_v_best == 1) != 0);
     if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":1107
+      /* "sklearn/tree/_tree.pyx":1041
  *         if X[argmax] > X[argmin] + FEATURE_THRESHOLD:
  *             if best == 1:
- *                 split = self.criterion.best_split(samples, start, end,             # <<<<<<<<<<<<<<
+ *                 split = self.criterion.best_split(X_i, samples, start, end,             # <<<<<<<<<<<<<<
  *                     feature, w_sum, yw_sq_sum, node_value)
  *             else:
  */
-      __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self->criterion->__pyx_vtab)->best_split(__pyx_v_self->criterion, __pyx_v_samples, __pyx_v_start, __pyx_v_end, __pyx_v_feature, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
+      __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self->criterion->__pyx_vtab)->best_split(__pyx_v_self->criterion, __pyx_v_X_i, __pyx_v_samples, __pyx_v_start, __pyx_v_end, __pyx_v_feature, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
       goto __pyx_L10;
     }
     /*else*/ {
 
-      /* "sklearn/tree/_tree.pyx":1110
+      /* "sklearn/tree/_tree.pyx":1044
  *                     feature, w_sum, yw_sq_sum, node_value)
  *             else:
- *                 split = self.criterion.random_split(samples, start, end,             # <<<<<<<<<<<<<<
+ *                 split = self.criterion.random_split(X_i, samples, start, end,             # <<<<<<<<<<<<<<
  *                     feature, w_sum, yw_sq_sum, node_value, random_state)
  *         else:
  */
-      __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self->criterion->__pyx_vtab)->random_split(__pyx_v_self->criterion, __pyx_v_samples, __pyx_v_start, __pyx_v_end, __pyx_v_feature, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value, __pyx_v_random_state);
+      __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Criterion *)__pyx_v_self->criterion->__pyx_vtab)->random_split(__pyx_v_self->criterion, __pyx_v_X_i, __pyx_v_samples, __pyx_v_start, __pyx_v_end, __pyx_v_feature, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value, __pyx_v_random_state);
     }
     __pyx_L10:;
     goto __pyx_L9;
   }
   /*else*/ {
 
-    /* "sklearn/tree/_tree.pyx":1113
+    /* "sklearn/tree/_tree.pyx":1047
  *                     feature, w_sum, yw_sq_sum, node_value, random_state)
  *         else:
  *             _init_split_record(&split)             # <<<<<<<<<<<<<<
@@ -9493,7 +9127,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L9:;
 
-  /* "sklearn/tree/_tree.pyx":1115
+  /* "sklearn/tree/_tree.pyx":1049
  *             _init_split_record(&split)
  * 
  *         return split             # <<<<<<<<<<<<<<
@@ -9503,7 +9137,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_r = __pyx_v_split;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1063
+  /* "sklearn/tree/_tree.pyx":998
  *             w_sum, yw_sq_sum, node_value)
  * 
  *     cdef SplitRecord _split(self, SIZE_t start, SIZE_t end,             # <<<<<<<<<<<<<<
@@ -9516,7 +9150,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1117
+/* "sklearn/tree/_tree.pyx":1051
  *         return split
  * 
  *     cdef SplitRecord split(self, SIZE_t start, SIZE_t end, DOUBLE_t w_sum,             # <<<<<<<<<<<<<<
@@ -9551,7 +9185,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_5;
   int __pyx_t_6;
 
-  /* "sklearn/tree/_tree.pyx":1121
+  /* "sklearn/tree/_tree.pyx":1055
  *         """Find the best split for this node."""
  * 
  *         cdef SIZE_t* features = self.features             # <<<<<<<<<<<<<<
@@ -9561,7 +9195,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_1 = __pyx_v_self->features;
   __pyx_v_features = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1122
+  /* "sklearn/tree/_tree.pyx":1056
  * 
  *         cdef SIZE_t* features = self.features
  *         cdef SIZE_t* samples = self.samples             # <<<<<<<<<<<<<<
@@ -9571,7 +9205,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_1 = __pyx_v_self->samples;
   __pyx_v_samples = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1123
+  /* "sklearn/tree/_tree.pyx":1057
  *         cdef SIZE_t* features = self.features
  *         cdef SIZE_t* samples = self.samples
  *         cdef SIZE_t* sample_mask = self.sample_mask             # <<<<<<<<<<<<<<
@@ -9581,7 +9215,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_1 = __pyx_v_self->sample_mask;
   __pyx_v_sample_mask = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1125
+  /* "sklearn/tree/_tree.pyx":1059
  *         cdef SIZE_t* sample_mask = self.sample_mask
  * 
  *         cdef DTYPE_t* X = self.X             # <<<<<<<<<<<<<<
@@ -9591,7 +9225,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_2 = __pyx_v_self->X;
   __pyx_v_X = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":1126
+  /* "sklearn/tree/_tree.pyx":1060
  * 
  *         cdef DTYPE_t* X = self.X
  *         cdef SIZE_t X_sample_stride = self.X_sample_stride             # <<<<<<<<<<<<<<
@@ -9601,7 +9235,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_3 = __pyx_v_self->X_sample_stride;
   __pyx_v_X_sample_stride = __pyx_t_3;
 
-  /* "sklearn/tree/_tree.pyx":1127
+  /* "sklearn/tree/_tree.pyx":1061
  *         cdef DTYPE_t* X = self.X
  *         cdef SIZE_t X_sample_stride = self.X_sample_stride
  *         cdef SIZE_t X_feature_stride = self.X_feature_stride             # <<<<<<<<<<<<<<
@@ -9611,7 +9245,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_3 = __pyx_v_self->X_feature_stride;
   __pyx_v_X_feature_stride = __pyx_t_3;
 
-  /* "sklearn/tree/_tree.pyx":1128
+  /* "sklearn/tree/_tree.pyx":1062
  *         cdef SIZE_t X_sample_stride = self.X_sample_stride
  *         cdef SIZE_t X_feature_stride = self.X_feature_stride
  *         cdef UINT32_t* random_state = &self.rand_r_state             # <<<<<<<<<<<<<<
@@ -9620,7 +9254,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_random_state = (&__pyx_v_self->rand_r_state);
 
-  /* "sklearn/tree/_tree.pyx":1130
+  /* "sklearn/tree/_tree.pyx":1064
  *         cdef UINT32_t* random_state = &self.rand_r_state
  * 
  *         cdef SIZE_t n_visited_features = 0             # <<<<<<<<<<<<<<
@@ -9629,7 +9263,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_n_visited_features = 0;
 
-  /* "sklearn/tree/_tree.pyx":1132
+  /* "sklearn/tree/_tree.pyx":1066
  *         cdef SIZE_t n_visited_features = 0
  *         cdef SIZE_t tmp, partition_end
  *         cdef SIZE_t i=0, j, p             # <<<<<<<<<<<<<<
@@ -9638,7 +9272,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_i = 0;
 
-  /* "sklearn/tree/_tree.pyx":1135
+  /* "sklearn/tree/_tree.pyx":1069
  * 
  *         cdef SplitRecord best, current
  *         _init_split_record(&best)             # <<<<<<<<<<<<<<
@@ -9647,7 +9281,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_f_7sklearn_4tree_5_tree__init_split_record((&__pyx_v_best));
 
-  /* "sklearn/tree/_tree.pyx":1137
+  /* "sklearn/tree/_tree.pyx":1071
  *         _init_split_record(&best)
  * 
  *         cdef SIZE_t n = self.criterion.n             # <<<<<<<<<<<<<<
@@ -9657,7 +9291,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_3 = __pyx_v_self->criterion->n;
   __pyx_v_n = __pyx_t_3;
 
-  /* "sklearn/tree/_tree.pyx":1139
+  /* "sklearn/tree/_tree.pyx":1073
  *         cdef SIZE_t n = self.criterion.n
  * 
  *         cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -9666,7 +9300,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_node_value_left = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":1140
+  /* "sklearn/tree/_tree.pyx":1074
  * 
  *         cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
  *         cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -9675,7 +9309,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_node_value_right = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)calloc(__pyx_v_n, (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-  /* "sklearn/tree/_tree.pyx":1143
+  /* "sklearn/tree/_tree.pyx":1077
  * 
  *         # Set a mask to indicate which samples we are considering.
  *         if self.presort == 1:             # <<<<<<<<<<<<<<
@@ -9685,7 +9319,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_4 = ((__pyx_v_self->presort == 1) != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1144
+    /* "sklearn/tree/_tree.pyx":1078
  *         # Set a mask to indicate which samples we are considering.
  *         if self.presort == 1:
  *             for p in range(start, end):             # <<<<<<<<<<<<<<
@@ -9696,7 +9330,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     for (__pyx_t_5 = __pyx_v_start; __pyx_t_5 < __pyx_t_3; __pyx_t_5+=1) {
       __pyx_v_p = __pyx_t_5;
 
-      /* "sklearn/tree/_tree.pyx":1145
+      /* "sklearn/tree/_tree.pyx":1079
  *         if self.presort == 1:
  *             for p in range(start, end):
  *                 sample_mask[samples[p]] = 1             # <<<<<<<<<<<<<<
@@ -9709,7 +9343,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_tree.pyx":1152
+  /* "sklearn/tree/_tree.pyx":1086
  *         # non-constant features, until we converge at max_features
  *         # number of non-constant features
  *         while n_visited_features < self.max_features and i < self.n_features:             # <<<<<<<<<<<<<<
@@ -9728,7 +9362,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_L8_bool_binop_done:;
     if (!__pyx_t_4) break;
 
-    /* "sklearn/tree/_tree.pyx":1153
+    /* "sklearn/tree/_tree.pyx":1087
  *         # number of non-constant features
  *         while n_visited_features < self.max_features and i < self.n_features:
  *             j = rand_int(i, self.n_features, random_state)             # <<<<<<<<<<<<<<
@@ -9737,7 +9371,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_j = __pyx_f_7sklearn_4tree_5_tree_rand_int(__pyx_v_i, __pyx_v_self->n_features, __pyx_v_random_state);
 
-    /* "sklearn/tree/_tree.pyx":1154
+    /* "sklearn/tree/_tree.pyx":1088
  *         while n_visited_features < self.max_features and i < self.n_features:
  *             j = rand_int(i, self.n_features, random_state)
  *             features[i], features[j] = features[j], features[i]             # <<<<<<<<<<<<<<
@@ -9749,7 +9383,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     (__pyx_v_features[__pyx_v_i]) = __pyx_t_3;
     (__pyx_v_features[__pyx_v_j]) = __pyx_t_5;
 
-    /* "sklearn/tree/_tree.pyx":1156
+    /* "sklearn/tree/_tree.pyx":1090
  *             features[i], features[j] = features[j], features[i]
  * 
  *             current = self._split(start, end, features[i], w_sum, yw_sq_sum,             # <<<<<<<<<<<<<<
@@ -9758,7 +9392,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_current = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_self->__pyx_vtab)->_split(__pyx_v_self, __pyx_v_start, __pyx_v_end, (__pyx_v_features[__pyx_v_i]), __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value, __pyx_v_self->best);
 
-    /* "sklearn/tree/_tree.pyx":1159
+    /* "sklearn/tree/_tree.pyx":1093
  *                 node_value, self.best)
  * 
  *             i += 1             # <<<<<<<<<<<<<<
@@ -9767,7 +9401,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_i = (__pyx_v_i + 1);
 
-    /* "sklearn/tree/_tree.pyx":1160
+    /* "sklearn/tree/_tree.pyx":1094
  * 
  *             i += 1
  *             if current.improvement > -INFINITY:             # <<<<<<<<<<<<<<
@@ -9777,7 +9411,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_t_4 = ((__pyx_v_current.improvement > (-__pyx_v_7sklearn_4tree_5_tree_INFINITY)) != 0);
     if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":1161
+      /* "sklearn/tree/_tree.pyx":1095
  *             i += 1
  *             if current.improvement > -INFINITY:
  *                 n_visited_features += 1             # <<<<<<<<<<<<<<
@@ -9789,7 +9423,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     }
     __pyx_L10:;
 
-    /* "sklearn/tree/_tree.pyx":1163
+    /* "sklearn/tree/_tree.pyx":1097
  *                 n_visited_features += 1
  * 
  *             if current.improvement > best.improvement and best.pos < end:             # <<<<<<<<<<<<<<
@@ -9807,7 +9441,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_4) {
 
-      /* "sklearn/tree/_tree.pyx":1164
+      /* "sklearn/tree/_tree.pyx":1098
  * 
  *             if current.improvement > best.improvement and best.pos < end:
  *                 best = current             # <<<<<<<<<<<<<<
@@ -9816,7 +9450,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       __pyx_v_best = __pyx_v_current;
 
-      /* "sklearn/tree/_tree.pyx":1165
+      /* "sklearn/tree/_tree.pyx":1099
  *             if current.improvement > best.improvement and best.pos < end:
  *                 best = current
  *                 memcpy(node_value_left, current.node_value_left,             # <<<<<<<<<<<<<<
@@ -9825,7 +9459,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
       memcpy(__pyx_v_node_value_left, __pyx_v_current.node_value_left, (__pyx_v_n * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t))));
 
-      /* "sklearn/tree/_tree.pyx":1167
+      /* "sklearn/tree/_tree.pyx":1101
  *                 memcpy(node_value_left, current.node_value_left,
  *                     n*sizeof(DOUBLE_t))
  *                 memcpy(node_value_right, current.node_value_right,             # <<<<<<<<<<<<<<
@@ -9838,7 +9472,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     __pyx_L11:;
   }
 
-  /* "sklearn/tree/_tree.pyx":1170
+  /* "sklearn/tree/_tree.pyx":1104
  *                     n*sizeof(DOUBLE_t))
  * 
  *         best.node_value_left = node_value_left             # <<<<<<<<<<<<<<
@@ -9847,7 +9481,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_best.node_value_left = __pyx_v_node_value_left;
 
-  /* "sklearn/tree/_tree.pyx":1171
+  /* "sklearn/tree/_tree.pyx":1105
  * 
  *         best.node_value_left = node_value_left
  *         best.node_value_right = node_value_right             # <<<<<<<<<<<<<<
@@ -9856,7 +9490,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_best.node_value_right = __pyx_v_node_value_right;
 
-  /* "sklearn/tree/_tree.pyx":1172
+  /* "sklearn/tree/_tree.pyx":1106
  *         best.node_value_left = node_value_left
  *         best.node_value_right = node_value_right
  *         best.start = start             # <<<<<<<<<<<<<<
@@ -9865,7 +9499,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_best.start = __pyx_v_start;
 
-  /* "sklearn/tree/_tree.pyx":1173
+  /* "sklearn/tree/_tree.pyx":1107
  *         best.node_value_right = node_value_right
  *         best.start = start
  *         best.end = end             # <<<<<<<<<<<<<<
@@ -9874,7 +9508,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
   __pyx_v_best.end = __pyx_v_end;
 
-  /* "sklearn/tree/_tree.pyx":1174
+  /* "sklearn/tree/_tree.pyx":1108
  *         best.start = start
  *         best.end = end
  *         if best.pos == -1:             # <<<<<<<<<<<<<<
@@ -9884,7 +9518,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_4 = ((__pyx_v_best.pos == -1) != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1175
+    /* "sklearn/tree/_tree.pyx":1109
  *         best.end = end
  *         if best.pos == -1:
  *             best.pos = end             # <<<<<<<<<<<<<<
@@ -9896,7 +9530,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L14:;
 
-  /* "sklearn/tree/_tree.pyx":1178
+  /* "sklearn/tree/_tree.pyx":1112
  * 
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         if best.pos < end:             # <<<<<<<<<<<<<<
@@ -9906,7 +9540,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_4 = ((__pyx_v_best.pos < __pyx_v_end) != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1179
+    /* "sklearn/tree/_tree.pyx":1113
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         if best.pos < end:
  *             partition_end = end             # <<<<<<<<<<<<<<
@@ -9915,7 +9549,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_partition_end = __pyx_v_end;
 
-    /* "sklearn/tree/_tree.pyx":1180
+    /* "sklearn/tree/_tree.pyx":1114
  *         if best.pos < end:
  *             partition_end = end
  *             p = start             # <<<<<<<<<<<<<<
@@ -9924,7 +9558,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
     __pyx_v_p = __pyx_v_start;
 
-    /* "sklearn/tree/_tree.pyx":1182
+    /* "sklearn/tree/_tree.pyx":1116
  *             p = start
  * 
  *             while p < partition_end:             # <<<<<<<<<<<<<<
@@ -9935,7 +9569,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       __pyx_t_4 = ((__pyx_v_p < __pyx_v_partition_end) != 0);
       if (!__pyx_t_4) break;
 
-      /* "sklearn/tree/_tree.pyx":1184
+      /* "sklearn/tree/_tree.pyx":1118
  *             while p < partition_end:
  *                 if X[X_sample_stride * samples[p] + X_feature_stride
  *                     * best.feature] <= best.threshold:             # <<<<<<<<<<<<<<
@@ -9945,7 +9579,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       __pyx_t_4 = (((__pyx_v_X[((__pyx_v_X_sample_stride * (__pyx_v_samples[__pyx_v_p])) + (__pyx_v_X_feature_stride * __pyx_v_best.feature))]) <= __pyx_v_best.threshold) != 0);
       if (__pyx_t_4) {
 
-        /* "sklearn/tree/_tree.pyx":1185
+        /* "sklearn/tree/_tree.pyx":1119
  *                 if X[X_sample_stride * samples[p] + X_feature_stride
  *                     * best.feature] <= best.threshold:
  *                     p += 1             # <<<<<<<<<<<<<<
@@ -9957,7 +9591,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
       }
       /*else*/ {
 
-        /* "sklearn/tree/_tree.pyx":1188
+        /* "sklearn/tree/_tree.pyx":1122
  * 
  *                 else:
  *                     partition_end -= 1             # <<<<<<<<<<<<<<
@@ -9966,7 +9600,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
         __pyx_v_partition_end = (__pyx_v_partition_end - 1);
 
-        /* "sklearn/tree/_tree.pyx":1190
+        /* "sklearn/tree/_tree.pyx":1124
  *                     partition_end -= 1
  * 
  *                     tmp = samples[partition_end]             # <<<<<<<<<<<<<<
@@ -9975,7 +9609,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
         __pyx_v_tmp = (__pyx_v_samples[__pyx_v_partition_end]);
 
-        /* "sklearn/tree/_tree.pyx":1191
+        /* "sklearn/tree/_tree.pyx":1125
  * 
  *                     tmp = samples[partition_end]
  *                     samples[partition_end] = samples[p]             # <<<<<<<<<<<<<<
@@ -9984,7 +9618,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
  */
         (__pyx_v_samples[__pyx_v_partition_end]) = (__pyx_v_samples[__pyx_v_p]);
 
-        /* "sklearn/tree/_tree.pyx":1192
+        /* "sklearn/tree/_tree.pyx":1126
  *                     tmp = samples[partition_end]
  *                     samples[partition_end] = samples[p]
  *                     samples[p] = tmp             # <<<<<<<<<<<<<<
@@ -9999,7 +9633,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L15:;
 
-  /* "sklearn/tree/_tree.pyx":1195
+  /* "sklearn/tree/_tree.pyx":1129
  * 
  *         # Reset sample mask
  *         if self.presort == 1:             # <<<<<<<<<<<<<<
@@ -10009,7 +9643,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_t_4 = ((__pyx_v_self->presort == 1) != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1196
+    /* "sklearn/tree/_tree.pyx":1130
  *         # Reset sample mask
  *         if self.presort == 1:
  *             for p in range(start, end):             # <<<<<<<<<<<<<<
@@ -10020,7 +9654,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
     for (__pyx_t_3 = __pyx_v_start; __pyx_t_3 < __pyx_t_5; __pyx_t_3+=1) {
       __pyx_v_p = __pyx_t_3;
 
-      /* "sklearn/tree/_tree.pyx":1197
+      /* "sklearn/tree/_tree.pyx":1131
  *         if self.presort == 1:
  *             for p in range(start, end):
  *                 sample_mask[samples[p]] = 0             # <<<<<<<<<<<<<<
@@ -10033,7 +9667,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   }
   __pyx_L19:;
 
-  /* "sklearn/tree/_tree.pyx":1199
+  /* "sklearn/tree/_tree.pyx":1133
  *                 sample_mask[samples[p]] = 0
  * 
  *         return best             # <<<<<<<<<<<<<<
@@ -10043,7 +9677,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   __pyx_r = __pyx_v_best;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1117
+  /* "sklearn/tree/_tree.pyx":1051
  *         return split
  * 
  *     cdef SplitRecord split(self, SIZE_t start, SIZE_t end, DOUBLE_t w_sum,             # <<<<<<<<<<<<<<
@@ -10056,7 +9690,7 @@ static struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord __pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":80
+/* "sklearn/tree/_tree.pxd":75
  * 
  *     # Internal structures
  *     cdef public Criterion criterion      # Impurity criterion             # <<<<<<<<<<<<<<
@@ -10114,7 +9748,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_9criterion_2__set__(struct _
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  if (!(likely(((__pyx_v_value) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_value, __pyx_ptype_7sklearn_4tree_5_tree_Criterion))))) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_v_value) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_value, __pyx_ptype_7sklearn_4tree_5_tree_Criterion))))) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -10164,7 +9798,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_9criterion_4__del__(struct _
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":81
+/* "sklearn/tree/_tree.pxd":76
  *     # Internal structures
  *     cdef public Criterion criterion      # Impurity criterion
  *     cdef public SIZE_t max_features      # Number of features to test             # <<<<<<<<<<<<<<
@@ -10194,7 +9828,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_12max_features___get__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10232,7 +9866,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_12max_features_2__set__(stru
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->max_features = __pyx_t_1;
 
   /* function exit code */
@@ -10246,7 +9880,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_12max_features_2__set__(stru
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":82
+/* "sklearn/tree/_tree.pxd":77
  *     cdef public Criterion criterion      # Impurity criterion
  *     cdef public SIZE_t max_features      # Number of features to test
  *     cdef public SIZE_t min_samples_leaf  # Min samples in a leaf             # <<<<<<<<<<<<<<
@@ -10276,7 +9910,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_16min_samples_leaf___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->min_samples_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->min_samples_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10314,7 +9948,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_16min_samples_leaf_2__set__(
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->min_samples_leaf = __pyx_t_1;
 
   /* function exit code */
@@ -10328,7 +9962,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_16min_samples_leaf_2__set__(
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":83
+/* "sklearn/tree/_tree.pxd":78
  *     cdef public SIZE_t max_features      # Number of features to test
  *     cdef public SIZE_t min_samples_leaf  # Min samples in a leaf
  *     cdef public double min_weight_leaf   # Minimum weight in a leaf             # <<<<<<<<<<<<<<
@@ -10358,7 +9992,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_8Splitter_15min_weight_leaf___ge
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->min_weight_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->min_weight_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10396,7 +10030,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_15min_weight_leaf_2__set__(s
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->min_weight_leaf = __pyx_t_1;
 
   /* function exit code */
@@ -10410,7 +10044,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_15min_weight_leaf_2__set__(s
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1203
+/* "sklearn/tree/_tree.pyx":1137
  * # Sort n-element arrays pointed to by Xf and samples, simultaneously,
  * # by the values in Xf. Algorithm: Introsort (Musser, SP&E, 1997).
  * cdef inline void sort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:             # <<<<<<<<<<<<<<
@@ -10421,7 +10055,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_8Splitter_15min_weight_leaf_2__set__(s
 static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sort(__pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_v_Xf, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_v_samples, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_n) {
   int __pyx_v_maxd;
 
-  /* "sklearn/tree/_tree.pyx":1204
+  /* "sklearn/tree/_tree.pyx":1138
  * # by the values in Xf. Algorithm: Introsort (Musser, SP&E, 1997).
  * cdef inline void sort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
  *     cdef int maxd = 2 * <int>log(n)             # <<<<<<<<<<<<<<
@@ -10430,7 +10064,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sort(__pyx_t_7sklearn_4t
  */
   __pyx_v_maxd = (2 * ((int)__pyx_f_7sklearn_4tree_5_tree_log(__pyx_v_n)));
 
-  /* "sklearn/tree/_tree.pyx":1205
+  /* "sklearn/tree/_tree.pyx":1139
  * cdef inline void sort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
  *     cdef int maxd = 2 * <int>log(n)
  *     introsort(Xf, samples, n, maxd)             # <<<<<<<<<<<<<<
@@ -10439,7 +10073,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sort(__pyx_t_7sklearn_4t
  */
   __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_v_Xf, __pyx_v_samples, __pyx_v_n, __pyx_v_maxd);
 
-  /* "sklearn/tree/_tree.pyx":1203
+  /* "sklearn/tree/_tree.pyx":1137
  * # Sort n-element arrays pointed to by Xf and samples, simultaneously,
  * # by the values in Xf. Algorithm: Introsort (Musser, SP&E, 1997).
  * cdef inline void sort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:             # <<<<<<<<<<<<<<
@@ -10450,7 +10084,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sort(__pyx_t_7sklearn_4t
   /* function exit code */
 }
 
-/* "sklearn/tree/_tree.pyx":1209
+/* "sklearn/tree/_tree.pyx":1143
  * # Introsort with median of 3 pivot selection and 3-way partition function
  * # (robust to repeated elements, e.g. lots of zero features).
  * cdef void introsort(DTYPE_t* Xf, SIZE_t *samples, SIZE_t n, int maxd) nogil:             # <<<<<<<<<<<<<<
@@ -10465,7 +10099,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_r;
   int __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1213
+  /* "sklearn/tree/_tree.pyx":1147
  *     cdef SIZE_t i, l, r
  * 
  *     while n > 1:             # <<<<<<<<<<<<<<
@@ -10476,7 +10110,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
     __pyx_t_1 = ((__pyx_v_n > 1) != 0);
     if (!__pyx_t_1) break;
 
-    /* "sklearn/tree/_tree.pyx":1214
+    /* "sklearn/tree/_tree.pyx":1148
  * 
  *     while n > 1:
  *         if maxd <= 0:   # max depth limit exceeded ("gone quadratic")             # <<<<<<<<<<<<<<
@@ -10486,7 +10120,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
     __pyx_t_1 = ((__pyx_v_maxd <= 0) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1215
+      /* "sklearn/tree/_tree.pyx":1149
  *     while n > 1:
  *         if maxd <= 0:   # max depth limit exceeded ("gone quadratic")
  *             heapsort(Xf, samples, n)             # <<<<<<<<<<<<<<
@@ -10495,7 +10129,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
       __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_v_Xf, __pyx_v_samples, __pyx_v_n);
 
-      /* "sklearn/tree/_tree.pyx":1216
+      /* "sklearn/tree/_tree.pyx":1150
  *         if maxd <= 0:   # max depth limit exceeded ("gone quadratic")
  *             heapsort(Xf, samples, n)
  *             return             # <<<<<<<<<<<<<<
@@ -10505,7 +10139,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
       goto __pyx_L0;
     }
 
-    /* "sklearn/tree/_tree.pyx":1217
+    /* "sklearn/tree/_tree.pyx":1151
  *             heapsort(Xf, samples, n)
  *             return
  *         maxd -= 1             # <<<<<<<<<<<<<<
@@ -10514,7 +10148,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
     __pyx_v_maxd = (__pyx_v_maxd - 1);
 
-    /* "sklearn/tree/_tree.pyx":1219
+    /* "sklearn/tree/_tree.pyx":1153
  *         maxd -= 1
  * 
  *         pivot = median3(Xf, n)             # <<<<<<<<<<<<<<
@@ -10523,7 +10157,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
     __pyx_v_pivot = __pyx_f_7sklearn_4tree_5_tree_median3(__pyx_v_Xf, __pyx_v_n);
 
-    /* "sklearn/tree/_tree.pyx":1222
+    /* "sklearn/tree/_tree.pyx":1156
  * 
  *         # Three-way partition.
  *         i = l = 0             # <<<<<<<<<<<<<<
@@ -10533,7 +10167,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
     __pyx_v_i = 0;
     __pyx_v_l = 0;
 
-    /* "sklearn/tree/_tree.pyx":1223
+    /* "sklearn/tree/_tree.pyx":1157
  *         # Three-way partition.
  *         i = l = 0
  *         r = n             # <<<<<<<<<<<<<<
@@ -10542,7 +10176,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
     __pyx_v_r = __pyx_v_n;
 
-    /* "sklearn/tree/_tree.pyx":1224
+    /* "sklearn/tree/_tree.pyx":1158
  *         i = l = 0
  *         r = n
  *         while i < r:             # <<<<<<<<<<<<<<
@@ -10553,7 +10187,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
       __pyx_t_1 = ((__pyx_v_i < __pyx_v_r) != 0);
       if (!__pyx_t_1) break;
 
-      /* "sklearn/tree/_tree.pyx":1225
+      /* "sklearn/tree/_tree.pyx":1159
  *         r = n
  *         while i < r:
  *             if Xf[i] < pivot:             # <<<<<<<<<<<<<<
@@ -10563,7 +10197,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
       __pyx_t_1 = (((__pyx_v_Xf[__pyx_v_i]) < __pyx_v_pivot) != 0);
       if (__pyx_t_1) {
 
-        /* "sklearn/tree/_tree.pyx":1226
+        /* "sklearn/tree/_tree.pyx":1160
  *         while i < r:
  *             if Xf[i] < pivot:
  *                 swap(Xf, samples, i, l)             # <<<<<<<<<<<<<<
@@ -10572,7 +10206,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
         __pyx_f_7sklearn_4tree_5_tree_swap(__pyx_v_Xf, __pyx_v_samples, __pyx_v_i, __pyx_v_l);
 
-        /* "sklearn/tree/_tree.pyx":1227
+        /* "sklearn/tree/_tree.pyx":1161
  *             if Xf[i] < pivot:
  *                 swap(Xf, samples, i, l)
  *                 i += 1             # <<<<<<<<<<<<<<
@@ -10581,7 +10215,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
         __pyx_v_i = (__pyx_v_i + 1);
 
-        /* "sklearn/tree/_tree.pyx":1228
+        /* "sklearn/tree/_tree.pyx":1162
  *                 swap(Xf, samples, i, l)
  *                 i += 1
  *                 l += 1             # <<<<<<<<<<<<<<
@@ -10592,7 +10226,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
         goto __pyx_L8;
       }
 
-      /* "sklearn/tree/_tree.pyx":1229
+      /* "sklearn/tree/_tree.pyx":1163
  *                 i += 1
  *                 l += 1
  *             elif Xf[i] > pivot:             # <<<<<<<<<<<<<<
@@ -10602,7 +10236,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
       __pyx_t_1 = (((__pyx_v_Xf[__pyx_v_i]) > __pyx_v_pivot) != 0);
       if (__pyx_t_1) {
 
-        /* "sklearn/tree/_tree.pyx":1230
+        /* "sklearn/tree/_tree.pyx":1164
  *                 l += 1
  *             elif Xf[i] > pivot:
  *                 r -= 1             # <<<<<<<<<<<<<<
@@ -10611,7 +10245,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
         __pyx_v_r = (__pyx_v_r - 1);
 
-        /* "sklearn/tree/_tree.pyx":1231
+        /* "sklearn/tree/_tree.pyx":1165
  *             elif Xf[i] > pivot:
  *                 r -= 1
  *                 swap(Xf, samples, i, r)             # <<<<<<<<<<<<<<
@@ -10623,7 +10257,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
       }
       /*else*/ {
 
-        /* "sklearn/tree/_tree.pyx":1233
+        /* "sklearn/tree/_tree.pyx":1167
  *                 swap(Xf, samples, i, r)
  *             else:
  *                 i += 1             # <<<<<<<<<<<<<<
@@ -10635,7 +10269,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
       __pyx_L8:;
     }
 
-    /* "sklearn/tree/_tree.pyx":1235
+    /* "sklearn/tree/_tree.pyx":1169
  *                 i += 1
  * 
  *         introsort(Xf, samples, l, maxd)             # <<<<<<<<<<<<<<
@@ -10644,7 +10278,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
     __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_v_Xf, __pyx_v_samples, __pyx_v_l, __pyx_v_maxd);
 
-    /* "sklearn/tree/_tree.pyx":1236
+    /* "sklearn/tree/_tree.pyx":1170
  * 
  *         introsort(Xf, samples, l, maxd)
  *         Xf += r             # <<<<<<<<<<<<<<
@@ -10653,7 +10287,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
     __pyx_v_Xf = (__pyx_v_Xf + __pyx_v_r);
 
-    /* "sklearn/tree/_tree.pyx":1237
+    /* "sklearn/tree/_tree.pyx":1171
  *         introsort(Xf, samples, l, maxd)
  *         Xf += r
  *         samples += r             # <<<<<<<<<<<<<<
@@ -10662,7 +10296,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
  */
     __pyx_v_samples = (__pyx_v_samples + __pyx_v_r);
 
-    /* "sklearn/tree/_tree.pyx":1238
+    /* "sklearn/tree/_tree.pyx":1172
  *         Xf += r
  *         samples += r
  *         n -= r             # <<<<<<<<<<<<<<
@@ -10672,7 +10306,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
     __pyx_v_n = (__pyx_v_n - __pyx_v_r);
   }
 
-  /* "sklearn/tree/_tree.pyx":1209
+  /* "sklearn/tree/_tree.pyx":1143
  * # Introsort with median of 3 pivot selection and 3-way partition function
  * # (robust to repeated elements, e.g. lots of zero features).
  * cdef void introsort(DTYPE_t* Xf, SIZE_t *samples, SIZE_t n, int maxd) nogil:             # <<<<<<<<<<<<<<
@@ -10684,7 +10318,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_introsort(__pyx_t_7sklearn_4tree_5_tre
   __pyx_L0:;
 }
 
-/* "sklearn/tree/_tree.pyx":1240
+/* "sklearn/tree/_tree.pyx":1174
  *         n -= r
  * 
  * cdef inline void swap(DTYPE_t* Xf, SIZE_t* samples, SIZE_t i, SIZE_t j) nogil:             # <<<<<<<<<<<<<<
@@ -10698,7 +10332,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_swap(__pyx_t_7sklearn_4t
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_4;
 
-  /* "sklearn/tree/_tree.pyx":1242
+  /* "sklearn/tree/_tree.pyx":1176
  * cdef inline void swap(DTYPE_t* Xf, SIZE_t* samples, SIZE_t i, SIZE_t j) nogil:
  *     # Helper for sort
  *     Xf[i], Xf[j] = Xf[j], Xf[i]             # <<<<<<<<<<<<<<
@@ -10710,7 +10344,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_swap(__pyx_t_7sklearn_4t
   (__pyx_v_Xf[__pyx_v_i]) = __pyx_t_1;
   (__pyx_v_Xf[__pyx_v_j]) = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":1243
+  /* "sklearn/tree/_tree.pyx":1177
  *     # Helper for sort
  *     Xf[i], Xf[j] = Xf[j], Xf[i]
  *     samples[i], samples[j] = samples[j], samples[i]             # <<<<<<<<<<<<<<
@@ -10722,7 +10356,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_swap(__pyx_t_7sklearn_4t
   (__pyx_v_samples[__pyx_v_i]) = __pyx_t_3;
   (__pyx_v_samples[__pyx_v_j]) = __pyx_t_4;
 
-  /* "sklearn/tree/_tree.pyx":1240
+  /* "sklearn/tree/_tree.pyx":1174
  *         n -= r
  * 
  * cdef inline void swap(DTYPE_t* Xf, SIZE_t* samples, SIZE_t i, SIZE_t j) nogil:             # <<<<<<<<<<<<<<
@@ -10733,7 +10367,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_swap(__pyx_t_7sklearn_4t
   /* function exit code */
 }
 
-/* "sklearn/tree/_tree.pyx":1246
+/* "sklearn/tree/_tree.pyx":1180
  * 
  * 
  * cdef inline DTYPE_t median3(DTYPE_t* Xf, SIZE_t n) nogil:             # <<<<<<<<<<<<<<
@@ -10748,7 +10382,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
   __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_r;
   int __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1249
+  /* "sklearn/tree/_tree.pyx":1183
  *     # Median of three pivot selection, after Bentley and McIlroy (1993).
  *     # Engineering a sort function. SP&E. Requires 8/3 comparisons on average.
  *     cdef DTYPE_t a = Xf[0], b = Xf[n / 2], c = Xf[n - 1]             # <<<<<<<<<<<<<<
@@ -10759,7 +10393,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
   __pyx_v_b = (__pyx_v_Xf[(__pyx_v_n / 2)]);
   __pyx_v_c = (__pyx_v_Xf[(__pyx_v_n - 1)]);
 
-  /* "sklearn/tree/_tree.pyx":1250
+  /* "sklearn/tree/_tree.pyx":1184
  *     # Engineering a sort function. SP&E. Requires 8/3 comparisons on average.
  *     cdef DTYPE_t a = Xf[0], b = Xf[n / 2], c = Xf[n - 1]
  *     if a < b:             # <<<<<<<<<<<<<<
@@ -10769,7 +10403,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
   __pyx_t_1 = ((__pyx_v_a < __pyx_v_b) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1251
+    /* "sklearn/tree/_tree.pyx":1185
  *     cdef DTYPE_t a = Xf[0], b = Xf[n / 2], c = Xf[n - 1]
  *     if a < b:
  *         if b < c:             # <<<<<<<<<<<<<<
@@ -10779,7 +10413,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
     __pyx_t_1 = ((__pyx_v_b < __pyx_v_c) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1252
+      /* "sklearn/tree/_tree.pyx":1186
  *     if a < b:
  *         if b < c:
  *             return b             # <<<<<<<<<<<<<<
@@ -10790,7 +10424,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
       goto __pyx_L0;
     }
 
-    /* "sklearn/tree/_tree.pyx":1253
+    /* "sklearn/tree/_tree.pyx":1187
  *         if b < c:
  *             return b
  *         elif a < c:             # <<<<<<<<<<<<<<
@@ -10800,7 +10434,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
     __pyx_t_1 = ((__pyx_v_a < __pyx_v_c) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1254
+      /* "sklearn/tree/_tree.pyx":1188
  *             return b
  *         elif a < c:
  *             return c             # <<<<<<<<<<<<<<
@@ -10812,7 +10446,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
     }
     /*else*/ {
 
-      /* "sklearn/tree/_tree.pyx":1256
+      /* "sklearn/tree/_tree.pyx":1190
  *             return c
  *         else:
  *             return a             # <<<<<<<<<<<<<<
@@ -10824,7 +10458,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
     }
   }
 
-  /* "sklearn/tree/_tree.pyx":1257
+  /* "sklearn/tree/_tree.pyx":1191
  *         else:
  *             return a
  *     elif b < c:             # <<<<<<<<<<<<<<
@@ -10834,7 +10468,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
   __pyx_t_1 = ((__pyx_v_b < __pyx_v_c) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1258
+    /* "sklearn/tree/_tree.pyx":1192
  *             return a
  *     elif b < c:
  *         if a < c:             # <<<<<<<<<<<<<<
@@ -10844,7 +10478,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
     __pyx_t_1 = ((__pyx_v_a < __pyx_v_c) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1259
+      /* "sklearn/tree/_tree.pyx":1193
  *     elif b < c:
  *         if a < c:
  *             return a             # <<<<<<<<<<<<<<
@@ -10856,7 +10490,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
     }
     /*else*/ {
 
-      /* "sklearn/tree/_tree.pyx":1261
+      /* "sklearn/tree/_tree.pyx":1195
  *             return a
  *         else:
  *             return c             # <<<<<<<<<<<<<<
@@ -10869,7 +10503,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
   }
   /*else*/ {
 
-    /* "sklearn/tree/_tree.pyx":1263
+    /* "sklearn/tree/_tree.pyx":1197
  *             return c
  *     else:
  *         return b             # <<<<<<<<<<<<<<
@@ -10880,7 +10514,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1246
+  /* "sklearn/tree/_tree.pyx":1180
  * 
  * 
  * cdef inline DTYPE_t median3(DTYPE_t* Xf, SIZE_t n) nogil:             # <<<<<<<<<<<<<<
@@ -10893,7 +10527,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_DTYPE_t __pyx_f_7sklearn_4tre
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1265
+/* "sklearn/tree/_tree.pyx":1199
  *         return b
  * 
  * cdef inline void sift_down(DTYPE_t* Xf, SIZE_t* samples,             # <<<<<<<<<<<<<<
@@ -10908,7 +10542,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":1270
+  /* "sklearn/tree/_tree.pyx":1204
  *     cdef SIZE_t child, maxind, root
  * 
  *     root = start             # <<<<<<<<<<<<<<
@@ -10917,7 +10551,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
  */
   __pyx_v_root = __pyx_v_start;
 
-  /* "sklearn/tree/_tree.pyx":1271
+  /* "sklearn/tree/_tree.pyx":1205
  * 
  *     root = start
  *     while True:             # <<<<<<<<<<<<<<
@@ -10926,7 +10560,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
  */
   while (1) {
 
-    /* "sklearn/tree/_tree.pyx":1272
+    /* "sklearn/tree/_tree.pyx":1206
  *     root = start
  *     while True:
  *         child = root * 2 + 1             # <<<<<<<<<<<<<<
@@ -10935,7 +10569,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
  */
     __pyx_v_child = ((__pyx_v_root * 2) + 1);
 
-    /* "sklearn/tree/_tree.pyx":1275
+    /* "sklearn/tree/_tree.pyx":1209
  * 
  *         # find max of root, left child, right child
  *         maxind = root             # <<<<<<<<<<<<<<
@@ -10944,7 +10578,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
  */
     __pyx_v_maxind = __pyx_v_root;
 
-    /* "sklearn/tree/_tree.pyx":1276
+    /* "sklearn/tree/_tree.pyx":1210
  *         # find max of root, left child, right child
  *         maxind = root
  *         if child < end and Xf[maxind] < Xf[child]:             # <<<<<<<<<<<<<<
@@ -10962,7 +10596,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1277
+      /* "sklearn/tree/_tree.pyx":1211
  *         maxind = root
  *         if child < end and Xf[maxind] < Xf[child]:
  *             maxind = child             # <<<<<<<<<<<<<<
@@ -10974,7 +10608,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
     }
     __pyx_L5:;
 
-    /* "sklearn/tree/_tree.pyx":1278
+    /* "sklearn/tree/_tree.pyx":1212
  *         if child < end and Xf[maxind] < Xf[child]:
  *             maxind = child
  *         if child + 1 < end and Xf[maxind] < Xf[child + 1]:             # <<<<<<<<<<<<<<
@@ -10992,7 +10626,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1279
+      /* "sklearn/tree/_tree.pyx":1213
  *             maxind = child
  *         if child + 1 < end and Xf[maxind] < Xf[child + 1]:
  *             maxind = child + 1             # <<<<<<<<<<<<<<
@@ -11004,7 +10638,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
     }
     __pyx_L8:;
 
-    /* "sklearn/tree/_tree.pyx":1281
+    /* "sklearn/tree/_tree.pyx":1215
  *             maxind = child + 1
  * 
  *         if maxind == root:             # <<<<<<<<<<<<<<
@@ -11014,7 +10648,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
     __pyx_t_1 = ((__pyx_v_maxind == __pyx_v_root) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1282
+      /* "sklearn/tree/_tree.pyx":1216
  * 
  *         if maxind == root:
  *             break             # <<<<<<<<<<<<<<
@@ -11025,7 +10659,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
     }
     /*else*/ {
 
-      /* "sklearn/tree/_tree.pyx":1284
+      /* "sklearn/tree/_tree.pyx":1218
  *             break
  *         else:
  *             swap(Xf, samples, root, maxind)             # <<<<<<<<<<<<<<
@@ -11034,7 +10668,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
  */
       __pyx_f_7sklearn_4tree_5_tree_swap(__pyx_v_Xf, __pyx_v_samples, __pyx_v_root, __pyx_v_maxind);
 
-      /* "sklearn/tree/_tree.pyx":1285
+      /* "sklearn/tree/_tree.pyx":1219
  *         else:
  *             swap(Xf, samples, root, maxind)
  *             root = maxind             # <<<<<<<<<<<<<<
@@ -11046,7 +10680,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
   }
   __pyx_L4_break:;
 
-  /* "sklearn/tree/_tree.pyx":1265
+  /* "sklearn/tree/_tree.pyx":1199
  *         return b
  * 
  * cdef inline void sift_down(DTYPE_t* Xf, SIZE_t* samples,             # <<<<<<<<<<<<<<
@@ -11057,7 +10691,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_t_7sklea
   /* function exit code */
 }
 
-/* "sklearn/tree/_tree.pyx":1287
+/* "sklearn/tree/_tree.pyx":1221
  *             root = maxind
  * 
  * cdef void heapsort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:             # <<<<<<<<<<<<<<
@@ -11070,7 +10704,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_end;
   int __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1291
+  /* "sklearn/tree/_tree.pyx":1225
  * 
  *     # heapify
  *     start = (n - 2) / 2             # <<<<<<<<<<<<<<
@@ -11079,7 +10713,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
  */
   __pyx_v_start = ((__pyx_v_n - 2) / 2);
 
-  /* "sklearn/tree/_tree.pyx":1292
+  /* "sklearn/tree/_tree.pyx":1226
  *     # heapify
  *     start = (n - 2) / 2
  *     end = n             # <<<<<<<<<<<<<<
@@ -11088,7 +10722,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
  */
   __pyx_v_end = __pyx_v_n;
 
-  /* "sklearn/tree/_tree.pyx":1293
+  /* "sklearn/tree/_tree.pyx":1227
  *     start = (n - 2) / 2
  *     end = n
  *     while True:             # <<<<<<<<<<<<<<
@@ -11097,7 +10731,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
  */
   while (1) {
 
-    /* "sklearn/tree/_tree.pyx":1294
+    /* "sklearn/tree/_tree.pyx":1228
  *     end = n
  *     while True:
  *         sift_down(Xf, samples, start, end)             # <<<<<<<<<<<<<<
@@ -11106,7 +10740,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
  */
     __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_v_Xf, __pyx_v_samples, __pyx_v_start, __pyx_v_end);
 
-    /* "sklearn/tree/_tree.pyx":1295
+    /* "sklearn/tree/_tree.pyx":1229
  *     while True:
  *         sift_down(Xf, samples, start, end)
  *         if start == 0:             # <<<<<<<<<<<<<<
@@ -11116,7 +10750,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
     __pyx_t_1 = ((__pyx_v_start == 0) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1296
+      /* "sklearn/tree/_tree.pyx":1230
  *         sift_down(Xf, samples, start, end)
  *         if start == 0:
  *             break             # <<<<<<<<<<<<<<
@@ -11126,7 +10760,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
       goto __pyx_L4_break;
     }
 
-    /* "sklearn/tree/_tree.pyx":1297
+    /* "sklearn/tree/_tree.pyx":1231
  *         if start == 0:
  *             break
  *         start -= 1             # <<<<<<<<<<<<<<
@@ -11137,7 +10771,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
   }
   __pyx_L4_break:;
 
-  /* "sklearn/tree/_tree.pyx":1300
+  /* "sklearn/tree/_tree.pyx":1234
  * 
  *     # sort by shrinking the heap, putting the max element immediately after it
  *     end = n - 1             # <<<<<<<<<<<<<<
@@ -11146,7 +10780,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
  */
   __pyx_v_end = (__pyx_v_n - 1);
 
-  /* "sklearn/tree/_tree.pyx":1301
+  /* "sklearn/tree/_tree.pyx":1235
  *     # sort by shrinking the heap, putting the max element immediately after it
  *     end = n - 1
  *     while end > 0:             # <<<<<<<<<<<<<<
@@ -11157,7 +10791,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
     __pyx_t_1 = ((__pyx_v_end > 0) != 0);
     if (!__pyx_t_1) break;
 
-    /* "sklearn/tree/_tree.pyx":1302
+    /* "sklearn/tree/_tree.pyx":1236
  *     end = n - 1
  *     while end > 0:
  *         swap(Xf, samples, 0, end)             # <<<<<<<<<<<<<<
@@ -11166,7 +10800,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
  */
     __pyx_f_7sklearn_4tree_5_tree_swap(__pyx_v_Xf, __pyx_v_samples, 0, __pyx_v_end);
 
-    /* "sklearn/tree/_tree.pyx":1303
+    /* "sklearn/tree/_tree.pyx":1237
  *     while end > 0:
  *         swap(Xf, samples, 0, end)
  *         sift_down(Xf, samples, 0, end)             # <<<<<<<<<<<<<<
@@ -11175,7 +10809,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
  */
     __pyx_f_7sklearn_4tree_5_tree_sift_down(__pyx_v_Xf, __pyx_v_samples, 0, __pyx_v_end);
 
-    /* "sklearn/tree/_tree.pyx":1304
+    /* "sklearn/tree/_tree.pyx":1238
  *         swap(Xf, samples, 0, end)
  *         sift_down(Xf, samples, 0, end)
  *         end = end - 1             # <<<<<<<<<<<<<<
@@ -11185,7 +10819,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
     __pyx_v_end = (__pyx_v_end - 1);
   }
 
-  /* "sklearn/tree/_tree.pyx":1287
+  /* "sklearn/tree/_tree.pyx":1221
  *             root = maxind
  * 
  * cdef void heapsort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:             # <<<<<<<<<<<<<<
@@ -11196,7 +10830,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_heapsort(__pyx_t_7sklearn_4tree_5_tree
   /* function exit code */
 }
 
-/* "sklearn/tree/_tree.pyx":1312
+/* "sklearn/tree/_tree.pyx":1246
  *     """Interface for different tree building strategies. """
  * 
  *     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,             # <<<<<<<<<<<<<<
@@ -11243,31 +10877,31 @@ static int __pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_1__cinit__(PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_samples_split)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_samples_leaf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_weight_leaf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_max_depth)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_max_leaf_nodes)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -11280,21 +10914,21 @@ static int __pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_1__cinit__(PyObject *__p
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
     __pyx_v_splitter = ((struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *)values[0]);
-    __pyx_v_min_samples_split = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_min_samples_split == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_min_samples_leaf = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_min_samples_leaf == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1313; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_min_weight_leaf = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_min_weight_leaf == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1313; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_max_depth = __Pyx_PyInt_As_Py_intptr_t(values[4]); if (unlikely((__pyx_v_max_depth == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_max_leaf_nodes = __Pyx_PyInt_As_Py_intptr_t(values[5]); if (unlikely((__pyx_v_max_leaf_nodes == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_min_samples_split = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_min_samples_split == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_min_samples_leaf = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_min_samples_leaf == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1247; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_min_weight_leaf = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_min_weight_leaf == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1247; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_max_depth = __Pyx_PyInt_As_Py_intptr_t(values[4]); if (unlikely((__pyx_v_max_depth == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1248; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_max_leaf_nodes = __Pyx_PyInt_As_Py_intptr_t(values[5]); if (unlikely((__pyx_v_max_leaf_nodes == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1248; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.TreeBuilder.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_splitter), __pyx_ptype_7sklearn_4tree_5_tree_Splitter, 1, "splitter", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_splitter), __pyx_ptype_7sklearn_4tree_5_tree_Splitter, 1, "splitter", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(((struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder *)__pyx_v_self), __pyx_v_splitter, __pyx_v_min_samples_split, __pyx_v_min_samples_leaf, __pyx_v_min_weight_leaf, __pyx_v_max_depth, __pyx_v_max_leaf_nodes);
 
   /* function exit code */
@@ -11311,7 +10945,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1315
+  /* "sklearn/tree/_tree.pyx":1249
  *                   SIZE_t min_samples_leaf, double min_weight_leaf,
  *                   SIZE_t max_depth, SIZE_t max_leaf_nodes):
  *         self.splitter = splitter             # <<<<<<<<<<<<<<
@@ -11324,7 +10958,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
   __Pyx_DECREF(((PyObject *)__pyx_v_self->splitter));
   __pyx_v_self->splitter = __pyx_v_splitter;
 
-  /* "sklearn/tree/_tree.pyx":1316
+  /* "sklearn/tree/_tree.pyx":1250
  *                   SIZE_t max_depth, SIZE_t max_leaf_nodes):
  *         self.splitter = splitter
  *         self.min_samples_split = min_samples_split             # <<<<<<<<<<<<<<
@@ -11333,7 +10967,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
  */
   __pyx_v_self->min_samples_split = __pyx_v_min_samples_split;
 
-  /* "sklearn/tree/_tree.pyx":1317
+  /* "sklearn/tree/_tree.pyx":1251
  *         self.splitter = splitter
  *         self.min_samples_split = min_samples_split
  *         self.min_samples_leaf = min_samples_leaf             # <<<<<<<<<<<<<<
@@ -11342,7 +10976,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
  */
   __pyx_v_self->min_samples_leaf = __pyx_v_min_samples_leaf;
 
-  /* "sklearn/tree/_tree.pyx":1318
+  /* "sklearn/tree/_tree.pyx":1252
  *         self.min_samples_split = min_samples_split
  *         self.min_samples_leaf = min_samples_leaf
  *         self.min_weight_leaf = min_weight_leaf             # <<<<<<<<<<<<<<
@@ -11351,7 +10985,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
  */
   __pyx_v_self->min_weight_leaf = __pyx_v_min_weight_leaf;
 
-  /* "sklearn/tree/_tree.pyx":1319
+  /* "sklearn/tree/_tree.pyx":1253
  *         self.min_samples_leaf = min_samples_leaf
  *         self.min_weight_leaf = min_weight_leaf
  *         self.max_depth = max_depth             # <<<<<<<<<<<<<<
@@ -11360,7 +10994,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
  */
   __pyx_v_self->max_depth = __pyx_v_max_depth;
 
-  /* "sklearn/tree/_tree.pyx":1320
+  /* "sklearn/tree/_tree.pyx":1254
  *         self.min_weight_leaf = min_weight_leaf
  *         self.max_depth = max_depth
  *         self.max_leaf_nodes = max_leaf_nodes             # <<<<<<<<<<<<<<
@@ -11369,7 +11003,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
  */
   __pyx_v_self->max_leaf_nodes = __pyx_v_max_leaf_nodes;
 
-  /* "sklearn/tree/_tree.pyx":1312
+  /* "sklearn/tree/_tree.pyx":1246
  *     """Interface for different tree building strategies. """
  * 
  *     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,             # <<<<<<<<<<<<<<
@@ -11383,7 +11017,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder___cinit__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1322
+/* "sklearn/tree/_tree.pyx":1256
  *         self.max_leaf_nodes = max_leaf_nodes
  * 
  *     cdef inline _check_input(self, object X, np.ndarray y,             # <<<<<<<<<<<<<<
@@ -11409,14 +11043,14 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
   __Pyx_INCREF((PyObject *)__pyx_v_y);
   __Pyx_INCREF((PyObject *)__pyx_v_sample_weight);
 
-  /* "sklearn/tree/_tree.pyx":1325
+  /* "sklearn/tree/_tree.pyx":1259
  *                              np.ndarray sample_weight):
  *         """Check input dtype, layout and format"""
  *         if issparse(X):             # <<<<<<<<<<<<<<
  *             X = X.tocsc()
  *             X.sort_indices()
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -11429,32 +11063,32 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
     __Pyx_INCREF(__pyx_v_X);
     __Pyx_GIVEREF(__pyx_v_X);
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_X);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_5) {
 
-    /* "sklearn/tree/_tree.pyx":1326
+    /* "sklearn/tree/_tree.pyx":1260
  *         """Check input dtype, layout and format"""
  *         if issparse(X):
  *             X = X.tocsc()             # <<<<<<<<<<<<<<
  *             X.sort_indices()
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_tocsc); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_tocsc); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_4 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -11467,24 +11101,24 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "sklearn/tree/_tree.pyx":1327
+    /* "sklearn/tree/_tree.pyx":1261
  *         if issparse(X):
  *             X = X.tocsc()
  *             X.sort_indices()             # <<<<<<<<<<<<<<
  * 
  *             if X.data.dtype != DTYPE:
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_sort_indices); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_sort_indices); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_4 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -11497,176 +11131,176 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "sklearn/tree/_tree.pyx":1329
+    /* "sklearn/tree/_tree.pyx":1263
  *             X.sort_indices()
  * 
  *             if X.data.dtype != DTYPE:             # <<<<<<<<<<<<<<
  *                 X.data = np.ascontiguousarray(X.data, dtype=DTYPE)
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_dtype); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_dtype); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":1330
+      /* "sklearn/tree/_tree.pyx":1264
  * 
  *             if X.data.dtype != DTYPE:
  *                 X.data = np.ascontiguousarray(X.data, dtype=DTYPE)             # <<<<<<<<<<<<<<
  * 
  *             if X.indices.dtype != np.int32 or X.indptr.dtype != np.int32:
  */
-      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_X, __pyx_n_s_data, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_X, __pyx_n_s_data, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       goto __pyx_L4;
     }
     __pyx_L4:;
 
-    /* "sklearn/tree/_tree.pyx":1332
+    /* "sklearn/tree/_tree.pyx":1266
  *                 X.data = np.ascontiguousarray(X.data, dtype=DTYPE)
  * 
  *             if X.indices.dtype != np.int32 or X.indptr.dtype != np.int32:             # <<<<<<<<<<<<<<
  *                 raise ValueError("No support for np.int64 index based "
  *                                  "sparse matrices")
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (!__pyx_t_6) {
     } else {
       __pyx_t_5 = __pyx_t_6;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dtype); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dtype); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_5 = __pyx_t_6;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_5) {
 
-      /* "sklearn/tree/_tree.pyx":1333
+      /* "sklearn/tree/_tree.pyx":1267
  * 
  *             if X.indices.dtype != np.int32 or X.indptr.dtype != np.int32:
  *                 raise ValueError("No support for np.int64 index based "             # <<<<<<<<<<<<<<
  *                                  "sparse matrices")
  * 
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     goto __pyx_L3;
   }
 
-  /* "sklearn/tree/_tree.pyx":1336
+  /* "sklearn/tree/_tree.pyx":1270
  *                                  "sparse matrices")
  * 
  *         elif X.dtype != DTYPE:             # <<<<<<<<<<<<<<
  *             # since we have to copy we will make it fortran for efficiency
  *             X = np.asfortranarray(X, dtype=DTYPE)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1336; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1336; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1336; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1336; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_5) {
 
-    /* "sklearn/tree/_tree.pyx":1338
+    /* "sklearn/tree/_tree.pyx":1272
  *         elif X.dtype != DTYPE:
  *             # since we have to copy we will make it fortran for efficiency
  *             X = np.asfortranarray(X, dtype=DTYPE)             # <<<<<<<<<<<<<<
  * 
  *         if y.dtype != DOUBLE or not y.flags.contiguous:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asfortranarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asfortranarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_v_X);
     __Pyx_GIVEREF(__pyx_v_X);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_X);
-    __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -11677,75 +11311,75 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_tree.pyx":1340
+  /* "sklearn/tree/_tree.pyx":1274
  *             X = np.asfortranarray(X, dtype=DTYPE)
  * 
  *         if y.dtype != DOUBLE or not y.flags.contiguous:             # <<<<<<<<<<<<<<
  *             y = np.ascontiguousarray(y, dtype=DOUBLE)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_y), __pyx_n_s_dtype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_y), __pyx_n_s_dtype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (!__pyx_t_6) {
   } else {
     __pyx_t_5 = __pyx_t_6;
     goto __pyx_L9_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_y), __pyx_n_s_flags); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_y), __pyx_n_s_flags); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_contiguous); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_contiguous); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_7 = ((!__pyx_t_6) != 0);
   __pyx_t_5 = __pyx_t_7;
   __pyx_L9_bool_binop_done:;
   if (__pyx_t_5) {
 
-    /* "sklearn/tree/_tree.pyx":1341
+    /* "sklearn/tree/_tree.pyx":1275
  * 
  *         if y.dtype != DOUBLE or not y.flags.contiguous:
  *             y = np.ascontiguousarray(y, dtype=DOUBLE)             # <<<<<<<<<<<<<<
  * 
  *         if (sample_weight is not None and
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(((PyObject *)__pyx_v_y));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_y));
     PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)__pyx_v_y));
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF_SET(__pyx_v_y, ((PyArrayObject *)__pyx_t_4));
     __pyx_t_4 = 0;
     goto __pyx_L8;
   }
   __pyx_L8:;
 
-  /* "sklearn/tree/_tree.pyx":1343
+  /* "sklearn/tree/_tree.pyx":1277
  *             y = np.ascontiguousarray(y, dtype=DOUBLE)
  * 
  *         if (sample_weight is not None and             # <<<<<<<<<<<<<<
@@ -11760,21 +11394,21 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
     goto __pyx_L12_bool_binop_done;
   }
 
-  /* "sklearn/tree/_tree.pyx":1344
+  /* "sklearn/tree/_tree.pyx":1278
  * 
  *         if (sample_weight is not None and
  *             (sample_weight.dtype != DOUBLE or             # <<<<<<<<<<<<<<
  *             not sample_weight.flags.contiguous)):
  *                 sample_weight = np.asarray(sample_weight, dtype=DOUBLE,
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_sample_weight), __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_sample_weight), __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, __pyx_t_1, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, __pyx_t_1, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (!__pyx_t_6) {
   } else {
@@ -11782,62 +11416,62 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
     goto __pyx_L12_bool_binop_done;
   }
 
-  /* "sklearn/tree/_tree.pyx":1345
+  /* "sklearn/tree/_tree.pyx":1279
  *         if (sample_weight is not None and
  *             (sample_weight.dtype != DOUBLE or
  *             not sample_weight.flags.contiguous)):             # <<<<<<<<<<<<<<
  *                 sample_weight = np.asarray(sample_weight, dtype=DOUBLE,
  *                                            order="C")
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_sample_weight), __pyx_n_s_flags); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_sample_weight), __pyx_n_s_flags); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_contiguous); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_contiguous); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_7 = ((!__pyx_t_6) != 0);
   __pyx_t_5 = __pyx_t_7;
   __pyx_L12_bool_binop_done:;
   if (__pyx_t_5) {
 
-    /* "sklearn/tree/_tree.pyx":1346
+    /* "sklearn/tree/_tree.pyx":1280
  *             (sample_weight.dtype != DOUBLE or
  *             not sample_weight.flags.contiguous)):
  *                 sample_weight = np.asarray(sample_weight, dtype=DOUBLE,             # <<<<<<<<<<<<<<
  *                                            order="C")
  * 
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_INCREF(((PyObject *)__pyx_v_sample_weight));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_sample_weight));
     PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_sample_weight));
-    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF_SET(__pyx_v_sample_weight, ((PyArrayObject *)__pyx_t_2));
     __pyx_t_2 = 0;
     goto __pyx_L11;
   }
   __pyx_L11:;
 
-  /* "sklearn/tree/_tree.pyx":1349
+  /* "sklearn/tree/_tree.pyx":1283
  *                                            order="C")
  * 
  *         return X, y, sample_weight             # <<<<<<<<<<<<<<
@@ -11845,7 +11479,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
  *     cpdef depth_first(self, Tree tree, object X, np.ndarray y,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_X);
   __Pyx_GIVEREF(__pyx_v_X);
@@ -11860,7 +11494,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1322
+  /* "sklearn/tree/_tree.pyx":1256
  *         self.max_leaf_nodes = max_leaf_nodes
  * 
  *     cdef inline _check_input(self, object X, np.ndarray y,             # <<<<<<<<<<<<<<
@@ -11885,7 +11519,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(CYTHON
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1351
+/* "sklearn/tree/_tree.pyx":1285
  *         return X, y, sample_weight
  * 
  *     cpdef depth_first(self, Tree tree, object X, np.ndarray y,             # <<<<<<<<<<<<<<
@@ -11949,11 +11583,11 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_depth_first); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_depth_first); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_3depth_first)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_presort); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_presort); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -11968,7 +11602,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(6+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(6+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -11991,7 +11625,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
       __Pyx_GIVEREF(((PyObject *)__pyx_v_X_idx_sorted));
       PyTuple_SET_ITEM(__pyx_t_7, 5+__pyx_t_6, ((PyObject *)__pyx_v_X_idx_sorted));
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -12003,14 +11637,14 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1355
+  /* "sklearn/tree/_tree.pyx":1289
  *                 np.ndarray X_idx_sorted):
  *         """Build a decision tree from the training set (X, y)."""
  *         X, y, sample_weight = self._check_input(X, y, sample_weight)             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* sample_weight_ptr = <DOUBLE_t*> sample_weight.data
  * 
  */
-  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(__pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(__pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -12022,7 +11656,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
     if (unlikely(size != 3)) {
       if (size > 3) __Pyx_RaiseTooManyValuesError(3);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     #if CYTHON_COMPILING_IN_CPYTHON
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -12038,17 +11672,17 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
     __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_7);
     #else
-    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -12058,7 +11692,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
     __Pyx_GOTREF(__pyx_t_4);
     index = 2; __pyx_t_7 = __pyx_t_8(__pyx_t_3); if (unlikely(!__pyx_t_7)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_7);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_3), 3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_3), 3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_8 = NULL;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     goto __pyx_L4_unpacking_done;
@@ -12066,11 +11700,11 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_8 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_L4_unpacking_done:;
   }
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_2);
   __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_y, ((PyArrayObject *)__pyx_t_4));
@@ -12078,7 +11712,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __Pyx_DECREF_SET(__pyx_v_sample_weight, ((PyArrayObject *)__pyx_t_7));
   __pyx_t_7 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1356
+  /* "sklearn/tree/_tree.pyx":1290
  *         """Build a decision tree from the training set (X, y)."""
  *         X, y, sample_weight = self._check_input(X, y, sample_weight)
  *         cdef DOUBLE_t* sample_weight_ptr = <DOUBLE_t*> sample_weight.data             # <<<<<<<<<<<<<<
@@ -12087,7 +11721,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   __pyx_v_sample_weight_ptr = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)__pyx_v_sample_weight->data);
 
-  /* "sklearn/tree/_tree.pyx":1361
+  /* "sklearn/tree/_tree.pyx":1295
  *         cdef int init_capacity
  * 
  *         if tree.max_depth <= 10:             # <<<<<<<<<<<<<<
@@ -12097,7 +11731,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_t_9 = ((__pyx_v_tree->max_depth <= 10) != 0);
   if (__pyx_t_9) {
 
-    /* "sklearn/tree/_tree.pyx":1362
+    /* "sklearn/tree/_tree.pyx":1296
  * 
  *         if tree.max_depth <= 10:
  *             init_capacity = (2 ** (tree.max_depth + 1)) - 1             # <<<<<<<<<<<<<<
@@ -12109,7 +11743,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   }
   /*else*/ {
 
-    /* "sklearn/tree/_tree.pyx":1364
+    /* "sklearn/tree/_tree.pyx":1298
  *             init_capacity = (2 ** (tree.max_depth + 1)) - 1
  *         else:
  *             init_capacity = 2047             # <<<<<<<<<<<<<<
@@ -12120,16 +11754,16 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   }
   __pyx_L5:;
 
-  /* "sklearn/tree/_tree.pyx":1366
+  /* "sklearn/tree/_tree.pyx":1300
  *             init_capacity = 2047
  * 
  *         tree._resize(init_capacity)             # <<<<<<<<<<<<<<
  * 
  *         cdef Splitter splitter = self.splitter
  */
-  ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->_resize(__pyx_v_tree, __pyx_v_init_capacity); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->_resize(__pyx_v_tree, __pyx_v_init_capacity); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_tree.pyx":1368
+  /* "sklearn/tree/_tree.pyx":1302
  *         tree._resize(init_capacity)
  * 
  *         cdef Splitter splitter = self.splitter             # <<<<<<<<<<<<<<
@@ -12141,7 +11775,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_v_splitter = ((struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1369
+  /* "sklearn/tree/_tree.pyx":1303
  * 
  *         cdef Splitter splitter = self.splitter
  *         cdef SIZE_t max_depth = self.max_depth             # <<<<<<<<<<<<<<
@@ -12151,7 +11785,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_t_10 = __pyx_v_self->max_depth;
   __pyx_v_max_depth = __pyx_t_10;
 
-  /* "sklearn/tree/_tree.pyx":1370
+  /* "sklearn/tree/_tree.pyx":1304
  *         cdef Splitter splitter = self.splitter
  *         cdef SIZE_t max_depth = self.max_depth
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf             # <<<<<<<<<<<<<<
@@ -12161,7 +11795,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_t_10 = __pyx_v_self->min_samples_leaf;
   __pyx_v_min_samples_leaf = __pyx_t_10;
 
-  /* "sklearn/tree/_tree.pyx":1371
+  /* "sklearn/tree/_tree.pyx":1305
  *         cdef SIZE_t max_depth = self.max_depth
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf             # <<<<<<<<<<<<<<
@@ -12171,7 +11805,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_t_11 = __pyx_v_self->min_weight_leaf;
   __pyx_v_min_weight_leaf = __pyx_t_11;
 
-  /* "sklearn/tree/_tree.pyx":1372
+  /* "sklearn/tree/_tree.pyx":1306
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf
  *         cdef SIZE_t min_samples_split = self.min_samples_split             # <<<<<<<<<<<<<<
@@ -12181,7 +11815,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_t_10 = __pyx_v_self->min_samples_split;
   __pyx_v_min_samples_split = __pyx_t_10;
 
-  /* "sklearn/tree/_tree.pyx":1376
+  /* "sklearn/tree/_tree.pyx":1310
  *         cdef SIZE_t start, end, depth, parent, node_id
  *         cdef bint is_left, is_leaf
  *         cdef DOUBLE_t* node_value = NULL             # <<<<<<<<<<<<<<
@@ -12190,7 +11824,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   __pyx_v_node_value = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1379
+  /* "sklearn/tree/_tree.pyx":1313
  *         cdef SplitRecord split
  * 
  *         cdef SIZE_t n_node_samples = 0             # <<<<<<<<<<<<<<
@@ -12199,7 +11833,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   __pyx_v_n_node_samples = 0;
 
-  /* "sklearn/tree/_tree.pyx":1380
+  /* "sklearn/tree/_tree.pyx":1314
  * 
  *         cdef SIZE_t n_node_samples = 0
  *         cdef DOUBLE_t w_sum = 0, yw_sq_sum = 0             # <<<<<<<<<<<<<<
@@ -12209,7 +11843,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_v_w_sum = 0.0;
   __pyx_v_yw_sq_sum = 0.0;
 
-  /* "sklearn/tree/_tree.pyx":1381
+  /* "sklearn/tree/_tree.pyx":1315
  *         cdef SIZE_t n_node_samples = 0
  *         cdef DOUBLE_t w_sum = 0, yw_sq_sum = 0
  *         splitter.init(X, X_idx_sorted, presort, y, sample_weight_ptr, &w_sum,             # <<<<<<<<<<<<<<
@@ -12218,7 +11852,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->init(__pyx_v_splitter, __pyx_v_X, __pyx_v_X_idx_sorted, __pyx_v_presort, __pyx_v_y, __pyx_v_sample_weight_ptr, (&__pyx_v_w_sum), (&__pyx_v_yw_sq_sum), (&__pyx_v_node_value), (&__pyx_v_n_node_samples));
 
-  /* "sklearn/tree/_tree.pyx":1384
+  /* "sklearn/tree/_tree.pyx":1318
  *             &yw_sq_sum, &node_value, &n_node_samples)
  * 
  *         cdef double threshold, impurity = INFINITY             # <<<<<<<<<<<<<<
@@ -12227,7 +11861,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   __pyx_v_impurity = __pyx_v_7sklearn_4tree_5_tree_INFINITY;
 
-  /* "sklearn/tree/_tree.pyx":1385
+  /* "sklearn/tree/_tree.pyx":1319
  * 
  *         cdef double threshold, impurity = INFINITY
  *         cdef SIZE_t max_depth_seen = -1             # <<<<<<<<<<<<<<
@@ -12236,7 +11870,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   __pyx_v_max_depth_seen = -1;
 
-  /* "sklearn/tree/_tree.pyx":1386
+  /* "sklearn/tree/_tree.pyx":1320
  *         cdef double threshold, impurity = INFINITY
  *         cdef SIZE_t max_depth_seen = -1
  *         cdef int rc = 0             # <<<<<<<<<<<<<<
@@ -12245,27 +11879,27 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   __pyx_v_rc = 0;
 
-  /* "sklearn/tree/_tree.pyx":1388
+  /* "sklearn/tree/_tree.pyx":1322
  *         cdef int rc = 0
  * 
  *         cdef Stack stack = Stack(INITIAL_STACK_SIZE)             # <<<<<<<<<<<<<<
  *         cdef StackRecord stack_record
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_7sklearn_4tree_5_tree_INITIAL_STACK_SIZE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_7sklearn_4tree_5_tree_INITIAL_STACK_SIZE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_6_utils_Stack)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_6_utils_Stack)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_stack = ((struct __pyx_obj_7sklearn_4tree_6_utils_Stack *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1392
+  /* "sklearn/tree/_tree.pyx":1326
  * 
  *         # push root node onto stack
  *         rc = stack.push(0, n_node_samples, 0, _TREE_UNDEFINED, 0, INFINITY,             # <<<<<<<<<<<<<<
@@ -12274,7 +11908,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
   __pyx_v_rc = ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->push(__pyx_v_stack, 0, __pyx_v_n_node_samples, 0, __pyx_v_7sklearn_4tree_5_tree__TREE_UNDEFINED, 0, __pyx_v_7sklearn_4tree_5_tree_INFINITY, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
 
-  /* "sklearn/tree/_tree.pyx":1394
+  /* "sklearn/tree/_tree.pyx":1328
  *         rc = stack.push(0, n_node_samples, 0, _TREE_UNDEFINED, 0, INFINITY,
  *             w_sum, yw_sq_sum, node_value)
  *         if rc == -1:             # <<<<<<<<<<<<<<
@@ -12284,17 +11918,17 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_t_9 = ((__pyx_v_rc == -1) != 0);
   if (__pyx_t_9) {
 
-    /* "sklearn/tree/_tree.pyx":1396
+    /* "sklearn/tree/_tree.pyx":1330
  *         if rc == -1:
  *             # got return code -1 - out-of-memory
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         with nogil:
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1398
+  /* "sklearn/tree/_tree.pyx":1332
  *             raise MemoryError()
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -12308,7 +11942,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
       #endif
       /*try:*/ {
 
-        /* "sklearn/tree/_tree.pyx":1399
+        /* "sklearn/tree/_tree.pyx":1333
  * 
  *         with nogil:
  *             while not stack.is_empty():             # <<<<<<<<<<<<<<
@@ -12319,7 +11953,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_9 = ((!(((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->is_empty(__pyx_v_stack) != 0)) != 0);
           if (!__pyx_t_9) break;
 
-          /* "sklearn/tree/_tree.pyx":1400
+          /* "sklearn/tree/_tree.pyx":1334
  *         with nogil:
  *             while not stack.is_empty():
  *                 stack.pop(&stack_record)             # <<<<<<<<<<<<<<
@@ -12328,7 +11962,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
           ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->pop(__pyx_v_stack, (&__pyx_v_stack_record));
 
-          /* "sklearn/tree/_tree.pyx":1402
+          /* "sklearn/tree/_tree.pyx":1336
  *                 stack.pop(&stack_record)
  * 
  *                 start = stack_record.start             # <<<<<<<<<<<<<<
@@ -12338,7 +11972,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_12 = __pyx_v_stack_record.start;
           __pyx_v_start = __pyx_t_12;
 
-          /* "sklearn/tree/_tree.pyx":1403
+          /* "sklearn/tree/_tree.pyx":1337
  * 
  *                 start = stack_record.start
  *                 end = stack_record.end             # <<<<<<<<<<<<<<
@@ -12348,7 +11982,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_12 = __pyx_v_stack_record.end;
           __pyx_v_end = __pyx_t_12;
 
-          /* "sklearn/tree/_tree.pyx":1404
+          /* "sklearn/tree/_tree.pyx":1338
  *                 start = stack_record.start
  *                 end = stack_record.end
  *                 depth = stack_record.depth             # <<<<<<<<<<<<<<
@@ -12358,7 +11992,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_12 = __pyx_v_stack_record.depth;
           __pyx_v_depth = __pyx_t_12;
 
-          /* "sklearn/tree/_tree.pyx":1405
+          /* "sklearn/tree/_tree.pyx":1339
  *                 end = stack_record.end
  *                 depth = stack_record.depth
  *                 parent = stack_record.parent             # <<<<<<<<<<<<<<
@@ -12368,7 +12002,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_12 = __pyx_v_stack_record.parent;
           __pyx_v_parent = __pyx_t_12;
 
-          /* "sklearn/tree/_tree.pyx":1406
+          /* "sklearn/tree/_tree.pyx":1340
  *                 depth = stack_record.depth
  *                 parent = stack_record.parent
  *                 is_left = stack_record.is_left             # <<<<<<<<<<<<<<
@@ -12378,7 +12012,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_9 = __pyx_v_stack_record.is_left;
           __pyx_v_is_left = __pyx_t_9;
 
-          /* "sklearn/tree/_tree.pyx":1407
+          /* "sklearn/tree/_tree.pyx":1341
  *                 parent = stack_record.parent
  *                 is_left = stack_record.is_left
  *                 w_sum = stack_record.weight             # <<<<<<<<<<<<<<
@@ -12388,7 +12022,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_13 = __pyx_v_stack_record.weight;
           __pyx_v_w_sum = __pyx_t_13;
 
-          /* "sklearn/tree/_tree.pyx":1408
+          /* "sklearn/tree/_tree.pyx":1342
  *                 is_left = stack_record.is_left
  *                 w_sum = stack_record.weight
  *                 yw_sq_sum = stack_record.yw_sq_sum             # <<<<<<<<<<<<<<
@@ -12398,7 +12032,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_13 = __pyx_v_stack_record.yw_sq_sum;
           __pyx_v_yw_sq_sum = __pyx_t_13;
 
-          /* "sklearn/tree/_tree.pyx":1409
+          /* "sklearn/tree/_tree.pyx":1343
  *                 w_sum = stack_record.weight
  *                 yw_sq_sum = stack_record.yw_sq_sum
  *                 impurity = stack_record.impurity             # <<<<<<<<<<<<<<
@@ -12408,7 +12042,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_13 = __pyx_v_stack_record.impurity;
           __pyx_v_impurity = __pyx_t_13;
 
-          /* "sklearn/tree/_tree.pyx":1410
+          /* "sklearn/tree/_tree.pyx":1344
  *                 yw_sq_sum = stack_record.yw_sq_sum
  *                 impurity = stack_record.impurity
  *                 node_value = stack_record.node_value             # <<<<<<<<<<<<<<
@@ -12418,7 +12052,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_14 = __pyx_v_stack_record.node_value;
           __pyx_v_node_value = __pyx_t_14;
 
-          /* "sklearn/tree/_tree.pyx":1412
+          /* "sklearn/tree/_tree.pyx":1346
  *                 node_value = stack_record.node_value
  * 
  *                 n_node_samples = end - start             # <<<<<<<<<<<<<<
@@ -12427,7 +12061,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
           __pyx_v_n_node_samples = (__pyx_v_end - __pyx_v_start);
 
-          /* "sklearn/tree/_tree.pyx":1414
+          /* "sklearn/tree/_tree.pyx":1348
  *                 n_node_samples = end - start
  * 
  *                 is_leaf = ((depth >= max_depth) or             # <<<<<<<<<<<<<<
@@ -12441,7 +12075,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             goto __pyx_L12_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1415
+          /* "sklearn/tree/_tree.pyx":1349
  * 
  *                 is_leaf = ((depth >= max_depth) or
  *                            (n_node_samples < min_samples_split) or             # <<<<<<<<<<<<<<
@@ -12455,7 +12089,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             goto __pyx_L12_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1416
+          /* "sklearn/tree/_tree.pyx":1350
  *                 is_leaf = ((depth >= max_depth) or
  *                            (n_node_samples < min_samples_split) or
  *                            (n_node_samples < 2 * min_samples_leaf) or             # <<<<<<<<<<<<<<
@@ -12469,7 +12103,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             goto __pyx_L12_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1417
+          /* "sklearn/tree/_tree.pyx":1351
  *                            (n_node_samples < min_samples_split) or
  *                            (n_node_samples < 2 * min_samples_leaf) or
  *                            (w_sum <= 2 * min_weight_leaf) or             # <<<<<<<<<<<<<<
@@ -12483,7 +12117,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             goto __pyx_L12_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1418
+          /* "sklearn/tree/_tree.pyx":1352
  *                            (n_node_samples < 2 * min_samples_leaf) or
  *                            (w_sum <= 2 * min_weight_leaf) or
  *                            (impurity <= MIN_IMPURITY_SPLIT))             # <<<<<<<<<<<<<<
@@ -12495,7 +12129,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_L12_bool_binop_done:;
           __pyx_v_is_leaf = __pyx_t_9;
 
-          /* "sklearn/tree/_tree.pyx":1420
+          /* "sklearn/tree/_tree.pyx":1354
  *                            (impurity <= MIN_IMPURITY_SPLIT))
  * 
  *                 if not is_leaf:             # <<<<<<<<<<<<<<
@@ -12505,7 +12139,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_9 = ((!(__pyx_v_is_leaf != 0)) != 0);
           if (__pyx_t_9) {
 
-            /* "sklearn/tree/_tree.pyx":1421
+            /* "sklearn/tree/_tree.pyx":1355
  * 
  *                 if not is_leaf:
  *                     split = splitter.split(start, end, w_sum, yw_sq_sum, node_value)             # <<<<<<<<<<<<<<
@@ -12514,7 +12148,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
             __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->split(__pyx_v_splitter, __pyx_v_start, __pyx_v_end, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
 
-            /* "sklearn/tree/_tree.pyx":1422
+            /* "sklearn/tree/_tree.pyx":1356
  *                 if not is_leaf:
  *                     split = splitter.split(start, end, w_sum, yw_sq_sum, node_value)
  *                     is_leaf = is_leaf or (split.pos >= end)             # <<<<<<<<<<<<<<
@@ -12532,7 +12166,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             __pyx_L18_bool_binop_done:;
             __pyx_v_is_leaf = __pyx_t_9;
 
-            /* "sklearn/tree/_tree.pyx":1423
+            /* "sklearn/tree/_tree.pyx":1357
  *                     split = splitter.split(start, end, w_sum, yw_sq_sum, node_value)
  *                     is_leaf = is_leaf or (split.pos >= end)
  *                     impurity = split.impurity             # <<<<<<<<<<<<<<
@@ -12542,7 +12176,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             __pyx_t_13 = __pyx_v_split.impurity;
             __pyx_v_impurity = __pyx_t_13;
 
-            /* "sklearn/tree/_tree.pyx":1424
+            /* "sklearn/tree/_tree.pyx":1358
  *                     is_leaf = is_leaf or (split.pos >= end)
  *                     impurity = split.impurity
  *                     w_sum = split.weight             # <<<<<<<<<<<<<<
@@ -12552,7 +12186,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             __pyx_t_13 = __pyx_v_split.weight;
             __pyx_v_w_sum = __pyx_t_13;
 
-            /* "sklearn/tree/_tree.pyx":1425
+            /* "sklearn/tree/_tree.pyx":1359
  *                     impurity = split.impurity
  *                     w_sum = split.weight
  *                     node_value = split.node_value             # <<<<<<<<<<<<<<
@@ -12565,7 +12199,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           }
           __pyx_L17:;
 
-          /* "sklearn/tree/_tree.pyx":1427
+          /* "sklearn/tree/_tree.pyx":1361
  *                     node_value = split.node_value
  * 
  *                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,             # <<<<<<<<<<<<<<
@@ -12574,7 +12208,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
           __pyx_v_node_id = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->_add_node(__pyx_v_tree, __pyx_v_parent, __pyx_v_is_left, __pyx_v_is_leaf, __pyx_v_split.feature, __pyx_v_split.threshold, __pyx_v_impurity, __pyx_v_n_node_samples, __pyx_v_w_sum, __pyx_v_node_value);
 
-          /* "sklearn/tree/_tree.pyx":1431
+          /* "sklearn/tree/_tree.pyx":1365
  *                                          w_sum, node_value)
  * 
  *                 if node_id == <SIZE_t>(-1):             # <<<<<<<<<<<<<<
@@ -12584,7 +12218,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_9 = ((__pyx_v_node_id == ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)-1)) != 0);
           if (__pyx_t_9) {
 
-            /* "sklearn/tree/_tree.pyx":1432
+            /* "sklearn/tree/_tree.pyx":1366
  * 
  *                 if node_id == <SIZE_t>(-1):
  *                     rc = -1             # <<<<<<<<<<<<<<
@@ -12593,7 +12227,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
             __pyx_v_rc = -1;
 
-            /* "sklearn/tree/_tree.pyx":1433
+            /* "sklearn/tree/_tree.pyx":1367
  *                 if node_id == <SIZE_t>(-1):
  *                     rc = -1
  *                     break             # <<<<<<<<<<<<<<
@@ -12603,7 +12237,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             goto __pyx_L11_break;
           }
 
-          /* "sklearn/tree/_tree.pyx":1435
+          /* "sklearn/tree/_tree.pyx":1369
  *                     break
  * 
  *                 if not is_leaf:             # <<<<<<<<<<<<<<
@@ -12613,7 +12247,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_9 = ((!(__pyx_v_is_leaf != 0)) != 0);
           if (__pyx_t_9) {
 
-            /* "sklearn/tree/_tree.pyx":1436
+            /* "sklearn/tree/_tree.pyx":1370
  * 
  *                 if not is_leaf:
  *                     rc = stack.push(split.pos, end, depth + 1, node_id, 0,             # <<<<<<<<<<<<<<
@@ -12622,7 +12256,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
             __pyx_v_rc = ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->push(__pyx_v_stack, __pyx_v_split.pos, __pyx_v_end, (__pyx_v_depth + 1), __pyx_v_node_id, 0, __pyx_v_split.impurity_right, __pyx_v_split.weight_right, __pyx_v_split.yw_sq_sum_right, __pyx_v_split.node_value_right);
 
-            /* "sklearn/tree/_tree.pyx":1439
+            /* "sklearn/tree/_tree.pyx":1373
  *                                     split.impurity_right, split.weight_right,
  *                                     split.yw_sq_sum_right, split.node_value_right)
  *                     if rc == -1:             # <<<<<<<<<<<<<<
@@ -12632,7 +12266,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             __pyx_t_9 = ((__pyx_v_rc == -1) != 0);
             if (__pyx_t_9) {
 
-              /* "sklearn/tree/_tree.pyx":1440
+              /* "sklearn/tree/_tree.pyx":1374
  *                                     split.yw_sq_sum_right, split.node_value_right)
  *                     if rc == -1:
  *                         break             # <<<<<<<<<<<<<<
@@ -12642,7 +12276,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
               goto __pyx_L11_break;
             }
 
-            /* "sklearn/tree/_tree.pyx":1442
+            /* "sklearn/tree/_tree.pyx":1376
  *                         break
  * 
  *                     rc = stack.push(start, split.pos, depth + 1, node_id, 1,             # <<<<<<<<<<<<<<
@@ -12651,7 +12285,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
             __pyx_v_rc = ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *)__pyx_v_stack->__pyx_vtab)->push(__pyx_v_stack, __pyx_v_start, __pyx_v_split.pos, (__pyx_v_depth + 1), __pyx_v_node_id, 1, __pyx_v_split.impurity_left, __pyx_v_split.weight_left, __pyx_v_split.yw_sq_sum_left, __pyx_v_split.node_value_left);
 
-            /* "sklearn/tree/_tree.pyx":1445
+            /* "sklearn/tree/_tree.pyx":1379
  *                                     split.impurity_left, split.weight_left,
  *                                     split.yw_sq_sum_left, split.node_value_left)
  *                     if rc == -1:             # <<<<<<<<<<<<<<
@@ -12661,7 +12295,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
             __pyx_t_9 = ((__pyx_v_rc == -1) != 0);
             if (__pyx_t_9) {
 
-              /* "sklearn/tree/_tree.pyx":1446
+              /* "sklearn/tree/_tree.pyx":1380
  *                                     split.yw_sq_sum_left, split.node_value_left)
  *                     if rc == -1:
  *                         break             # <<<<<<<<<<<<<<
@@ -12674,7 +12308,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           }
           __pyx_L21:;
 
-          /* "sklearn/tree/_tree.pyx":1448
+          /* "sklearn/tree/_tree.pyx":1382
  *                         break
  * 
  *                 free(node_value)             # <<<<<<<<<<<<<<
@@ -12683,7 +12317,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
  */
           free(__pyx_v_node_value);
 
-          /* "sklearn/tree/_tree.pyx":1450
+          /* "sklearn/tree/_tree.pyx":1384
  *                 free(node_value)
  * 
  *                 if depth > max_depth_seen:             # <<<<<<<<<<<<<<
@@ -12693,7 +12327,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
           __pyx_t_9 = ((__pyx_v_depth > __pyx_v_max_depth_seen) != 0);
           if (__pyx_t_9) {
 
-            /* "sklearn/tree/_tree.pyx":1451
+            /* "sklearn/tree/_tree.pyx":1385
  * 
  *                 if depth > max_depth_seen:
  *                     max_depth_seen = depth             # <<<<<<<<<<<<<<
@@ -12707,7 +12341,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
         }
         __pyx_L11_break:;
 
-        /* "sklearn/tree/_tree.pyx":1453
+        /* "sklearn/tree/_tree.pyx":1387
  *                     max_depth_seen = depth
  * 
  *             if rc >= 0:             # <<<<<<<<<<<<<<
@@ -12717,7 +12351,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
         __pyx_t_9 = ((__pyx_v_rc >= 0) != 0);
         if (__pyx_t_9) {
 
-          /* "sklearn/tree/_tree.pyx":1454
+          /* "sklearn/tree/_tree.pyx":1388
  * 
  *             if rc >= 0:
  *                 rc = tree._resize_c(tree.node_count)             # <<<<<<<<<<<<<<
@@ -12732,7 +12366,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
         }
         __pyx_L25:;
 
-        /* "sklearn/tree/_tree.pyx":1456
+        /* "sklearn/tree/_tree.pyx":1390
  *                 rc = tree._resize_c(tree.node_count)
  * 
  *             if rc >= 0:             # <<<<<<<<<<<<<<
@@ -12742,7 +12376,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
         __pyx_t_9 = ((__pyx_v_rc >= 0) != 0);
         if (__pyx_t_9) {
 
-          /* "sklearn/tree/_tree.pyx":1457
+          /* "sklearn/tree/_tree.pyx":1391
  * 
  *             if rc >= 0:
  *                 tree.max_depth = max_depth_seen             # <<<<<<<<<<<<<<
@@ -12755,7 +12389,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
         __pyx_L26:;
       }
 
-      /* "sklearn/tree/_tree.pyx":1398
+      /* "sklearn/tree/_tree.pyx":1332
  *             raise MemoryError()
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -12773,7 +12407,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
       }
   }
 
-  /* "sklearn/tree/_tree.pyx":1459
+  /* "sklearn/tree/_tree.pyx":1393
  *                 tree.max_depth = max_depth_seen
  * 
  *         if rc == -1:             # <<<<<<<<<<<<<<
@@ -12783,17 +12417,17 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(struct 
   __pyx_t_9 = ((__pyx_v_rc == -1) != 0);
   if (__pyx_t_9) {
 
-    /* "sklearn/tree/_tree.pyx":1460
+    /* "sklearn/tree/_tree.pyx":1394
  * 
  *         if rc == -1:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     cpdef best_first(self, Tree tree, object X, np.ndarray y,
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1460; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1351
+  /* "sklearn/tree/_tree.pyx":1285
  *         return X, y, sample_weight
  * 
  *     cpdef depth_first(self, Tree tree, object X, np.ndarray y,             # <<<<<<<<<<<<<<
@@ -12864,31 +12498,31 @@ static PyObject *__pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_3depth_first(PyObj
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_sample_weight)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_presort)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_X_idx_sorted)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "depth_first") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "depth_first") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -12904,21 +12538,21 @@ static PyObject *__pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_3depth_first(PyObj
     __pyx_v_X = values[1];
     __pyx_v_y = ((PyArrayObject *)values[2]);
     __pyx_v_sample_weight = ((PyArrayObject *)values[3]);
-    __pyx_v_presort = __Pyx_PyObject_IsTrue(values[4]); if (unlikely((__pyx_v_presort == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1352; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_presort = __Pyx_PyObject_IsTrue(values[4]); if (unlikely((__pyx_v_presort == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1286; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_X_idx_sorted = ((PyArrayObject *)values[5]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("depth_first", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.TreeBuilder.depth_first", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_tree), __pyx_ptype_7sklearn_4tree_5_tree_Tree, 1, "tree", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_y), __pyx_ptype_5numpy_ndarray, 1, "y", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_sample_weight), __pyx_ptype_5numpy_ndarray, 1, "sample_weight", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1352; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_X_idx_sorted), __pyx_ptype_5numpy_ndarray, 1, "X_idx_sorted", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1353; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_tree), __pyx_ptype_7sklearn_4tree_5_tree_Tree, 1, "tree", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_y), __pyx_ptype_5numpy_ndarray, 1, "y", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_sample_weight), __pyx_ptype_5numpy_ndarray, 1, "sample_weight", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_X_idx_sorted), __pyx_ptype_5numpy_ndarray, 1, "X_idx_sorted", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder_2depth_first(((struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder *)__pyx_v_self), __pyx_v_tree, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight, __pyx_v_presort, __pyx_v_X_idx_sorted);
 
   /* function exit code */
@@ -12939,7 +12573,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder_2depth_first(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("depth_first", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(__pyx_v_self, __pyx_v_tree, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight, __pyx_v_presort, __pyx_v_X_idx_sorted, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first(__pyx_v_self, __pyx_v_tree, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight, __pyx_v_presort, __pyx_v_X_idx_sorted, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12956,7 +12590,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder_2depth_first(struc
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1462
+/* "sklearn/tree/_tree.pyx":1396
  *             raise MemoryError()
  * 
  *     cpdef best_first(self, Tree tree, object X, np.ndarray y,             # <<<<<<<<<<<<<<
@@ -13013,11 +12647,11 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_best_first); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_best_first); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_5best_first)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_presort); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_presort); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -13032,7 +12666,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(6+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(6+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -13055,7 +12689,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
       __Pyx_GIVEREF(((PyObject *)__pyx_v_X_idx_sorted));
       PyTuple_SET_ITEM(__pyx_t_7, 5+__pyx_t_6, ((PyObject *)__pyx_v_X_idx_sorted));
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -13067,14 +12701,14 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1467
+  /* "sklearn/tree/_tree.pyx":1401
  *         """Build a decision tree from the training set (X, y)."""
  * 
  *         X, y, sample_weight = self._check_input(X, y, sample_weight)             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* sample_weight_ptr = <DOUBLE_t*> sample_weight.data
  * 
  */
-  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(__pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input(__pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -13086,7 +12720,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
     if (unlikely(size != 3)) {
       if (size > 3) __Pyx_RaiseTooManyValuesError(3);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     #if CYTHON_COMPILING_IN_CPYTHON
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -13102,17 +12736,17 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
     __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_7);
     #else
-    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -13122,7 +12756,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
     __Pyx_GOTREF(__pyx_t_4);
     index = 2; __pyx_t_7 = __pyx_t_8(__pyx_t_3); if (unlikely(!__pyx_t_7)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_7);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_3), 3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_3), 3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_8 = NULL;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     goto __pyx_L4_unpacking_done;
@@ -13130,11 +12764,11 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_8 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_L4_unpacking_done:;
   }
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1467; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_2);
   __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_y, ((PyArrayObject *)__pyx_t_4));
@@ -13142,7 +12776,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __Pyx_DECREF_SET(__pyx_v_sample_weight, ((PyArrayObject *)__pyx_t_7));
   __pyx_t_7 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1468
+  /* "sklearn/tree/_tree.pyx":1402
  * 
  *         X, y, sample_weight = self._check_input(X, y, sample_weight)
  *         cdef DOUBLE_t* sample_weight_ptr = <DOUBLE_t*> sample_weight.data             # <<<<<<<<<<<<<<
@@ -13151,7 +12785,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
   __pyx_v_sample_weight_ptr = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)__pyx_v_sample_weight->data);
 
-  /* "sklearn/tree/_tree.pyx":1470
+  /* "sklearn/tree/_tree.pyx":1404
  *         cdef DOUBLE_t* sample_weight_ptr = <DOUBLE_t*> sample_weight.data
  * 
  *         cdef Splitter splitter = self.splitter             # <<<<<<<<<<<<<<
@@ -13163,7 +12797,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __pyx_v_splitter = ((struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1471
+  /* "sklearn/tree/_tree.pyx":1405
  * 
  *         cdef Splitter splitter = self.splitter
  *         cdef SIZE_t max_leaf_nodes = self.max_leaf_nodes             # <<<<<<<<<<<<<<
@@ -13173,7 +12807,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __pyx_t_9 = __pyx_v_self->max_leaf_nodes;
   __pyx_v_max_leaf_nodes = __pyx_t_9;
 
-  /* "sklearn/tree/_tree.pyx":1472
+  /* "sklearn/tree/_tree.pyx":1406
  *         cdef Splitter splitter = self.splitter
  *         cdef SIZE_t max_leaf_nodes = self.max_leaf_nodes
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf             # <<<<<<<<<<<<<<
@@ -13183,7 +12817,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __pyx_t_9 = __pyx_v_self->min_samples_leaf;
   __pyx_v_min_samples_leaf = __pyx_t_9;
 
-  /* "sklearn/tree/_tree.pyx":1473
+  /* "sklearn/tree/_tree.pyx":1407
  *         cdef SIZE_t max_leaf_nodes = self.max_leaf_nodes
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf             # <<<<<<<<<<<<<<
@@ -13193,7 +12827,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __pyx_t_10 = __pyx_v_self->min_weight_leaf;
   __pyx_v_min_weight_leaf = __pyx_t_10;
 
-  /* "sklearn/tree/_tree.pyx":1474
+  /* "sklearn/tree/_tree.pyx":1408
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf
  *         cdef SIZE_t min_samples_split = self.min_samples_split             # <<<<<<<<<<<<<<
@@ -13203,7 +12837,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __pyx_t_9 = __pyx_v_self->min_samples_split;
   __pyx_v_min_samples_split = __pyx_t_9;
 
-  /* "sklearn/tree/_tree.pyx":1481
+  /* "sklearn/tree/_tree.pyx":1415
  * 
  *         # Recursive partition (without actual recursion)
  *         splitter.init(X, X_idx_sorted, presort, y, sample_weight_ptr, &w_sum,             # <<<<<<<<<<<<<<
@@ -13212,27 +12846,27 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
   ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->init(__pyx_v_splitter, __pyx_v_X, __pyx_v_X_idx_sorted, __pyx_v_presort, __pyx_v_y, __pyx_v_sample_weight_ptr, (&__pyx_v_w_sum), (&__pyx_v_yw_sq_sum), (&__pyx_v_node_value), (&__pyx_v_n_node_samples));
 
-  /* "sklearn/tree/_tree.pyx":1484
+  /* "sklearn/tree/_tree.pyx":1418
  *             &yw_sq_sum, &node_value, &n_node_samples)
  * 
  *         cdef PriorityHeap frontier = PriorityHeap(INITIAL_STACK_SIZE)             # <<<<<<<<<<<<<<
  *         cdef SplitRecord parent, split
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_7sklearn_4tree_5_tree_INITIAL_STACK_SIZE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1484; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_7sklearn_4tree_5_tree_INITIAL_STACK_SIZE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1418; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1484; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1418; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1484; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1418; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_frontier = ((struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1487
+  /* "sklearn/tree/_tree.pyx":1421
  *         cdef SplitRecord parent, split
  * 
  *         cdef SIZE_t max_split_nodes = max_leaf_nodes - 1             # <<<<<<<<<<<<<<
@@ -13241,7 +12875,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
   __pyx_v_max_split_nodes = (__pyx_v_max_leaf_nodes - 1);
 
-  /* "sklearn/tree/_tree.pyx":1489
+  /* "sklearn/tree/_tree.pyx":1423
  *         cdef SIZE_t max_split_nodes = max_leaf_nodes - 1
  *         cdef bint is_leaf
  *         cdef SIZE_t max_depth_seen = -1             # <<<<<<<<<<<<<<
@@ -13250,7 +12884,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
   __pyx_v_max_depth_seen = -1;
 
-  /* "sklearn/tree/_tree.pyx":1490
+  /* "sklearn/tree/_tree.pyx":1424
  *         cdef bint is_leaf
  *         cdef SIZE_t max_depth_seen = -1
  *         cdef int rc = 0             # <<<<<<<<<<<<<<
@@ -13259,7 +12893,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
   __pyx_v_rc = 0;
 
-  /* "sklearn/tree/_tree.pyx":1493
+  /* "sklearn/tree/_tree.pyx":1427
  * 
  *         # Initial capacity
  *         cdef SIZE_t init_capacity = max_split_nodes + max_leaf_nodes             # <<<<<<<<<<<<<<
@@ -13268,7 +12902,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
   __pyx_v_init_capacity = (__pyx_v_max_split_nodes + __pyx_v_max_leaf_nodes);
 
-  /* "sklearn/tree/_tree.pyx":1494
+  /* "sklearn/tree/_tree.pyx":1428
  *         # Initial capacity
  *         cdef SIZE_t init_capacity = max_split_nodes + max_leaf_nodes
  *         tree._resize_c(init_capacity)             # <<<<<<<<<<<<<<
@@ -13279,7 +12913,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __pyx_t_11.capacity = __pyx_v_init_capacity;
   ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->_resize_c(__pyx_v_tree, &__pyx_t_11); 
 
-  /* "sklearn/tree/_tree.pyx":1496
+  /* "sklearn/tree/_tree.pyx":1430
  *         tree._resize_c(init_capacity)
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -13293,7 +12927,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
       #endif
       /*try:*/ {
 
-        /* "sklearn/tree/_tree.pyx":1497
+        /* "sklearn/tree/_tree.pyx":1431
  * 
  *         with nogil:
  *             split = splitter.split(0, n_node_samples, w_sum, yw_sq_sum,             # <<<<<<<<<<<<<<
@@ -13302,7 +12936,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
         __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->split(__pyx_v_splitter, 0, __pyx_v_n_node_samples, __pyx_v_w_sum, __pyx_v_yw_sq_sum, __pyx_v_node_value);
 
-        /* "sklearn/tree/_tree.pyx":1499
+        /* "sklearn/tree/_tree.pyx":1433
  *             split = splitter.split(0, n_node_samples, w_sum, yw_sq_sum,
  *                 node_value)
  *             split.depth = 0             # <<<<<<<<<<<<<<
@@ -13311,7 +12945,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
         __pyx_v_split.depth = 0;
 
-        /* "sklearn/tree/_tree.pyx":1500
+        /* "sklearn/tree/_tree.pyx":1434
  *                 node_value)
  *             split.depth = 0
  *             split.parent = _TREE_UNDEFINED             # <<<<<<<<<<<<<<
@@ -13320,7 +12954,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
         __pyx_v_split.parent = __pyx_v_7sklearn_4tree_5_tree__TREE_UNDEFINED;
 
-        /* "sklearn/tree/_tree.pyx":1501
+        /* "sklearn/tree/_tree.pyx":1435
  *             split.depth = 0
  *             split.parent = _TREE_UNDEFINED
  *             split.is_left = 0             # <<<<<<<<<<<<<<
@@ -13329,7 +12963,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
         __pyx_v_split.is_left = 0;
 
-        /* "sklearn/tree/_tree.pyx":1503
+        /* "sklearn/tree/_tree.pyx":1437
  *             split.is_left = 0
  * 
  *             frontier.push(split)             # <<<<<<<<<<<<<<
@@ -13338,7 +12972,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
         ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap *)__pyx_v_frontier->__pyx_vtab)->push(__pyx_v_frontier, __pyx_v_split);
 
-        /* "sklearn/tree/_tree.pyx":1505
+        /* "sklearn/tree/_tree.pyx":1439
  *             frontier.push(split)
  * 
  *             while not frontier.is_empty():             # <<<<<<<<<<<<<<
@@ -13349,7 +12983,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
           __pyx_t_12 = ((!(((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap *)__pyx_v_frontier->__pyx_vtab)->is_empty(__pyx_v_frontier) != 0)) != 0);
           if (!__pyx_t_12) break;
 
-          /* "sklearn/tree/_tree.pyx":1506
+          /* "sklearn/tree/_tree.pyx":1440
  * 
  *             while not frontier.is_empty():
  *                 frontier.pop(&parent)             # <<<<<<<<<<<<<<
@@ -13358,7 +12992,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
           ((struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap *)__pyx_v_frontier->__pyx_vtab)->pop(__pyx_v_frontier, (&__pyx_v_parent));
 
-          /* "sklearn/tree/_tree.pyx":1508
+          /* "sklearn/tree/_tree.pyx":1442
  *                 frontier.pop(&parent)
  * 
  *                 n_node_samples = parent.end - parent.start             # <<<<<<<<<<<<<<
@@ -13367,7 +13001,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
           __pyx_v_n_node_samples = (__pyx_v_parent.end - __pyx_v_parent.start);
 
-          /* "sklearn/tree/_tree.pyx":1510
+          /* "sklearn/tree/_tree.pyx":1444
  *                 n_node_samples = parent.end - parent.start
  * 
  *                 is_leaf = ((parent.depth >= self.max_depth) or             # <<<<<<<<<<<<<<
@@ -13381,7 +13015,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             goto __pyx_L10_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1511
+          /* "sklearn/tree/_tree.pyx":1445
  * 
  *                 is_leaf = ((parent.depth >= self.max_depth) or
  *                            (n_node_samples < min_samples_split) or             # <<<<<<<<<<<<<<
@@ -13395,7 +13029,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             goto __pyx_L10_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1512
+          /* "sklearn/tree/_tree.pyx":1446
  *                 is_leaf = ((parent.depth >= self.max_depth) or
  *                            (n_node_samples < min_samples_split) or
  *                            (n_node_samples < 2 * min_samples_leaf) or             # <<<<<<<<<<<<<<
@@ -13409,7 +13043,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             goto __pyx_L10_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1513
+          /* "sklearn/tree/_tree.pyx":1447
  *                            (n_node_samples < min_samples_split) or
  *                            (n_node_samples < 2 * min_samples_leaf) or
  *                            (parent.weight <= 2 * min_weight_leaf) or             # <<<<<<<<<<<<<<
@@ -13423,7 +13057,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             goto __pyx_L10_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1514
+          /* "sklearn/tree/_tree.pyx":1448
  *                            (n_node_samples < 2 * min_samples_leaf) or
  *                            (parent.weight <= 2 * min_weight_leaf) or
  *                            (parent.impurity <= MIN_IMPURITY_SPLIT) or             # <<<<<<<<<<<<<<
@@ -13437,7 +13071,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             goto __pyx_L10_bool_binop_done;
           }
 
-          /* "sklearn/tree/_tree.pyx":1515
+          /* "sklearn/tree/_tree.pyx":1449
  *                            (parent.weight <= 2 * min_weight_leaf) or
  *                            (parent.impurity <= MIN_IMPURITY_SPLIT) or
  *                            (max_split_nodes <= 0))             # <<<<<<<<<<<<<<
@@ -13449,7 +13083,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
           __pyx_L10_bool_binop_done:;
           __pyx_v_is_leaf = __pyx_t_12;
 
-          /* "sklearn/tree/_tree.pyx":1517
+          /* "sklearn/tree/_tree.pyx":1451
  *                            (max_split_nodes <= 0))
  * 
  *                 node_id = tree._add_node(parent.parent, parent.is_left,             # <<<<<<<<<<<<<<
@@ -13458,7 +13092,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
           __pyx_v_node_id = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->_add_node(__pyx_v_tree, __pyx_v_parent.parent, __pyx_v_parent.is_left, __pyx_v_is_leaf, __pyx_v_parent.feature, __pyx_v_parent.threshold, __pyx_v_parent.impurity, __pyx_v_n_node_samples, __pyx_v_parent.weight, __pyx_v_parent.node_value);
 
-          /* "sklearn/tree/_tree.pyx":1522
+          /* "sklearn/tree/_tree.pyx":1456
  *                     parent.node_value)
  * 
  *                 if not is_leaf:             # <<<<<<<<<<<<<<
@@ -13468,7 +13102,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
           __pyx_t_12 = ((!(__pyx_v_is_leaf != 0)) != 0);
           if (__pyx_t_12) {
 
-            /* "sklearn/tree/_tree.pyx":1523
+            /* "sklearn/tree/_tree.pyx":1457
  * 
  *                 if not is_leaf:
  *                     max_split_nodes -= 1             # <<<<<<<<<<<<<<
@@ -13477,7 +13111,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
             __pyx_v_max_split_nodes = (__pyx_v_max_split_nodes - 1);
 
-            /* "sklearn/tree/_tree.pyx":1525
+            /* "sklearn/tree/_tree.pyx":1459
  *                     max_split_nodes -= 1
  * 
  *                     if ((parent.impurity_left < MIN_IMPURITY_SPLIT) or             # <<<<<<<<<<<<<<
@@ -13491,7 +13125,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
               goto __pyx_L18_bool_binop_done;
             }
 
-            /* "sklearn/tree/_tree.pyx":1526
+            /* "sklearn/tree/_tree.pyx":1460
  * 
  *                     if ((parent.impurity_left < MIN_IMPURITY_SPLIT) or
  *                         (max_split_nodes <=0)):             # <<<<<<<<<<<<<<
@@ -13503,7 +13137,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             __pyx_L18_bool_binop_done:;
             if (__pyx_t_12) {
 
-              /* "sklearn/tree/_tree.pyx":1527
+              /* "sklearn/tree/_tree.pyx":1461
  *                     if ((parent.impurity_left < MIN_IMPURITY_SPLIT) or
  *                         (max_split_nodes <=0)):
  *                         tree._add_node(node_id, 1, 1, 0, 0,             # <<<<<<<<<<<<<<
@@ -13515,7 +13149,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             }
             /*else*/ {
 
-              /* "sklearn/tree/_tree.pyx":1531
+              /* "sklearn/tree/_tree.pyx":1465
  *                             parent.weight_left, parent.node_value_left)
  *                     else:
  *                         split = splitter.split(parent.start, parent.pos,             # <<<<<<<<<<<<<<
@@ -13524,7 +13158,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->split(__pyx_v_splitter, __pyx_v_parent.start, __pyx_v_parent.pos, __pyx_v_parent.weight_left, __pyx_v_parent.yw_sq_sum_left, __pyx_v_parent.node_value_left);
 
-              /* "sklearn/tree/_tree.pyx":1535
+              /* "sklearn/tree/_tree.pyx":1469
  *                             parent.node_value_left)
  * 
  *                         split.is_left = 1             # <<<<<<<<<<<<<<
@@ -13533,7 +13167,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split.is_left = 1;
 
-              /* "sklearn/tree/_tree.pyx":1536
+              /* "sklearn/tree/_tree.pyx":1470
  * 
  *                         split.is_left = 1
  *                         split.parent = node_id             # <<<<<<<<<<<<<<
@@ -13542,7 +13176,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split.parent = __pyx_v_node_id;
 
-              /* "sklearn/tree/_tree.pyx":1537
+              /* "sklearn/tree/_tree.pyx":1471
  *                         split.is_left = 1
  *                         split.parent = node_id
  *                         split.depth = parent.depth + 1             # <<<<<<<<<<<<<<
@@ -13551,7 +13185,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split.depth = (__pyx_v_parent.depth + 1);
 
-              /* "sklearn/tree/_tree.pyx":1539
+              /* "sklearn/tree/_tree.pyx":1473
  *                         split.depth = parent.depth + 1
  * 
  *                         frontier.push(split)             # <<<<<<<<<<<<<<
@@ -13562,7 +13196,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             }
             __pyx_L17:;
 
-            /* "sklearn/tree/_tree.pyx":1541
+            /* "sklearn/tree/_tree.pyx":1475
  *                         frontier.push(split)
  * 
  *                     if ((parent.impurity_right < MIN_IMPURITY_SPLIT) or             # <<<<<<<<<<<<<<
@@ -13576,7 +13210,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
               goto __pyx_L21_bool_binop_done;
             }
 
-            /* "sklearn/tree/_tree.pyx":1542
+            /* "sklearn/tree/_tree.pyx":1476
  * 
  *                     if ((parent.impurity_right < MIN_IMPURITY_SPLIT) or
  *                         (max_split_nodes <=0)):             # <<<<<<<<<<<<<<
@@ -13588,7 +13222,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             __pyx_L21_bool_binop_done:;
             if (__pyx_t_12) {
 
-              /* "sklearn/tree/_tree.pyx":1543
+              /* "sklearn/tree/_tree.pyx":1477
  *                     if ((parent.impurity_right < MIN_IMPURITY_SPLIT) or
  *                         (max_split_nodes <=0)):
  *                         tree._add_node(node_id, 0, 1, 0, 0,             # <<<<<<<<<<<<<<
@@ -13600,7 +13234,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             }
             /*else*/ {
 
-              /* "sklearn/tree/_tree.pyx":1547
+              /* "sklearn/tree/_tree.pyx":1481
  *                             parent.weight_right, parent.node_value_right)
  *                     else:
  *                         split = splitter.split(parent.pos, parent.end,             # <<<<<<<<<<<<<<
@@ -13609,7 +13243,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split = ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Splitter *)__pyx_v_splitter->__pyx_vtab)->split(__pyx_v_splitter, __pyx_v_parent.pos, __pyx_v_parent.end, __pyx_v_parent.weight_right, __pyx_v_parent.yw_sq_sum_right, __pyx_v_parent.node_value_right);
 
-              /* "sklearn/tree/_tree.pyx":1551
+              /* "sklearn/tree/_tree.pyx":1485
  *                             parent.node_value_right)
  * 
  *                         split.is_left = 0             # <<<<<<<<<<<<<<
@@ -13618,7 +13252,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split.is_left = 0;
 
-              /* "sklearn/tree/_tree.pyx":1552
+              /* "sklearn/tree/_tree.pyx":1486
  * 
  *                         split.is_left = 0
  *                         split.parent = node_id             # <<<<<<<<<<<<<<
@@ -13627,7 +13261,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split.parent = __pyx_v_node_id;
 
-              /* "sklearn/tree/_tree.pyx":1553
+              /* "sklearn/tree/_tree.pyx":1487
  *                         split.is_left = 0
  *                         split.parent = node_id
  *                         split.depth = parent.depth + 1             # <<<<<<<<<<<<<<
@@ -13636,7 +13270,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
  */
               __pyx_v_split.depth = (__pyx_v_parent.depth + 1);
 
-              /* "sklearn/tree/_tree.pyx":1555
+              /* "sklearn/tree/_tree.pyx":1489
  *                         split.depth = parent.depth + 1
  * 
  *                         frontier.push(split)             # <<<<<<<<<<<<<<
@@ -13647,7 +13281,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             }
             __pyx_L20:;
 
-            /* "sklearn/tree/_tree.pyx":1557
+            /* "sklearn/tree/_tree.pyx":1491
  *                         frontier.push(split)
  * 
  *                     if split.depth > max_depth_seen:             # <<<<<<<<<<<<<<
@@ -13657,7 +13291,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
             __pyx_t_12 = ((__pyx_v_split.depth > __pyx_v_max_depth_seen) != 0);
             if (__pyx_t_12) {
 
-              /* "sklearn/tree/_tree.pyx":1558
+              /* "sklearn/tree/_tree.pyx":1492
  * 
  *                     if split.depth > max_depth_seen:
  *                         max_depth_seen = split.depth             # <<<<<<<<<<<<<<
@@ -13674,7 +13308,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
           __pyx_L16:;
         }
 
-        /* "sklearn/tree/_tree.pyx":1560
+        /* "sklearn/tree/_tree.pyx":1494
  *                         max_depth_seen = split.depth
  * 
  *             if rc >= 0:             # <<<<<<<<<<<<<<
@@ -13684,7 +13318,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
         __pyx_t_12 = ((__pyx_v_rc >= 0) != 0);
         if (__pyx_t_12) {
 
-          /* "sklearn/tree/_tree.pyx":1561
+          /* "sklearn/tree/_tree.pyx":1495
  * 
  *             if rc >= 0:
  *                 rc = tree._resize_c(tree.node_count)             # <<<<<<<<<<<<<<
@@ -13699,7 +13333,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
         }
         __pyx_L24:;
 
-        /* "sklearn/tree/_tree.pyx":1563
+        /* "sklearn/tree/_tree.pyx":1497
  *                 rc = tree._resize_c(tree.node_count)
  * 
  *             if rc >= 0:             # <<<<<<<<<<<<<<
@@ -13709,7 +13343,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
         __pyx_t_12 = ((__pyx_v_rc >= 0) != 0);
         if (__pyx_t_12) {
 
-          /* "sklearn/tree/_tree.pyx":1564
+          /* "sklearn/tree/_tree.pyx":1498
  * 
  *             if rc >= 0:
  *                 tree.max_depth = max_depth_seen             # <<<<<<<<<<<<<<
@@ -13722,7 +13356,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
         __pyx_L25:;
       }
 
-      /* "sklearn/tree/_tree.pyx":1496
+      /* "sklearn/tree/_tree.pyx":1430
  *         tree._resize_c(init_capacity)
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -13740,7 +13374,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
       }
   }
 
-  /* "sklearn/tree/_tree.pyx":1566
+  /* "sklearn/tree/_tree.pyx":1500
  *                 tree.max_depth = max_depth_seen
  * 
  *         if rc == -1:             # <<<<<<<<<<<<<<
@@ -13750,17 +13384,17 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(struct _
   __pyx_t_12 = ((__pyx_v_rc == -1) != 0);
   if (__pyx_t_12) {
 
-    /* "sklearn/tree/_tree.pyx":1567
+    /* "sklearn/tree/_tree.pyx":1501
  * 
  *         if rc == -1:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1567; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1462
+  /* "sklearn/tree/_tree.pyx":1396
  *             raise MemoryError()
  * 
  *     cpdef best_first(self, Tree tree, object X, np.ndarray y,             # <<<<<<<<<<<<<<
@@ -13831,31 +13465,31 @@ static PyObject *__pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_5best_first(PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_sample_weight)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_presort)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_X_idx_sorted)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "best_first") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "best_first") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -13871,21 +13505,21 @@ static PyObject *__pyx_pw_7sklearn_4tree_5_tree_11TreeBuilder_5best_first(PyObje
     __pyx_v_X = values[1];
     __pyx_v_y = ((PyArrayObject *)values[2]);
     __pyx_v_sample_weight = ((PyArrayObject *)values[3]);
-    __pyx_v_presort = __Pyx_PyObject_IsTrue(values[4]); if (unlikely((__pyx_v_presort == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1463; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_presort = __Pyx_PyObject_IsTrue(values[4]); if (unlikely((__pyx_v_presort == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1397; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_X_idx_sorted = ((PyArrayObject *)values[5]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("best_first", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.TreeBuilder.best_first", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_tree), __pyx_ptype_7sklearn_4tree_5_tree_Tree, 1, "tree", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_y), __pyx_ptype_5numpy_ndarray, 1, "y", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_sample_weight), __pyx_ptype_5numpy_ndarray, 1, "sample_weight", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_X_idx_sorted), __pyx_ptype_5numpy_ndarray, 1, "X_idx_sorted", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1464; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_tree), __pyx_ptype_7sklearn_4tree_5_tree_Tree, 1, "tree", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_y), __pyx_ptype_5numpy_ndarray, 1, "y", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_sample_weight), __pyx_ptype_5numpy_ndarray, 1, "sample_weight", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_X_idx_sorted), __pyx_ptype_5numpy_ndarray, 1, "X_idx_sorted", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1398; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder_4best_first(((struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder *)__pyx_v_self), __pyx_v_tree, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight, __pyx_v_presort, __pyx_v_X_idx_sorted);
 
   /* function exit code */
@@ -13906,7 +13540,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder_4best_first(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("best_first", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(__pyx_v_self, __pyx_v_tree, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight, __pyx_v_presort, __pyx_v_X_idx_sorted, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first(__pyx_v_self, __pyx_v_tree, __pyx_v_X, __pyx_v_y, __pyx_v_sample_weight, __pyx_v_presort, __pyx_v_X_idx_sorted, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13923,7 +13557,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_11TreeBuilder_4best_first(struct
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1633
+/* "sklearn/tree/_tree.pyx":1567
  *     # (i.e. through `_resize` or `__setstate__`)
  *     property n_classes:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -13955,7 +13589,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_classes___get__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1635
+  /* "sklearn/tree/_tree.pyx":1569
  *         def __get__(self):
  *             # it's small; copy for memory safety
  *             return sizet_ptr_to_ndarray(self.n_classes, self.n_outputs).copy()             # <<<<<<<<<<<<<<
@@ -13963,9 +13597,9 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_classes___get__(struct 
  *     property children_left:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_ndarray(__pyx_v_self->n_classes, __pyx_v_self->n_outputs)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_ndarray(__pyx_v_self->n_classes, __pyx_v_self->n_outputs)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -13979,10 +13613,10 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_classes___get__(struct 
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13990,7 +13624,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_classes___get__(struct 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1633
+  /* "sklearn/tree/_tree.pyx":1567
  *     # (i.e. through `_resize` or `__setstate__`)
  *     property n_classes:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14011,7 +13645,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_classes___get__(struct 
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1638
+/* "sklearn/tree/_tree.pyx":1572
  * 
  *     property children_left:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14042,7 +13676,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_13children_left___get__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1639
+  /* "sklearn/tree/_tree.pyx":1573
  *     property children_left:
  *         def __get__(self):
  *             return self._get_node_ndarray()['left_child'][:self.node_count]             # <<<<<<<<<<<<<<
@@ -14050,19 +13684,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_13children_left___get__(st
  *     property children_right:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_left_child); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1639; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_left_child); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1573; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1638
+  /* "sklearn/tree/_tree.pyx":1572
  * 
  *     property children_left:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14082,7 +13716,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_13children_left___get__(st
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1642
+/* "sklearn/tree/_tree.pyx":1576
  * 
  *     property children_right:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14113,7 +13747,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14children_right___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1643
+  /* "sklearn/tree/_tree.pyx":1577
  *     property children_right:
  *         def __get__(self):
  *             return self._get_node_ndarray()['right_child'][:self.node_count]             # <<<<<<<<<<<<<<
@@ -14121,19 +13755,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14children_right___get__(s
  *     property feature:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1577; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_right_child); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1643; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_right_child); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1577; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1577; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1642
+  /* "sklearn/tree/_tree.pyx":1576
  * 
  *     property children_right:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14153,7 +13787,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14children_right___get__(s
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1646
+/* "sklearn/tree/_tree.pyx":1580
  * 
  *     property feature:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14184,7 +13818,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_7feature___get__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1647
+  /* "sklearn/tree/_tree.pyx":1581
  *     property feature:
  *         def __get__(self):
  *             return self._get_node_ndarray()['feature'][:self.node_count]             # <<<<<<<<<<<<<<
@@ -14192,19 +13826,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_7feature___get__(struct __
  *     property threshold:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1647; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_feature); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1647; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_feature); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1581; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1647; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1646
+  /* "sklearn/tree/_tree.pyx":1580
  * 
  *     property feature:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14224,7 +13858,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_7feature___get__(struct __
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1650
+/* "sklearn/tree/_tree.pyx":1584
  * 
  *     property threshold:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14255,7 +13889,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9threshold___get__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1651
+  /* "sklearn/tree/_tree.pyx":1585
  *     property threshold:
  *         def __get__(self):
  *             return self._get_node_ndarray()['threshold'][:self.node_count]             # <<<<<<<<<<<<<<
@@ -14263,19 +13897,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9threshold___get__(struct 
  *     property impurity:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1651; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1585; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_threshold); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1651; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_threshold); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1585; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1651; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1585; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1650
+  /* "sklearn/tree/_tree.pyx":1584
  * 
  *     property threshold:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14295,7 +13929,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9threshold___get__(struct 
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1654
+/* "sklearn/tree/_tree.pyx":1588
  * 
  *     property impurity:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14326,7 +13960,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8impurity___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1655
+  /* "sklearn/tree/_tree.pyx":1589
  *     property impurity:
  *         def __get__(self):
  *             return self._get_node_ndarray()['impurity'][:self.node_count]             # <<<<<<<<<<<<<<
@@ -14334,19 +13968,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8impurity___get__(struct _
  *     property n_node_samples:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1655; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_impurity); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1655; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_impurity); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1589; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1655; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1654
+  /* "sklearn/tree/_tree.pyx":1588
  * 
  *     property impurity:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14366,7 +14000,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8impurity___get__(struct _
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1658
+/* "sklearn/tree/_tree.pyx":1592
  * 
  *     property n_node_samples:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14397,7 +14031,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14n_node_samples___get__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1659
+  /* "sklearn/tree/_tree.pyx":1593
  *     property n_node_samples:
  *         def __get__(self):
  *             return self._get_node_ndarray()['n_node_samples'][:self.node_count]             # <<<<<<<<<<<<<<
@@ -14405,19 +14039,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14n_node_samples___get__(s
  *     property weighted_n_node_samples:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1659; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1593; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_n_node_samples); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1659; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_n_node_samples); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1593; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1659; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1593; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1658
+  /* "sklearn/tree/_tree.pyx":1592
  * 
  *     property n_node_samples:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14437,7 +14071,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14n_node_samples___get__(s
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1662
+/* "sklearn/tree/_tree.pyx":1596
  * 
  *     property weighted_n_node_samples:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14468,7 +14102,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_23weighted_n_node_samples_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1663
+  /* "sklearn/tree/_tree.pyx":1597
  *     property weighted_n_node_samples:
  *         def __get__(self):
  *             return self._get_node_ndarray()['weighted_n_node_samples'][:self.node_count]             # <<<<<<<<<<<<<<
@@ -14476,19 +14110,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_23weighted_n_node_samples_
  *     property value:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1663; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1597; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_weighted_n_node_samples); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1663; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_1, __pyx_n_s_weighted_n_node_samples); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1597; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1663; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1597; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1662
+  /* "sklearn/tree/_tree.pyx":1596
  * 
  *     property weighted_n_node_samples:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14508,7 +14142,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_23weighted_n_node_samples_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1666
+/* "sklearn/tree/_tree.pyx":1600
  * 
  *     property value:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14539,7 +14173,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_5value___get__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1667
+  /* "sklearn/tree/_tree.pyx":1601
  *     property value:
  *         def __get__(self):
  *             return self._get_value_ndarray()[:self.node_count]             # <<<<<<<<<<<<<<
@@ -14547,16 +14181,16 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_5value___get__(struct __py
  *     def __cinit__(self, int n_features, np.ndarray[SIZE_t, ndim=1] n_classes,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_value_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1667; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_value_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1601; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1667; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, __pyx_v_self->node_count, NULL, NULL, NULL, 0, 1, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1601; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1666
+  /* "sklearn/tree/_tree.pyx":1600
  * 
  *     property value:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -14576,7 +14210,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_5value___get__(struct __py
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1669
+/* "sklearn/tree/_tree.pyx":1603
  *             return self._get_value_ndarray()[:self.node_count]
  * 
  *     def __cinit__(self, int n_features, np.ndarray[SIZE_t, ndim=1] n_classes,             # <<<<<<<<<<<<<<
@@ -14617,16 +14251,16 @@ static int __pyx_pw_7sklearn_4tree_5_tree_4Tree_1__cinit__(PyObject *__pyx_v_sel
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_classes)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1669; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_outputs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1669; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1669; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -14635,19 +14269,19 @@ static int __pyx_pw_7sklearn_4tree_5_tree_4Tree_1__cinit__(PyObject *__pyx_v_sel
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_n_features = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_n_features == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1669; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_features = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_n_features == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_n_classes = ((PyArrayObject *)values[1]);
-    __pyx_v_n_outputs = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_n_outputs == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1670; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_outputs = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_n_outputs == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1604; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1669; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.Tree.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_n_classes), __pyx_ptype_5numpy_ndarray, 1, "n_classes", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_n_classes), __pyx_ptype_5numpy_ndarray, 1, "n_classes", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(((struct __pyx_obj_7sklearn_4tree_5_tree_Tree *)__pyx_v_self), __pyx_v_n_features, __pyx_v_n_classes, __pyx_v_n_outputs);
 
   /* function exit code */
@@ -14682,11 +14316,11 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
   __pyx_pybuffernd_n_classes.rcbuffer = &__pyx_pybuffer_n_classes;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_n_classes.rcbuffer->pybuffer, (PyObject*)__pyx_v_n_classes, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_n_classes.rcbuffer->pybuffer, (PyObject*)__pyx_v_n_classes, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1603; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_pybuffernd_n_classes.diminfo[0].strides = __pyx_pybuffernd_n_classes.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_n_classes.diminfo[0].shape = __pyx_pybuffernd_n_classes.rcbuffer->pybuffer.shape[0];
 
-  /* "sklearn/tree/_tree.pyx":1673
+  /* "sklearn/tree/_tree.pyx":1607
  *         """Constructor."""
  *         # Input/Output layout
  *         self.n_features = n_features             # <<<<<<<<<<<<<<
@@ -14695,7 +14329,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->n_features = __pyx_v_n_features;
 
-  /* "sklearn/tree/_tree.pyx":1674
+  /* "sklearn/tree/_tree.pyx":1608
  *         # Input/Output layout
  *         self.n_features = n_features
  *         self.n_outputs = n_outputs             # <<<<<<<<<<<<<<
@@ -14704,7 +14338,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->n_outputs = __pyx_v_n_outputs;
 
-  /* "sklearn/tree/_tree.pyx":1675
+  /* "sklearn/tree/_tree.pyx":1609
  *         self.n_features = n_features
  *         self.n_outputs = n_outputs
  *         self.n_classes = NULL             # <<<<<<<<<<<<<<
@@ -14713,25 +14347,25 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->n_classes = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1676
+  /* "sklearn/tree/_tree.pyx":1610
  *         self.n_outputs = n_outputs
  *         self.n_classes = NULL
  *         safe_realloc(&self.n_classes, n_outputs)             # <<<<<<<<<<<<<<
  * 
  *         self.max_n_classes = np.max(n_classes)
  */
-  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->n_classes), __pyx_v_n_outputs); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1676; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_self->n_classes), __pyx_v_n_outputs); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_tree.pyx":1678
+  /* "sklearn/tree/_tree.pyx":1612
  *         safe_realloc(&self.n_classes, n_outputs)
  * 
  *         self.max_n_classes = np.max(n_classes)             # <<<<<<<<<<<<<<
  *         self.value_stride = n_outputs * self.max_n_classes
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1612; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_max); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_max); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1612; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -14745,25 +14379,25 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_n_classes)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_n_classes)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1612; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1612; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
     __Pyx_INCREF(((PyObject *)__pyx_v_n_classes));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_n_classes));
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_n_classes));
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1612; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1678; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_5 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1612; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->max_n_classes = __pyx_t_5;
 
-  /* "sklearn/tree/_tree.pyx":1679
+  /* "sklearn/tree/_tree.pyx":1613
  * 
  *         self.max_n_classes = np.max(n_classes)
  *         self.value_stride = n_outputs * self.max_n_classes             # <<<<<<<<<<<<<<
@@ -14772,7 +14406,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->value_stride = (__pyx_v_n_outputs * __pyx_v_self->max_n_classes);
 
-  /* "sklearn/tree/_tree.pyx":1682
+  /* "sklearn/tree/_tree.pyx":1616
  * 
  *         cdef SIZE_t k
  *         for k in range(n_outputs):             # <<<<<<<<<<<<<<
@@ -14783,7 +14417,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_6; __pyx_t_5+=1) {
     __pyx_v_k = __pyx_t_5;
 
-    /* "sklearn/tree/_tree.pyx":1683
+    /* "sklearn/tree/_tree.pyx":1617
  *         cdef SIZE_t k
  *         for k in range(n_outputs):
  *             self.n_classes[k] = n_classes[k]             # <<<<<<<<<<<<<<
@@ -14794,7 +14428,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
     (__pyx_v_self->n_classes[__pyx_v_k]) = (*__Pyx_BufPtrStrided1d(__pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_pybuffernd_n_classes.rcbuffer->pybuffer.buf, __pyx_t_7, __pyx_pybuffernd_n_classes.diminfo[0].strides));
   }
 
-  /* "sklearn/tree/_tree.pyx":1686
+  /* "sklearn/tree/_tree.pyx":1620
  * 
  *         # Inner structures
  *         self.max_depth = 0             # <<<<<<<<<<<<<<
@@ -14803,7 +14437,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->max_depth = 0;
 
-  /* "sklearn/tree/_tree.pyx":1687
+  /* "sklearn/tree/_tree.pyx":1621
  *         # Inner structures
  *         self.max_depth = 0
  *         self.node_count = 0             # <<<<<<<<<<<<<<
@@ -14812,7 +14446,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->node_count = 0;
 
-  /* "sklearn/tree/_tree.pyx":1688
+  /* "sklearn/tree/_tree.pyx":1622
  *         self.max_depth = 0
  *         self.node_count = 0
  *         self.capacity = 0             # <<<<<<<<<<<<<<
@@ -14821,7 +14455,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->capacity = 0;
 
-  /* "sklearn/tree/_tree.pyx":1689
+  /* "sklearn/tree/_tree.pyx":1623
  *         self.node_count = 0
  *         self.capacity = 0
  *         self.value = NULL             # <<<<<<<<<<<<<<
@@ -14830,7 +14464,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->value = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1690
+  /* "sklearn/tree/_tree.pyx":1624
  *         self.capacity = 0
  *         self.value = NULL
  *         self.nodes = NULL             # <<<<<<<<<<<<<<
@@ -14839,7 +14473,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
  */
   __pyx_v_self->nodes = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1669
+  /* "sklearn/tree/_tree.pyx":1603
  *             return self._get_value_ndarray()[:self.node_count]
  * 
  *     def __cinit__(self, int n_features, np.ndarray[SIZE_t, ndim=1] n_classes,             # <<<<<<<<<<<<<<
@@ -14869,7 +14503,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree___cinit__(struct __pyx_obj_7skle
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1692
+/* "sklearn/tree/_tree.pyx":1626
  *         self.nodes = NULL
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -14892,7 +14526,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_4Tree_2__dealloc__(struct __pyx_obj_7
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1695
+  /* "sklearn/tree/_tree.pyx":1629
  *         """Destructor."""
  *         # Free all inner structures
  *         free(self.n_classes)             # <<<<<<<<<<<<<<
@@ -14901,7 +14535,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_4Tree_2__dealloc__(struct __pyx_obj_7
  */
   free(__pyx_v_self->n_classes);
 
-  /* "sklearn/tree/_tree.pyx":1696
+  /* "sklearn/tree/_tree.pyx":1630
  *         # Free all inner structures
  *         free(self.n_classes)
  *         free(self.value)             # <<<<<<<<<<<<<<
@@ -14910,7 +14544,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_4Tree_2__dealloc__(struct __pyx_obj_7
  */
   free(__pyx_v_self->value);
 
-  /* "sklearn/tree/_tree.pyx":1697
+  /* "sklearn/tree/_tree.pyx":1631
  *         free(self.n_classes)
  *         free(self.value)
  *         free(self.nodes)             # <<<<<<<<<<<<<<
@@ -14919,7 +14553,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_4Tree_2__dealloc__(struct __pyx_obj_7
  */
   free(__pyx_v_self->nodes);
 
-  /* "sklearn/tree/_tree.pyx":1692
+  /* "sklearn/tree/_tree.pyx":1626
  *         self.nodes = NULL
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -14931,7 +14565,7 @@ static void __pyx_pf_7sklearn_4tree_5_tree_4Tree_2__dealloc__(struct __pyx_obj_7
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":1699
+/* "sklearn/tree/_tree.pyx":1633
  *         free(self.nodes)
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -14965,7 +14599,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_4__reduce__(struct __pyx_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1701
+  /* "sklearn/tree/_tree.pyx":1635
  *     def __reduce__(self):
  *         """Reduce re-implementation, for pickling."""
  *         return (Tree, (self.n_features,             # <<<<<<<<<<<<<<
@@ -14973,37 +14607,37 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_4__reduce__(struct __pyx_o
  *                        self.n_outputs), self.__getstate__())
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sklearn/tree/_tree.pyx":1702
+  /* "sklearn/tree/_tree.pyx":1636
  *         """Reduce re-implementation, for pickling."""
  *         return (Tree, (self.n_features,
  *                        sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),             # <<<<<<<<<<<<<<
  *                        self.n_outputs), self.__getstate__())
  * 
  */
-  __pyx_t_2 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_ndarray(__pyx_v_self->n_classes, __pyx_v_self->n_outputs)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_ndarray(__pyx_v_self->n_classes, __pyx_v_self->n_outputs)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1636; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "sklearn/tree/_tree.pyx":1703
+  /* "sklearn/tree/_tree.pyx":1637
  *         return (Tree, (self.n_features,
  *                        sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
  *                        self.n_outputs), self.__getstate__())             # <<<<<<<<<<<<<<
  * 
  *     def __getstate__(self):
  */
-  __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_outputs); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_outputs); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "sklearn/tree/_tree.pyx":1701
+  /* "sklearn/tree/_tree.pyx":1635
  *     def __reduce__(self):
  *         """Reduce re-implementation, for pickling."""
  *         return (Tree, (self.n_features,             # <<<<<<<<<<<<<<
  *                        sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
  *                        self.n_outputs), self.__getstate__())
  */
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -15015,14 +14649,14 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_4__reduce__(struct __pyx_o
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1703
+  /* "sklearn/tree/_tree.pyx":1637
  *         return (Tree, (self.n_features,
  *                        sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
  *                        self.n_outputs), self.__getstate__())             # <<<<<<<<<<<<<<
  * 
  *     def __getstate__(self):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -15035,22 +14669,22 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_4__reduce__(struct __pyx_o
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1701
+  /* "sklearn/tree/_tree.pyx":1635
  *     def __reduce__(self):
  *         """Reduce re-implementation, for pickling."""
  *         return (Tree, (self.n_features,             # <<<<<<<<<<<<<<
  *                        sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
  *                        self.n_outputs), self.__getstate__())
  */
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_Tree)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_5_tree_Tree)));
@@ -15065,7 +14699,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_4__reduce__(struct __pyx_o
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1699
+  /* "sklearn/tree/_tree.pyx":1633
  *         free(self.nodes)
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -15087,7 +14721,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_4__reduce__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1705
+/* "sklearn/tree/_tree.pyx":1639
  *                        self.n_outputs), self.__getstate__())
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -15119,55 +14753,55 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_6__getstate__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getstate__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1707
+  /* "sklearn/tree/_tree.pyx":1641
  *     def __getstate__(self):
  *         """Getstate re-implementation, for pickling."""
  *         d = {}             # <<<<<<<<<<<<<<
  *         d["node_count"] = self.node_count
  *         d["nodes"] = self._get_node_ndarray()
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_d = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1708
+  /* "sklearn/tree/_tree.pyx":1642
  *         """Getstate re-implementation, for pickling."""
  *         d = {}
  *         d["node_count"] = self.node_count             # <<<<<<<<<<<<<<
  *         d["nodes"] = self._get_node_ndarray()
  *         d["values"] = self._get_value_ndarray()
  */
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->node_count); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->node_count); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1642; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(PyDict_SetItem(__pyx_v_d, __pyx_n_s_node_count, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(PyDict_SetItem(__pyx_v_d, __pyx_n_s_node_count, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1642; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1709
+  /* "sklearn/tree/_tree.pyx":1643
  *         d = {}
  *         d["node_count"] = self.node_count
  *         d["nodes"] = self._get_node_ndarray()             # <<<<<<<<<<<<<<
  *         d["values"] = self._get_value_ndarray()
  *         return d
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_node_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(PyDict_SetItem(__pyx_v_d, __pyx_n_s_nodes, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(PyDict_SetItem(__pyx_v_d, __pyx_n_s_nodes, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1710
+  /* "sklearn/tree/_tree.pyx":1644
  *         d["node_count"] = self.node_count
  *         d["nodes"] = self._get_node_ndarray()
  *         d["values"] = self._get_value_ndarray()             # <<<<<<<<<<<<<<
  *         return d
  * 
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_value_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_value_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(PyDict_SetItem(__pyx_v_d, __pyx_n_s_values, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(PyDict_SetItem(__pyx_v_d, __pyx_n_s_values, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1644; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1711
+  /* "sklearn/tree/_tree.pyx":1645
  *         d["nodes"] = self._get_node_ndarray()
  *         d["values"] = self._get_value_ndarray()
  *         return d             # <<<<<<<<<<<<<<
@@ -15179,7 +14813,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_6__getstate__(struct __pyx
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1705
+  /* "sklearn/tree/_tree.pyx":1639
  *                        self.n_outputs), self.__getstate__())
  * 
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
@@ -15199,7 +14833,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_6__getstate__(struct __pyx
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1713
+/* "sklearn/tree/_tree.pyx":1647
  *         return d
  * 
  *     def __setstate__(self, d):             # <<<<<<<<<<<<<<
@@ -15244,101 +14878,101 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setstate__", 0);
 
-  /* "sklearn/tree/_tree.pyx":1715
+  /* "sklearn/tree/_tree.pyx":1649
  *     def __setstate__(self, d):
  *         """Setstate re-implementation, for unpickling."""
  *         self.node_count = d["node_count"]             # <<<<<<<<<<<<<<
  * 
  *         if 'nodes' not in d:
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_d, __pyx_n_s_node_count); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1715; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_d, __pyx_n_s_node_count); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1649; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_2 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_1); if (unlikely((__pyx_t_2 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1649; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->node_count = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":1717
+  /* "sklearn/tree/_tree.pyx":1651
  *         self.node_count = d["node_count"]
  * 
  *         if 'nodes' not in d:             # <<<<<<<<<<<<<<
  *             raise ValueError('You have loaded Tree version which '
  *                              'cannot be imported')
  */
-  __pyx_t_3 = (__Pyx_PySequence_Contains(__pyx_n_s_nodes, __pyx_v_d, Py_NE)); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = (__Pyx_PySequence_Contains(__pyx_n_s_nodes, __pyx_v_d, Py_NE)); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1651; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1718
+    /* "sklearn/tree/_tree.pyx":1652
  * 
  *         if 'nodes' not in d:
  *             raise ValueError('You have loaded Tree version which '             # <<<<<<<<<<<<<<
  *                              'cannot be imported')
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1721
+  /* "sklearn/tree/_tree.pyx":1655
  *                              'cannot be imported')
  * 
  *         node_ndarray = d['nodes']             # <<<<<<<<<<<<<<
  *         value_ndarray = d['values']
  * 
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_d, __pyx_n_s_nodes); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1721; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_d, __pyx_n_s_nodes); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1655; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_node_ndarray = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1722
+  /* "sklearn/tree/_tree.pyx":1656
  * 
  *         node_ndarray = d['nodes']
  *         value_ndarray = d['values']             # <<<<<<<<<<<<<<
  * 
  *         value_shape = (node_ndarray.shape[0], self.n_outputs,
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_d, __pyx_n_s_values); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1722; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_d, __pyx_n_s_values); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1656; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_value_ndarray = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1724
+  /* "sklearn/tree/_tree.pyx":1658
  *         value_ndarray = d['values']
  * 
  *         value_shape = (node_ndarray.shape[0], self.n_outputs,             # <<<<<<<<<<<<<<
  *                        self.max_n_classes)
  *         if (node_ndarray.ndim != 1 or
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1724; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1724; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1658; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1724; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sklearn/tree/_tree.pyx":1725
+  /* "sklearn/tree/_tree.pyx":1659
  * 
  *         value_shape = (node_ndarray.shape[0], self.n_outputs,
  *                        self.max_n_classes)             # <<<<<<<<<<<<<<
  *         if (node_ndarray.ndim != 1 or
  *                 node_ndarray.dtype != NODE_DTYPE or
  */
-  __pyx_t_6 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_n_classes); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1725; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_n_classes); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1659; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "sklearn/tree/_tree.pyx":1724
+  /* "sklearn/tree/_tree.pyx":1658
  *         value_ndarray = d['values']
  * 
  *         value_shape = (node_ndarray.shape[0], self.n_outputs,             # <<<<<<<<<<<<<<
  *                        self.max_n_classes)
  *         if (node_ndarray.ndim != 1 or
  */
-  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1724; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5);
@@ -15352,18 +14986,18 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
   __pyx_v_value_shape = ((PyObject*)__pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1726
+  /* "sklearn/tree/_tree.pyx":1660
  *         value_shape = (node_ndarray.shape[0], self.n_outputs,
  *                        self.max_n_classes)
  *         if (node_ndarray.ndim != 1 or             # <<<<<<<<<<<<<<
  *                 node_ndarray.dtype != NODE_DTYPE or
  *                 not node_ndarray.flags.c_contiguous or
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_ndim); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_ndim); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_6 = PyObject_RichCompare(__pyx_t_7, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyObject_RichCompare(__pyx_t_7, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   if (!__pyx_t_3) {
   } else {
@@ -15371,21 +15005,21 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
     goto __pyx_L5_bool_binop_done;
   }
 
-  /* "sklearn/tree/_tree.pyx":1727
+  /* "sklearn/tree/_tree.pyx":1661
  *                        self.max_n_classes)
  *         if (node_ndarray.ndim != 1 or
  *                 node_ndarray.dtype != NODE_DTYPE or             # <<<<<<<<<<<<<<
  *                 not node_ndarray.flags.c_contiguous or
  *                 value_ndarray.shape != value_shape or
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1661; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_NODE_DTYPE); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_NODE_DTYPE); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1661; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_6, __pyx_t_7, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_6, __pyx_t_7, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1661; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1727; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1661; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (!__pyx_t_3) {
   } else {
@@ -15393,19 +15027,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
     goto __pyx_L5_bool_binop_done;
   }
 
-  /* "sklearn/tree/_tree.pyx":1728
+  /* "sklearn/tree/_tree.pyx":1662
  *         if (node_ndarray.ndim != 1 or
  *                 node_ndarray.dtype != NODE_DTYPE or
  *                 not node_ndarray.flags.c_contiguous or             # <<<<<<<<<<<<<<
  *                 value_ndarray.shape != value_shape or
  *                 not value_ndarray.flags.c_contiguous or
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_flags); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_flags); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_8 = ((!__pyx_t_3) != 0);
   if (!__pyx_t_8) {
@@ -15414,18 +15048,18 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
     goto __pyx_L5_bool_binop_done;
   }
 
-  /* "sklearn/tree/_tree.pyx":1729
+  /* "sklearn/tree/_tree.pyx":1663
  *                 node_ndarray.dtype != NODE_DTYPE or
  *                 not node_ndarray.flags.c_contiguous or
  *                 value_ndarray.shape != value_shape or             # <<<<<<<<<<<<<<
  *                 not value_ndarray.flags.c_contiguous or
  *                 value_ndarray.dtype != np.float64):
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_value_ndarray, __pyx_n_s_shape); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_value_ndarray, __pyx_n_s_shape); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1663; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_7, __pyx_v_value_shape, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_7, __pyx_v_value_shape, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1663; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1663; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (!__pyx_t_8) {
   } else {
@@ -15433,19 +15067,19 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
     goto __pyx_L5_bool_binop_done;
   }
 
-  /* "sklearn/tree/_tree.pyx":1730
+  /* "sklearn/tree/_tree.pyx":1664
  *                 not node_ndarray.flags.c_contiguous or
  *                 value_ndarray.shape != value_shape or
  *                 not value_ndarray.flags.c_contiguous or             # <<<<<<<<<<<<<<
  *                 value_ndarray.dtype != np.float64):
  *             raise ValueError('Did not recognise loaded array layout')
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_value_ndarray, __pyx_n_s_flags); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_value_ndarray, __pyx_n_s_flags); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_3 = ((!__pyx_t_8) != 0);
   if (!__pyx_t_3) {
@@ -15454,60 +15088,60 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
     goto __pyx_L5_bool_binop_done;
   }
 
-  /* "sklearn/tree/_tree.pyx":1731
+  /* "sklearn/tree/_tree.pyx":1665
  *                 value_ndarray.shape != value_shape or
  *                 not value_ndarray.flags.c_contiguous or
  *                 value_ndarray.dtype != np.float64):             # <<<<<<<<<<<<<<
  *             raise ValueError('Did not recognise loaded array layout')
  * 
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_value_ndarray, __pyx_n_s_dtype); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_value_ndarray, __pyx_n_s_dtype); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_7, __pyx_t_6, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_7, __pyx_t_6, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_4 = __pyx_t_3;
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1732
+    /* "sklearn/tree/_tree.pyx":1666
  *                 not value_ndarray.flags.c_contiguous or
  *                 value_ndarray.dtype != np.float64):
  *             raise ValueError('Did not recognise loaded array layout')             # <<<<<<<<<<<<<<
  * 
  *         self.capacity = node_ndarray.shape[0]
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1732; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1666; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1732; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1666; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1734
+  /* "sklearn/tree/_tree.pyx":1668
  *             raise ValueError('Did not recognise loaded array layout')
  * 
  *         self.capacity = node_ndarray.shape[0]             # <<<<<<<<<<<<<<
  *         if self._resize_c(self.capacity) != 0:
  *             raise MemoryError("resizing tree to %d" % self.capacity)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node_ndarray, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1668; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_6 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1734; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_6 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1668; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_6); if (unlikely((__pyx_t_2 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_6); if (unlikely((__pyx_t_2 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1668; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_self->capacity = __pyx_t_2;
 
-  /* "sklearn/tree/_tree.pyx":1735
+  /* "sklearn/tree/_tree.pyx":1669
  * 
  *         self.capacity = node_ndarray.shape[0]
  *         if self._resize_c(self.capacity) != 0:             # <<<<<<<<<<<<<<
@@ -15520,32 +15154,32 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
   __pyx_t_4 = ((__pyx_t_9 != 0) != 0);
   if (__pyx_t_4) {
 
-    /* "sklearn/tree/_tree.pyx":1736
+    /* "sklearn/tree/_tree.pyx":1670
  *         self.capacity = node_ndarray.shape[0]
  *         if self._resize_c(self.capacity) != 0:
  *             raise MemoryError("resizing tree to %d" % self.capacity)             # <<<<<<<<<<<<<<
  *         nodes = memcpy(self.nodes, (<np.ndarray> node_ndarray).data,
  *                        self.capacity * sizeof(Node))
  */
-    __pyx_t_6 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->capacity); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->capacity); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1670; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_resizing_tree_to_d, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_resizing_tree_to_d, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1670; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1670; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1670; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1670; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1737
+  /* "sklearn/tree/_tree.pyx":1671
  *         if self._resize_c(self.capacity) != 0:
  *             raise MemoryError("resizing tree to %d" % self.capacity)
  *         nodes = memcpy(self.nodes, (<np.ndarray> node_ndarray).data,             # <<<<<<<<<<<<<<
@@ -15554,7 +15188,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
  */
   __pyx_v_nodes = memcpy(__pyx_v_self->nodes, ((PyArrayObject *)__pyx_v_node_ndarray)->data, (__pyx_v_self->capacity * (sizeof(struct __pyx_t_7sklearn_4tree_5_tree_Node))));
 
-  /* "sklearn/tree/_tree.pyx":1739
+  /* "sklearn/tree/_tree.pyx":1673
  *         nodes = memcpy(self.nodes, (<np.ndarray> node_ndarray).data,
  *                        self.capacity * sizeof(Node))
  *         value = memcpy(self.value, (<np.ndarray> value_ndarray).data,             # <<<<<<<<<<<<<<
@@ -15563,7 +15197,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
  */
   __pyx_v_value = memcpy(__pyx_v_self->value, ((PyArrayObject *)__pyx_v_value_ndarray)->data, ((__pyx_v_self->capacity * __pyx_v_self->value_stride) * (sizeof(double))));
 
-  /* "sklearn/tree/_tree.pyx":1713
+  /* "sklearn/tree/_tree.pyx":1647
  *         return d
  * 
  *     def __setstate__(self, d):             # <<<<<<<<<<<<<<
@@ -15590,7 +15224,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8__setstate__(struct __pyx
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1742
+/* "sklearn/tree/_tree.pyx":1676
  *                        self.capacity * self.value_stride * sizeof(double))
  * 
  *     cdef void _resize(self, SIZE_t capacity) except *:             # <<<<<<<<<<<<<<
@@ -15608,7 +15242,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_4Tree__resize(struct __pyx_obj_7sklear
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_resize", 0);
 
-  /* "sklearn/tree/_tree.pyx":1745
+  /* "sklearn/tree/_tree.pyx":1679
  *         """Resize all inner arrays to `capacity`, if `capacity` == -1, then
  *            double the size of the inner arrays."""
  *         if self._resize_c(capacity) != 0:             # <<<<<<<<<<<<<<
@@ -15621,17 +15255,17 @@ static void __pyx_f_7sklearn_4tree_5_tree_4Tree__resize(struct __pyx_obj_7sklear
   __pyx_t_3 = ((__pyx_t_1 != 0) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_tree.pyx":1746
+    /* "sklearn/tree/_tree.pyx":1680
  *            double the size of the inner arrays."""
  *         if self._resize_c(capacity) != 0:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     # XXX using (size_t)(-1) is ugly, but SIZE_MAX is not available in C89
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1746; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1680; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1742
+  /* "sklearn/tree/_tree.pyx":1676
  *                        self.capacity * self.value_stride * sizeof(double))
  * 
  *     cdef void _resize(self, SIZE_t capacity) except *:             # <<<<<<<<<<<<<<
@@ -15647,7 +15281,7 @@ static void __pyx_f_7sklearn_4tree_5_tree_4Tree__resize(struct __pyx_obj_7sklear
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_tree.pyx":1750
+/* "sklearn/tree/_tree.pyx":1684
  *     # XXX using (size_t)(-1) is ugly, but SIZE_MAX is not available in C89
  *     # (i.e., older MSVC).
  *     cdef int _resize_c(self, SIZE_t capacity=<SIZE_t>(-1)) nogil:             # <<<<<<<<<<<<<<
@@ -15667,7 +15301,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
     }
   }
 
-  /* "sklearn/tree/_tree.pyx":1752
+  /* "sklearn/tree/_tree.pyx":1686
  *     cdef int _resize_c(self, SIZE_t capacity=<SIZE_t>(-1)) nogil:
  *         """Guts of _resize. Returns 0 for success, -1 for error."""
  *         if capacity == self.capacity and self.nodes != NULL:             # <<<<<<<<<<<<<<
@@ -15685,7 +15319,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1753
+    /* "sklearn/tree/_tree.pyx":1687
  *         """Guts of _resize. Returns 0 for success, -1 for error."""
  *         if capacity == self.capacity and self.nodes != NULL:
  *             return 0             # <<<<<<<<<<<<<<
@@ -15696,7 +15330,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1755
+  /* "sklearn/tree/_tree.pyx":1689
  *             return 0
  * 
  *         if capacity == <SIZE_t>(-1):             # <<<<<<<<<<<<<<
@@ -15706,7 +15340,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   __pyx_t_1 = ((__pyx_v_capacity == ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)-1)) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1756
+    /* "sklearn/tree/_tree.pyx":1690
  * 
  *         if capacity == <SIZE_t>(-1):
  *             if self.capacity == 0:             # <<<<<<<<<<<<<<
@@ -15716,7 +15350,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
     __pyx_t_1 = ((__pyx_v_self->capacity == 0) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_tree.pyx":1757
+      /* "sklearn/tree/_tree.pyx":1691
  *         if capacity == <SIZE_t>(-1):
  *             if self.capacity == 0:
  *                 capacity = 3  # default initial value             # <<<<<<<<<<<<<<
@@ -15728,7 +15362,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
     }
     /*else*/ {
 
-      /* "sklearn/tree/_tree.pyx":1759
+      /* "sklearn/tree/_tree.pyx":1693
  *                 capacity = 3  # default initial value
  *             else:
  *                 capacity = 2 * self.capacity             # <<<<<<<<<<<<<<
@@ -15742,7 +15376,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   }
   __pyx_L6:;
 
-  /* "sklearn/tree/_tree.pyx":1762
+  /* "sklearn/tree/_tree.pyx":1696
  * 
  *         # XXX no safe_realloc here because we need to grab the GIL
  *         cdef void* ptr = realloc(self.nodes, capacity * sizeof(Node))             # <<<<<<<<<<<<<<
@@ -15751,7 +15385,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
  */
   __pyx_v_ptr = realloc(__pyx_v_self->nodes, (__pyx_v_capacity * (sizeof(struct __pyx_t_7sklearn_4tree_5_tree_Node))));
 
-  /* "sklearn/tree/_tree.pyx":1763
+  /* "sklearn/tree/_tree.pyx":1697
  *         # XXX no safe_realloc here because we need to grab the GIL
  *         cdef void* ptr = realloc(self.nodes, capacity * sizeof(Node))
  *         if ptr == NULL:             # <<<<<<<<<<<<<<
@@ -15761,7 +15395,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   __pyx_t_1 = ((__pyx_v_ptr == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1764
+    /* "sklearn/tree/_tree.pyx":1698
  *         cdef void* ptr = realloc(self.nodes, capacity * sizeof(Node))
  *         if ptr == NULL:
  *             return -1             # <<<<<<<<<<<<<<
@@ -15772,7 +15406,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1765
+  /* "sklearn/tree/_tree.pyx":1699
  *         if ptr == NULL:
  *             return -1
  *         self.nodes = <Node*> ptr             # <<<<<<<<<<<<<<
@@ -15781,7 +15415,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
  */
   __pyx_v_self->nodes = ((struct __pyx_t_7sklearn_4tree_5_tree_Node *)__pyx_v_ptr);
 
-  /* "sklearn/tree/_tree.pyx":1766
+  /* "sklearn/tree/_tree.pyx":1700
  *             return -1
  *         self.nodes = <Node*> ptr
  *         ptr = realloc(self.value,             # <<<<<<<<<<<<<<
@@ -15790,7 +15424,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
  */
   __pyx_v_ptr = realloc(__pyx_v_self->value, ((__pyx_v_capacity * __pyx_v_self->value_stride) * (sizeof(double))));
 
-  /* "sklearn/tree/_tree.pyx":1768
+  /* "sklearn/tree/_tree.pyx":1702
  *         ptr = realloc(self.value,
  *                       capacity * self.value_stride * sizeof(double))
  *         if ptr == NULL:             # <<<<<<<<<<<<<<
@@ -15800,7 +15434,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   __pyx_t_1 = ((__pyx_v_ptr == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1769
+    /* "sklearn/tree/_tree.pyx":1703
  *                       capacity * self.value_stride * sizeof(double))
  *         if ptr == NULL:
  *             return -1             # <<<<<<<<<<<<<<
@@ -15811,7 +15445,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1770
+  /* "sklearn/tree/_tree.pyx":1704
  *         if ptr == NULL:
  *             return -1
  *         self.value = <double*> ptr             # <<<<<<<<<<<<<<
@@ -15820,7 +15454,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
  */
   __pyx_v_self->value = ((double *)__pyx_v_ptr);
 
-  /* "sklearn/tree/_tree.pyx":1773
+  /* "sklearn/tree/_tree.pyx":1707
  * 
  *         # value memory is initialised to 0 to enable classifier argmax
  *         if capacity > self.capacity:             # <<<<<<<<<<<<<<
@@ -15830,7 +15464,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   __pyx_t_1 = ((__pyx_v_capacity > __pyx_v_self->capacity) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1774
+    /* "sklearn/tree/_tree.pyx":1708
  *         # value memory is initialised to 0 to enable classifier argmax
  *         if capacity > self.capacity:
  *             memset(<void*>(self.value + self.capacity * self.value_stride), 0,             # <<<<<<<<<<<<<<
@@ -15842,7 +15476,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   }
   __pyx_L10:;
 
-  /* "sklearn/tree/_tree.pyx":1779
+  /* "sklearn/tree/_tree.pyx":1713
  * 
  *         # if capacity smaller than node_count, adjust the counter
  *         if capacity < self.node_count:             # <<<<<<<<<<<<<<
@@ -15852,7 +15486,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   __pyx_t_1 = ((__pyx_v_capacity < __pyx_v_self->node_count) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":1780
+    /* "sklearn/tree/_tree.pyx":1714
  *         # if capacity smaller than node_count, adjust the counter
  *         if capacity < self.node_count:
  *             self.node_count = capacity             # <<<<<<<<<<<<<<
@@ -15864,7 +15498,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   }
   __pyx_L11:;
 
-  /* "sklearn/tree/_tree.pyx":1782
+  /* "sklearn/tree/_tree.pyx":1716
  *             self.node_count = capacity
  * 
  *         self.capacity = capacity             # <<<<<<<<<<<<<<
@@ -15873,7 +15507,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
  */
   __pyx_v_self->capacity = __pyx_v_capacity;
 
-  /* "sklearn/tree/_tree.pyx":1783
+  /* "sklearn/tree/_tree.pyx":1717
  * 
  *         self.capacity = capacity
  *         return 0             # <<<<<<<<<<<<<<
@@ -15883,7 +15517,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1750
+  /* "sklearn/tree/_tree.pyx":1684
  *     # XXX using (size_t)(-1) is ugly, but SIZE_MAX is not available in C89
  *     # (i.e., older MSVC).
  *     cdef int _resize_c(self, SIZE_t capacity=<SIZE_t>(-1)) nogil:             # <<<<<<<<<<<<<<
@@ -15896,7 +15530,7 @@ static int __pyx_f_7sklearn_4tree_5_tree_4Tree__resize_c(struct __pyx_obj_7sklea
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1785
+/* "sklearn/tree/_tree.pyx":1719
  *         return 0
  * 
  *     cdef SIZE_t _add_node(self, SIZE_t parent, bint is_left, bint is_leaf,             # <<<<<<<<<<<<<<
@@ -15913,7 +15547,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   int __pyx_t_2;
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_t_3;
 
-  /* "sklearn/tree/_tree.pyx":1795
+  /* "sklearn/tree/_tree.pyx":1729
  *         Returns (size_t)(-1) on error.
  *         """
  *         cdef SIZE_t node_id = self.node_count             # <<<<<<<<<<<<<<
@@ -15923,7 +15557,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   __pyx_t_1 = __pyx_v_self->node_count;
   __pyx_v_node_id = __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":1798
+  /* "sklearn/tree/_tree.pyx":1732
  *         cdef SIZE_t i
  * 
  *         if node_id >= self.capacity:             # <<<<<<<<<<<<<<
@@ -15933,7 +15567,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   __pyx_t_2 = ((__pyx_v_node_id >= __pyx_v_self->capacity) != 0);
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_tree.pyx":1799
+    /* "sklearn/tree/_tree.pyx":1733
  * 
  *         if node_id >= self.capacity:
  *             if self._resize_c() != 0:             # <<<<<<<<<<<<<<
@@ -15943,7 +15577,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
     __pyx_t_2 = ((((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_resize_c(__pyx_v_self, NULL) != 0) != 0);
     if (__pyx_t_2) {
 
-      /* "sklearn/tree/_tree.pyx":1800
+      /* "sklearn/tree/_tree.pyx":1734
  *         if node_id >= self.capacity:
  *             if self._resize_c() != 0:
  *                 return <SIZE_t>(-1)             # <<<<<<<<<<<<<<
@@ -15957,7 +15591,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_tree.pyx":1802
+  /* "sklearn/tree/_tree.pyx":1736
  *                 return <SIZE_t>(-1)
  * 
  *         cdef Node* node = &self.nodes[node_id]             # <<<<<<<<<<<<<<
@@ -15966,7 +15600,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
   __pyx_v_node = (&(__pyx_v_self->nodes[__pyx_v_node_id]));
 
-  /* "sklearn/tree/_tree.pyx":1803
+  /* "sklearn/tree/_tree.pyx":1737
  * 
  *         cdef Node* node = &self.nodes[node_id]
  *         node.impurity = impurity             # <<<<<<<<<<<<<<
@@ -15975,7 +15609,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
   __pyx_v_node->impurity = __pyx_v_impurity;
 
-  /* "sklearn/tree/_tree.pyx":1804
+  /* "sklearn/tree/_tree.pyx":1738
  *         cdef Node* node = &self.nodes[node_id]
  *         node.impurity = impurity
  *         node.n_node_samples = n_node_samples             # <<<<<<<<<<<<<<
@@ -15984,7 +15618,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
   __pyx_v_node->n_node_samples = __pyx_v_n_node_samples;
 
-  /* "sklearn/tree/_tree.pyx":1805
+  /* "sklearn/tree/_tree.pyx":1739
  *         node.impurity = impurity
  *         node.n_node_samples = n_node_samples
  *         node.weighted_n_node_samples = weighted_n_node_samples             # <<<<<<<<<<<<<<
@@ -15993,7 +15627,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
   __pyx_v_node->weighted_n_node_samples = __pyx_v_weighted_n_node_samples;
 
-  /* "sklearn/tree/_tree.pyx":1807
+  /* "sklearn/tree/_tree.pyx":1741
  *         node.weighted_n_node_samples = weighted_n_node_samples
  * 
  *         if parent != _TREE_UNDEFINED:             # <<<<<<<<<<<<<<
@@ -16003,7 +15637,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   __pyx_t_2 = ((__pyx_v_parent != __pyx_v_7sklearn_4tree_5_tree__TREE_UNDEFINED) != 0);
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_tree.pyx":1808
+    /* "sklearn/tree/_tree.pyx":1742
  * 
  *         if parent != _TREE_UNDEFINED:
  *             if is_left:             # <<<<<<<<<<<<<<
@@ -16013,7 +15647,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
     __pyx_t_2 = (__pyx_v_is_left != 0);
     if (__pyx_t_2) {
 
-      /* "sklearn/tree/_tree.pyx":1809
+      /* "sklearn/tree/_tree.pyx":1743
  *         if parent != _TREE_UNDEFINED:
  *             if is_left:
  *                 self.nodes[parent].left_child = node_id             # <<<<<<<<<<<<<<
@@ -16025,7 +15659,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
     }
     /*else*/ {
 
-      /* "sklearn/tree/_tree.pyx":1811
+      /* "sklearn/tree/_tree.pyx":1745
  *                 self.nodes[parent].left_child = node_id
  *             else:
  *                 self.nodes[parent].right_child = node_id             # <<<<<<<<<<<<<<
@@ -16039,7 +15673,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   }
   __pyx_L5:;
 
-  /* "sklearn/tree/_tree.pyx":1813
+  /* "sklearn/tree/_tree.pyx":1747
  *                 self.nodes[parent].right_child = node_id
  * 
  *         if is_leaf:             # <<<<<<<<<<<<<<
@@ -16049,7 +15683,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   __pyx_t_2 = (__pyx_v_is_leaf != 0);
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_tree.pyx":1814
+    /* "sklearn/tree/_tree.pyx":1748
  * 
  *         if is_leaf:
  *             node.left_child = _TREE_LEAF             # <<<<<<<<<<<<<<
@@ -16058,7 +15692,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
     __pyx_v_node->left_child = __pyx_v_7sklearn_4tree_5_tree__TREE_LEAF;
 
-    /* "sklearn/tree/_tree.pyx":1815
+    /* "sklearn/tree/_tree.pyx":1749
  *         if is_leaf:
  *             node.left_child = _TREE_LEAF
  *             node.right_child = _TREE_LEAF             # <<<<<<<<<<<<<<
@@ -16067,7 +15701,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
     __pyx_v_node->right_child = __pyx_v_7sklearn_4tree_5_tree__TREE_LEAF;
 
-    /* "sklearn/tree/_tree.pyx":1816
+    /* "sklearn/tree/_tree.pyx":1750
  *             node.left_child = _TREE_LEAF
  *             node.right_child = _TREE_LEAF
  *             node.feature = _TREE_UNDEFINED             # <<<<<<<<<<<<<<
@@ -16076,7 +15710,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
     __pyx_v_node->feature = __pyx_v_7sklearn_4tree_5_tree__TREE_UNDEFINED;
 
-    /* "sklearn/tree/_tree.pyx":1817
+    /* "sklearn/tree/_tree.pyx":1751
  *             node.right_child = _TREE_LEAF
  *             node.feature = _TREE_UNDEFINED
  *             node.threshold = _TREE_UNDEFINED             # <<<<<<<<<<<<<<
@@ -16088,7 +15722,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   }
   /*else*/ {
 
-    /* "sklearn/tree/_tree.pyx":1821
+    /* "sklearn/tree/_tree.pyx":1755
  *         else:
  *             # left_child and right_child will be set later
  *             node.feature = feature             # <<<<<<<<<<<<<<
@@ -16097,7 +15731,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
     __pyx_v_node->feature = __pyx_v_feature;
 
-    /* "sklearn/tree/_tree.pyx":1822
+    /* "sklearn/tree/_tree.pyx":1756
  *             # left_child and right_child will be set later
  *             node.feature = feature
  *             node.threshold = threshold             # <<<<<<<<<<<<<<
@@ -16108,7 +15742,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   }
   __pyx_L7:;
 
-  /* "sklearn/tree/_tree.pyx":1824
+  /* "sklearn/tree/_tree.pyx":1758
  *             node.threshold = threshold
  * 
  *         for i in range(self.value_stride):             # <<<<<<<<<<<<<<
@@ -16119,7 +15753,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "sklearn/tree/_tree.pyx":1825
+    /* "sklearn/tree/_tree.pyx":1759
  * 
  *         for i in range(self.value_stride):
  *             self.value[node_id*self.value_stride + i] = value[i]             # <<<<<<<<<<<<<<
@@ -16129,7 +15763,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
     (__pyx_v_self->value[((__pyx_v_node_id * __pyx_v_self->value_stride) + __pyx_v_i)]) = (__pyx_v_value[__pyx_v_i]);
   }
 
-  /* "sklearn/tree/_tree.pyx":1827
+  /* "sklearn/tree/_tree.pyx":1761
  *             self.value[node_id*self.value_stride + i] = value[i]
  * 
  *         self.node_count += 1             # <<<<<<<<<<<<<<
@@ -16138,7 +15772,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
  */
   __pyx_v_self->node_count = (__pyx_v_self->node_count + 1);
 
-  /* "sklearn/tree/_tree.pyx":1828
+  /* "sklearn/tree/_tree.pyx":1762
  * 
  *         self.node_count += 1
  *         return node_id             # <<<<<<<<<<<<<<
@@ -16148,7 +15782,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   __pyx_r = __pyx_v_node_id;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1785
+  /* "sklearn/tree/_tree.pyx":1719
  *         return 0
  * 
  *     cdef SIZE_t _add_node(self, SIZE_t parent, bint is_left, bint is_leaf,             # <<<<<<<<<<<<<<
@@ -16161,7 +15795,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_4Tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1830
+/* "sklearn/tree/_tree.pyx":1764
  *         return node_id
  * 
  *     cpdef np.ndarray predict(self, object X):             # <<<<<<<<<<<<<<
@@ -16190,7 +15824,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_predict); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1830; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_predict); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1764; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7sklearn_4tree_5_tree_4Tree_11predict)) {
       __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -16206,21 +15840,21 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1830; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1764; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
       } else {
-        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1830; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1764; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_INCREF(__pyx_v_X);
         __Pyx_GIVEREF(__pyx_v_X);
         PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_X);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1830; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1764; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1830; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1764; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_r = ((PyArrayObject *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -16229,30 +15863,30 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1833
+  /* "sklearn/tree/_tree.pyx":1767
  *         """Predict target for X."""
  * 
  *         out = self._get_value_ndarray().take(self.apply(X), axis=0,             # <<<<<<<<<<<<<<
  *                                              mode='clip')
  *         if self.n_outputs == 1:
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_value_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->_get_value_ndarray(__pyx_v_self)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->apply(__pyx_v_self, __pyx_v_X, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_self->__pyx_vtab)->apply(__pyx_v_self, __pyx_v_X, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mode, __pyx_n_s_clip) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1833; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mode, __pyx_n_s_clip) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -16260,7 +15894,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
   __pyx_v_out = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1835
+  /* "sklearn/tree/_tree.pyx":1769
  *         out = self._get_value_ndarray().take(self.apply(X), axis=0,
  *                                              mode='clip')
  *         if self.n_outputs == 1:             # <<<<<<<<<<<<<<
@@ -16270,21 +15904,21 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
   __pyx_t_6 = ((__pyx_v_self->n_outputs == 1) != 0);
   if (__pyx_t_6) {
 
-    /* "sklearn/tree/_tree.pyx":1836
+    /* "sklearn/tree/_tree.pyx":1770
  *                                              mode='clip')
  *         if self.n_outputs == 1:
  *             out = out.reshape(X.shape[0], self.max_n_classes)             # <<<<<<<<<<<<<<
  *         return out
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_out, __pyx_n_s_reshape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_out, __pyx_n_s_reshape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1770; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1770; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1770; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_n_classes); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_n_classes); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1770; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_7 = 0;
@@ -16298,7 +15932,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
         __pyx_t_7 = 1;
       }
     }
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1770; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -16309,7 +15943,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1770; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -16319,7 +15953,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_tree.pyx":1837
+  /* "sklearn/tree/_tree.pyx":1771
  *         if self.n_outputs == 1:
  *             out = out.reshape(X.shape[0], self.max_n_classes)
  *         return out             # <<<<<<<<<<<<<<
@@ -16327,12 +15961,12 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(struct __pyx_o
  *     cpdef np.ndarray apply(self, object X):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  if (!(likely(((__pyx_v_out) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_out, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1837; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_v_out) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_out, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1771; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_INCREF(__pyx_v_out);
   __pyx_r = ((PyArrayObject *)__pyx_v_out);
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1830
+  /* "sklearn/tree/_tree.pyx":1764
  *         return node_id
  * 
  *     cpdef np.ndarray predict(self, object X):             # <<<<<<<<<<<<<<
@@ -16380,7 +16014,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_10predict(struct __pyx_obj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("predict", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(__pyx_v_self, __pyx_v_X, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1830; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree_predict(__pyx_v_self, __pyx_v_X, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1764; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16397,7 +16031,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_10predict(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1839
+/* "sklearn/tree/_tree.pyx":1773
  *         return out
  * 
  *     cpdef np.ndarray apply(self, object X):             # <<<<<<<<<<<<<<
@@ -16423,7 +16057,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(struct __pyx_obj
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_apply); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1839; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_apply); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7sklearn_4tree_5_tree_4Tree_13apply)) {
       __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -16439,21 +16073,21 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(struct __pyx_obj
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1839; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
       } else {
-        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1839; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_INCREF(__pyx_v_X);
         __Pyx_GIVEREF(__pyx_v_X);
         PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_X);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1839; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1839; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_r = ((PyArrayObject *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -16462,14 +16096,14 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(struct __pyx_obj
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1841
+  /* "sklearn/tree/_tree.pyx":1775
  *     cpdef np.ndarray apply(self, object X):
  *         """Finds the terminal region (=leaf node) for each sample in X."""
  *         if issparse(X):             # <<<<<<<<<<<<<<
  *             return self._apply_sparse_csr(X)
  *         else:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1841; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -16482,25 +16116,25 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(struct __pyx_obj
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1841; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1841; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
     __Pyx_INCREF(__pyx_v_X);
     __Pyx_GIVEREF(__pyx_v_X);
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_X);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1841; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1841; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_6) {
 
-    /* "sklearn/tree/_tree.pyx":1842
+    /* "sklearn/tree/_tree.pyx":1776
  *         """Finds the terminal region (=leaf node) for each sample in X."""
  *         if issparse(X):
  *             return self._apply_sparse_csr(X)             # <<<<<<<<<<<<<<
@@ -16508,7 +16142,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(struct __pyx_obj
  *             return self._apply_dense(X)
  */
     __Pyx_XDECREF(((PyObject *)__pyx_r));
-    __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(__pyx_v_self, __pyx_v_X)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1842; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(__pyx_v_self, __pyx_v_X)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1776; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
@@ -16516,7 +16150,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(struct __pyx_obj
   }
   /*else*/ {
 
-    /* "sklearn/tree/_tree.pyx":1844
+    /* "sklearn/tree/_tree.pyx":1778
  *             return self._apply_sparse_csr(X)
  *         else:
  *             return self._apply_dense(X)             # <<<<<<<<<<<<<<
@@ -16524,14 +16158,14 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(struct __pyx_obj
  * 
  */
     __Pyx_XDECREF(((PyObject *)__pyx_r));
-    __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(__pyx_v_self, __pyx_v_X)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1844; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(__pyx_v_self, __pyx_v_X)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1839
+  /* "sklearn/tree/_tree.pyx":1773
  *         return out
  * 
  *     cpdef np.ndarray apply(self, object X):             # <<<<<<<<<<<<<<
@@ -16577,7 +16211,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_12apply(struct __pyx_obj_7
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("apply", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(__pyx_v_self, __pyx_v_X, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1839; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)__pyx_f_7sklearn_4tree_5_tree_4Tree_apply(__pyx_v_self, __pyx_v_X, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16594,7 +16228,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_12apply(struct __pyx_obj_7
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1847
+/* "sklearn/tree/_tree.pyx":1781
  * 
  * 
  *     cdef inline np.ndarray _apply_dense(self, object X):             # <<<<<<<<<<<<<<
@@ -16636,7 +16270,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
   __pyx_pybuffernd_out.data = NULL;
   __pyx_pybuffernd_out.rcbuffer = &__pyx_pybuffer_out;
 
-  /* "sklearn/tree/_tree.pyx":1851
+  /* "sklearn/tree/_tree.pyx":1785
  * 
  *         # Check input
  *         if not isinstance(X, np.ndarray):             # <<<<<<<<<<<<<<
@@ -16647,93 +16281,93 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
   __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_tree.pyx":1853
+    /* "sklearn/tree/_tree.pyx":1787
  *         if not isinstance(X, np.ndarray):
  *             raise ValueError("X should be in np.ndarray format, got %s"
  *                              % type(X))             # <<<<<<<<<<<<<<
  * 
  *         if X.dtype != DTYPE:
  */
-    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_X_should_be_in_np_ndarray_format, ((PyObject *)Py_TYPE(__pyx_v_X))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1853; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_X_should_be_in_np_ndarray_format, ((PyObject *)Py_TYPE(__pyx_v_X))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "sklearn/tree/_tree.pyx":1852
+    /* "sklearn/tree/_tree.pyx":1786
  *         # Check input
  *         if not isinstance(X, np.ndarray):
  *             raise ValueError("X should be in np.ndarray format, got %s"             # <<<<<<<<<<<<<<
  *                              % type(X))
  * 
  */
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1786; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1786; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1786; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1855
+  /* "sklearn/tree/_tree.pyx":1789
  *                              % type(X))
  * 
  *         if X.dtype != DTYPE:             # <<<<<<<<<<<<<<
  *             raise ValueError("X.dtype should be np.float32, got %s" % X.dtype)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1789; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1789; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1789; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1789; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_tree.pyx":1856
+    /* "sklearn/tree/_tree.pyx":1790
  * 
  *         if X.dtype != DTYPE:
  *             raise ValueError("X.dtype should be np.float32, got %s" % X.dtype)             # <<<<<<<<<<<<<<
  * 
  *         # Extract input
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1790; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_X_dtype_should_be_np_float32_got, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_X_dtype_should_be_np_float32_got, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1790; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1790; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1790; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1790; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1859
+  /* "sklearn/tree/_tree.pyx":1793
  * 
  *         # Extract input
  *         cdef np.ndarray X_ndarray = X             # <<<<<<<<<<<<<<
  *         cdef DTYPE_t* X_ptr = <DTYPE_t*> X_ndarray.data
  *         cdef SIZE_t X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
  */
-  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1859; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1793; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_4 = __pyx_v_X;
   __Pyx_INCREF(__pyx_t_4);
   __pyx_v_X_ndarray = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1860
+  /* "sklearn/tree/_tree.pyx":1794
  *         # Extract input
  *         cdef np.ndarray X_ndarray = X
  *         cdef DTYPE_t* X_ptr = <DTYPE_t*> X_ndarray.data             # <<<<<<<<<<<<<<
@@ -16742,107 +16376,107 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
  */
   __pyx_v_X_ptr = ((__pyx_t_7sklearn_4tree_5_tree_DTYPE_t *)__pyx_v_X_ndarray->data);
 
-  /* "sklearn/tree/_tree.pyx":1861
+  /* "sklearn/tree/_tree.pyx":1795
  *         cdef np.ndarray X_ndarray = X
  *         cdef DTYPE_t* X_ptr = <DTYPE_t*> X_ndarray.data
  *         cdef SIZE_t X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize             # <<<<<<<<<<<<<<
  *         cdef SIZE_t X_fx_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
  *         cdef SIZE_t n_samples = X.shape[0]
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1861; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1795; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1861; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1795; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_6 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1861; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_6 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1795; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1861; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1795; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_7 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_7 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1861; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_7 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1795; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_X_sample_stride = (((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_6) / ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_7));
 
-  /* "sklearn/tree/_tree.pyx":1862
+  /* "sklearn/tree/_tree.pyx":1796
  *         cdef DTYPE_t* X_ptr = <DTYPE_t*> X_ndarray.data
  *         cdef SIZE_t X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
  *         cdef SIZE_t X_fx_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize             # <<<<<<<<<<<<<<
  *         cdef SIZE_t n_samples = X.shape[0]
  * 
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1862; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_strides); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1796; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1862; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1796; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_7 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_4); if (unlikely((__pyx_t_7 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1862; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_4); if (unlikely((__pyx_t_7 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1796; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1862; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1796; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_4); if (unlikely((__pyx_t_6 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1862; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_4); if (unlikely((__pyx_t_6 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1796; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_X_fx_stride = (((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_7) / ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)__pyx_t_6));
 
-  /* "sklearn/tree/_tree.pyx":1863
+  /* "sklearn/tree/_tree.pyx":1797
  *         cdef SIZE_t X_sample_stride = <SIZE_t> X.strides[0] / <SIZE_t> X.itemsize
  *         cdef SIZE_t X_fx_stride = <SIZE_t> X.strides[1] / <SIZE_t> X.itemsize
  *         cdef SIZE_t n_samples = X.shape[0]             # <<<<<<<<<<<<<<
  * 
  *         # Initialize output
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1863; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1863; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1797; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_6 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1863; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_6 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_n_samples = __pyx_t_6;
 
-  /* "sklearn/tree/_tree.pyx":1866
+  /* "sklearn/tree/_tree.pyx":1800
  * 
  *         # Initialize output
  *         cdef np.ndarray[SIZE_t] out = np.zeros((n_samples,), dtype=np.intp)             # <<<<<<<<<<<<<<
  *         cdef SIZE_t* out_ptr = <SIZE_t*> out.data
  * 
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_samples); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_samples); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_intp); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_intp); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_9) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_9) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_10 = ((PyArrayObject *)__pyx_t_9);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_out.rcbuffer->pybuffer, (PyObject*)__pyx_t_10, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_out = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_out.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1866; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_out.diminfo[0].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out.diminfo[0].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -16850,7 +16484,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
   __pyx_v_out = ((PyArrayObject *)__pyx_t_9);
   __pyx_t_9 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1867
+  /* "sklearn/tree/_tree.pyx":1801
  *         # Initialize output
  *         cdef np.ndarray[SIZE_t] out = np.zeros((n_samples,), dtype=np.intp)
  *         cdef SIZE_t* out_ptr = <SIZE_t*> out.data             # <<<<<<<<<<<<<<
@@ -16859,7 +16493,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
  */
   __pyx_v_out_ptr = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t *)__pyx_v_out->data);
 
-  /* "sklearn/tree/_tree.pyx":1870
+  /* "sklearn/tree/_tree.pyx":1804
  * 
  *         # Initialize auxiliary data-structure
  *         cdef Node* node = NULL             # <<<<<<<<<<<<<<
@@ -16868,7 +16502,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
  */
   __pyx_v_node = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1871
+  /* "sklearn/tree/_tree.pyx":1805
  *         # Initialize auxiliary data-structure
  *         cdef Node* node = NULL
  *         cdef SIZE_t i = 0             # <<<<<<<<<<<<<<
@@ -16877,7 +16511,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
  */
   __pyx_v_i = 0;
 
-  /* "sklearn/tree/_tree.pyx":1873
+  /* "sklearn/tree/_tree.pyx":1807
  *         cdef SIZE_t i = 0
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -16891,7 +16525,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
       #endif
       /*try:*/ {
 
-        /* "sklearn/tree/_tree.pyx":1874
+        /* "sklearn/tree/_tree.pyx":1808
  * 
  *         with nogil:
  *             for i in range(n_samples):             # <<<<<<<<<<<<<<
@@ -16902,7 +16536,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
         for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
           __pyx_v_i = __pyx_t_7;
 
-          /* "sklearn/tree/_tree.pyx":1875
+          /* "sklearn/tree/_tree.pyx":1809
  *         with nogil:
  *             for i in range(n_samples):
  *                 node = self.nodes             # <<<<<<<<<<<<<<
@@ -16912,7 +16546,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
           __pyx_t_11 = __pyx_v_self->nodes;
           __pyx_v_node = __pyx_t_11;
 
-          /* "sklearn/tree/_tree.pyx":1877
+          /* "sklearn/tree/_tree.pyx":1811
  *                 node = self.nodes
  *                 # While node not a leaf
  *                 while node.left_child != _TREE_LEAF:             # <<<<<<<<<<<<<<
@@ -16923,7 +16557,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
             __pyx_t_2 = ((__pyx_v_node->left_child != __pyx_v_7sklearn_4tree_5_tree__TREE_LEAF) != 0);
             if (!__pyx_t_2) break;
 
-            /* "sklearn/tree/_tree.pyx":1880
+            /* "sklearn/tree/_tree.pyx":1814
  *                     # ... and node.right_child != _TREE_LEAF:
  *                     if X_ptr[X_sample_stride * i +
  *                              X_fx_stride * node.feature] <= node.threshold:             # <<<<<<<<<<<<<<
@@ -16933,7 +16567,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
             __pyx_t_2 = (((__pyx_v_X_ptr[((__pyx_v_X_sample_stride * __pyx_v_i) + (__pyx_v_X_fx_stride * __pyx_v_node->feature))]) <= __pyx_v_node->threshold) != 0);
             if (__pyx_t_2) {
 
-              /* "sklearn/tree/_tree.pyx":1881
+              /* "sklearn/tree/_tree.pyx":1815
  *                     if X_ptr[X_sample_stride * i +
  *                              X_fx_stride * node.feature] <= node.threshold:
  *                         node = &self.nodes[node.left_child]             # <<<<<<<<<<<<<<
@@ -16945,7 +16579,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
             }
             /*else*/ {
 
-              /* "sklearn/tree/_tree.pyx":1883
+              /* "sklearn/tree/_tree.pyx":1817
  *                         node = &self.nodes[node.left_child]
  *                     else:
  *                         node = &self.nodes[node.right_child]             # <<<<<<<<<<<<<<
@@ -16957,7 +16591,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
             __pyx_L12:;
           }
 
-          /* "sklearn/tree/_tree.pyx":1885
+          /* "sklearn/tree/_tree.pyx":1819
  *                         node = &self.nodes[node.right_child]
  * 
  *                 out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset             # <<<<<<<<<<<<<<
@@ -16968,7 +16602,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
         }
       }
 
-      /* "sklearn/tree/_tree.pyx":1873
+      /* "sklearn/tree/_tree.pyx":1807
  *         cdef SIZE_t i = 0
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -16986,7 +16620,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
       }
   }
 
-  /* "sklearn/tree/_tree.pyx":1886
+  /* "sklearn/tree/_tree.pyx":1820
  * 
  *                 out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
  *         return out             # <<<<<<<<<<<<<<
@@ -16998,7 +16632,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
   __pyx_r = ((PyArrayObject *)__pyx_v_out);
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1847
+  /* "sklearn/tree/_tree.pyx":1781
  * 
  * 
  *     cdef inline np.ndarray _apply_dense(self, object X):             # <<<<<<<<<<<<<<
@@ -17030,7 +16664,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense(struct __
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1888
+/* "sklearn/tree/_tree.pyx":1822
  *         return out
  * 
  *     cdef inline np.ndarray _apply_sparse_csr(self, object X):             # <<<<<<<<<<<<<<
@@ -17102,109 +16736,109 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
   __pyx_pybuffernd_out.data = NULL;
   __pyx_pybuffernd_out.rcbuffer = &__pyx_pybuffer_out;
 
-  /* "sklearn/tree/_tree.pyx":1893
+  /* "sklearn/tree/_tree.pyx":1827
  *         """
  *         # Check input
  *         if not isinstance(X, csr_matrix):             # <<<<<<<<<<<<<<
  *             raise ValueError("X should be in csr_matrix format, got %s"
  *                              % type(X))
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_csr_matrix); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1893; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_csr_matrix); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1827; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_X, __pyx_t_1); if (unlikely(__pyx_t_2 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1893; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_X, __pyx_t_1); if (unlikely(__pyx_t_2 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1827; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = ((!(__pyx_t_2 != 0)) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_tree.pyx":1895
+    /* "sklearn/tree/_tree.pyx":1829
  *         if not isinstance(X, csr_matrix):
  *             raise ValueError("X should be in csr_matrix format, got %s"
  *                              % type(X))             # <<<<<<<<<<<<<<
  * 
  *         if X.dtype != DTYPE:
  */
-    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_X_should_be_in_csr_matrix_format, ((PyObject *)Py_TYPE(__pyx_v_X))); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1895; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_X_should_be_in_csr_matrix_format, ((PyObject *)Py_TYPE(__pyx_v_X))); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1829; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
 
-    /* "sklearn/tree/_tree.pyx":1894
+    /* "sklearn/tree/_tree.pyx":1828
  *         # Check input
  *         if not isinstance(X, csr_matrix):
  *             raise ValueError("X should be in csr_matrix format, got %s"             # <<<<<<<<<<<<<<
  *                              % type(X))
  * 
  */
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1894; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1828; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1894; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1828; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1894; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1828; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1897
+  /* "sklearn/tree/_tree.pyx":1831
  *                              % type(X))
  * 
  *         if X.dtype != DTYPE:             # <<<<<<<<<<<<<<
  *             raise ValueError("X.dtype should be np.float32, got %s" % X.dtype)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1897; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1831; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1897; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DTYPE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1831; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1897; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_t_4, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1831; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1897; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1831; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_tree.pyx":1898
+    /* "sklearn/tree/_tree.pyx":1832
  * 
  *         if X.dtype != DTYPE:
  *             raise ValueError("X.dtype should be np.float32, got %s" % X.dtype)             # <<<<<<<<<<<<<<
  * 
  *         # Extract input
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1832; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_X_dtype_should_be_np_float32_got, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_X_dtype_should_be_np_float32_got, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1832; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1832; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1832; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1832; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":1901
+  /* "sklearn/tree/_tree.pyx":1835
  * 
  *         # Extract input
  *         cdef np.ndarray[ndim=1, dtype=DTYPE_t] X_data_ndarray = X.data             # <<<<<<<<<<<<<<
  *         cdef np.ndarray[ndim=1, dtype=INT32_t] X_indices_ndarray  = X.indices
  *         cdef np.ndarray[ndim=1, dtype=INT32_t] X_indptr_ndarray  = X.indptr
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1901; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1835; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1901; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1835; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_X_data_ndarray.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_X_data_ndarray = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_X_data_ndarray.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1901; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1835; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_X_data_ndarray.diminfo[0].strides = __pyx_pybuffernd_X_data_ndarray.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_X_data_ndarray.diminfo[0].shape = __pyx_pybuffernd_X_data_ndarray.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -17212,22 +16846,22 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
   __pyx_v_X_data_ndarray = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1902
+  /* "sklearn/tree/_tree.pyx":1836
  *         # Extract input
  *         cdef np.ndarray[ndim=1, dtype=DTYPE_t] X_data_ndarray = X.data
  *         cdef np.ndarray[ndim=1, dtype=INT32_t] X_indices_ndarray  = X.indices             # <<<<<<<<<<<<<<
  *         cdef np.ndarray[ndim=1, dtype=INT32_t] X_indptr_ndarray  = X.indptr
  * 
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indices); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1902; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indices); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1902; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_X_indices_ndarray.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_X_indices_ndarray = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_X_indices_ndarray.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1902; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1836; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_X_indices_ndarray.diminfo[0].strides = __pyx_pybuffernd_X_indices_ndarray.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_X_indices_ndarray.diminfo[0].shape = __pyx_pybuffernd_X_indices_ndarray.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -17235,22 +16869,22 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
   __pyx_v_X_indices_ndarray = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1903
+  /* "sklearn/tree/_tree.pyx":1837
  *         cdef np.ndarray[ndim=1, dtype=DTYPE_t] X_data_ndarray = X.data
  *         cdef np.ndarray[ndim=1, dtype=INT32_t] X_indices_ndarray  = X.indices
  *         cdef np.ndarray[ndim=1, dtype=INT32_t] X_indptr_ndarray  = X.indptr             # <<<<<<<<<<<<<<
  * 
  *         cdef DTYPE_t* X_data = <DTYPE_t*>X_data_ndarray.data
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1903; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1837; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1903; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1837; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_8 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_X_indptr_ndarray.rcbuffer->pybuffer, (PyObject*)__pyx_t_8, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_X_indptr_ndarray = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_X_indptr_ndarray.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1903; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1837; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_X_indptr_ndarray.diminfo[0].strides = __pyx_pybuffernd_X_indptr_ndarray.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_X_indptr_ndarray.diminfo[0].shape = __pyx_pybuffernd_X_indptr_ndarray.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -17258,7 +16892,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
   __pyx_v_X_indptr_ndarray = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1905
+  /* "sklearn/tree/_tree.pyx":1839
  *         cdef np.ndarray[ndim=1, dtype=INT32_t] X_indptr_ndarray  = X.indptr
  * 
  *         cdef DTYPE_t* X_data = <DTYPE_t*>X_data_ndarray.data             # <<<<<<<<<<<<<<
@@ -17267,7 +16901,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_X_data = ((__pyx_t_7sklearn_4tree_5_tree_DTYPE_t *)__pyx_v_X_data_ndarray->data);
 
-  /* "sklearn/tree/_tree.pyx":1906
+  /* "sklearn/tree/_tree.pyx":1840
  * 
  *         cdef DTYPE_t* X_data = <DTYPE_t*>X_data_ndarray.data
  *         cdef INT32_t* X_indices = <INT32_t*>X_indices_ndarray.data             # <<<<<<<<<<<<<<
@@ -17276,7 +16910,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_X_indices = ((__pyx_t_7sklearn_4tree_5_tree_INT32_t *)__pyx_v_X_indices_ndarray->data);
 
-  /* "sklearn/tree/_tree.pyx":1907
+  /* "sklearn/tree/_tree.pyx":1841
  *         cdef DTYPE_t* X_data = <DTYPE_t*>X_data_ndarray.data
  *         cdef INT32_t* X_indices = <INT32_t*>X_indices_ndarray.data
  *         cdef INT32_t* X_indptr = <INT32_t*>X_indptr_ndarray.data             # <<<<<<<<<<<<<<
@@ -17285,99 +16919,99 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_X_indptr = ((__pyx_t_7sklearn_4tree_5_tree_INT32_t *)__pyx_v_X_indptr_ndarray->data);
 
-  /* "sklearn/tree/_tree.pyx":1909
+  /* "sklearn/tree/_tree.pyx":1843
  *         cdef INT32_t* X_indptr = <INT32_t*>X_indptr_ndarray.data
  * 
  *         cdef SIZE_t n_samples = X.shape[0]             # <<<<<<<<<<<<<<
  *         cdef SIZE_t n_features = X.shape[1]
  * 
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1843; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1843; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_5); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1843; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_n_samples = __pyx_t_9;
 
-  /* "sklearn/tree/_tree.pyx":1910
+  /* "sklearn/tree/_tree.pyx":1844
  * 
  *         cdef SIZE_t n_samples = X.shape[0]
  *         cdef SIZE_t n_features = X.shape[1]             # <<<<<<<<<<<<<<
  * 
  *         # Initialize output
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1844; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1910; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1844; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_4); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_4); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1844; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_n_features = __pyx_t_9;
 
-  /* "sklearn/tree/_tree.pyx":1913
+  /* "sklearn/tree/_tree.pyx":1847
  * 
  *         # Initialize output
  *         cdef np.ndarray[SIZE_t, ndim=1] out = np.zeros((n_samples,),             # <<<<<<<<<<<<<<
  *                                                        dtype=np.intp)
  *         cdef SIZE_t* out_ptr = <SIZE_t*> out.data
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_samples); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_samples); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sklearn/tree/_tree.pyx":1914
+  /* "sklearn/tree/_tree.pyx":1848
  *         # Initialize output
  *         cdef np.ndarray[SIZE_t, ndim=1] out = np.zeros((n_samples,),
  *                                                        dtype=np.intp)             # <<<<<<<<<<<<<<
  *         cdef SIZE_t* out_ptr = <SIZE_t*> out.data
  * 
  */
-  __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1914; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1848; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_intp); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1914; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_intp); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1848; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_11) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_11) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1913
+  /* "sklearn/tree/_tree.pyx":1847
  * 
  *         # Initialize output
  *         cdef np.ndarray[SIZE_t, ndim=1] out = np.zeros((n_samples,),             # <<<<<<<<<<<<<<
  *                                                        dtype=np.intp)
  *         cdef SIZE_t* out_ptr = <SIZE_t*> out.data
  */
-  __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_11) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_11, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_11) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_11, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_12 = ((PyArrayObject *)__pyx_t_11);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_out.rcbuffer->pybuffer, (PyObject*)__pyx_t_12, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_5_tree_SIZE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_out = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_out.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1913; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_out.diminfo[0].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out.diminfo[0].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -17385,7 +17019,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
   __pyx_v_out = ((PyArrayObject *)__pyx_t_11);
   __pyx_t_11 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1915
+  /* "sklearn/tree/_tree.pyx":1849
  *         cdef np.ndarray[SIZE_t, ndim=1] out = np.zeros((n_samples,),
  *                                                        dtype=np.intp)
  *         cdef SIZE_t* out_ptr = <SIZE_t*> out.data             # <<<<<<<<<<<<<<
@@ -17394,7 +17028,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_out_ptr = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t *)__pyx_v_out->data);
 
-  /* "sklearn/tree/_tree.pyx":1918
+  /* "sklearn/tree/_tree.pyx":1852
  * 
  *         # Initialize auxiliary data-structure
  *         cdef DTYPE_t feature_value = 0.             # <<<<<<<<<<<<<<
@@ -17403,7 +17037,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_feature_value = 0.;
 
-  /* "sklearn/tree/_tree.pyx":1919
+  /* "sklearn/tree/_tree.pyx":1853
  *         # Initialize auxiliary data-structure
  *         cdef DTYPE_t feature_value = 0.
  *         cdef Node* node = NULL             # <<<<<<<<<<<<<<
@@ -17412,7 +17046,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_node = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1920
+  /* "sklearn/tree/_tree.pyx":1854
  *         cdef DTYPE_t feature_value = 0.
  *         cdef Node* node = NULL
  *         cdef DTYPE_t* X_sample = NULL             # <<<<<<<<<<<<<<
@@ -17421,7 +17055,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_X_sample = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1921
+  /* "sklearn/tree/_tree.pyx":1855
  *         cdef Node* node = NULL
  *         cdef DTYPE_t* X_sample = NULL
  *         cdef SIZE_t i = 0             # <<<<<<<<<<<<<<
@@ -17430,7 +17064,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_i = 0;
 
-  /* "sklearn/tree/_tree.pyx":1922
+  /* "sklearn/tree/_tree.pyx":1856
  *         cdef DTYPE_t* X_sample = NULL
  *         cdef SIZE_t i = 0
  *         cdef INT32_t k = 0             # <<<<<<<<<<<<<<
@@ -17439,7 +17073,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_k = 0;
 
-  /* "sklearn/tree/_tree.pyx":1927
+  /* "sklearn/tree/_tree.pyx":1861
  *         # for each feature; functionally, it is an efficient way to identify
  *         # which features are nonzero in the present sample.
  *         cdef SIZE_t* feature_to_sample = NULL             # <<<<<<<<<<<<<<
@@ -17448,25 +17082,25 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
   __pyx_v_feature_to_sample = NULL;
 
-  /* "sklearn/tree/_tree.pyx":1929
+  /* "sklearn/tree/_tree.pyx":1863
  *         cdef SIZE_t* feature_to_sample = NULL
  * 
  *         safe_realloc(&X_sample, n_features * sizeof(DTYPE_t))             # <<<<<<<<<<<<<<
  *         safe_realloc(&feature_to_sample, n_features * sizeof(SIZE_t))
  * 
  */
-  __pyx_fuse_0__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_X_sample), (__pyx_v_n_features * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DTYPE_t)))); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1929; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_0__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_X_sample), (__pyx_v_n_features * (sizeof(__pyx_t_7sklearn_4tree_5_tree_DTYPE_t)))); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1863; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_tree.pyx":1930
+  /* "sklearn/tree/_tree.pyx":1864
  * 
  *         safe_realloc(&X_sample, n_features * sizeof(DTYPE_t))
  *         safe_realloc(&feature_to_sample, n_features * sizeof(SIZE_t))             # <<<<<<<<<<<<<<
  * 
  *         with nogil:
  */
-  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_feature_to_sample), (__pyx_v_n_features * (sizeof(__pyx_t_7sklearn_4tree_5_tree_SIZE_t)))); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1930; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_feature_to_sample), (__pyx_v_n_features * (sizeof(__pyx_t_7sklearn_4tree_5_tree_SIZE_t)))); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1864; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_tree.pyx":1932
+  /* "sklearn/tree/_tree.pyx":1866
  *         safe_realloc(&feature_to_sample, n_features * sizeof(SIZE_t))
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -17480,7 +17114,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
       #endif
       /*try:*/ {
 
-        /* "sklearn/tree/_tree.pyx":1933
+        /* "sklearn/tree/_tree.pyx":1867
  * 
  *         with nogil:
  *             memset(feature_to_sample, -1, n_features * sizeof(SIZE_t))             # <<<<<<<<<<<<<<
@@ -17489,7 +17123,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
         memset(__pyx_v_feature_to_sample, -1, (__pyx_v_n_features * (sizeof(__pyx_t_7sklearn_4tree_5_tree_SIZE_t))));
 
-        /* "sklearn/tree/_tree.pyx":1935
+        /* "sklearn/tree/_tree.pyx":1869
  *             memset(feature_to_sample, -1, n_features * sizeof(SIZE_t))
  * 
  *             for i in range(n_samples):             # <<<<<<<<<<<<<<
@@ -17500,7 +17134,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
         for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_9; __pyx_t_13+=1) {
           __pyx_v_i = __pyx_t_13;
 
-          /* "sklearn/tree/_tree.pyx":1936
+          /* "sklearn/tree/_tree.pyx":1870
  * 
  *             for i in range(n_samples):
  *                 node = self.nodes             # <<<<<<<<<<<<<<
@@ -17510,7 +17144,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
           __pyx_t_14 = __pyx_v_self->nodes;
           __pyx_v_node = __pyx_t_14;
 
-          /* "sklearn/tree/_tree.pyx":1938
+          /* "sklearn/tree/_tree.pyx":1872
  *                 node = self.nodes
  * 
  *                 for k in range(X_indptr[i], X_indptr[i + 1]):             # <<<<<<<<<<<<<<
@@ -17521,7 +17155,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
           for (__pyx_t_16 = (__pyx_v_X_indptr[__pyx_v_i]); __pyx_t_16 < __pyx_t_15; __pyx_t_16+=1) {
             __pyx_v_k = __pyx_t_16;
 
-            /* "sklearn/tree/_tree.pyx":1939
+            /* "sklearn/tree/_tree.pyx":1873
  * 
  *                 for k in range(X_indptr[i], X_indptr[i + 1]):
  *                     feature_to_sample[X_indices[k]] = i             # <<<<<<<<<<<<<<
@@ -17530,7 +17164,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
             (__pyx_v_feature_to_sample[(__pyx_v_X_indices[__pyx_v_k])]) = __pyx_v_i;
 
-            /* "sklearn/tree/_tree.pyx":1940
+            /* "sklearn/tree/_tree.pyx":1874
  *                 for k in range(X_indptr[i], X_indptr[i + 1]):
  *                     feature_to_sample[X_indices[k]] = i
  *                     X_sample[X_indices[k]] = X_data[k]             # <<<<<<<<<<<<<<
@@ -17540,7 +17174,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             (__pyx_v_X_sample[(__pyx_v_X_indices[__pyx_v_k])]) = (__pyx_v_X_data[__pyx_v_k]);
           }
 
-          /* "sklearn/tree/_tree.pyx":1943
+          /* "sklearn/tree/_tree.pyx":1877
  * 
  *                 # While node not a leaf
  *                 while node.left_child != _TREE_LEAF:             # <<<<<<<<<<<<<<
@@ -17551,7 +17185,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             __pyx_t_3 = ((__pyx_v_node->left_child != __pyx_v_7sklearn_4tree_5_tree__TREE_LEAF) != 0);
             if (!__pyx_t_3) break;
 
-            /* "sklearn/tree/_tree.pyx":1945
+            /* "sklearn/tree/_tree.pyx":1879
  *                 while node.left_child != _TREE_LEAF:
  *                     # ... and node.right_child != _TREE_LEAF:
  *                     if feature_to_sample[node.feature] == i:             # <<<<<<<<<<<<<<
@@ -17561,7 +17195,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             __pyx_t_3 = (((__pyx_v_feature_to_sample[__pyx_v_node->feature]) == __pyx_v_i) != 0);
             if (__pyx_t_3) {
 
-              /* "sklearn/tree/_tree.pyx":1946
+              /* "sklearn/tree/_tree.pyx":1880
  *                     # ... and node.right_child != _TREE_LEAF:
  *                     if feature_to_sample[node.feature] == i:
  *                         feature_value = X_sample[node.feature]             # <<<<<<<<<<<<<<
@@ -17573,7 +17207,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             }
             /*else*/ {
 
-              /* "sklearn/tree/_tree.pyx":1949
+              /* "sklearn/tree/_tree.pyx":1883
  * 
  *                     else:
  *                         feature_value = 0.             # <<<<<<<<<<<<<<
@@ -17584,7 +17218,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             }
             __pyx_L14:;
 
-            /* "sklearn/tree/_tree.pyx":1951
+            /* "sklearn/tree/_tree.pyx":1885
  *                         feature_value = 0.
  * 
  *                     if feature_value <= node.threshold:             # <<<<<<<<<<<<<<
@@ -17594,7 +17228,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             __pyx_t_3 = ((__pyx_v_feature_value <= __pyx_v_node->threshold) != 0);
             if (__pyx_t_3) {
 
-              /* "sklearn/tree/_tree.pyx":1952
+              /* "sklearn/tree/_tree.pyx":1886
  * 
  *                     if feature_value <= node.threshold:
  *                         node = &self.nodes[node.left_child]             # <<<<<<<<<<<<<<
@@ -17606,7 +17240,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             }
             /*else*/ {
 
-              /* "sklearn/tree/_tree.pyx":1954
+              /* "sklearn/tree/_tree.pyx":1888
  *                         node = &self.nodes[node.left_child]
  *                     else:
  *                         node = &self.nodes[node.right_child]             # <<<<<<<<<<<<<<
@@ -17618,7 +17252,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
             __pyx_L15:;
           }
 
-          /* "sklearn/tree/_tree.pyx":1956
+          /* "sklearn/tree/_tree.pyx":1890
  *                         node = &self.nodes[node.right_child]
  * 
  *                 out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset             # <<<<<<<<<<<<<<
@@ -17628,7 +17262,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
           (__pyx_v_out_ptr[__pyx_v_i]) = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)(__pyx_v_node - __pyx_v_self->nodes));
         }
 
-        /* "sklearn/tree/_tree.pyx":1959
+        /* "sklearn/tree/_tree.pyx":1893
  * 
  *             # Free auxiliary arrays
  *             free(X_sample)             # <<<<<<<<<<<<<<
@@ -17637,7 +17271,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
  */
         free(__pyx_v_X_sample);
 
-        /* "sklearn/tree/_tree.pyx":1960
+        /* "sklearn/tree/_tree.pyx":1894
  *             # Free auxiliary arrays
  *             free(X_sample)
  *             free(feature_to_sample)             # <<<<<<<<<<<<<<
@@ -17647,7 +17281,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
         free(__pyx_v_feature_to_sample);
       }
 
-      /* "sklearn/tree/_tree.pyx":1932
+      /* "sklearn/tree/_tree.pyx":1866
  *         safe_realloc(&feature_to_sample, n_features * sizeof(SIZE_t))
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -17665,7 +17299,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
       }
   }
 
-  /* "sklearn/tree/_tree.pyx":1962
+  /* "sklearn/tree/_tree.pyx":1896
  *             free(feature_to_sample)
  * 
  *         return out             # <<<<<<<<<<<<<<
@@ -17677,7 +17311,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
   __pyx_r = ((PyArrayObject *)__pyx_v_out);
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1888
+  /* "sklearn/tree/_tree.pyx":1822
  *         return out
  * 
  *     cdef inline np.ndarray _apply_sparse_csr(self, object X):             # <<<<<<<<<<<<<<
@@ -17717,7 +17351,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr(stru
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":1964
+/* "sklearn/tree/_tree.pyx":1898
  *         return out
  * 
  *     cpdef compute_feature_importances(self, normalize=True):             # <<<<<<<<<<<<<<
@@ -17771,7 +17405,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_compute_feature_importances); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_compute_feature_importances); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7sklearn_4tree_5_tree_4Tree_15compute_feature_importances)) {
       __Pyx_XDECREF(__pyx_r);
@@ -17787,16 +17421,16 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_normalize); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_normalize); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
       } else {
-        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_INCREF(__pyx_v_normalize);
         __Pyx_GIVEREF(__pyx_v_normalize);
         PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_normalize);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
@@ -17809,7 +17443,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "sklearn/tree/_tree.pyx":1968
+  /* "sklearn/tree/_tree.pyx":1902
  *         cdef Node* left
  *         cdef Node* right
  *         cdef Node* nodes = self.nodes             # <<<<<<<<<<<<<<
@@ -17819,7 +17453,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
   __pyx_t_6 = __pyx_v_self->nodes;
   __pyx_v_nodes = __pyx_t_6;
 
-  /* "sklearn/tree/_tree.pyx":1969
+  /* "sklearn/tree/_tree.pyx":1903
  *         cdef Node* right
  *         cdef Node* nodes = self.nodes
  *         cdef Node* node = nodes             # <<<<<<<<<<<<<<
@@ -17828,7 +17462,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
  */
   __pyx_v_node = __pyx_v_nodes;
 
-  /* "sklearn/tree/_tree.pyx":1970
+  /* "sklearn/tree/_tree.pyx":1904
  *         cdef Node* nodes = self.nodes
  *         cdef Node* node = nodes
  *         cdef Node* end_node = node + self.node_count             # <<<<<<<<<<<<<<
@@ -17837,7 +17471,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
  */
   __pyx_v_end_node = (__pyx_v_node + __pyx_v_self->node_count);
 
-  /* "sklearn/tree/_tree.pyx":1972
+  /* "sklearn/tree/_tree.pyx":1906
  *         cdef Node* end_node = node + self.node_count
  * 
  *         cdef double normalizer = 0.             # <<<<<<<<<<<<<<
@@ -17846,21 +17480,21 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
  */
   __pyx_v_normalizer = 0.;
 
-  /* "sklearn/tree/_tree.pyx":1975
+  /* "sklearn/tree/_tree.pyx":1909
  * 
  *         cdef np.ndarray[np.float64_t, ndim=1] importances
  *         importances = np.zeros((self.n_features,))             # <<<<<<<<<<<<<<
  *         cdef DOUBLE_t* importance_data = <DOUBLE_t*>importances.data
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_features); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_features); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -17876,22 +17510,22 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -17907,13 +17541,13 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
       }
     }
     __pyx_pybuffernd_importances.diminfo[0].strides = __pyx_pybuffernd_importances.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_importances.diminfo[0].shape = __pyx_pybuffernd_importances.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1975; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1909; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_t_7 = 0;
   __pyx_v_importances = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1976
+  /* "sklearn/tree/_tree.pyx":1910
  *         cdef np.ndarray[np.float64_t, ndim=1] importances
  *         importances = np.zeros((self.n_features,))
  *         cdef DOUBLE_t* importance_data = <DOUBLE_t*>importances.data             # <<<<<<<<<<<<<<
@@ -17922,7 +17556,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
  */
   __pyx_v_importance_data = ((__pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *)__pyx_v_importances->data);
 
-  /* "sklearn/tree/_tree.pyx":1978
+  /* "sklearn/tree/_tree.pyx":1912
  *         cdef DOUBLE_t* importance_data = <DOUBLE_t*>importances.data
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -17936,7 +17570,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
       #endif
       /*try:*/ {
 
-        /* "sklearn/tree/_tree.pyx":1979
+        /* "sklearn/tree/_tree.pyx":1913
  * 
  *         with nogil:
  *             while node != end_node:             # <<<<<<<<<<<<<<
@@ -17947,7 +17581,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
           __pyx_t_12 = ((__pyx_v_node != __pyx_v_end_node) != 0);
           if (!__pyx_t_12) break;
 
-          /* "sklearn/tree/_tree.pyx":1980
+          /* "sklearn/tree/_tree.pyx":1914
  *         with nogil:
  *             while node != end_node:
  *                 if node.left_child != _TREE_LEAF:             # <<<<<<<<<<<<<<
@@ -17957,7 +17591,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
           __pyx_t_12 = ((__pyx_v_node->left_child != __pyx_v_7sklearn_4tree_5_tree__TREE_LEAF) != 0);
           if (__pyx_t_12) {
 
-            /* "sklearn/tree/_tree.pyx":1982
+            /* "sklearn/tree/_tree.pyx":1916
  *                 if node.left_child != _TREE_LEAF:
  *                     # ... and node.right_child != _TREE_LEAF:
  *                     left = &nodes[node.left_child]             # <<<<<<<<<<<<<<
@@ -17966,7 +17600,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
  */
             __pyx_v_left = (&(__pyx_v_nodes[__pyx_v_node->left_child]));
 
-            /* "sklearn/tree/_tree.pyx":1983
+            /* "sklearn/tree/_tree.pyx":1917
  *                     # ... and node.right_child != _TREE_LEAF:
  *                     left = &nodes[node.left_child]
  *                     right = &nodes[node.right_child]             # <<<<<<<<<<<<<<
@@ -17975,7 +17609,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
  */
             __pyx_v_right = (&(__pyx_v_nodes[__pyx_v_node->right_child]));
 
-            /* "sklearn/tree/_tree.pyx":1985
+            /* "sklearn/tree/_tree.pyx":1919
  *                     right = &nodes[node.right_child]
  * 
  *                     importance_data[node.feature] += (             # <<<<<<<<<<<<<<
@@ -17984,7 +17618,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
  */
             __pyx_t_13 = __pyx_v_node->feature;
 
-            /* "sklearn/tree/_tree.pyx":1987
+            /* "sklearn/tree/_tree.pyx":1921
  *                     importance_data[node.feature] += (
  *                         node.weighted_n_node_samples * node.impurity -
  *                         left.weighted_n_node_samples * left.impurity -             # <<<<<<<<<<<<<<
@@ -17996,7 +17630,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
           }
           __pyx_L8:;
 
-          /* "sklearn/tree/_tree.pyx":1989
+          /* "sklearn/tree/_tree.pyx":1923
  *                         left.weighted_n_node_samples * left.impurity -
  *                         right.weighted_n_node_samples * right.impurity)
  *                 node += 1             # <<<<<<<<<<<<<<
@@ -18007,7 +17641,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
         }
       }
 
-      /* "sklearn/tree/_tree.pyx":1978
+      /* "sklearn/tree/_tree.pyx":1912
  *         cdef DOUBLE_t* importance_data = <DOUBLE_t*>importances.data
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -18025,19 +17659,19 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
       }
   }
 
-  /* "sklearn/tree/_tree.pyx":1991
+  /* "sklearn/tree/_tree.pyx":1925
  *                 node += 1
  * 
  *         importances /= nodes[0].weighted_n_node_samples             # <<<<<<<<<<<<<<
  * 
  *         if normalize:
  */
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_nodes[0]).weighted_n_node_samples); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1991; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_nodes[0]).weighted_n_node_samples); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1925; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_importances), __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1991; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_importances), __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1925; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1991; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1925; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_3);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -18053,32 +17687,32 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
       }
     }
     __pyx_pybuffernd_importances.diminfo[0].strides = __pyx_pybuffernd_importances.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_importances.diminfo[0].shape = __pyx_pybuffernd_importances.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1991; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1925; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_t_7 = 0;
   __Pyx_DECREF_SET(__pyx_v_importances, ((PyArrayObject *)__pyx_t_3));
   __pyx_t_3 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1993
+  /* "sklearn/tree/_tree.pyx":1927
  *         importances /= nodes[0].weighted_n_node_samples
  * 
  *         if normalize:             # <<<<<<<<<<<<<<
  *             normalizer = np.sum(importances)
  * 
  */
-  __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_v_normalize); if (unlikely(__pyx_t_12 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1993; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_v_normalize); if (unlikely(__pyx_t_12 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1927; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_12) {
 
-    /* "sklearn/tree/_tree.pyx":1994
+    /* "sklearn/tree/_tree.pyx":1928
  * 
  *         if normalize:
  *             normalizer = np.sum(importances)             # <<<<<<<<<<<<<<
  * 
  *             if normalizer > 0.0:
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1928; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_sum); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_sum); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1928; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -18092,25 +17726,25 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
       }
     }
     if (!__pyx_t_1) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, ((PyObject *)__pyx_v_importances)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, ((PyObject *)__pyx_v_importances)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1928; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
     } else {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1928; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1); __pyx_t_1 = NULL;
       __Pyx_INCREF(((PyObject *)__pyx_v_importances));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_importances));
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, ((PyObject *)__pyx_v_importances));
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1928; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_14 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_14 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_14 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_14 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1928; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_normalizer = __pyx_t_14;
 
-    /* "sklearn/tree/_tree.pyx":1996
+    /* "sklearn/tree/_tree.pyx":1930
  *             normalizer = np.sum(importances)
  * 
  *             if normalizer > 0.0:             # <<<<<<<<<<<<<<
@@ -18120,19 +17754,19 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
     __pyx_t_12 = ((__pyx_v_normalizer > 0.0) != 0);
     if (__pyx_t_12) {
 
-      /* "sklearn/tree/_tree.pyx":1998
+      /* "sklearn/tree/_tree.pyx":1932
  *             if normalizer > 0.0:
  *                 # Avoid dividing by zero (e.g., when root is pure)
  *                 importances /= normalizer             # <<<<<<<<<<<<<<
  * 
  *         return importances
  */
-      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_normalizer); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_normalizer); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1932; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_importances), __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_importances), __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1932; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1932; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_t_7 = ((PyArrayObject *)__pyx_t_4);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -18148,7 +17782,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
           }
         }
         __pyx_pybuffernd_importances.diminfo[0].strides = __pyx_pybuffernd_importances.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_importances.diminfo[0].shape = __pyx_pybuffernd_importances.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1932; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_7 = 0;
       __Pyx_DECREF_SET(__pyx_v_importances, ((PyArrayObject *)__pyx_t_4));
@@ -18160,7 +17794,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
   }
   __pyx_L9:;
 
-  /* "sklearn/tree/_tree.pyx":2000
+  /* "sklearn/tree/_tree.pyx":1934
  *                 importances /= normalizer
  * 
  *         return importances             # <<<<<<<<<<<<<<
@@ -18172,7 +17806,7 @@ static PyObject *__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances
   __pyx_r = ((PyObject *)__pyx_v_importances);
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":1964
+  /* "sklearn/tree/_tree.pyx":1898
  *         return out
  * 
  *     cpdef compute_feature_importances(self, normalize=True):             # <<<<<<<<<<<<<<
@@ -18235,7 +17869,7 @@ static PyObject *__pyx_pw_7sklearn_4tree_5_tree_4Tree_15compute_feature_importan
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "compute_feature_importances") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "compute_feature_importances") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -18248,7 +17882,7 @@ static PyObject *__pyx_pw_7sklearn_4tree_5_tree_4Tree_15compute_feature_importan
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("compute_feature_importances", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("compute_feature_importances", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._tree.Tree.compute_feature_importances", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18273,7 +17907,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14compute_feature_importan
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.normalize = __pyx_v_normalize;
-  __pyx_t_1 = __pyx_vtabptr_7sklearn_4tree_5_tree_Tree->compute_feature_importances(__pyx_v_self, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_7sklearn_4tree_5_tree_Tree->compute_feature_importances(__pyx_v_self, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1898; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18290,7 +17924,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_14compute_feature_importan
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2002
+/* "sklearn/tree/_tree.pyx":1936
  *         return importances
  * 
  *     cdef np.ndarray _get_value_ndarray(self):             # <<<<<<<<<<<<<<
@@ -18309,7 +17943,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_value_ndarray", 0);
 
-  /* "sklearn/tree/_tree.pyx":2009
+  /* "sklearn/tree/_tree.pyx":1943
  *         """
  *         cdef np.npy_intp shape[3]
  *         shape[0] = <np.npy_intp> self.node_count             # <<<<<<<<<<<<<<
@@ -18318,7 +17952,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
  */
   (__pyx_v_shape[0]) = ((npy_intp)__pyx_v_self->node_count);
 
-  /* "sklearn/tree/_tree.pyx":2010
+  /* "sklearn/tree/_tree.pyx":1944
  *         cdef np.npy_intp shape[3]
  *         shape[0] = <np.npy_intp> self.node_count
  *         shape[1] = <np.npy_intp> self.n_outputs             # <<<<<<<<<<<<<<
@@ -18327,7 +17961,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
  */
   (__pyx_v_shape[1]) = ((npy_intp)__pyx_v_self->n_outputs);
 
-  /* "sklearn/tree/_tree.pyx":2011
+  /* "sklearn/tree/_tree.pyx":1945
  *         shape[0] = <np.npy_intp> self.node_count
  *         shape[1] = <np.npy_intp> self.n_outputs
  *         shape[2] = <np.npy_intp> self.max_n_classes             # <<<<<<<<<<<<<<
@@ -18336,20 +17970,20 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
  */
   (__pyx_v_shape[2]) = ((npy_intp)__pyx_v_self->max_n_classes);
 
-  /* "sklearn/tree/_tree.pyx":2013
+  /* "sklearn/tree/_tree.pyx":1947
  *         shape[2] = <np.npy_intp> self.max_n_classes
  *         cdef np.ndarray arr
  *         arr = np.PyArray_SimpleNewFromData(3, shape, np.NPY_DOUBLE, self.value)             # <<<<<<<<<<<<<<
  *         Py_INCREF(self)
  *         arr.base = <PyObject*> self
  */
-  __pyx_t_1 = PyArray_SimpleNewFromData(3, __pyx_v_shape, NPY_DOUBLE, __pyx_v_self->value); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2013; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyArray_SimpleNewFromData(3, __pyx_v_shape, NPY_DOUBLE, __pyx_v_self->value); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2013; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_arr = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":2014
+  /* "sklearn/tree/_tree.pyx":1948
  *         cdef np.ndarray arr
  *         arr = np.PyArray_SimpleNewFromData(3, shape, np.NPY_DOUBLE, self.value)
  *         Py_INCREF(self)             # <<<<<<<<<<<<<<
@@ -18358,7 +17992,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
  */
   Py_INCREF(((PyObject *)__pyx_v_self));
 
-  /* "sklearn/tree/_tree.pyx":2015
+  /* "sklearn/tree/_tree.pyx":1949
  *         arr = np.PyArray_SimpleNewFromData(3, shape, np.NPY_DOUBLE, self.value)
  *         Py_INCREF(self)
  *         arr.base = <PyObject*> self             # <<<<<<<<<<<<<<
@@ -18367,7 +18001,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
  */
   __pyx_v_arr->base = ((PyObject *)__pyx_v_self);
 
-  /* "sklearn/tree/_tree.pyx":2016
+  /* "sklearn/tree/_tree.pyx":1950
  *         Py_INCREF(self)
  *         arr.base = <PyObject*> self
  *         return arr             # <<<<<<<<<<<<<<
@@ -18379,7 +18013,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
   __pyx_r = __pyx_v_arr;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2002
+  /* "sklearn/tree/_tree.pyx":1936
  *         return importances
  * 
  *     cdef np.ndarray _get_value_ndarray(self):             # <<<<<<<<<<<<<<
@@ -18399,7 +18033,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_value_ndarray(str
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2018
+/* "sklearn/tree/_tree.pyx":1952
  *         return arr
  * 
  *     cdef np.ndarray _get_node_ndarray(self):             # <<<<<<<<<<<<<<
@@ -18420,7 +18054,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_node_ndarray(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_node_ndarray", 0);
 
-  /* "sklearn/tree/_tree.pyx":2026
+  /* "sklearn/tree/_tree.pyx":1960
  *         """
  *         cdef np.npy_intp shape[1]
  *         shape[0] = <np.npy_intp> self.node_count             # <<<<<<<<<<<<<<
@@ -18429,7 +18063,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_node_ndarray(stru
  */
   (__pyx_v_shape[0]) = ((npy_intp)__pyx_v_self->node_count);
 
-  /* "sklearn/tree/_tree.pyx":2028
+  /* "sklearn/tree/_tree.pyx":1962
  *         shape[0] = <np.npy_intp> self.node_count
  *         cdef np.npy_intp strides[1]
  *         strides[0] = sizeof(Node)             # <<<<<<<<<<<<<<
@@ -18438,51 +18072,51 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_node_ndarray(stru
  */
   (__pyx_v_strides[0]) = (sizeof(struct __pyx_t_7sklearn_4tree_5_tree_Node));
 
-  /* "sklearn/tree/_tree.pyx":2030
+  /* "sklearn/tree/_tree.pyx":1964
  *         strides[0] = sizeof(Node)
  *         cdef np.ndarray arr
  *         Py_INCREF(NODE_DTYPE)             # <<<<<<<<<<<<<<
  *         arr = PyArray_NewFromDescr(np.ndarray, <np.dtype> NODE_DTYPE, 1, shape,
  *                                    strides, <void*> self.nodes,
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_NODE_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_NODE_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   Py_INCREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":2031
+  /* "sklearn/tree/_tree.pyx":1965
  *         cdef np.ndarray arr
  *         Py_INCREF(NODE_DTYPE)
  *         arr = PyArray_NewFromDescr(np.ndarray, <np.dtype> NODE_DTYPE, 1, shape,             # <<<<<<<<<<<<<<
  *                                    strides, <void*> self.nodes,
  *                                    np.NPY_DEFAULT, None)
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_NODE_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_NODE_DTYPE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1965; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sklearn/tree/_tree.pyx":2033
+  /* "sklearn/tree/_tree.pyx":1967
  *         arr = PyArray_NewFromDescr(np.ndarray, <np.dtype> NODE_DTYPE, 1, shape,
  *                                    strides, <void*> self.nodes,
  *                                    np.NPY_DEFAULT, None)             # <<<<<<<<<<<<<<
  *         Py_INCREF(self)
  *         arr.base = <PyObject*> self
  */
-  __pyx_t_2 = PyArray_NewFromDescr(((PyObject *)((PyObject*)__pyx_ptype_5numpy_ndarray)), ((PyArray_Descr *)__pyx_t_1), 1, __pyx_v_shape, __pyx_v_strides, ((void *)__pyx_v_self->nodes), NPY_DEFAULT, Py_None); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyArray_NewFromDescr(((PyObject *)((PyObject*)__pyx_ptype_5numpy_ndarray)), ((PyArray_Descr *)__pyx_t_1), 1, __pyx_v_shape, __pyx_v_strides, ((void *)__pyx_v_self->nodes), NPY_DEFAULT, Py_None); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1965; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_tree.pyx":2031
+  /* "sklearn/tree/_tree.pyx":1965
  *         cdef np.ndarray arr
  *         Py_INCREF(NODE_DTYPE)
  *         arr = PyArray_NewFromDescr(np.ndarray, <np.dtype> NODE_DTYPE, 1, shape,             # <<<<<<<<<<<<<<
  *                                    strides, <void*> self.nodes,
  *                                    np.NPY_DEFAULT, None)
  */
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1965; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_arr = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "sklearn/tree/_tree.pyx":2034
+  /* "sklearn/tree/_tree.pyx":1968
  *                                    strides, <void*> self.nodes,
  *                                    np.NPY_DEFAULT, None)
  *         Py_INCREF(self)             # <<<<<<<<<<<<<<
@@ -18491,7 +18125,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_node_ndarray(stru
  */
   Py_INCREF(((PyObject *)__pyx_v_self));
 
-  /* "sklearn/tree/_tree.pyx":2035
+  /* "sklearn/tree/_tree.pyx":1969
  *                                    np.NPY_DEFAULT, None)
  *         Py_INCREF(self)
  *         arr.base = <PyObject*> self             # <<<<<<<<<<<<<<
@@ -18500,7 +18134,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_node_ndarray(stru
  */
   __pyx_v_arr->base = ((PyObject *)__pyx_v_self);
 
-  /* "sklearn/tree/_tree.pyx":2036
+  /* "sklearn/tree/_tree.pyx":1970
  *         Py_INCREF(self)
  *         arr.base = <PyObject*> self
  *         return arr             # <<<<<<<<<<<<<<
@@ -18512,7 +18146,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_node_ndarray(stru
   __pyx_r = __pyx_v_arr;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2018
+  /* "sklearn/tree/_tree.pyx":1952
  *         return arr
  * 
  *     cdef np.ndarray _get_node_ndarray(self):             # <<<<<<<<<<<<<<
@@ -18533,7 +18167,7 @@ static PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_4Tree__get_node_ndarray(stru
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":163
+/* "sklearn/tree/_tree.pxd":158
  * 
  *     # Input/Output layout
  *     cdef public SIZE_t n_features        # Number of features in X             # <<<<<<<<<<<<<<
@@ -18563,7 +18197,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_10n_features___get__(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18601,7 +18235,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_10n_features_2__set__(struct __p
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->n_features = __pyx_t_1;
 
   /* function exit code */
@@ -18615,7 +18249,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_10n_features_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":165
+/* "sklearn/tree/_tree.pxd":160
  *     cdef public SIZE_t n_features        # Number of features in X
  *     cdef SIZE_t* n_classes               # Number of classes in y[:, k]
  *     cdef public SIZE_t n_outputs         # Number of outputs in y             # <<<<<<<<<<<<<<
@@ -18645,7 +18279,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_outputs___get__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->n_outputs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18683,7 +18317,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_outputs_2__set__(struct __pyx
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->n_outputs = __pyx_t_1;
 
   /* function exit code */
@@ -18697,7 +18331,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_9n_outputs_2__set__(struct __pyx
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":166
+/* "sklearn/tree/_tree.pxd":161
  *     cdef SIZE_t* n_classes               # Number of classes in y[:, k]
  *     cdef public SIZE_t n_outputs         # Number of outputs in y
  *     cdef public SIZE_t max_n_classes     # max(n_classes)             # <<<<<<<<<<<<<<
@@ -18727,7 +18361,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_13max_n_classes___get__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_n_classes); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_n_classes); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18765,7 +18399,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_13max_n_classes_2__set__(struct 
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->max_n_classes = __pyx_t_1;
 
   /* function exit code */
@@ -18779,7 +18413,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_13max_n_classes_2__set__(struct 
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":170
+/* "sklearn/tree/_tree.pxd":165
  *     # Inner structures: values are stored separately from node structure,
  *     # since size is determined at runtime.
  *     cdef public SIZE_t max_depth         # Max depth of the tree             # <<<<<<<<<<<<<<
@@ -18809,7 +18443,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_9max_depth___get__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_depth); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_depth); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18847,7 +18481,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_9max_depth_2__set__(struct __pyx
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->max_depth = __pyx_t_1;
 
   /* function exit code */
@@ -18861,7 +18495,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_9max_depth_2__set__(struct __pyx
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":171
+/* "sklearn/tree/_tree.pxd":166
  *     # since size is determined at runtime.
  *     cdef public SIZE_t max_depth         # Max depth of the tree
  *     cdef public SIZE_t node_count        # Counter for node IDs             # <<<<<<<<<<<<<<
@@ -18891,7 +18525,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_10node_count___get__(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->node_count); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->node_count); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18929,7 +18563,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_10node_count_2__set__(struct __p
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->node_count = __pyx_t_1;
 
   /* function exit code */
@@ -18943,7 +18577,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_10node_count_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pxd":172
+/* "sklearn/tree/_tree.pxd":167
  *     cdef public SIZE_t max_depth         # Max depth of the tree
  *     cdef public SIZE_t node_count        # Counter for node IDs
  *     cdef public SIZE_t capacity          # Capacity of tree, in terms of nodes             # <<<<<<<<<<<<<<
@@ -18973,7 +18607,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree_4Tree_8capacity___get__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->capacity); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->capacity); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19011,7 +18645,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_8capacity_2__set__(struct __pyx_
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->capacity = __pyx_t_1;
 
   /* function exit code */
@@ -19025,7 +18659,7 @@ static int __pyx_pf_7sklearn_4tree_5_tree_4Tree_8capacity_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2054
+/* "sklearn/tree/_tree.pyx":1988
  *     (unsigned char*)
  * 
  * cdef realloc_ptr safe_realloc(realloc_ptr* p, size_t nelems) except *:             # <<<<<<<<<<<<<<
@@ -19047,7 +18681,7 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__pyx_fuse_0safe_realloc", 0);
 
-  /* "sklearn/tree/_tree.pyx":2057
+  /* "sklearn/tree/_tree.pyx":1991
  *     # sizeof(realloc_ptr[0]) would be more like idiomatic C, but causes Cython
  *     # 0.20.1 to crash.
  *     cdef size_t nbytes = nelems * sizeof(p[0][0])             # <<<<<<<<<<<<<<
@@ -19056,7 +18690,7 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
  */
   __pyx_v_nbytes = (__pyx_v_nelems * (sizeof(((__pyx_v_p[0])[0]))));
 
-  /* "sklearn/tree/_tree.pyx":2058
+  /* "sklearn/tree/_tree.pyx":1992
  *     # 0.20.1 to crash.
  *     cdef size_t nbytes = nelems * sizeof(p[0][0])
  *     if nbytes / sizeof(p[0][0]) != nelems:             # <<<<<<<<<<<<<<
@@ -19066,18 +18700,18 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
   __pyx_t_1 = (((__pyx_v_nbytes / (sizeof(((__pyx_v_p[0])[0])))) != __pyx_v_nelems) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":2061
+    /* "sklearn/tree/_tree.pyx":1995
  *         # Overflow in the multiplication
  *         raise MemoryError("could not allocate (%d * %d) bytes"
  *                           % (nelems, sizeof(p[0][0])))             # <<<<<<<<<<<<<<
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  *     if tmp == NULL:
  */
-    __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_nelems); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_nelems); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(((__pyx_v_p[0])[0])))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(((__pyx_v_p[0])[0])))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
@@ -19085,31 +18719,31 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
     PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_d_bytes, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_d_bytes, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "sklearn/tree/_tree.pyx":2060
+    /* "sklearn/tree/_tree.pyx":1994
  *     if nbytes / sizeof(p[0][0]) != nelems:
  *         # Overflow in the multiplication
  *         raise MemoryError("could not allocate (%d * %d) bytes"             # <<<<<<<<<<<<<<
  *                           % (nelems, sizeof(p[0][0])))
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  */
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":2062
+  /* "sklearn/tree/_tree.pyx":1996
  *         raise MemoryError("could not allocate (%d * %d) bytes"
  *                           % (nelems, sizeof(p[0][0])))
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)             # <<<<<<<<<<<<<<
@@ -19118,7 +18752,7 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
  */
   __pyx_v_tmp = ((__pyx_t_7sklearn_4tree_5_tree_DTYPE_t *)realloc((__pyx_v_p[0]), __pyx_v_nbytes));
 
-  /* "sklearn/tree/_tree.pyx":2063
+  /* "sklearn/tree/_tree.pyx":1997
  *                           % (nelems, sizeof(p[0][0])))
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  *     if tmp == NULL:             # <<<<<<<<<<<<<<
@@ -19128,32 +18762,32 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
   __pyx_t_1 = ((__pyx_v_tmp == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":2064
+    /* "sklearn/tree/_tree.pyx":1998
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  *     if tmp == NULL:
  *         raise MemoryError("could not allocate %d bytes" % nbytes)             # <<<<<<<<<<<<<<
  *     p[0] = tmp
  *     return tmp  # for convenience
  */
-    __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_nbytes); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_nbytes); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_bytes, __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_bytes, __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":2065
+  /* "sklearn/tree/_tree.pyx":1999
  *     if tmp == NULL:
  *         raise MemoryError("could not allocate %d bytes" % nbytes)
  *     p[0] = tmp             # <<<<<<<<<<<<<<
@@ -19162,7 +18796,7 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
  */
   (__pyx_v_p[0]) = __pyx_v_tmp;
 
-  /* "sklearn/tree/_tree.pyx":2066
+  /* "sklearn/tree/_tree.pyx":2000
  *         raise MemoryError("could not allocate %d bytes" % nbytes)
  *     p[0] = tmp
  *     return tmp  # for convenience             # <<<<<<<<<<<<<<
@@ -19172,7 +18806,7 @@ static __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree
   __pyx_r = __pyx_v_tmp;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2054
+  /* "sklearn/tree/_tree.pyx":1988
  *     (unsigned char*)
  * 
  * cdef realloc_ptr safe_realloc(realloc_ptr* p, size_t nelems) except *:             # <<<<<<<<<<<<<<
@@ -19206,7 +18840,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__pyx_fuse_2safe_realloc", 0);
 
-  /* "sklearn/tree/_tree.pyx":2057
+  /* "sklearn/tree/_tree.pyx":1991
  *     # sizeof(realloc_ptr[0]) would be more like idiomatic C, but causes Cython
  *     # 0.20.1 to crash.
  *     cdef size_t nbytes = nelems * sizeof(p[0][0])             # <<<<<<<<<<<<<<
@@ -19215,7 +18849,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
  */
   __pyx_v_nbytes = (__pyx_v_nelems * (sizeof(((__pyx_v_p[0])[0]))));
 
-  /* "sklearn/tree/_tree.pyx":2058
+  /* "sklearn/tree/_tree.pyx":1992
  *     # 0.20.1 to crash.
  *     cdef size_t nbytes = nelems * sizeof(p[0][0])
  *     if nbytes / sizeof(p[0][0]) != nelems:             # <<<<<<<<<<<<<<
@@ -19225,18 +18859,18 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
   __pyx_t_1 = (((__pyx_v_nbytes / (sizeof(((__pyx_v_p[0])[0])))) != __pyx_v_nelems) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":2061
+    /* "sklearn/tree/_tree.pyx":1995
  *         # Overflow in the multiplication
  *         raise MemoryError("could not allocate (%d * %d) bytes"
  *                           % (nelems, sizeof(p[0][0])))             # <<<<<<<<<<<<<<
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  *     if tmp == NULL:
  */
-    __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_nelems); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_FromSize_t(__pyx_v_nelems); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(((__pyx_v_p[0])[0])))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(((__pyx_v_p[0])[0])))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
@@ -19244,31 +18878,31 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
     PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_d_bytes, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2061; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_d_bytes, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1995; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "sklearn/tree/_tree.pyx":2060
+    /* "sklearn/tree/_tree.pyx":1994
  *     if nbytes / sizeof(p[0][0]) != nelems:
  *         # Overflow in the multiplication
  *         raise MemoryError("could not allocate (%d * %d) bytes"             # <<<<<<<<<<<<<<
  *                           % (nelems, sizeof(p[0][0])))
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  */
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2060; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":2062
+  /* "sklearn/tree/_tree.pyx":1996
  *         raise MemoryError("could not allocate (%d * %d) bytes"
  *                           % (nelems, sizeof(p[0][0])))
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)             # <<<<<<<<<<<<<<
@@ -19277,7 +18911,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
  */
   __pyx_v_tmp = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t *)realloc((__pyx_v_p[0]), __pyx_v_nbytes));
 
-  /* "sklearn/tree/_tree.pyx":2063
+  /* "sklearn/tree/_tree.pyx":1997
  *                           % (nelems, sizeof(p[0][0])))
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  *     if tmp == NULL:             # <<<<<<<<<<<<<<
@@ -19287,32 +18921,32 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
   __pyx_t_1 = ((__pyx_v_tmp == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":2064
+    /* "sklearn/tree/_tree.pyx":1998
  *     cdef realloc_ptr tmp = <realloc_ptr>realloc(p[0], nbytes)
  *     if tmp == NULL:
  *         raise MemoryError("could not allocate %d bytes" % nbytes)             # <<<<<<<<<<<<<<
  *     p[0] = tmp
  *     return tmp  # for convenience
  */
-    __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_nbytes); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_FromSize_t(__pyx_v_nbytes); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_bytes, __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_could_not_allocate_d_bytes, __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2064; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1998; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_tree.pyx":2065
+  /* "sklearn/tree/_tree.pyx":1999
  *     if tmp == NULL:
  *         raise MemoryError("could not allocate %d bytes" % nbytes)
  *     p[0] = tmp             # <<<<<<<<<<<<<<
@@ -19321,7 +18955,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
  */
   (__pyx_v_p[0]) = __pyx_v_tmp;
 
-  /* "sklearn/tree/_tree.pyx":2066
+  /* "sklearn/tree/_tree.pyx":2000
  *         raise MemoryError("could not allocate %d bytes" % nbytes)
  *     p[0] = tmp
  *     return tmp  # for convenience             # <<<<<<<<<<<<<<
@@ -19331,7 +18965,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
   __pyx_r = __pyx_v_tmp;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2054
+  /* "sklearn/tree/_tree.pyx":1988
  *     (unsigned char*)
  * 
  * cdef realloc_ptr safe_realloc(realloc_ptr* p, size_t nelems) except *:             # <<<<<<<<<<<<<<
@@ -19351,7 +18985,7 @@ static __pyx_t_7sklearn_4tree_5_tree_SIZE_t *__pyx_fuse_2__pyx_f_7sklearn_4tree_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2069
+/* "sklearn/tree/_tree.pyx":2003
  * 
  * 
  * def _realloc_test():             # <<<<<<<<<<<<<<
@@ -19383,7 +19017,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree__realloc_test(CYTHON_UNUSED PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_realloc_test", 0);
 
-  /* "sklearn/tree/_tree.pyx":2072
+  /* "sklearn/tree/_tree.pyx":2006
  *     # Helper for tests. Tries to allocate <size_t>(-1) / 2 * sizeof(size_t)
  *     # bytes, which will always overflow.
  *     cdef SIZE_t* p = NULL             # <<<<<<<<<<<<<<
@@ -19392,16 +19026,16 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree__realloc_test(CYTHON_UNUSED PyOb
  */
   __pyx_v_p = NULL;
 
-  /* "sklearn/tree/_tree.pyx":2073
+  /* "sklearn/tree/_tree.pyx":2007
  *     # bytes, which will always overflow.
  *     cdef SIZE_t* p = NULL
  *     safe_realloc(&p, <size_t>(-1) / 2)             # <<<<<<<<<<<<<<
  *     if p != NULL:
  *         free(p)
  */
-  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_p), (((size_t)-1) / 2)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_2__pyx_f_7sklearn_4tree_5_tree_safe_realloc((&__pyx_v_p), (((size_t)-1) / 2)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2007; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_tree.pyx":2074
+  /* "sklearn/tree/_tree.pyx":2008
  *     cdef SIZE_t* p = NULL
  *     safe_realloc(&p, <size_t>(-1) / 2)
  *     if p != NULL:             # <<<<<<<<<<<<<<
@@ -19411,7 +19045,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree__realloc_test(CYTHON_UNUSED PyOb
   __pyx_t_1 = ((__pyx_v_p != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_tree.pyx":2075
+    /* "sklearn/tree/_tree.pyx":2009
  *     safe_realloc(&p, <size_t>(-1) / 2)
  *     if p != NULL:
  *         free(p)             # <<<<<<<<<<<<<<
@@ -19420,7 +19054,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree__realloc_test(CYTHON_UNUSED PyOb
  */
     free(__pyx_v_p);
 
-    /* "sklearn/tree/_tree.pyx":2076
+    /* "sklearn/tree/_tree.pyx":2010
  *     if p != NULL:
  *         free(p)
  *         assert False             # <<<<<<<<<<<<<<
@@ -19431,7 +19065,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree__realloc_test(CYTHON_UNUSED PyOb
     if (unlikely(!Py_OptimizeFlag)) {
       if (unlikely(!0)) {
         PyErr_SetNone(PyExc_AssertionError);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2076; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2010; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
     }
     #endif
@@ -19439,7 +19073,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree__realloc_test(CYTHON_UNUSED PyOb
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_tree.pyx":2069
+  /* "sklearn/tree/_tree.pyx":2003
  * 
  * 
  * def _realloc_test():             # <<<<<<<<<<<<<<
@@ -19459,7 +19093,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_5_tree__realloc_test(CYTHON_UNUSED PyOb
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2081
+/* "sklearn/tree/_tree.pyx":2015
  * # rand_r replacement using a 32bit XorShift generator
  * # See http://www.jstatsoft.org/v08/i14/paper for details
  * cdef inline UINT32_t our_rand_r(UINT32_t* seed) nogil:             # <<<<<<<<<<<<<<
@@ -19471,7 +19105,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_UINT32_t __pyx_f_7sklearn_4tr
   __pyx_t_7sklearn_4tree_5_tree_UINT32_t __pyx_r;
   long __pyx_t_1;
 
-  /* "sklearn/tree/_tree.pyx":2082
+  /* "sklearn/tree/_tree.pyx":2016
  * # See http://www.jstatsoft.org/v08/i14/paper for details
  * cdef inline UINT32_t our_rand_r(UINT32_t* seed) nogil:
  *     seed[0] ^= <UINT32_t>(seed[0] << 13)             # <<<<<<<<<<<<<<
@@ -19481,7 +19115,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_UINT32_t __pyx_f_7sklearn_4tr
   __pyx_t_1 = 0;
   (__pyx_v_seed[__pyx_t_1]) = ((__pyx_v_seed[__pyx_t_1]) ^ ((__pyx_t_7sklearn_4tree_5_tree_UINT32_t)((__pyx_v_seed[0]) << 13)));
 
-  /* "sklearn/tree/_tree.pyx":2083
+  /* "sklearn/tree/_tree.pyx":2017
  * cdef inline UINT32_t our_rand_r(UINT32_t* seed) nogil:
  *     seed[0] ^= <UINT32_t>(seed[0] << 13)
  *     seed[0] ^= <UINT32_t>(seed[0] >> 17)             # <<<<<<<<<<<<<<
@@ -19491,7 +19125,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_UINT32_t __pyx_f_7sklearn_4tr
   __pyx_t_1 = 0;
   (__pyx_v_seed[__pyx_t_1]) = ((__pyx_v_seed[__pyx_t_1]) ^ ((__pyx_t_7sklearn_4tree_5_tree_UINT32_t)((__pyx_v_seed[0]) >> 17)));
 
-  /* "sklearn/tree/_tree.pyx":2084
+  /* "sklearn/tree/_tree.pyx":2018
  *     seed[0] ^= <UINT32_t>(seed[0] << 13)
  *     seed[0] ^= <UINT32_t>(seed[0] >> 17)
  *     seed[0] ^= <UINT32_t>(seed[0] << 5)             # <<<<<<<<<<<<<<
@@ -19501,7 +19135,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_UINT32_t __pyx_f_7sklearn_4tr
   __pyx_t_1 = 0;
   (__pyx_v_seed[__pyx_t_1]) = ((__pyx_v_seed[__pyx_t_1]) ^ ((__pyx_t_7sklearn_4tree_5_tree_UINT32_t)((__pyx_v_seed[0]) << 5)));
 
-  /* "sklearn/tree/_tree.pyx":2086
+  /* "sklearn/tree/_tree.pyx":2020
  *     seed[0] ^= <UINT32_t>(seed[0] << 5)
  * 
  *     return seed[0] % (<UINT32_t>RAND_R_MAX + 1)             # <<<<<<<<<<<<<<
@@ -19511,7 +19145,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_UINT32_t __pyx_f_7sklearn_4tr
   __pyx_r = ((__pyx_v_seed[0]) % (((__pyx_t_7sklearn_4tree_5_tree_UINT32_t)__pyx_e_7sklearn_4tree_5_tree_RAND_R_MAX) + 1));
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2081
+  /* "sklearn/tree/_tree.pyx":2015
  * # rand_r replacement using a 32bit XorShift generator
  * # See http://www.jstatsoft.org/v08/i14/paper for details
  * cdef inline UINT32_t our_rand_r(UINT32_t* seed) nogil:             # <<<<<<<<<<<<<<
@@ -19524,7 +19158,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_UINT32_t __pyx_f_7sklearn_4tr
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2088
+/* "sklearn/tree/_tree.pyx":2022
  *     return seed[0] % (<UINT32_t>RAND_R_MAX + 1)
  * 
  * cdef inline np.ndarray sizet_ptr_to_ndarray(SIZE_t* data, SIZE_t size):             # <<<<<<<<<<<<<<
@@ -19542,7 +19176,7 @@ static CYTHON_INLINE PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_n
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sizet_ptr_to_ndarray", 0);
 
-  /* "sklearn/tree/_tree.pyx":2091
+  /* "sklearn/tree/_tree.pyx":2025
  *     """Encapsulate data into a 1D numpy array of intp's."""
  *     cdef np.npy_intp shape[1]
  *     shape[0] = <np.npy_intp> size             # <<<<<<<<<<<<<<
@@ -19551,7 +19185,7 @@ static CYTHON_INLINE PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_n
  */
   (__pyx_v_shape[0]) = ((npy_intp)__pyx_v_size);
 
-  /* "sklearn/tree/_tree.pyx":2092
+  /* "sklearn/tree/_tree.pyx":2026
  *     cdef np.npy_intp shape[1]
  *     shape[0] = <np.npy_intp> size
  *     return np.PyArray_SimpleNewFromData(1, shape, np.NPY_INTP, data)             # <<<<<<<<<<<<<<
@@ -19559,14 +19193,14 @@ static CYTHON_INLINE PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_n
  * cdef inline SIZE_t rand_int(SIZE_t low, SIZE_t high,
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyArray_SimpleNewFromData(1, __pyx_v_shape, NPY_INTP, __pyx_v_data); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyArray_SimpleNewFromData(1, __pyx_v_shape, NPY_INTP, __pyx_v_data); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2026; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2092; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2026; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2088
+  /* "sklearn/tree/_tree.pyx":2022
  *     return seed[0] % (<UINT32_t>RAND_R_MAX + 1)
  * 
  * cdef inline np.ndarray sizet_ptr_to_ndarray(SIZE_t* data, SIZE_t size):             # <<<<<<<<<<<<<<
@@ -19585,7 +19219,7 @@ static CYTHON_INLINE PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_n
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2094
+/* "sklearn/tree/_tree.pyx":2028
  *     return np.PyArray_SimpleNewFromData(1, shape, np.NPY_INTP, data)
  * 
  * cdef inline SIZE_t rand_int(SIZE_t low, SIZE_t high,             # <<<<<<<<<<<<<<
@@ -19596,7 +19230,7 @@ static CYTHON_INLINE PyArrayObject *__pyx_f_7sklearn_4tree_5_tree_sizet_ptr_to_n
 static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree_5_tree_rand_int(__pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_low, __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_v_high, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_random_state) {
   __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_r;
 
-  /* "sklearn/tree/_tree.pyx":2097
+  /* "sklearn/tree/_tree.pyx":2031
  *                             UINT32_t* random_state) nogil:
  *     """Generate a random integer in [0; end)."""
  *     return low + our_rand_r(random_state) % (high - low)             # <<<<<<<<<<<<<<
@@ -19606,7 +19240,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree
   __pyx_r = (__pyx_v_low + (__pyx_f_7sklearn_4tree_5_tree_our_rand_r(__pyx_v_random_state) % (__pyx_v_high - __pyx_v_low)));
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2094
+  /* "sklearn/tree/_tree.pyx":2028
  *     return np.PyArray_SimpleNewFromData(1, shape, np.NPY_INTP, data)
  * 
  * cdef inline SIZE_t rand_int(SIZE_t low, SIZE_t high,             # <<<<<<<<<<<<<<
@@ -19619,7 +19253,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2099
+/* "sklearn/tree/_tree.pyx":2033
  *     return low + our_rand_r(random_state) % (high - low)
  * 
  * cdef inline double rand_uniform(double low, double high,             # <<<<<<<<<<<<<<
@@ -19630,7 +19264,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_5_tree_SIZE_t __pyx_f_7sklearn_4tree
 static CYTHON_INLINE double __pyx_f_7sklearn_4tree_5_tree_rand_uniform(double __pyx_v_low, double __pyx_v_high, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *__pyx_v_random_state) {
   double __pyx_r;
 
-  /* "sklearn/tree/_tree.pyx":2103
+  /* "sklearn/tree/_tree.pyx":2037
  *     """Generate a random double in [low; high)."""
  *     return ((high - low) * <double> our_rand_r(random_state) /
  *             <double> RAND_R_MAX) + low             # <<<<<<<<<<<<<<
@@ -19640,7 +19274,7 @@ static CYTHON_INLINE double __pyx_f_7sklearn_4tree_5_tree_rand_uniform(double __
   __pyx_r = ((((__pyx_v_high - __pyx_v_low) * ((double)__pyx_f_7sklearn_4tree_5_tree_our_rand_r(__pyx_v_random_state))) / ((double)__pyx_e_7sklearn_4tree_5_tree_RAND_R_MAX)) + __pyx_v_low);
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2099
+  /* "sklearn/tree/_tree.pyx":2033
  *     return low + our_rand_r(random_state) % (high - low)
  * 
  * cdef inline double rand_uniform(double low, double high,             # <<<<<<<<<<<<<<
@@ -19653,7 +19287,7 @@ static CYTHON_INLINE double __pyx_f_7sklearn_4tree_5_tree_rand_uniform(double __
   return __pyx_r;
 }
 
-/* "sklearn/tree/_tree.pyx":2105
+/* "sklearn/tree/_tree.pyx":2039
  *             <double> RAND_R_MAX) + low
  * 
  * cdef inline double log(double x) nogil:             # <<<<<<<<<<<<<<
@@ -19663,7 +19297,7 @@ static CYTHON_INLINE double __pyx_f_7sklearn_4tree_5_tree_rand_uniform(double __
 static CYTHON_INLINE double __pyx_f_7sklearn_4tree_5_tree_log(double __pyx_v_x) {
   double __pyx_r;
 
-  /* "sklearn/tree/_tree.pyx":2106
+  /* "sklearn/tree/_tree.pyx":2040
  * 
  * cdef inline double log(double x) nogil:
  *     return ln(x) / ln(2.0)             # <<<<<<<<<<<<<<
@@ -19671,7 +19305,7 @@ static CYTHON_INLINE double __pyx_f_7sklearn_4tree_5_tree_log(double __pyx_v_x) 
   __pyx_r = (log(__pyx_v_x) / log(2.0));
   goto __pyx_L0;
 
-  /* "sklearn/tree/_tree.pyx":2105
+  /* "sklearn/tree/_tree.pyx":2039
  *             <double> RAND_R_MAX) + low
  * 
  * cdef inline double log(double x) nogil:             # <<<<<<<<<<<<<<
@@ -34209,9 +33843,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 802; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_n_s_Ellipsis); if (!__pyx_builtin_Ellipsis) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -34227,36 +33861,36 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "sklearn/tree/_tree.pyx":1333
+  /* "sklearn/tree/_tree.pyx":1267
  * 
  *             if X.indices.dtype != np.int32 or X.indptr.dtype != np.int32:
  *                 raise ValueError("No support for np.int64 index based "             # <<<<<<<<<<<<<<
  *                                  "sparse matrices")
  * 
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_No_support_for_np_int64_index_ba); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_No_support_for_np_int64_index_ba); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "sklearn/tree/_tree.pyx":1718
+  /* "sklearn/tree/_tree.pyx":1652
  * 
  *         if 'nodes' not in d:
  *             raise ValueError('You have loaded Tree version which '             # <<<<<<<<<<<<<<
  *                              'cannot be imported')
  * 
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_You_have_loaded_Tree_version_whi); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_You_have_loaded_Tree_version_whi); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "sklearn/tree/_tree.pyx":1732
+  /* "sklearn/tree/_tree.pyx":1666
  *                 not value_ndarray.flags.c_contiguous or
  *                 value_ndarray.dtype != np.float64):
  *             raise ValueError('Did not recognise loaded array layout')             # <<<<<<<<<<<<<<
  * 
  *         self.capacity = node_ndarray.shape[0]
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Did_not_recognise_loaded_array_l); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1732; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Did_not_recognise_loaded_array_l); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1666; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
@@ -34461,17 +34095,17 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
 
-  /* "sklearn/tree/_tree.pyx":2069
+  /* "sklearn/tree/_tree.pyx":2003
  * 
  * 
  * def _realloc_test():             # <<<<<<<<<<<<<<
  *     # Helper for tests. Tries to allocate <size_t>(-1) / 2 * sizeof(size_t)
  *     # bytes, which will always overflow.
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_p); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2069; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_p); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2003; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_volatile_jmschrei_Bureau_scikit, __pyx_n_s_realloc_test, 2069, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2069; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_volatile_jmschrei_Bureau_scikit, __pyx_n_s_realloc_test, 2003, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2003; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "View.MemoryView":276
  *         return self.name
@@ -34648,9 +34282,9 @@ PyMODINIT_FUNC PyInit__tree(void)
   /*--- Function export code ---*/
   /*--- Type init code ---*/
   __pyx_vtabptr_7sklearn_4tree_5_tree_Criterion = &__pyx_vtable_7sklearn_4tree_5_tree_Criterion;
-  __pyx_vtable_7sklearn_4tree_5_tree_Criterion.init = (void (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **))__pyx_f_7sklearn_4tree_5_tree_9Criterion_init;
-  __pyx_vtable_7sklearn_4tree_5_tree_Criterion.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_9Criterion_best_split;
-  __pyx_vtable_7sklearn_4tree_5_tree_Criterion.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_9Criterion_random_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_Criterion.init = (void (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **))__pyx_f_7sklearn_4tree_5_tree_9Criterion_init;
+  __pyx_vtable_7sklearn_4tree_5_tree_Criterion.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_9Criterion_best_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_Criterion.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_9Criterion_random_split;
   if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Criterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_Criterion.tp_print = 0;
   if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Criterion.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Criterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -34660,10 +34294,10 @@ PyMODINIT_FUNC PyInit__tree(void)
   __pyx_vtable_7sklearn_4tree_5_tree_Splitter.init = (void (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, PyObject *, PyArrayObject *, int, PyArrayObject *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *))__pyx_f_7sklearn_4tree_5_tree_8Splitter_init;
   __pyx_vtable_7sklearn_4tree_5_tree_Splitter._split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t))__pyx_f_7sklearn_4tree_5_tree_8Splitter__split;
   __pyx_vtable_7sklearn_4tree_5_tree_Splitter.split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Splitter *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_8Splitter_split;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Splitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 942; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Splitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 879; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_Splitter.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Splitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Splitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 942; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "Splitter", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Splitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 942; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Splitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Splitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 879; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Splitter", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Splitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 879; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_Splitter = &__pyx_type_7sklearn_4tree_5_tree_Splitter;
   __pyx_vtabptr_7sklearn_4tree_5_tree_Tree = &__pyx_vtable_7sklearn_4tree_5_tree_Tree;
   __pyx_vtable_7sklearn_4tree_5_tree_Tree._add_node = (__pyx_t_7sklearn_4tree_5_tree_SIZE_t (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, int, int, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, double, double, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, double, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_4Tree__add_node;
@@ -34676,67 +34310,67 @@ PyMODINIT_FUNC PyInit__tree(void)
   __pyx_vtable_7sklearn_4tree_5_tree_Tree._apply_dense = (PyArrayObject *(*)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, PyObject *))__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_dense;
   __pyx_vtable_7sklearn_4tree_5_tree_Tree._apply_sparse_csr = (PyArrayObject *(*)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, PyObject *))__pyx_f_7sklearn_4tree_5_tree_4Tree__apply_sparse_csr;
   __pyx_vtable_7sklearn_4tree_5_tree_Tree.compute_feature_importances = (PyObject *(*)(struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, int __pyx_skip_dispatch, struct __pyx_opt_args_7sklearn_4tree_5_tree_4Tree_compute_feature_importances *__pyx_optional_args))__pyx_f_7sklearn_4tree_5_tree_4Tree_compute_feature_importances;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Tree) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Tree) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_Tree.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Tree.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Tree) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "Tree", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Tree) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Tree.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Tree) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Tree", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Tree) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_Tree = &__pyx_type_7sklearn_4tree_5_tree_Tree;
   __pyx_vtabptr_7sklearn_4tree_5_tree_TreeBuilder = &__pyx_vtable_7sklearn_4tree_5_tree_TreeBuilder;
   __pyx_vtable_7sklearn_4tree_5_tree_TreeBuilder._check_input = (PyObject *(*)(struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder *, PyObject *, PyArrayObject *, PyArrayObject *))__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder__check_input;
   __pyx_vtable_7sklearn_4tree_5_tree_TreeBuilder.depth_first = (PyObject *(*)(struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder *, struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, PyObject *, PyArrayObject *, PyArrayObject *, int, PyArrayObject *, int __pyx_skip_dispatch))__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_depth_first;
   __pyx_vtable_7sklearn_4tree_5_tree_TreeBuilder.best_first = (PyObject *(*)(struct __pyx_obj_7sklearn_4tree_5_tree_TreeBuilder *, struct __pyx_obj_7sklearn_4tree_5_tree_Tree *, PyObject *, PyArrayObject *, PyArrayObject *, int, PyArrayObject *, int __pyx_skip_dispatch))__pyx_f_7sklearn_4tree_5_tree_11TreeBuilder_best_first;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_TreeBuilder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_TreeBuilder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_TreeBuilder.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_TreeBuilder.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_TreeBuilder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "TreeBuilder", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_TreeBuilder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_TreeBuilder.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_TreeBuilder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "TreeBuilder", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_TreeBuilder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_TreeBuilder = &__pyx_type_7sklearn_4tree_5_tree_TreeBuilder;
   __pyx_vtabptr_7sklearn_4tree_5_tree_ClassificationCriterion = &__pyx_vtable_7sklearn_4tree_5_tree_ClassificationCriterion;
   __pyx_vtable_7sklearn_4tree_5_tree_ClassificationCriterion.__pyx_base = *__pyx_vtabptr_7sklearn_4tree_5_tree_Criterion;
-  __pyx_vtable_7sklearn_4tree_5_tree_ClassificationCriterion.__pyx_base.init = (void (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **))__pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init;
+  __pyx_vtable_7sklearn_4tree_5_tree_ClassificationCriterion.__pyx_base.init = (void (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **))__pyx_f_7sklearn_4tree_5_tree_23ClassificationCriterion_init;
   __pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion.tp_base = __pyx_ptype_7sklearn_4tree_5_tree_Criterion;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_ClassificationCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "ClassificationCriterion", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_ClassificationCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "ClassificationCriterion", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_ClassificationCriterion = &__pyx_type_7sklearn_4tree_5_tree_ClassificationCriterion;
   __pyx_vtabptr_7sklearn_4tree_5_tree_Entropy = &__pyx_vtable_7sklearn_4tree_5_tree_Entropy;
   __pyx_vtable_7sklearn_4tree_5_tree_Entropy.__pyx_base = *__pyx_vtabptr_7sklearn_4tree_5_tree_ClassificationCriterion;
-  __pyx_vtable_7sklearn_4tree_5_tree_Entropy.__pyx_base.__pyx_base.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_7Entropy_best_split;
-  __pyx_vtable_7sklearn_4tree_5_tree_Entropy.__pyx_base.__pyx_base.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_7Entropy_random_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_Entropy.__pyx_base.__pyx_base.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_7Entropy_best_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_Entropy.__pyx_base.__pyx_base.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_7Entropy_random_split;
   __pyx_type_7sklearn_4tree_5_tree_Entropy.tp_base = __pyx_ptype_7sklearn_4tree_5_tree_ClassificationCriterion;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Entropy) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Entropy) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_Entropy.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Entropy.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Entropy) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "Entropy", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Entropy) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Entropy.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Entropy) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Entropy", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Entropy) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_Entropy = &__pyx_type_7sklearn_4tree_5_tree_Entropy;
   __pyx_vtabptr_7sklearn_4tree_5_tree_Gini = &__pyx_vtable_7sklearn_4tree_5_tree_Gini;
   __pyx_vtable_7sklearn_4tree_5_tree_Gini.__pyx_base = *__pyx_vtabptr_7sklearn_4tree_5_tree_ClassificationCriterion;
-  __pyx_vtable_7sklearn_4tree_5_tree_Gini.__pyx_base.__pyx_base.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_4Gini_best_split;
-  __pyx_vtable_7sklearn_4tree_5_tree_Gini.__pyx_base.__pyx_base.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_4Gini_random_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_Gini.__pyx_base.__pyx_base.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_4Gini_best_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_Gini.__pyx_base.__pyx_base.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_4Gini_random_split;
   __pyx_type_7sklearn_4tree_5_tree_Gini.tp_base = __pyx_ptype_7sklearn_4tree_5_tree_ClassificationCriterion;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Gini) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 486; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_Gini) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_Gini.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Gini.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Gini) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 486; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "Gini", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Gini) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 486; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_Gini.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_Gini) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Gini", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_Gini) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_Gini = &__pyx_type_7sklearn_4tree_5_tree_Gini;
   __pyx_vtabptr_7sklearn_4tree_5_tree_RegressionCriterion = &__pyx_vtable_7sklearn_4tree_5_tree_RegressionCriterion;
   __pyx_vtable_7sklearn_4tree_5_tree_RegressionCriterion.__pyx_base = *__pyx_vtabptr_7sklearn_4tree_5_tree_Criterion;
-  __pyx_vtable_7sklearn_4tree_5_tree_RegressionCriterion.__pyx_base.init = (void (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **))__pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init;
+  __pyx_vtable_7sklearn_4tree_5_tree_RegressionCriterion.__pyx_base.init = (void (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t **))__pyx_f_7sklearn_4tree_5_tree_19RegressionCriterion_init;
   __pyx_type_7sklearn_4tree_5_tree_RegressionCriterion.tp_base = __pyx_ptype_7sklearn_4tree_5_tree_Criterion;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_RegressionCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 691; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_RegressionCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 647; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_RegressionCriterion.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_RegressionCriterion.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_RegressionCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 691; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "RegressionCriterion", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_RegressionCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 691; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_RegressionCriterion.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_RegressionCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 647; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "RegressionCriterion", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_RegressionCriterion) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 647; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_RegressionCriterion = &__pyx_type_7sklearn_4tree_5_tree_RegressionCriterion;
   __pyx_vtabptr_7sklearn_4tree_5_tree_MSE = &__pyx_vtable_7sklearn_4tree_5_tree_MSE;
   __pyx_vtable_7sklearn_4tree_5_tree_MSE.__pyx_base = *__pyx_vtabptr_7sklearn_4tree_5_tree_RegressionCriterion;
-  __pyx_vtable_7sklearn_4tree_5_tree_MSE.__pyx_base.__pyx_base.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_3MSE_best_split;
-  __pyx_vtable_7sklearn_4tree_5_tree_MSE.__pyx_base.__pyx_base.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_3MSE_random_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_MSE.__pyx_base.__pyx_base.best_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *))__pyx_f_7sklearn_4tree_5_tree_3MSE_best_split;
+  __pyx_vtable_7sklearn_4tree_5_tree_MSE.__pyx_base.__pyx_base.random_split = (struct __pyx_t_7sklearn_4tree_6_utils_SplitRecord (*)(struct __pyx_obj_7sklearn_4tree_5_tree_Criterion *, __pyx_t_7sklearn_4tree_5_tree_DTYPE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t *, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_SIZE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t, __pyx_t_7sklearn_4tree_5_tree_DOUBLE_t *, __pyx_t_7sklearn_4tree_5_tree_UINT32_t *))__pyx_f_7sklearn_4tree_5_tree_3MSE_random_split;
   __pyx_type_7sklearn_4tree_5_tree_MSE.tp_base = __pyx_ptype_7sklearn_4tree_5_tree_RegressionCriterion;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_MSE) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_5_tree_MSE) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_5_tree_MSE.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_MSE.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_MSE) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "MSE", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_MSE) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_5_tree_MSE.tp_dict, __pyx_vtabptr_7sklearn_4tree_5_tree_MSE) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "MSE", (PyObject *)&__pyx_type_7sklearn_4tree_5_tree_MSE) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_5_tree_MSE = &__pyx_type_7sklearn_4tree_5_tree_MSE;
   if (PyType_Ready(&__pyx_type___pyx_array) < 0) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type___pyx_array.tp_print = 0;
@@ -35306,7 +34940,7 @@ PyMODINIT_FUNC PyInit__tree(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_NODE_DTYPE, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sklearn/tree/_tree.pyx":1750
+  /* "sklearn/tree/_tree.pyx":1684
  *     # XXX using (size_t)(-1) is ugly, but SIZE_MAX is not available in C89
  *     # (i.e., older MSVC).
  *     cdef int _resize_c(self, SIZE_t capacity=<SIZE_t>(-1)) nogil:             # <<<<<<<<<<<<<<
@@ -35315,16 +34949,16 @@ PyMODINIT_FUNC PyInit__tree(void)
  */
   __pyx_k__4 = ((__pyx_t_7sklearn_4tree_5_tree_SIZE_t)-1);
 
-  /* "sklearn/tree/_tree.pyx":2069
+  /* "sklearn/tree/_tree.pyx":2003
  * 
  * 
  * def _realloc_test():             # <<<<<<<<<<<<<<
  *     # Helper for tests. Tries to allocate <size_t>(-1) / 2 * sizeof(size_t)
  *     # bytes, which will always overflow.
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_4tree_5_tree_1_realloc_test, NULL, __pyx_n_s_sklearn_tree__tree); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2069; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_4tree_5_tree_1_realloc_test, NULL, __pyx_n_s_sklearn_tree__tree); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2003; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_realloc_test, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2069; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_realloc_test, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2003; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn/tree/_tree.pyx":1
