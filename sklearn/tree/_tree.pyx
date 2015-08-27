@@ -1237,6 +1237,210 @@ cdef void heapsort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
         sift_down(Xf, samples, 0, end)
         end = end - 1
 
+cdef class SparseSplitter(Splitter):
+    """
+    Interface for the splitter class. This is an object which handles efficient
+    storage and splitting of a feature in the process of building a decision
+    tree.
+    """
+
+    cdef void init(self, object X, np.ndarray[INT32_t, ndim=2] X_idx_sorted,
+                   bint presort, np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
+                   DOUBLE_t* sample_weight, DOUBLE_t* w_sum,
+                   DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value,
+                   SIZE_t* n_node_samples):
+        """
+        Initialize the values in this object.
+        """
+
+        self.presort = presort
+        self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
+        
+        self.n_samples = X.shape[0]
+        safe_realloc(&self.samples, self.n_samples)
+
+        cdef SIZE_t i, j = 0
+
+        # In order to only use positively weighted samples, we must go through
+        # each sample and check its associated weight.
+        for i in range(self.n_samples):
+            if sample_weight[i] != 0.0:
+                self.samples[j] = i
+                j += 1
+
+        n_node_samples[0] = j
+
+        self.n_features = X.shape[1]
+        safe_realloc(&self.features, self.n_features)
+        
+        for i in range(self.n_features):
+            self.features[i] = i
+
+        self.y = <DOUBLE_t*> y.data
+        self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
+        
+        self.sample_weight = sample_weight
+
+        cdef np.ndarray[dtype=DTYPE_t, ndim=1] data = X.data
+        cdef np.ndarray[dtype=INT32_t, ndim=1] indices = X.indices
+        cdef np.ndarray[dtype=INT32_t, ndim=1] indptr = X.indptr
+
+        self.X_data = <DTYPE_t*> data.data
+        self.X_indices = <INT32_t*> indices.data
+        self.X_indptr = <INT32_t*> indptr.data 
+
+        safe_realloc(&self.X_i, self.n_samples)
+
+        if presort == 1:
+            safe_realloc(&self.sample_mask, self.n_samples)
+            memset(self.sample_mask, 0, self.n_samples*sizeof(SIZE_t))
+
+            self.X_idx_sorted = X_idx_sorted
+            self.X_idx_sorted_ptr = <INT32_t*> self.X_idx_sorted.data
+            self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
+                                           <SIZE_t> self.X_idx_sorted.itemsize)
+
+        self.criterion.init(self.y, self.y_stride, self.sample_weight, 
+            self.n_samples, self.min_samples_leaf, self.min_weight_leaf,
+            w_sum, yw_sq_sum, node_value)
+
+    cdef SplitRecord _split(self, SIZE_t start, SIZE_t end, 
+        SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum, DOUBLE_t* node_value,
+        SIZE_t best) nogil:
+        """Find the best split for a specific feature.
+
+        This is a helper for the best_split method to allow parallel
+        computation of the best split, by scanning multiple features
+        at the same time.
+        """
+
+        cdef DTYPE_t* X = self.X
+        cdef DTYPE_t* X_i = self.X_i
+        cdef INT32_t* X_idx_sorted = self.X_idx_sorted_ptr
+        cdef SIZE_t* sample_mask = self.sample_mask
+        cdef SIZE_t* samples = self.samples
+        cdef UINT32_t* random_state = &self.rand_r_state
+
+        cdef SIZE_t i, j, p = start
+        cdef SIZE_t feature_offset = self.X_idx_sorted_stride * feature
+        cdef SIZE_t argmin, argmax
+
+        cdef SplitRecord split
+
+        if self.presort == 1:
+            for i in range(self.n_samples): 
+                j = X_idx_sorted[i + feature_offset]
+                if sample_mask[j] == 1:
+                    samples[p] = j
+                    X_i[p] = X[self.X_sample_stride * j +
+                               self.X_feature_stride * feature]
+                    p += 1
+        else:
+            for i in range(start, end):
+                X_i[i] = X[self.X_sample_stride * samples[i] +
+                           self.X_feature_stride * feature]
+
+            sort(X_i + start, samples + start, end - start)
+
+        feature_offset = feature*self.X_feature_stride
+        argmax = samples[end-1]*self.X_sample_stride + feature_offset
+        argmin = samples[start]*self.X_sample_stride + feature_offset
+        if X[argmax] > X[argmin] + FEATURE_THRESHOLD:
+            if best == 1:
+                split = self.criterion.best_split(X_i, samples, start, end, 
+                    feature, w_sum, yw_sq_sum, node_value)
+            else:
+                split = self.criterion.random_split(X_i, samples, start, end, 
+                    feature, w_sum, yw_sq_sum, node_value, random_state)
+        else:
+            _init_split_record(&split)
+
+        return split
+
+    cdef SplitRecord split(self, SIZE_t start, SIZE_t end, DOUBLE_t w_sum, 
+        DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
+        """Find the best split for this node."""
+
+        cdef SIZE_t* features = self.features
+        cdef SIZE_t* samples = self.samples
+        cdef SIZE_t* sample_mask = self.sample_mask
+
+        cdef DTYPE_t* X = self.X
+        cdef SIZE_t X_sample_stride = self.X_sample_stride
+        cdef SIZE_t X_feature_stride = self.X_feature_stride
+        cdef UINT32_t* random_state = &self.rand_r_state
+
+        cdef SIZE_t n_visited_features = 0
+        cdef SIZE_t tmp, partition_end
+        cdef SIZE_t i=0, j, p
+
+        cdef SplitRecord best, current
+        _init_split_record(&best)
+
+        cdef SIZE_t n = self.criterion.n
+
+        cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+
+        # Set a mask to indicate which samples we are considering.
+        if self.presort == 1:
+            for p in range(start, end):
+                sample_mask[samples[p]] = 1
+
+        # Sample up to max_features without replacement using a
+        # Fisher-Yates-based algorithm. To allow for parallelism,
+        # we sample batches at a time, and count the number of
+        # non-constant features, until we converge at max_features
+        # number of non-constant features
+        while n_visited_features < self.max_features and i < self.n_features:
+            j = rand_int(i, self.n_features, random_state)
+            features[i], features[j] = features[j], features[i]
+
+            current = self._split(start, end, features[i], w_sum, yw_sq_sum, 
+                node_value, self.best)
+
+            i += 1
+            if current.improvement > -INFINITY:
+                n_visited_features += 1
+
+            if current.improvement > best.improvement and best.pos < end:
+                best = current
+                memcpy(node_value_left, current.node_value_left, 
+                    n*sizeof(DOUBLE_t))
+                memcpy(node_value_right, current.node_value_right, 
+                    n*sizeof(DOUBLE_t))
+
+        best.node_value_left = node_value_left
+        best.node_value_right = node_value_right
+        best.start = start
+        best.end = end
+        if best.pos == -1:
+            best.pos = end
+
+        # Reorganize into samples[start:best.pos] + samples[best.pos:end]
+        if best.pos < end:
+            partition_end = end
+            p = start
+
+            while p < partition_end:
+                if X[X_sample_stride * samples[p] + X_feature_stride 
+                    * best.feature] <= best.threshold:
+                    p += 1
+
+                else:
+                    partition_end -= 1
+
+                    tmp = samples[partition_end]
+                    samples[partition_end] = samples[p]
+                    samples[p] = tmp
+
+        # Reset sample mask
+        if self.presort == 1:
+            for p in range(start, end):
+                sample_mask[samples[p]] = 0
+
+        return best
+
 # =============================================================================
 # Tree builders
 # =============================================================================
