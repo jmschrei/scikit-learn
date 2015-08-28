@@ -1337,10 +1337,6 @@ cdef class SparseSplitter(Splitter):
         self.extract_nnz(feature, start, end, &end_negative, &start_positive,
                          &self.is_samples_sorted)
 
-        with gil:
-            print start, end, feature, end_negative, start_positive
-            print [X_i[i] for i in range(start, end)]
-
         sort(X_i + start, samples + start, end_negative - start)
         sort(X_i + start_positive, samples + start_positive,
              end - start_positive)
@@ -1350,9 +1346,6 @@ cdef class SparseSplitter(Splitter):
         for p in range(start_positive, end):
             index_to_samples[samples[p]] = p
 
-        with gil:
-            print [X_i[i] for i in range(start, end)]
-
         if end_negative < start_positive:
             start_positive -= 1
             X_i[start_positive] = 0.0
@@ -1361,9 +1354,7 @@ cdef class SparseSplitter(Splitter):
                 X_i[end_negative] = 0.0
                 end_negative += 1
 
-        with gil:
-            print [X_i[i] for i in range(start, end)]
-            print
+        memset(X_i+end_negative, 0, (start_positive-end_negative)*sizeof(DTYPE_t))
 
         if X_i[end-1] > X_i[start] + FEATURE_THRESHOLD:
             if best == 1:
