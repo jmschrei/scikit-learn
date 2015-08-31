@@ -311,7 +311,7 @@ cdef class Entropy(ClassificationCriterion):
         w_cl = 0
         # Find the best split by scanning the entire range and calculating
         # improvement for each split point.
-        for i in range(self.min_leaf_samples-1, n-self.min_leaf_samples):
+        for i in range(n-self.min_leaf_samples):
             k = start + i
             p = samples[k]
             label = <SIZE_t>y[p]
@@ -516,7 +516,7 @@ cdef class Gini(ClassificationCriterion):
             if i < self.min_leaf_samples-1:
                 continue
 
-            if k+1 < end-1 and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:
+            if k+1 < end and X_i[k+1] <= X_i[k] + FEATURE_THRESHOLD:
                 continue
 
             if w_cl < self.min_leaf_weight or w_cr < self.min_leaf_weight:
@@ -529,7 +529,6 @@ cdef class Gini(ClassificationCriterion):
                 impurity_right += yw_cr[j] ** 2.0
 
             improvement = impurity_left / w_cl + impurity_right / w_cr
-
             if improvement > split.improvement:
                 split.improvement = improvement
                 split.threshold = (X_i[k+1] + X_i[k]) / 2.0
@@ -1337,6 +1336,10 @@ cdef class SparseSplitter(Splitter):
         self.extract_nnz(feature, start, end, &end_negative, &start_positive,
                          &self.is_samples_sorted)
 
+        if end_negative == start and start_positive == end:
+            _init_split_record(&split)
+            return split
+
         sort(X_i + start, samples + start, end_negative - start)
         sort(X_i + start_positive, samples + start_positive,
              end - start_positive)
@@ -1764,6 +1767,10 @@ cdef class TreeBuilder:
                     impurity = split.impurity
                     w_sum = split.weight
                     node_value = split.node_value
+                    if split.improvement == -INFINITY:
+                        free(node_value)
+                        continue
+
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
