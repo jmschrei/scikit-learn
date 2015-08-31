@@ -915,10 +915,9 @@ cdef class Splitter:
 
         free(self.samples)
         free(self.features)
-        free(self.sample_mask)
-
+        free(self.X_i)
         if self.presort:
-            free(self.X_i)
+            free(self.sample_mask)
 
     def __getstate__(self):
         return {}
@@ -1766,11 +1765,8 @@ cdef class TreeBuilder:
                     is_leaf = is_leaf or (split.pos >= end)
                     impurity = split.impurity
                     w_sum = split.weight
-                    node_value = split.node_value
-                    if split.improvement == -INFINITY:
-                        free(node_value)
-                        continue
-
+                    if split.improvement != -INFINITY:
+                        node_value = split.node_value
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
@@ -2039,7 +2035,6 @@ cdef class Tree:
 
     def __dealloc__(self):
         """Destructor."""
-        # Free all inner structures
         free(self.n_classes)
         free(self.value)
         free(self.nodes)
@@ -2231,7 +2226,9 @@ cdef class Tree:
                         node = &self.nodes[node.right_child]
 
                 out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
+        
         return out
+
 
     cdef inline np.ndarray _apply_sparse_csr(self, object X):
         """Finds the terminal region (=leaf node) for each sample in sparse X.
