@@ -1,3 +1,4 @@
+# cython: profile=True
 # cython: cdivision=True
 # cython: boundscheck=False
 # cython: wraparound=False
@@ -104,18 +105,15 @@ cdef class Criterion:
         free(self.node_value_left)
         free(self.node_value_right)
 
-    cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
-        DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
+    cdef void init(self, DOUBLE_t* y, DOUBLE_t* w, SIZE_t n_samples, 
+        SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight, DOUBLE_t* w_sum, 
+        DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
         """Initialize by passing pointers to the underlying data.
 
         Parameters
         ----------
         y: array-like, dtype=DOUBLE_t
             A 1-d buffer of targets for each sample.
-        y_stride: SIZE_t
-            The number of positions in the buffer to move over to access the
-            next sample.
         w: array-like, dtype=DOUBLE_t
             The weight of each sample
         n_samples: SIZE_t
@@ -133,12 +131,15 @@ cdef class Criterion:
         self.min_leaf_weight = min_leaf_weight
         self.n_samples = n_samples
 
-        self.y_stride = y_stride
+        cdef SIZE_t stride = self.label_stride
+        self.node_value_left = <DOUBLE_t*> calloc(stride, sizeof(DOUBLE_t))
+        self.node_value_right = <DOUBLE_t*> calloc(stride, sizeof(DOUBLE_t))
 
-        self.node_value_left = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
-        self.node_value_right = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
-        memset(self.node_value_left, 0, self.n*sizeof(DOUBLE_t))
-        memset(self.node_value_right, 0, self.n*sizeof(DOUBLE_t))
+        if self.node_value_left == NULL or self.node_value_right == NULL:
+            raise MemoryError()
+
+        memset(self.node_value_left, 0, stride*sizeof(DOUBLE_t))
+        memset(self.node_value_right, 0, stride*sizeof(DOUBLE_t))
 
     cdef SplitRecord best_split(self, DTYPE_t* X_i, SIZE_t* samples, 
         SIZE_t start, SIZE_t end, SIZE_t feature, DOUBLE_t w_sum, 
@@ -195,8 +196,6 @@ cdef class ClassificationCriterion(Criterion):
         self.y = NULL
         self.w = NULL
 
-        self.y_stride = 1
-
         self.min_leaf_samples = 0
         self.min_leaf_weight = 0
 
@@ -207,36 +206,41 @@ cdef class ClassificationCriterion(Criterion):
 
         self.n = 0
         for i in range(n_outputs):
-            self.n += n_classes[i] 
+            if n_classes[i] > self.n:
+                self.n = n_classes[i]
 
-    cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
-        DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
+    cdef void init(self, DOUBLE_t* y, DOUBLE_t* w, SIZE_t n_samples, 
+        SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight, DOUBLE_t* w_sum, 
+        DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
         """Initialize by passing pointers to the underlying data."""
 
-        Criterion.init(self, y, y_stride, w, n_samples, min_leaf_samples, 
+        self.label_stride = self.n * self.n_outputs
+        Criterion.init(self, y, w, n_samples, min_leaf_samples, 
             min_leaf_weight, w_sum, yw_sq_sum, node_value)
 
-        self.yw_cl = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
-        self.yw_cr = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
-        node_value[0] = <DOUBLE_t*> calloc(self.n, sizeof(DOUBLE_t))
+        self.yw_cl = <DOUBLE_t*> calloc(self.label_stride, sizeof(DOUBLE_t))
+        self.yw_cr = <DOUBLE_t*> calloc(self.label_stride, sizeof(DOUBLE_t))
+        node_value[0] = <DOUBLE_t*> calloc(self.label_stride, sizeof(DOUBLE_t))
 
         if (self.yw_cl == NULL or 
             self.yw_cr == NULL or
             node_value[0] == NULL):
             raise MemoryError()
 
-        memset(self.yw_cl, 0, self.n*sizeof(DOUBLE_t))
-        memset(self.yw_cr, 0, self.n*sizeof(DOUBLE_t))
+        memset(self.yw_cl, 0, self.label_stride*sizeof(DOUBLE_t))
+        memset(self.yw_cr, 0, self.label_stride*sizeof(DOUBLE_t))
 
-        cdef SIZE_t i, label
+        cdef SIZE_t i, j, label_index, label_count_stride = self.n
 
         for i in range(n_samples):
-            label = <SIZE_t>y[i]
             w_sum[0] += w[i]
-            self.yw_cr[label] += w[i]
+            
+            for j in range(self.n_outputs):
+                label_index = (j * label_count_stride +
+                               <SIZE_t> y[i * self.n_outputs + j])
+                self.yw_cr[label_index] += w[i]
 
-        for i in range(self.n):
+        for i in range(self.label_stride):
             node_value[0][i] = self.yw_cr[i]
 
         yw_sq_sum[0] = 0
@@ -277,14 +281,14 @@ cdef class Entropy(ClassificationCriterion):
         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
         
         cdef DOUBLE_t* y = self.y
-        cdef SIZE_t y_stride = self.y_stride
         cdef DOUBLE_t* w = self.w
+        cdef SIZE_t stride = self.label_stride
 
         cdef DOUBLE_t w_cl, w_cr
         cdef DOUBLE_t* yw_cl = self.yw_cl
         cdef DOUBLE_t* yw_cr = self.yw_cr
-        memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
-        memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
+        memset(yw_cl, 0, stride*sizeof(DOUBLE_t))
+        memset(yw_cr, 0, stride*sizeof(DOUBLE_t))
 
         cdef SIZE_t label
 
@@ -377,15 +381,16 @@ cdef class Entropy(ClassificationCriterion):
         """
         
         cdef DOUBLE_t* y = self.y
-        cdef SIZE_t y_stride = self.y_stride
         cdef DOUBLE_t* w = self.w
+        cdef SIZE_t stride = self.label_stride
 
         cdef DOUBLE_t w_cl, w_cr
         cdef SIZE_t n_cl = 0, n_cr = end - start
         cdef DOUBLE_t* yw_cl = self.yw_cl
         cdef DOUBLE_t* yw_cr = self.yw_cr
-        memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
-        memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
+
+        memset(yw_cl, 0, stride*sizeof(DOUBLE_t))
+        memset(yw_cr, 0, stride*sizeof(DOUBLE_t))
 
         cdef SIZE_t label
 
@@ -479,18 +484,18 @@ cdef class Gini(ClassificationCriterion):
         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
 
         cdef DOUBLE_t* y = self.y
-        cdef SIZE_t y_stride = self.y_stride
         cdef DOUBLE_t* w = self.w
 
         cdef DOUBLE_t w_cl, w_cr
         cdef DOUBLE_t* yw_cl = self.yw_cl
         cdef DOUBLE_t* yw_cr = self.yw_cr
-        memset(yw_cl, 0, self.n*sizeof(DOUBLE_t))
-        memset(yw_cr, 0, self.n*sizeof(DOUBLE_t))
+        memset(yw_cl, 0, multi_y_stride*sizeof(DOUBLE_t))
+        memset(yw_cr, 0, multi_y_stride*sizeof(DOUBLE_t))
 
-        cdef SIZE_t label
-
-        cdef SIZE_t i, j, p, k, n = end-start, m = self.n
+        cdef SIZE_t i, j, p, k, n = end-start
+        cdef SIZE_t multi_y_stride = self.label_stride
+        cdef SIZE_t n_outputs = self.n_outputs
+        cdef SIZE_t label_index, max_classes = self.n
 
         cdef DOUBLE_t impurity_left, impurity_right, improvement
         cdef SplitRecord split
@@ -501,26 +506,29 @@ cdef class Gini(ClassificationCriterion):
         split.node_value_right = self.node_value_right
 
         split.impurity = 0
-        for i in range(m):
+        for i in range(multi_y_stride):
             yw_cr[i] = node_value[i]
-            split.impurity += yw_cr[i] ** 2
+            split.impurity += node_value[i] ** 2
 
-        split.impurity = 1.0 - split.impurity / w_sum ** 2 
+        split.impurity = n_outputs - split.impurity / w_sum ** 2 
 
         w_cr = w_sum
         w_cl = 0
+
         # Find the best split by scanning the entire range and calculating
         # improvement for each split point.
         for i in range(n-self.min_leaf_samples):
             k = start+i
             p = samples[k]
-            label = <SIZE_t>y[p]
-
-            yw_cr[label] -= w[p]
-            yw_cl[label] += w[p]
 
             w_cr -= w[p]
             w_cl += w[p]
+            for j in range(n_outputs):
+                label_index = (j * max_classes +
+                               <SIZE_t> y[p * n_outputs + j])
+
+                yw_cr[label_index] -= w[p]
+                yw_cl[label_index] += w[p]
 
             if i < self.min_leaf_samples-1:
                 continue
@@ -533,7 +541,7 @@ cdef class Gini(ClassificationCriterion):
 
             impurity_left = 0
             impurity_right = 0
-            for j in range(m):
+            for j in range(multi_y_stride):
                 impurity_left += yw_cl[j] ** 2.0
                 impurity_right += yw_cr[j] ** 2.0
 
@@ -547,16 +555,16 @@ cdef class Gini(ClassificationCriterion):
                 split.weight_left = w_cl
                 split.weight_right = w_cr
 
-                split.impurity_left = 1. - impurity_left / w_cl ** 2
-                split.impurity_right = 1. - impurity_right / w_cr ** 2
+                split.impurity_left = n_outputs - impurity_left / w_cl ** 2
+                split.impurity_right = n_outputs - impurity_right / w_cr ** 2
 
-                for j in range(m):
+                for j in range(multi_y_stride):
                     split.node_value_left[j] = yw_cl[j]
                     split.node_value_right[j] = yw_cr[j]
 
-        split.impurity /= self.n_outputs
-        split.impurity_left /= self.n_outputs
-        split.impurity_right /= self.n_outputs
+        split.impurity /= n_outputs
+        split.impurity_left /= n_outputs
+        split.impurity_right /= n_outputs
 
         split.improvement = (w_sum / self.weighted_n_samples * 
             (split.impurity - split.weight_left / w_sum * split.impurity_left - 
@@ -576,7 +584,6 @@ cdef class Gini(ClassificationCriterion):
         """
         
         cdef DOUBLE_t* y = self.y
-        cdef SIZE_t y_stride = self.y_stride
         cdef DOUBLE_t* w = self.w
 
         cdef DOUBLE_t w_cl, w_cr
@@ -676,19 +683,17 @@ cdef class RegressionCriterion(Criterion):
         self.y = NULL
         self.w = NULL
 
-        self.y_stride = 1
-
         self.min_leaf_samples = 0
         self.min_leaf_weight = 0
 
         self.n = n_outputs
 
-    cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* w,
-        SIZE_t n_samples, SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight,
-        DOUBLE_t* w_sum, DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
+    cdef void init(self, DOUBLE_t* y, DOUBLE_t* w, SIZE_t n_samples, 
+        SIZE_t min_leaf_samples, DOUBLE_t min_leaf_weight, DOUBLE_t* w_sum,
+        DOUBLE_t* yw_sq_sum, DOUBLE_t** node_value):
         """Initialize by passing pointers to the underlying data."""
 
-        Criterion.init(self, y, y_stride, w, n_samples, min_leaf_samples, 
+        Criterion.init(self, y, w, n_samples, min_leaf_samples, 
             min_leaf_weight, w_sum, yw_sq_sum, node_value)
 
         cdef SIZE_t i
@@ -725,7 +730,6 @@ cdef class MSE(RegressionCriterion):
         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value) nogil:
 
         cdef DOUBLE_t* y = self.y
-        cdef SIZE_t y_stride = self.y_stride
         cdef DOUBLE_t* w = self.w
 
         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
@@ -809,7 +813,6 @@ cdef class MSE(RegressionCriterion):
         DOUBLE_t yw_sq_sum, DOUBLE_t* node_value, UINT32_t* rand_r) nogil:
 
         cdef DOUBLE_t* y = self.y
-        cdef SIZE_t y_stride = self.y_stride
         cdef DOUBLE_t* w = self.w
 
         cdef DOUBLE_t yw_sum = node_value[0] * w_sum
@@ -923,7 +926,6 @@ cdef class Splitter:
         self.n_features = 0
 
         self.y = NULL
-        self.y_stride = 0
 
         self.max_features = max_features
         self.min_samples_leaf = min_samples_leaf
@@ -994,8 +996,6 @@ cdef class Splitter:
             self.features[i] = i
 
         self.y = <DOUBLE_t*> y.data
-        self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
-        
         self.sample_weight = sample_weight
 
         cdef np.ndarray X_ndarray = X
@@ -1014,9 +1014,9 @@ cdef class Splitter:
             self.X_idx_sorted_stride = (<SIZE_t> self.X_idx_sorted.strides[1] /
                                            <SIZE_t> self.X_idx_sorted.itemsize)
 
-        self.criterion.init(self.y, self.y_stride, self.sample_weight, 
-            self.n_samples, self.min_samples_leaf, self.min_weight_leaf,
-            w_sum, yw_sq_sum, node_value)
+        self.criterion.init(self.y, self.sample_weight, self.n_samples, 
+            self.min_samples_leaf, self.min_weight_leaf, w_sum, yw_sq_sum, 
+            node_value)
 
     cdef SplitRecord _split(self, SIZE_t start, SIZE_t end, 
         SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum, DOUBLE_t* node_value,
@@ -1091,10 +1091,10 @@ cdef class Splitter:
         cdef SplitRecord best, current
         _init_split_record(&best)
 
-        cdef SIZE_t n = self.criterion.n
+        cdef SIZE_t stride = self.criterion.label_stride
 
-        cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
-        cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(stride, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(stride, sizeof(DOUBLE_t))
 
         # Set a mask to indicate which samples we are considering.
         if self.presort == 1:
@@ -1120,9 +1120,9 @@ cdef class Splitter:
             if current.improvement > best.improvement and best.pos < end:
                 best = current
                 memcpy(node_value_left, current.node_value_left, 
-                    n*sizeof(DOUBLE_t))
+                    stride*sizeof(DOUBLE_t))
                 memcpy(node_value_right, current.node_value_right, 
-                    n*sizeof(DOUBLE_t))
+                    stride*sizeof(DOUBLE_t))
 
         best.node_value_left = node_value_left
         best.node_value_right = node_value_right
@@ -1313,8 +1313,6 @@ cdef class SparseSplitter(Splitter):
             self.features[i] = i
 
         self.y = <DOUBLE_t*> y.data
-        self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
-        
         self.sample_weight = sample_weight
 
         cdef np.ndarray[dtype=DTYPE_t, ndim=1] data = X.data
@@ -1335,9 +1333,9 @@ cdef class SparseSplitter(Splitter):
         for i in range(j):
             self.index_to_samples[self.samples[i]] = i
 
-        self.criterion.init(self.y, self.y_stride, self.sample_weight, 
-            self.n_samples, self.min_samples_leaf, self.min_weight_leaf,
-            w_sum, yw_sq_sum, node_value)
+        self.criterion.init(self.y, self.sample_weight, self.n_samples, 
+            self.min_samples_leaf, self.min_weight_leaf, w_sum, yw_sq_sum,
+            node_value)
 
     cdef SplitRecord _split(self, SIZE_t start, SIZE_t end, 
         SIZE_t feature, DOUBLE_t w_sum, DOUBLE_t yw_sq_sum, DOUBLE_t* node_value,
@@ -1417,10 +1415,10 @@ cdef class SparseSplitter(Splitter):
         cdef SplitRecord best, current
         _init_split_record(&best)
 
-        cdef SIZE_t n = self.criterion.n
+        cdef SIZE_t label_stride = self.criterion.label_stride
 
-        cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
-        cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(n, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* node_value_left = <DOUBLE_t*> calloc(label_stride, sizeof(DOUBLE_t))
+        cdef DOUBLE_t* node_value_right = <DOUBLE_t*> calloc(label_stride, sizeof(DOUBLE_t))
 
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm. To allow for parallelism,
@@ -1441,9 +1439,9 @@ cdef class SparseSplitter(Splitter):
             if current.improvement > best.improvement and best.pos < end:
                 best = current
                 memcpy(node_value_left, current.node_value_left, 
-                    n*sizeof(DOUBLE_t))
+                    label_stride*sizeof(DOUBLE_t))
                 memcpy(node_value_right, current.node_value_right, 
-                    n*sizeof(DOUBLE_t))
+                    label_stride*sizeof(DOUBLE_t))
 
         best.node_value_left = node_value_left
         best.node_value_right = node_value_right
