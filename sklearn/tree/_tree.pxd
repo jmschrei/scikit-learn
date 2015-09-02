@@ -29,7 +29,6 @@ cdef class Criterion:
     # such as the mean in regression and class probabilities in classification.
 
     cdef SIZE_t n_outputs
-    cdef SIZE_t n_jobs
 
     cdef DOUBLE_t* y             
     cdef DOUBLE_t* w        
@@ -37,8 +36,11 @@ cdef class Criterion:
     cdef DOUBLE_t* node_value_left
     cdef DOUBLE_t* node_value_right
 
-    cdef public SIZE_t n
-    cdef public SIZE_t label_stride
+    cdef DOUBLE_t* yw_cl
+    cdef DOUBLE_t* yw_cr
+
+    cdef public SIZE_t max_classes
+    cdef public SIZE_t y_stride
 
     cdef SIZE_t min_leaf_samples
     cdef DOUBLE_t min_leaf_weight
