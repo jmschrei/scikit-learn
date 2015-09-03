@@ -3,6 +3,7 @@
 #          Brian Holt <bdholt1@gmail.com>
 #          Joel Nothman <joel.nothman@gmail.com>
 #          Arnaud Joly <arnaud.v.joly@gmail.com>
+#          Jacob Schreiber <jmschreiber91@gmail.com>
 #
 # Licence: BSD 3 clause
 

@@ -10,6 +10,7 @@ randomized trees. Single and multi-output problems are both handled.
 #          Satrajit Gosh <satrajit.ghosh@gmail.com>
 #          Joly Arnaud <arnaud.v.joly@gmail.com>
 #          Fares Hedayati <fares.hedayati@gmail.com>
+#          Jacob Schreiber <jmschreiber91@gmail.com>
 #
 # Licence: BSD 3 clause
 
@@ -321,6 +322,9 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         else:
             builder.best_first(self.tree_, X, y, sample_weight, presort, 
                 X_idx_sorted)
+
+        self.splitter = splitter
+        self.criterion = criterion
 
         if self.n_outputs_ == 1:
             self.n_classes_ = self.n_classes_[0]

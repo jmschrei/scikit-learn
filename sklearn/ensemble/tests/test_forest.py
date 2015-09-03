@@ -37,8 +37,6 @@ from sklearn.grid_search import GridSearchCV
 from sklearn.svm import LinearSVC
 from sklearn.utils.validation import check_random_state
 
-from sklearn.tree.tree import SPARSE_SPLITTERS
-
 # toy sample
 X = [[-2, -1], [-1, -1], [-1, -2], [1, 1], [1, 2], [2, 1]]
 y = [-1, -1, -1, 1, 1, 1]
@@ -694,7 +692,7 @@ def check_memory_layout(name, dtype):
     y = iris.target
     assert_array_equal(est.fit(X, y).predict(X), y)
 
-    if est.base_estimator.splitter in SPARSE_SPLITTERS:
+    if est.base_estimator.splitter == 'sparse':
         # csr matrix
         X = csr_matrix(iris.data, dtype=dtype)
         y = iris.target
