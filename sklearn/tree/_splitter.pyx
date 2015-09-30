@@ -116,11 +116,11 @@ cdef class Splitter:
     def __setstate__(self, d):
         pass
 
-    cdef void init(self,
-                   object X,
+    cdef void init(self, object X,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
-                   DOUBLE_t* sample_weight,
-                   np.ndarray X_idx_sorted=None) except *:
+                   DOUBLE_t* sample_weight, np.ndarray X_idx_sorted,
+                   SIZE_t* n_samples_total, double* weighted_n_samples_total, 
+                   double** sum_total):
         """Initialize the splitter.
 
         Take in the input data X, the target Y, and optional sample weights.
@@ -146,9 +146,9 @@ cdef class Splitter:
         # samples from the feature of interest
         cdef SIZE_t* samples = safe_realloc(&self.samples, n_samples)
 
-        cdef SIZE_t i, j
+        cdef SIZE_t i
+        cdef SIZE_t j = 0
         cdef double weighted_n_samples = 0.0
-        j = 0
 
         for i in range(n_samples):
             # Only work with positively weighted samples
@@ -180,6 +180,23 @@ cdef class Splitter:
         self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
 
         self.sample_weight = sample_weight
+
+        n_samples_total[0] = j
+        weighted_n_samples_total[0] = weighted_n_samples
+
+        self.start = 0
+        self.end = j
+
+        self.criterion.init(self.y,
+                            self.y_stride,
+                            self.sample_weight,
+                            self.weighted_n_samples,
+                            self.samples,
+                            self.start,
+                            self.end)
+
+        sum_total[0] = self.criterion.sum_total
+
 
     cdef void node_reset(self, SIZE_t start, SIZE_t end,
                          double* weighted_n_node_samples) nogil:
@@ -257,15 +274,16 @@ cdef class BaseDenseSplitter(Splitter):
         if self.presort == 1:
             free(self.sample_mask)
 
-    cdef void init(self,
-                   object X,
+    cdef void init(self, object X,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
-                   DOUBLE_t* sample_weight,
-                   np.ndarray X_idx_sorted=None) except *:
+                   DOUBLE_t* sample_weight, np.ndarray X_idx_sorted,
+                   SIZE_t* n_samples_total, double* weighted_n_samples_total, 
+                   double** sum_total):
         """Initialize the splitter."""
 
         # Call parent init
-        Splitter.init(self, X, y, sample_weight)
+        Splitter.init(self, X, y, sample_weight, X_idx_sorted, n_samples_total,
+                      weighted_n_samples_total, sum_total)
 
         # Initialize X
         cdef np.ndarray X_ndarray = X
@@ -865,15 +883,16 @@ cdef class BaseSparseSplitter(Splitter):
         free(self.index_to_samples)
         free(self.sorted_samples)
 
-    cdef void init(self,
-                   object X,
+    cdef void init(self, object X,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
-                   DOUBLE_t* sample_weight,
-                   np.ndarray X_idx_sorted=None) except *:
+                   DOUBLE_t* sample_weight, np.ndarray X_idx_sorted,
+                   SIZE_t* n_samples_total, double* weighted_n_samples_total, 
+                   double** sum_total):
         """Initialize the splitter."""
 
         # Call parent init
-        Splitter.init(self, X, y, sample_weight)
+        Splitter.init(self, X, y, sample_weight, X_idx_sorted, n_samples_total,
+                      weighted_n_samples_total, sum_total)
 
         if not isinstance(X, csc_matrix):
             raise ValueError("X should be in csc format")

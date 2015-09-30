@@ -168,15 +168,17 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t min_samples_split = self.min_samples_split
 
         # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight_ptr, X_idx_sorted)
+        cdef SIZE_t n_node_samples
+        cdef double weighted_n_samples
+        cdef double* sum_total
+        splitter.init(X, y, sample_weight_ptr, X_idx_sorted, 
+                      &n_node_samples, &weighted_n_samples, &sum_total)
 
         cdef SIZE_t start
         cdef SIZE_t end
         cdef SIZE_t depth
         cdef SIZE_t parent
         cdef bint is_left
-        cdef SIZE_t n_node_samples = splitter.n_samples
-        cdef double weighted_n_samples = splitter.weighted_n_samples
         cdef double weighted_n_node_samples
         cdef SplitRecord split
         cdef SIZE_t node_id
@@ -193,7 +195,8 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef StackRecord stack_record
 
         # push root node onto stack
-        rc = stack.push(0, n_node_samples, 0, _TREE_UNDEFINED, 0, INFINITY, 0)
+        rc = stack.push(0, n_node_samples, 0, _TREE_UNDEFINED, 0, n_node_samples, 
+                        weighted_n_samples, sum_total, INFINITY, 0)
         if rc == -1:
             # got return code -1 - out-of-memory
             raise MemoryError()
@@ -316,14 +319,17 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t min_samples_split = self.min_samples_split
 
         # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight_ptr, X_idx_sorted)
+        cdef SIZE_t n_node_samples
+        cdef double weighted_n_samples
+        cdef double* sum_total
+        splitter.init(X, y, sample_weight_ptr, X_idx_sorted, 
+                      &n_node_samples, &weighted_n_samples, &sum_total)
 
         cdef PriorityHeap frontier = PriorityHeap(INITIAL_STACK_SIZE)
         cdef PriorityHeapRecord record
         cdef PriorityHeapRecord split_node_left
         cdef PriorityHeapRecord split_node_right
 
-        cdef SIZE_t n_node_samples = splitter.n_samples
         cdef SIZE_t max_split_nodes = max_leaf_nodes - 1
         cdef bint is_leaf
         cdef SIZE_t max_depth_seen = -1

@@ -81,9 +81,11 @@ cdef class Splitter:
     # This allows optimization with depth-based tree building.
 
     # Methods
-    cdef void init(self, object X, np.ndarray y,
-                   DOUBLE_t* sample_weight,
-                   np.ndarray X_idx_sorted=*) except *
+    cdef void init(self, object X,
+                   np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
+                   DOUBLE_t* sample_weight, np.ndarray X_idx_sorted,
+                   SIZE_t* n_samples_total, double* weighted_n_samples_total, 
+                   double** sum_total)
 
     cdef void node_reset(self, SIZE_t start, SIZE_t end,
                          double* weighted_n_node_samples) nogil
